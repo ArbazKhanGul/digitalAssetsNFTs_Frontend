@@ -26,7 +26,7 @@ const Navbar=()=>{
 
 
 
-    <ul className="inline-block ml-auto list">
+    <ul className="inline-block ml-auto hidden md:inline-block">
       <li className="inline-block links">
         <Link href="/">
           <a>Home</a>

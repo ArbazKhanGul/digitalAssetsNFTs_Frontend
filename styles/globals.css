@@ -21,9 +21,10 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 {
   @apply text-[1.7rem] text-[#EAE1E1] pl-[1.5rem]
 }
-.list
-{
-  display: none;
+
+.onlinks:hover {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 }
 
 
@@ -34,10 +35,6 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 
 @media screen and (min-width: 800px) {
   
-.list {
-  display: inline-block;
-}
-
 }
 @media screen and (min-width: 1400px) {
   
