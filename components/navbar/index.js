@@ -1,13 +1,12 @@
 import Image from "next/image";
 import Link from 'next/link'
-
+import   {AiOutlineMenu} from "react-icons/ai"
 const Navbar=()=>{
 
     return(
         <>
         <div className="navbar flex items-center pl-[4rem] pr-[5rem]" >
 
-            
         <div className="w-[35rem] h-[6rem] relative">
   <Image 
   src="/logo.png"
@@ -17,9 +16,10 @@ const Navbar=()=>{
 </div>
   
   <div className="flex-1 items-center flex">
-  
 
-    <ul className="inline-block ml-auto">
+  <AiOutlineMenu className="w-[3rem] inline-block ml-auto h-[3rem] text-white"></AiOutlineMenu>
+
+    <ul className="inline-block ml-auto list">
       <li className="inline-block links">
         <Link href="/">
           <a>Home</a>

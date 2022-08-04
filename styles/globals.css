@@ -16,9 +16,21 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 {
   @apply text-[1.6rem] text-[#EAE1E1] pl-[1.3rem]
 }
+.list
+{
+  display: none;
+}
+
+@media screen and (min-width: 800px) {
+  
+.list {
+  display: inline-block;
+}
+}
 @media screen and (min-width: 1400px) {
   
   html {
     font-size:13px
   }
-} 
+}
+
