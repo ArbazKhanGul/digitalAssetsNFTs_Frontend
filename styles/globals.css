@@ -11,20 +11,25 @@ html
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
 linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 }
-.pad {
-  @apply pl-[1.5rem] pr-[2.5rem]
-}
-.iconvisibility{
-  display:inline-block;
-}
+
 
 .links
 {
   @apply text-[1.6rem] text-[#EAE1E1] pl-[1.3rem]
 }
+.onlinks
+{
+  @apply text-[1.4rem] text-[#EAE1E1] pl-[1.5rem]
+}
 .list
 {
   display: none;
+}
+
+
+.onclicklist {
+  background: linear-gradient(0deg, rgba(75, 70, 70, 0.2), rgba(87, 80, 80, 0.2)),
+  linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 }
 
 @media screen and (min-width: 800px) {
@@ -32,17 +37,26 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 .list {
   display: inline-block;
 }
-.pad{
-@apply pl-[4rem] pr-[5rem]
-}
-.iconvisibility {
-display: none;
-}
+
 }
 @media screen and (min-width: 1400px) {
+  
+  html {
+    font-size:12px
+  }
+}
+
+
+@media screen and (min-width: 1600px) {
   
   html {
     font-size:13px
   }
 }
 
+@media screen and (min-width: 1800px) {
+  
+  html {
+    font-size:14px
+  }
+}
