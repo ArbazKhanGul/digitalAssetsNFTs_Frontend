@@ -5,9 +5,9 @@ const Navbar=()=>{
 
     return(
         <>
-        <div className="navbar flex items-center pt-[1rem] pb-[1rem] pl-[1.5rem] pr-[2rem] md:pl-[4rem] md:pr-[5rem]" >
+        <div className="navbar flex items-center pt-[1rem] pb-[1rem] pl-[1rem] pr-[2rem] md:pl-[4rem] md:pr-[5rem] md:pt-[0rem] md:pb-[0rem]" >
 
-        <div className=" w-[25rem] h-[4.2rem] md:w-[35rem] md:h-[6rem]  relative">
+        <div className=" w-[26rem] h-[4.2rem] md:w-[35rem] md:h-[6rem]  relative">
   <Image 
   src="/logo.png"
   layout="fill"
@@ -17,7 +17,7 @@ const Navbar=()=>{
   
   <div className="flex-1 items-center flex">
 
-  <AiOutlineMenu className="w-[3rem] ml-auto h-[3rem] iconvisibility text-white"></AiOutlineMenu>
+  <AiOutlineMenu className="w-[2.7rem] ml-auto h-[2.7rem]  iconvisibility text-white"></AiOutlineMenu>
 
     <ul className="inline-block ml-auto list">
       <li className="inline-block links">
