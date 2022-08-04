@@ -5,9 +5,9 @@ const Navbar=()=>{
 
     return(
         <>
-        <div className="navbar flex items-center  pad" >
+        <div className="navbar flex items-center pl-[1.5rem] pr-[2rem] md:pl-[4rem] md:pr-[5rem]" >
 
-        <div className="w-[35rem] h-[6rem] relative">
+        <div className=" w-[20rem] h-[3.3rem] md:w-[35rem] md:h-[6rem]  relative">
   <Image 
   src="/logo.png"
   layout="fill"
