@@ -63,14 +63,14 @@ const Navbar=()=>{
   <ul className=" ml-auto divide-y-[1px] divide-[#454f5a]">
   <Link href="/" passHref >
     <a>
-      <li className="onlinks py-[0.7rem] pl-[3rem]">
+      <li className="onlinks py-[0.7rem] pl-[2.7rem]">
           Home
       </li>
       </a>
       </Link>
       <Link href="/about">
       <a>
-      <li className=" onlinks py-[0.7rem] px-[3rem]">
+      <li className=" onlinks py-[0.7rem] px-[2.7rem]">
          NFTs
         
       </li>
@@ -79,7 +79,7 @@ const Navbar=()=>{
 
       <Link href="/blog/hello-world">
       <a>
-      <li className=" onlinks py-[0.7rem] px-[3rem]">
+      <li className=" onlinks py-[0.7rem] px-[2.7rem]">
           Collections
       </li>
       </a>
@@ -87,7 +87,7 @@ const Navbar=()=>{
      
       <Link href="/blog/hello-world">
           <a>
-      <li className="onlinks py-[0.7rem] px-[3rem]">
+      <li className="onlinks py-[0.7rem] px-[2.7rem]">
         Login            </li>
         </a>
 
@@ -96,7 +96,7 @@ const Navbar=()=>{
 
   <Link href="/blog/hello-world">
   <a>
-      <li className="onlinks py-[0.7rem] px-[3rem]">
+      <li className="onlinks py-[0.7rem] px-[2.7rem]">
           Register
       </li>
       </a>
