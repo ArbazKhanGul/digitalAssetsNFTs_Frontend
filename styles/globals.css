@@ -19,7 +19,7 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 }
 .onlinks
 {
-  @apply text-[1.7rem] text-[#EAE1E1] pl-[1.5rem]
+  @apply text-[1.7rem] text-[#EAE1E1]
 }
 
 .onlinks:hover {

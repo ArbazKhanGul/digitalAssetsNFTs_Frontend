@@ -61,31 +61,47 @@ const Navbar=()=>{
 
     
   <ul className=" ml-auto divide-y-[1px] divide-[#454f5a]">
-      <li className="links p-[0.7rem] pl-[2rem]">
-        <Link href="/">
-          <a>Home</a>
-        </Link>
+  <Link href="/" passHref >
+    <a>
+      <li className="onlinks py-[0.7rem] pl-[3rem]">
+          Home
       </li>
-      <li className=" onlinks p-[0.7rem] pl-[2rem]">
-        <Link href="/about">
-          <a>NFTs</a>
-        </Link>
+      </a>
+      </Link>
+      <Link href="/about">
+      <a>
+      <li className=" onlinks py-[0.7rem] px-[3rem]">
+         NFTs
+        
       </li>
-      <li className=" onlinks p-[0.7rem] pl-[2rem]">
-        <Link href="/blog/hello-world">
-          <a>Collections</a>
-        </Link>
+      </a>
+      </Link>
+
+      <Link href="/blog/hello-world">
+      <a>
+      <li className=" onlinks py-[0.7rem] px-[3rem]">
+          Collections
       </li>
-      <li className="onlinks p-[0.7rem] pl-[2rem]">
-        <Link href="/blog/hello-world">
-          <a>Login</a>
-        </Link>
+      </a>
+      </Link>
+     
+      <Link href="/blog/hello-world">
+          <a>
+      <li className="onlinks py-[0.7rem] px-[3rem]">
+        Login            </li>
+        </a>
+
+  </Link>
+
+
+  <Link href="/blog/hello-world">
+  <a>
+      <li className="onlinks py-[0.7rem] px-[3rem]">
+          Register
       </li>
-      <li className="onlinks p-[0.7rem] pl-[2rem]">
-        <Link href="/blog/hello-world">
-          <a>Register</a>
-        </Link>
-      </li>
+      </a>
+      </Link>
+
     </ul>
 </div>
         </>
