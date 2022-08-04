@@ -5,7 +5,7 @@ const Navbar=()=>{
 
     return(
         <>
-        <div className="navbar flex items-center pl-[4rem] pr-[5rem]" >
+        <div className="navbar flex items-center  pad" >
 
         <div className="w-[35rem] h-[6rem] relative">
   <Image 
@@ -17,7 +17,7 @@ const Navbar=()=>{
   
   <div className="flex-1 items-center flex">
 
-  <AiOutlineMenu className="w-[3rem] inline-block ml-auto h-[3rem] text-white"></AiOutlineMenu>
+  <AiOutlineMenu className="w-[3rem] ml-auto h-[3rem] iconvisibility text-white"></AiOutlineMenu>
 
     <ul className="inline-block ml-auto list">
       <li className="inline-block links">
