@@ -61,27 +61,27 @@ const Navbar=()=>{
 
     
   <ul className=" ml-auto divide-y-[1px] divide-[#454f5a]">
-      <li className="links p-[0.7rem] pl-[1.3rem]">
+      <li className="links p-[0.7rem] pl-[2rem]">
         <Link href="/">
           <a>Home</a>
         </Link>
       </li>
-      <li className=" onlinks p-[0.7rem] pl-[1.3rem]">
+      <li className=" onlinks p-[0.7rem] pl-[2rem]">
         <Link href="/about">
           <a>NFTs</a>
         </Link>
       </li>
-      <li className=" onlinks p-[0.7rem] pl-[1.3rem]">
+      <li className=" onlinks p-[0.7rem] pl-[2rem]">
         <Link href="/blog/hello-world">
           <a>Collections</a>
         </Link>
       </li>
-      <li className="onlinks p-[0.7rem] pl-[1.3rem]">
+      <li className="onlinks p-[0.7rem] pl-[2rem]">
         <Link href="/blog/hello-world">
           <a>Login</a>
         </Link>
       </li>
-      <li className="onlinks p-[0.7rem] pl-[1.3rem]">
+      <li className="onlinks p-[0.7rem] pl-[2rem]">
         <Link href="/blog/hello-world">
           <a>Register</a>
         </Link>
