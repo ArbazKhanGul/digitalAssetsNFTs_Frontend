@@ -3,7 +3,7 @@ import Image from "next/image";
 const Main=()=>{
 
     return (
-        <div className="main  overflow-x-hidden flex justify-evenly flex-col  md:flex-row items-center px-[5rem] ">
+        <div className="main  overflow-x-hidden flex justify-evenly flex-col-reverse  md:flex-row items-center px-[5rem] ">
 
 <div className="text-white w-full md:w-1/2">
 
