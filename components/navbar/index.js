@@ -4,7 +4,7 @@ import { useState } from "react";
 import   {AiOutlineMenu} from "react-icons/ai"
 const Navbar=()=>{
   const [showItems, show]=useState(false);
-
+console.log(showItems);
     return(
         <>
         <div className="navbar flex items-center pt-[1rem] pb-[1rem] pl-[1rem] pr-[2rem]  sm:pl-[2rem] sm:pr-[3rem] md:pl-[4rem] md:pr-[5rem] md:pt-[0rem] md:pb-[0rem]" >
@@ -19,7 +19,9 @@ const Navbar=()=>{
   
   <div className="flex-1 items-center flex">
 
-  <AiOutlineMenu className="w-[2.7rem] ml-auto h-[2.7rem]  inline-block md:hidden text-white"></AiOutlineMenu>
+  <AiOutlineMenu className="w-[2.7rem] ml-auto h-[2.7rem]  inline-block md:hidden text-white" onClick={()=>{show((prevState)=>{
+    return prevState?false:true;
+  })}}></AiOutlineMenu>
 
 
 
@@ -57,8 +59,7 @@ const Navbar=()=>{
   </div> 
 </div>
 
-<div className="onclicklist">
-
+<div className={"onclicklist transition-all duration-[1s] md:hidden ease-in "+(!showItems ? "h-0 overflow-hidden ":"h-[200px]")}>
     
   <ul className=" ml-auto divide-y-[1px] divide-[#454f5a]">
   <Link href="/" passHref >
