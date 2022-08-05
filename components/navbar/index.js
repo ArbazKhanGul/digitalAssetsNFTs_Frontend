@@ -59,19 +59,19 @@ console.log(showItems);
   </div> 
 </div>
 
-<div className={"onclicklist transition-all duration-500 overflow-hidden md:hidden linear "+(!showItems ? "h-0 ":"h-[205px]")}>
+<div className={"onclicklist transition-all duration-500 overflow-hidden md:hidden linear "+(!showItems ? "h-0 ":"h-[202px]")}>
     
   <ul className={" ml-auto divide-y-[1px] divide-[#454f5a]"}>
   <Link href="/" passHref >
     <a>
-      <li className="onlinks py-[0.7rem] pl-[2.7rem]">
+      <li className="onlinks py-[0.7rem] pl-[2.7rem] sm:pl-[3.7rem]">
           Home
       </li>
       </a>
       </Link>
       <Link href="/about">
       <a>
-      <li className=" onlinks py-[0.7rem] px-[2.7rem]">
+      <li className=" onlinks py-[0.7rem] px-[2.7rem] sm:pl-[3.7rem]">
          NFTs
         
       </li>
@@ -80,7 +80,7 @@ console.log(showItems);
 
       <Link href="/blog/hello-world">
       <a>
-      <li className=" onlinks py-[0.7rem] px-[2.7rem]">
+      <li className=" onlinks py-[0.7rem] px-[2.7rem] sm:pl-[3.7rem]">
           Collections
       </li>
       </a>
@@ -88,7 +88,7 @@ console.log(showItems);
      
       <Link href="/blog/hello-world">
           <a>
-      <li className="onlinks py-[0.7rem] px-[2.7rem]">
+      <li className="onlinks py-[0.7rem] px-[2.7rem] sm:pl-[3.7rem]">
         Login            </li>
         </a>
 
@@ -97,7 +97,7 @@ console.log(showItems);
 
   <Link href="/blog/hello-world">
   <a>
-      <li className="onlinks py-[0.7rem] px-[2.7rem]">
+      <li className="onlinks py-[0.7rem] px-[2.7rem] sm:pl-[3.7rem]">
           Register
       </li>
       </a>
