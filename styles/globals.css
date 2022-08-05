@@ -33,6 +33,25 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
   linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 }
 
+.main {
+background-image:url("./background.jpg");
+background-position: center; 
+background-repeat: no-repeat; 
+background-size: cover; 
+box-sizing: border-box;
+width:100%;
+height:calc(100vh - 60px);
+/* width: calc(100vw - 20px) */
+}
+
+
+
+
+
+
+
+/* Media queries */
+
 @media screen and (min-width: 800px) {
   
 }
@@ -41,6 +60,9 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
   html {
     font-size:12px
   }
+  .main {
+    height:calc(100vh - 72px);
+    }
 }
 
 
@@ -49,6 +71,9 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
   html {
     font-size:13px
   }
+  .main {
+    height:calc(100vh - 86px);
+    }
 }
 
 @media screen and (min-width: 1800px) {
