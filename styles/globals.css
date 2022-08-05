@@ -40,11 +40,9 @@ background-repeat: no-repeat;
 background-size: cover; 
 box-sizing: border-box;
 width:100%;
-height:calc(100vh - 60px);
+height:calc(100vh - 100px);
 /* width: calc(100vw - 20px) */
 }
-
-
 
 
 
@@ -53,7 +51,9 @@ height:calc(100vh - 60px);
 /* Media queries */
 
 @media screen and (min-width: 800px) {
-  
+  .main {
+    height:calc(100vh - 60px);
+    }  
 }
 @media screen and (min-width: 1400px) {
   
@@ -80,5 +80,19 @@ height:calc(100vh - 60px);
   
   html {
     font-size:14px
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  
+  html {
+    font-size:15px
+  }
+}
+
+@media screen and (min-width: 2200px) {
+  
+  html {
+    font-size:16px
   }
 }
