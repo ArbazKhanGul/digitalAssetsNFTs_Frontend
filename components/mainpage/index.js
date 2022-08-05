@@ -3,7 +3,7 @@ import Image from "next/image";
 const Main=()=>{
 
     return (
-        <div className="main  overflow-x-hidden flex justify-around flex-col  md:flex-row items-center px-[5rem] ">
+        <div className="main  overflow-x-hidden flex justify-evenly flex-col  md:flex-row items-center px-[5rem] ">
 
 <div className="text-white w-full md:w-1/2">
 
@@ -15,7 +15,7 @@ const Main=()=>{
     </div>
 </div>
 <div className="w-full md:w-1/2 flex justify-center">
-<div className=" w-[30rem] h-[14.2rem] sm:w-[30rem] sm:h-[15rem] md:ml-[9rem] md:w-[38rem] md:h-[20rem] lg:w-[55rem] lg:h-[28.5rem]  relative">
+<div className=" w-[34rem] h-[16.2rem] sm:w-[40rem] sm:h-[20rem] md:ml-[9rem] md:w-[38rem] md:h-[20rem] lg:w-[55rem] lg:h-[28.5rem]  relative">
   <Image 
   src="/nft.jpg"
   layout="fill"
