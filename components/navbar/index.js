@@ -7,7 +7,7 @@ const Navbar=()=>{
 console.log(showItems);
     return(
         <>
-        <div className="navbar flex items-center pt-[1rem] pb-[1rem] pl-[1rem] pr-[2rem]  sm:pl-[2rem] sm:pr-[3rem] md:pl-[4rem] md:pr-[5rem] md:pt-[0rem] md:pb-[0rem]" >
+        <div className="navbar flex items-center pt-[1rem] pb-[1rem] pl-[0.8rem] pr-[2rem]  sm:pl-[2rem] sm:pr-[3rem] md:pl-[4rem] md:pr-[5rem] md:pt-[0rem] md:pb-[0rem]" >
 
         <div className=" w-[26rem] h-[4.2rem] sm:w-[30rem] sm:h-[5rem]  md:w-[35rem] md:h-[6rem]  relative">
   <Image 
@@ -64,14 +64,14 @@ console.log(showItems);
   <ul className={" ml-auto divide-y-[1px] divide-[#454f5a]"}>
   <Link href="/" passHref >
     <a>
-      <li className="onlinks py-[0.7rem] pl-[2.7rem] sm:pl-[3.7rem]">
+      <li className="onlinks py-[0.7rem] pl-[2.5rem] sm:pl-[3.7rem]">
           Home
       </li>
       </a>
       </Link>
       <Link href="/about">
       <a>
-      <li className=" onlinks py-[0.7rem] px-[2.7rem] sm:pl-[3.7rem]">
+      <li className=" onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem]">
          NFTs
         
       </li>
@@ -80,7 +80,7 @@ console.log(showItems);
 
       <Link href="/blog/hello-world">
       <a>
-      <li className=" onlinks py-[0.7rem] px-[2.7rem] sm:pl-[3.7rem]">
+      <li className=" onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem]">
           Collections
       </li>
       </a>
@@ -88,7 +88,7 @@ console.log(showItems);
      
       <Link href="/blog/hello-world">
           <a>
-      <li className="onlinks py-[0.7rem] px-[2.7rem] sm:pl-[3.7rem]">
+      <li className="onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem]">
         Login            </li>
         </a>
 
@@ -97,7 +97,7 @@ console.log(showItems);
 
   <Link href="/blog/hello-world">
   <a>
-      <li className="onlinks py-[0.7rem] px-[2.7rem] sm:pl-[3.7rem]">
+      <li className="onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem]">
           Register
       </li>
       </a>
