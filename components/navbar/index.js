@@ -59,9 +59,9 @@ console.log(showItems);
   </div> 
 </div>
 
-<div className={"onclicklist transition-all duration-[1s] md:hidden ease-in "+(!showItems ? "h-0 overflow-hidden ":"h-[200px]")}>
+<div className={"onclicklist transition-all duration-500 overflow-hidden md:hidden linear "+(!showItems ? "h-0 ":"h-[205px]")}>
     
-  <ul className=" ml-auto divide-y-[1px] divide-[#454f5a]">
+  <ul className={" ml-auto divide-y-[1px] divide-[#454f5a]"}>
   <Link href="/" passHref >
     <a>
       <li className="onlinks py-[0.7rem] pl-[2.7rem]">
