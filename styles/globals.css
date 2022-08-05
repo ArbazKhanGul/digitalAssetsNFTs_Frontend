@@ -44,11 +44,22 @@ height:calc(100vh - 100px);
 /* width: calc(100vw - 20px) */
 }
 
-
+.buttons {
+margin-top:0px;
+margin-left: 12px;
+}
 
 
 
 /* Media queries */
+
+@media screen and (max-width: 350px) {
+  .buttons {
+    margin-top:5px;
+    margin-left: 0px;
+    }
+    
+}
 
 @media screen and (min-width: 800px) {
   .main {

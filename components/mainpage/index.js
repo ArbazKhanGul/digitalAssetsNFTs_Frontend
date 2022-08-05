@@ -9,9 +9,13 @@ const Main=()=>{
 
     <h2 className="text-[2.8rem] sm:text-[3.2rem] md:text-[3.6rem] text-center text-[rgb(217,217,217)] mb-10">Discover And sell your golden words and thoughts</h2>
     <p className="text-[#DAD7D7] text-[1.7rem] sm:text-[1.8rem] md:text-[1.9rem] text-center mb-10">Goldernwords is world first NFT platform in which you can create NFTs of your golden words</p>
-    <div className="text-[2rem] ml-8 text-center">
-        <button>Login</button>
-        <button>Register</button>
+    <div className="text-[2rem] text-center">
+    <button class="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[18px] sm:font-semibold py-2 px-8  sm:py-2 sm:px-10 rounded-full">
+  Login
+</button>
+<button class="bg-blue-500 buttons hover:bg-blue-700  text-white font-normal text-[18px] sm:font-semibold py-2 px-8  sm:py-2 sm:px-10 rounded-full">
+  Register
+</button>
     </div>
 </div>
 <div className="w-full md:w-1/2 flex justify-center">
