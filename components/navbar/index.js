@@ -4,7 +4,6 @@ import { useState } from "react";
 import   {AiOutlineMenu} from "react-icons/ai"
 const Navbar=()=>{
   const [showItems, show]=useState(false);
-console.log(showItems);
     return(
         <>
         <div className="navbar flex items-center pt-[1rem] pb-[1rem] pl-[0.8rem] pr-[2rem]  sm:pl-[2rem] sm:pr-[3rem] md:pl-[4rem] md:pr-[5rem] md:pt-[0rem] md:pb-[0rem]" >

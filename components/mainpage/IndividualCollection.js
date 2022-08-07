@@ -8,7 +8,7 @@ const IndividualCollections=({num,collectionname,volume,price,image}) =>{
     Top Collections
     </div> */}
     
-    <div className="flex gap-[1.5rem] items-center"><div className="text-[#0B0A0A8A] text-[2rem] sm:text-[2rem] md:text-[2.2rem] font-bold font-['Inter']" >{num} . </div>     <div className=" inline-block w-[3.5rem] h-[3.5rem] sm:w-[3.2rem] md:w-[3.5rem] sm:h-[3.2rem] md:h-[3.5rem] rounded-full relative">
+    <div className="flex gap-[1.5rem] items-center"><div className="text-[#0B0A0A8A] text-[2rem] sm:text-[2rem] md:text-[2.2rem] font-bold font-['Inter']" >{num}. </div>     <div className=" inline-block w-[3.5rem] h-[3.5rem] sm:w-[3.2rem] md:w-[3.5rem] sm:h-[3.2rem] md:h-[3.5rem] rounded-full relative">
   <Image 
   className="rounded-full"
   src={image}
