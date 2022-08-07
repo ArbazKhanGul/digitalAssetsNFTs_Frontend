@@ -15,10 +15,10 @@ const IndividualCollections=({num,collectionname,volume,price,image}) =>{
   layout="fill"
 //   objectFit="cover"
   /></div>
-  <div className="font-['Inter'] text-[2.2rem] sm:text-[2rem] md:text-[2.2rem] text-[#5F5454CF] ">{collectionname} </div>
+  <div className="font-['Inter'] text-[2rem] sm:text-[2rem] md:text-[2.2rem] text-[#5F5454CF] ">{collectionname} </div>
 </div>
-    <div className="text-[#5F5454CF] ml-[3.4rem] sm:ml-[0rem] text-[2rem] sm:text-[1.8rem] md:text-[2rem] font-['Inter']">  <span className="inline-block sm:hidden text-[2rem] colgrad">Volume (USD) : </span> $ {volume}</div>
-    <div className="text-[#5F5454CF] ml-[3.4rem] sm:ml-[0rem] text-[2rem] sm:text-[1.8rem] md:text-[2rem] font-['Inter']"><span className="inline-block sm:hidden text-[2rem] colgrad">Floor Price (USD) : </span>${price}</div>
+    <div className="text-[#5F5454CF] ml-[3.4rem] sm:ml-[0rem] text-[1.8rem] sm:text-[1.8rem] md:text-[2rem] font-['Inter']">  <span className="inline-block sm:hidden text-[1.8rem] colgrad">Volume (USD) : </span> $ {volume}</div>
+    <div className="text-[#5F5454CF] ml-[3.4rem] sm:ml-[0rem] text-[1.8rem] sm:text-[1.8rem] md:text-[2rem] font-['Inter']"><span className="inline-block sm:hidden text-[1.8rem] colgrad">Floor Price (USD) : </span>${price}</div>
     </div>
     )
 }
