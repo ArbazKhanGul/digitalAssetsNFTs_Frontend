@@ -3,7 +3,7 @@ import Link from 'next/link'
 const IndividualCollections=({num,collectionname,volume,price,image}) =>{
 
     return (
-        <div className="flex border-b-[1px] sm:border-b-0 border-[#b1b1b1]   justify-start space-y-[1rem] pl-[2.3rem] sm:pl-[0rem] pb-[1rem] sm:pb-[0rem] sm:space-y-[0.5rem] sm:justify-around items-start sm:items-center  flex-col sm:flex-row">
+        <div className={"flex sm:border-b-0 border-[#b1b1b1]   justify-start space-y-[1rem] pl-[2.3rem] sm:pl-[0rem]  sm:pb-[0rem] sm:space-y-[0.5rem] sm:justify-around items-start sm:items-center  flex-col sm:flex-row "+(num!=9?"border-b-[1px] pb-[1rem]":"")}>
     {/* <div className="color w-fit text-[3.7rem] font-semibold">
     Top Collections
     </div> */}
