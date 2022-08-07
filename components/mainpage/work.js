@@ -3,9 +3,9 @@ import Image from "next/image";
 const Work=()=>{
 
 return (<>
-<div className=" h-fit  xl:h-fit work my-[2.5rem] flex flex-col lg:flex-row py-[4rem] lg:py-[7rem] px-[5rem] lg:px-[7rem] items-center justify-between">
+<div className=" h-fit  xl:h-fit work my-[2.5rem] flex flex-col lg:flex-row py-[4rem] lg:py-[7rem] px-[3rem] lg:px-[7rem] items-center justify-between">
 
-<div className="w-[100%] lg:w-[47%]"><h2 className="workhead  text-[3rem] xl:text-[3.5rem] font-bold  font-[Inter]">How Golden Words Nfts Work:</h2>
+<div className="w-[100%] lg:w-[47%]"><h2 className="workhead  text-[2.2rem] sm:text-[3rem] xl:text-[3.5rem] font-bold  font-[Inter]">How Golden Words Nfts Work:</h2>
 <p className="text-[#f8f4f4] text-[1.5rem] xl:text-[1.5rem] text-justify pt-[1.5rem]">
 Golden Words NFTs is a latest method of creating NFTs, in which one can create NFTs of Golden Words 
 (text format) instead of pictures. Moreover, no one can create a copy of any other person's Golden Words
@@ -20,8 +20,8 @@ Golden Words NFTs is a latest method of creating NFTs, in which one can create N
  selling of this text you can 8% from profit and this profit is transferrd automatically to your account. 
 </p>
 </div>
-<div className="lg:w-[46%] xl:w-[42.5%] 2xl:w-[43.5%]">
-<div className=" sm:w-[47rem] mt-[6.8rem] object-cover rounded-2xl sm:h-[30rem] lg:w-[47rem] lg:h-[31rem]  xl:w-[50rem] xl:h-[30rem] 2xl:w-[53rem] 2xxl:h-[32rem]    relative">
+<div className="w-[100%] lg:w-[46%] xl:w-[42.5%] 2xl:w-[43.5%] sm:hidden lg:block relative">
+<div className=" w-[100%] h-[30rem] mt-[2.5rem] sm:mt-[6.8rem] object-cover rounded-2xl  lg:w-[47rem] lg:h-[31rem]  xl:w-[50rem] xl:h-[30rem] 2xl:w-[53rem] 2xxl:h-[32rem]    relative">
   <Image 
   className="rounded-2xl"
   src="/workimage.jpg"
