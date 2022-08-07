@@ -28,7 +28,7 @@ console.log(showItems);
 
 
 
-    <ul className="inline-block ml-auto hidden md:inline-block">
+    <ul className=" ml-auto hidden md:inline-block">
       <li className="inline-block links">
         <Link href="/">
           <a>Home</a>
