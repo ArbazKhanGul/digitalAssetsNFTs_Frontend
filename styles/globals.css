@@ -86,6 +86,10 @@ margin-left: 12px;
 
 
 }
+.resheight{
+  height:19rem;
+}
+
 /* Media queries */
 
 @media screen and (max-width: 350px) {
@@ -93,7 +97,28 @@ margin-left: 12px;
     margin-top:5px;
     margin-left: 0px;
     }
-    
+        
+}
+
+@media screen and (min-width: 400px) {
+  .resheight{
+    height:23.5rem;
+  }
+  
+}
+
+@media screen and (min-width: 500px) {
+  .resheight{
+    height:30rem;
+  }
+  
+}
+
+@media screen and (min-width: 580px) {
+  .resheight{
+    height:32rem;
+  }
+  
 }
 
 @media screen and (min-width: 800px) {
