@@ -19,7 +19,7 @@ const Main=()=>{
     </div>
 </div>
 <div className="w-full md:w-1/2 flex justify-center">
-<div className=" w-[34rem] h-[16.2rem] sm:w-[40rem] sm:h-[20rem] md:ml-[9rem] md:w-[38rem] md:h-[20rem] lg:w-[55rem] lg:h-[28.5rem]  relative">
+<div className=" w-[38rem] h-[16.8rem] sm:w-[40rem] sm:h-[20rem] md:ml-[9rem] md:w-[38rem] md:h-[20rem] lg:w-[55rem] lg:h-[28.5rem]  relative">
   <Image 
   src="/nft.jpg"
   layout="fill"
