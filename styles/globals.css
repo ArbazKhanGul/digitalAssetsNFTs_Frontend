@@ -40,7 +40,8 @@ background-repeat: no-repeat;
 background-size: cover; 
 box-sizing: border-box;
 width:100%;
-height:calc(100vh - 100px);
+min-height:calc(100vh - 100px);
+
 /* width: calc(100vw - 20px) */
 }
 
@@ -72,6 +73,18 @@ margin-left: 12px;
 
 
 }
+
+.work {
+  background: linear-gradient(90deg, #727A8F 0.83%, #D0D9EE 99.31%);
+
+}
+.workhead {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.93) 0%, rgba(255, 255, 255, 0.93) 100%);
+  background-clip: text;
+  color:transparent;
+
+
+}
 /* Media queries */
 
 @media screen and (max-width: 350px) {
@@ -84,19 +97,27 @@ margin-left: 12px;
 
 @media screen and (min-width: 800px) {
   .main {
-    height:calc(100vh - 60px);
+    min-height:calc(100vh - 60px);
     }  
 }
 @media screen and (min-width: 1400px) {
   
   html {
-    font-size:12px
+    font-size:11px
   }
+
   .main {
-    height:calc(100vh - 72px);
+    min-height:calc(100vh - 72px);
     }
 }
 
+/* @media screen and (min-width: 1500px) {
+  
+  html {
+    font-size:12px
+  }
+
+} */
 
 @media screen and (min-width: 1600px) {
   
@@ -104,7 +125,7 @@ margin-left: 12px;
     font-size:13px
   }
   .main {
-    height:calc(100vh - 86px);
+    min-height:calc(100vh - 86px);
     }
 }
 
@@ -126,5 +147,19 @@ margin-left: 12px;
   
   html {
     font-size:16px
+  }
+}
+
+@media screen and (min-width: 2400px) {
+  
+  html {
+    font-size:17px
+  }
+}
+
+@media screen and (min-width: 2600px) {
+  
+  html {
+    font-size:21px
   }
 }

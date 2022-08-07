@@ -14,7 +14,7 @@ let temp=[{collectionname:"Collection1",volume:100,price:123,image:"/col.jpeg"},
     <div className="space-y-[2rem] flex-col justify-center">
         <div className="  hidden sm:flex justify-around items-center ml-[5.3rem]">
             <div className="ml-[4rem] text-[2.3rem] sm:text-[2rem] md:text-[2.3rem] w-fit colgrad">Collections</div>
-            <div className="ml-[8rem] text-[2.3rem] sm:text-[2rem]  md:text-[2.3rem] w-fit colgrad">Volume (USD)</div>
+            <div className="ml-[9.5rem] text-[2.3rem] sm:text-[2rem]  md:text-[2.3rem] w-fit colgrad">Volume (USD)</div>
             <div className="text-[2.3rem] sm:text-[2rem] md:text-[2.3rem] w-fit colgrad">Floor Price (USD)</div>
         </div>
         {temp.map((value,index)=>{

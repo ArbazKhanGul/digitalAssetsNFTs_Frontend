@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Navbar from '../components/navbar'
 import  Main from '../components/mainpage'
 import TopCollections from '../components/mainpage/topcollections'
+import Work from '../components/mainpage/work'
 export default function Home() {
   return (
     <div >
@@ -16,7 +17,7 @@ export default function Home() {
 <Navbar></Navbar>
 <Main></Main>   
 <TopCollections></TopCollections>
-
+<Work></Work>
     </div>
   )
 }
