@@ -25,7 +25,7 @@ const IndividualCollections=({num,collectionname,volume,price,image}) =>{
     <div className={"flex sm:hidden gap-[3rem]  border-[#b1b1b1]   justify-start space-y-[2rem] pl-[2.3rem] sm:pl-[0rem]  sm:pb-[0rem]  items-start   flex-col sm:flex-row "+(num!=9?"border-b-[1px] pb-[1rem]":"")}>
     
     
-    <div className="flex  gap-[2.2rem] items-center">
+    <div className="flex  gap-[2rem] items-center">
   <div className="text-[#0B0A0A8A] text-[1.8rem] bold font-['Inter']" >{num}.
        </div>  
          <div className=" inline-block w-[5.2rem] h-[5.2rem]  rounded-full relative">
