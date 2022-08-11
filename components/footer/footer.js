@@ -22,7 +22,7 @@ const Footer=()=>{
         </div>
         <div className="text-[1.4rem] mb-[0.5rem] flex justify-center flex-col items-center">
             <div>Contact Us</div>
-            <div>{process.env.NEXT_PUBLIC_SOMETHING}</div>
+            <div>{process.env.SOMETHING}</div>
 
         </div>
     </div>)
