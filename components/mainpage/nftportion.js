@@ -1,3 +1,4 @@
+import Button from "./button"
 import IndividualNFT from "./individualnft"
 const NFTPortion =()=>{
 
@@ -9,7 +10,7 @@ const NFTPortion =()=>{
         <div className="nft w-fit text-[3.1rem] ml-[2rem] sm:text-[3rem] md:text-[3.7rem] font-semibold mt-[1.2rem] sm:ml-[3.5rem] md:ml-[4rem]">
     Trending NFTs: 
     </div>
-    <span className="colgrad text-[1.5rem] font-semibold mt-[1.2rem] ml-[2.5rem] md:ml-[4rem] block">(Click on any NFT to see his full detail)</span>
+    <span className="colgrad text-[1.5rem] font-semibold mt-[1.2rem] ml-[2.5rem] md:ml-[4rem] block">(Click on any NFT to see his full detail and buying option)</span>
 
 <div className="flex flex-wrap jt mx-[4rem] mg">
 
@@ -21,6 +22,9 @@ const NFTPortion =()=>{
 
 </div>
 
+<div className="mg flex justify-end mt-[1.5rem]">
+<Button></Button>
+</div>
     </div>)
 }
 

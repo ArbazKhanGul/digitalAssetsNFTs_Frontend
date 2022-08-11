@@ -4,6 +4,7 @@ import  Main from '../components/mainpage'
 import TopCollections from '../components/mainpage/topcollections'
 import Work from '../components/mainpage/work'
 import NFTPortion from "../components/mainpage/nftportion"
+import Footer from '../components/footer/footer'
 export default function Home() {
   return (
     <div >
@@ -20,6 +21,7 @@ export default function Home() {
 <TopCollections></TopCollections>
 <Work></Work>
 <NFTPortion></NFTPortion>
+<Footer></Footer>
     </div>
   )
 }

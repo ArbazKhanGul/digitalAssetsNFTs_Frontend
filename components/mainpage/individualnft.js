@@ -1,12 +1,12 @@
 const IndividualNFT=({nftname,nfttext,owner,creator,creationdate,price,index})=>{
-    console.log(index)
+    
     return (
 
-    <div className={"bord_grad nftwdith mt-[2rem] "+(index==8?"hid":"")}>
-        <div className="text_color h-fit w-fit text-[2.2rem] text-center px-[2rem] py-[2.6rem] bord-bottom">
+    <div className={"bord_grad nftwdith mt-[2.5rem] lg:mt-[3rem] transition-all duration-500 hover:-translate-y-2 "+(index==8?"hid":"")}>
+        <div className="text_color h-fit w-fit text-[2.2rem] text-center px-[2rem] py-[1.7rem] bord-bottom">
              {nfttext}
         </div>
-        <div className="px-[2rem] py-[1.5rem]  flex flex-col bg-[#F2F2F278]">
+        <div className="px-[2rem] pb-[1.5rem] pt-[0.8rem] flex flex-col bg-[#F2F2F278]">
            <div className="colgrad text-[2.1rem] text-center">
             {nftname}
            </div>

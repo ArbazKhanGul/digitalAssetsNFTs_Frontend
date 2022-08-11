@@ -10,6 +10,7 @@ html
  .navbar{
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
 linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
+
 }
 
 
@@ -138,6 +139,32 @@ margin-left: 12px;
 .hid{
   display: none;
 }
+
+.insta {
+  background-image: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  /* background-clip: text; */
+  /* color: transparent; */
+  border-radius: 6px;
+  padding: 3px;
+  
+}
+
+.buttonnft {
+  background-image: linear-gradient(137.22deg, rgba(234, 79, 234, 0.93) 24.03%, rgba(36, 158, 173, 0.93) 80.82%);
+  background-clip: text;
+  color:transparent;
+}
+.buttonnft:hover {
+  background-image: linear-gradient(137.22deg, rgba(234, 79, 234, 0.93) 24.03%, rgba(36, 158, 173, 0.93) 80.82%);
+border-radius: 35px;
+color:white;
+background-clip: unset;
+}
+
+.footerdirection {
+  flex-direction: column;
+  gap:3rem;
+}
 /* Media queries */
 
 @media screen and (max-width: 330px) {
@@ -170,7 +197,7 @@ margin-left: 12px;
     height:23.5rem;
   }
   .nftwdith {
-    width: 80%;
+    width: 75%;
   }
   .jt {
     justify-content: center;
@@ -181,14 +208,17 @@ margin-left: 12px;
   .resheight{
     height:30rem;
   }
-  
+  .footerdirection {
+    flex-direction: row;
+    gap:0rem;
+  } 
 }
 
 
 @media screen and (min-width: 500px) {
   
   .nftwdith {
-    width: 70%;
+    width: 60%;
   }
   .jt {
     justify-content: center;
@@ -200,7 +230,7 @@ margin-left: 12px;
     height:32rem;
   }
   .nftwdith {
-    width: 60%;
+    width: 55%;
   }
   .jt {
     justify-content: center;
@@ -236,7 +266,7 @@ margin-left: 12px;
     }  
 
     .nftwdith {
-      width: 38%;
+      width: 34%;
     }
     .jt {
       justify-content: space-around;
@@ -249,7 +279,7 @@ margin-left: 12px;
     }  
 
     .nftwdith {
-      width: 31%;
+      width: 29%;
     }
     .jt {
       justify-content: space-between;
@@ -266,7 +296,7 @@ margin-left: 12px;
   }
 
   .nftwdith {
-    width: 28%;
+    width: 26.5%;
   }
 }
 
@@ -274,7 +304,7 @@ margin-left: 12px;
 @media screen and (min-width: 1200px) {
   
   .nftwdith {
-    width: 22.5%;
+    width: 22%;
   }
   .hid{
     display: none;
@@ -284,7 +314,7 @@ margin-left: 12px;
 
 @media screen and (min-width: 1300px) {
   .nftwdith {
-    width: 22.5%;
+    width: 22%;
   }
 }
 
