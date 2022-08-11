@@ -3,6 +3,7 @@ import Navbar from '../components/navbar'
 import  Main from '../components/mainpage'
 import TopCollections from '../components/mainpage/topcollections'
 import Work from '../components/mainpage/work'
+import NFTPortion from "../components/mainpage/nftportion"
 export default function Home() {
   return (
     <div >
@@ -18,6 +19,7 @@ export default function Home() {
 <Main></Main>   
 <TopCollections></TopCollections>
 <Work></Work>
+<NFTPortion></NFTPortion>
     </div>
   )
 }

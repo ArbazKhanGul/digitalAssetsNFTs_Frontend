@@ -3,7 +3,7 @@ import Image from "next/image";
 const Work=()=>{
 
 return (<>
-<div className=" h-fit  xl:h-fit work my-[2.5rem] flex flex-col lg:flex-row py-[2.5rem] lg:py-[7rem] px-[2.5rem] lg:px-[7rem] items-center justify-between">
+<div className=" h-fit  xl:h-fit work mt-[2.5rem] flex flex-col lg:flex-row py-[2.5rem] lg:py-[7rem] px-[2.5rem] lg:px-[7rem] items-center justify-between">
 
 <div className="w-[100%] lg:w-[47%]"><h2 className="workhead  text-[2.8rem] sm:text-[3rem] xl:text-[3.5rem] font-bold  font-[Inter] leading-[3.5rem]">How Golden Words Nfts Work:</h2>
 <p className="text-[#f5f1f1] text-[1.7rem] xl:text-[1.5rem] text-justify pt-[1.5rem]">
