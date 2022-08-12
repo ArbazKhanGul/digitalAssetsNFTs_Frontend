@@ -34,7 +34,7 @@ const Navbar=()=>{
         </Link>
       </li>
       <li className="inline-block links">
-        <Link href="/about">
+        <Link href="/nft">
           <a>NFTs</a>
         </Link>
       </li>
@@ -68,7 +68,7 @@ const Navbar=()=>{
       </li>
       </a>
       </Link>
-      <Link href="/about">
+      <Link href="/nft">
       <a>
       <li className=" onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem]">
          NFTs

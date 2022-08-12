@@ -24,6 +24,11 @@ const Filter=({showItems})=>{
             <input type="text" className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.7rem]" placeholder="Enter highest price in BNB"/>
          </div>
     </div>
+<div className="flex justify-center mb-[1.2rem]">
+    <button className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[18px] sm:font-semibold py-2 px-12  sm:py-2 sm:px-14 rounded-full">
+  Search
+</button>
+</div>
     </div>)
 }
 
