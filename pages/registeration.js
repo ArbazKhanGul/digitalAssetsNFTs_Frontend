@@ -43,13 +43,13 @@ return(
                 </div>
 
 
-                <textarea name=""  placeholder="Description..." id=""   className="resize-none outline-none h-[13rem]  border-[1px] w-[80%] border-[#534c4c] block placeholder:text-[#746e6e] p-[0.8rem] text-black text-[1.7rem] sm:text-[1.8rem] bg-transparent"></textarea>
+                <textarea name=""  placeholder="Description..." id=""   className="rounded-2xl resize-none outline-none h-[13rem]  border-[1px] w-[90%] sm:w-[80%] border-[#534c4c] block placeholder:text-[#746e6e] p-[0.8rem] text-black text-[1.7rem] sm:text-[1.8rem] bg-transparent"></textarea>
 
-                <div className="mb-[1rem] text-[2rem] text-center flex space-y-[1rem] sm:space-y-[0rem] flex-col sm:flex-row">
-    <button className="bg-blue-500 hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.8rem] sm:font-semibold py-3 px-8  sm:py-3 sm:px-[1.8rem] rounded-full">
+                <div className="mb-[1rem] text-[2rem]  flex space-y-[1rem] sm:space-y-[0rem] flex-col sm:flex-row">
+    <button className="bg-blue-500 hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-semibold py-3 px-8  sm:py-3 sm:px-[1.7rem] rounded-full">
   Connect Metamask
 </button>
-<button className="bg-blue-500 buttons hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.8rem] sm:font-semibold py-3 px-8  sm:py-3 sm:px-[5rem] rounded-full">
+<button className="bg-blue-500 buttons hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-semibold py-3 px-8  sm:py-3 sm:px-[5rem] rounded-full">
   Register
 </button>
     </div>
