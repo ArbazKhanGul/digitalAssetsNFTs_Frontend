@@ -17,7 +17,7 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 .reginp 
 {
  
-  @apply w-[80%] text-[1.8rem] flex items-center border-b-[1px] border-[#534c4c] 
+  @apply w-[80%] text-[1.6rem] flex items-center border-b-[1px] border-[#534c4c] 
 }
 
 .reginput {
@@ -314,6 +314,13 @@ gap:3rem;
   .formwid {
     width:75%
   }
+
+  .reginp 
+{
+ 
+  @apply text-[1.8rem] 
+}
+
 }
 
 @media screen and (min-width: 700px) {
