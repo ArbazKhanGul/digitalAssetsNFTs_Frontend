@@ -14,6 +14,16 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 }
 
 
+.reginp 
+{
+ 
+  @apply w-[80%] text-[1.8rem] flex items-center border-b-[1px] border-[#534c4c] 
+}
+
+.reginput {
+@apply outline-none placeholder:text-[#746e6e] text-black bg-transparent block w-[94%] ml-[0.8rem]
+}
+
 .links
 {
   @apply text-[1.6rem] text-[#EAE1E1] pl-[1.3rem]
@@ -21,6 +31,10 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 .onlinks
 {
   @apply text-[1.7rem] text-[#EAE1E1]
+}
+
+.bordd{
+  border-radius: 0px 100px 100px 0px;
 }
 
 .onlinks:hover {
@@ -44,6 +58,10 @@ width:100%;
 min-height:calc(100vh - 100px);
 
 /* width: calc(100vw - 20px) */
+}
+
+.heig {
+  min-height:calc(100vh - 330px)
 }
 
 .buttons {
@@ -112,7 +130,7 @@ margin-left: 12px;
 }
 .page_num {
   box-sizing: border-box;
-  padding: 5px 14px;
+  padding: 5px 17px;
   cursor: pointer;
   border-radius: 6px;
   /* border: 1px solid #AAB2CF; */
@@ -120,7 +138,7 @@ margin-left: 12px;
 .pagination .active {
   background: #487ECFC2;
  color: #fff;
- padding:7px 15px;
+ padding:9px 16px;
  display: block;
 }
 .colgrad {
@@ -131,6 +149,10 @@ margin-left: 12px;
 }
 
 
+.reg {
+  background: linear-gradient(90deg, #A0AFD6 0.83%, #D0D9EE 99.31%);
+
+}
 
 
 .col_text {
@@ -196,7 +218,13 @@ background-clip: unset;
 
 .footerdirection {
   flex-direction: column;
-  gap:3rem;
+  
+gap:3rem;
+}
+
+.formwid {
+  margin-top:2rem;
+  margin-bottom:2rem;
 }
 /* Media queries */
 
@@ -235,6 +263,11 @@ background-clip: unset;
   .jt {
     justify-content: center;
   } 
+
+  .formwid {
+    width:95%
+  }
+  
 }
 
 @media screen and (min-width: 500px) {
@@ -245,16 +278,14 @@ background-clip: unset;
     flex-direction: row;
     gap:0rem;
   } 
-}
-
-
-@media screen and (min-width: 500px) {
-  
   .nftwdith {
     width: 60%;
   }
   .jt {
     justify-content: center;
+  }
+  .formwid {
+    width:84%
   }
 }
 
@@ -278,6 +309,10 @@ background-clip: unset;
   }
   .jt {
     justify-content: space-between;
+  }
+
+  .formwid {
+    width:75%
   }
 }
 
@@ -303,6 +338,10 @@ background-clip: unset;
     }
     .jt {
       justify-content: space-around;
+    }
+
+    .formwid {
+      width:65%
     }
 }
 
@@ -331,6 +370,12 @@ background-clip: unset;
   .nftwdith {
     width: 26.5%;
   }
+
+  .formwid {
+    width:48%;
+      margin-top:0rem;
+      margin-bottom:0rem;
+  }
 }
 
 
@@ -348,6 +393,9 @@ background-clip: unset;
 @media screen and (min-width: 1300px) {
   .nftwdith {
     width: 22%;
+  }
+  .formwid {
+    width:47%
   }
 }
 
