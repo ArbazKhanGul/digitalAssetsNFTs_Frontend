@@ -11,7 +11,7 @@ return(
     <div className="flex reg flex-col lg:flex-row  px-[4%] xl:px-[6%] py-[3%] heig items-center">
         <div className="formwid">
 
-            <div className="flex flex-col justify-center items-center py-[2rem] sm:py-[3rem] space-y-[2.7rem] bg-white bordd">
+            <div className="flex flex-col justify-center items-center py-[2rem] sm:py-[3rem] space-y-[2.5rem] bg-white bordd">
 
                 <h2 className="text-[2.4rem] sm:text-[2.9rem] -ml-[2rem] sm:--ml-[0rem] md:text-[3.2rem] block">Registeration</h2>
 
