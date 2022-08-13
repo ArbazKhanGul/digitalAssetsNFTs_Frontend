@@ -49,7 +49,7 @@ return(
     <button className="bg-blue-500 hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-semibold py-3 px-8  sm:py-3 sm:px-[1.7rem] rounded-full">
   Connect Metamask
 </button>
-<button className="bg-blue-500 buttons hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-semibold py-3 px-8  sm:py-3 sm:px-[5rem] rounded-full">
+<button className="bg-blue-500 buttons hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-semibold py-3  px-8  sm:py-3 sm:px-[5rem] rounded-full">
   Register
 </button>
     </div>

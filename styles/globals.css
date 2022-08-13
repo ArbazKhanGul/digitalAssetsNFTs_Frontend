@@ -34,7 +34,7 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 }
 
 .bordd{
-  border-radius: 0px 100px 100px 0px;
+  border-radius: 30px 30px 30px 30px;
 }
 
 .onlinks:hover {
@@ -373,6 +373,10 @@ gap:3rem;
   .work {
     background: linear-gradient(90deg, #717888 0.83%, #D0D9EE 99.31%);
   
+  }
+
+  .bordd{
+    border-radius: 0px 100px 100px 0px;
   }
 
   .nftwdith {
