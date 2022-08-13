@@ -17,33 +17,33 @@ return(
 
                 <div className="reginp">
 
-                <BsPerson className="text-[2.3rem]"></BsPerson>
+                <BsPerson className="text-[2.5rem]"></BsPerson>
                 <input type="text" placeholder="Collection Name..." className="reginput" />
                 </div>
 
 
                 <div className="reginp">
 
-                <BsPerson className="text-[2.3rem]"></BsPerson>
+                <BsPerson className="text-[2.5rem]"></BsPerson>
                 <input type="text" placeholder="Author Name..." className="reginput"/>
                 </div>
 
                 <div className="reginp">
 
                 {/* <BsPerson ></BsPerson> */}
-                <HiOutlineMail className="text-[2.3rem]"></HiOutlineMail>
+                <HiOutlineMail className="text-[2.5rem]"></HiOutlineMail>
                 <input type="text" placeholder="Author Name..." className="reginput"/>
                 </div>
 
 
                 <div className="reginp">
 
-                <Icon icon="logos:metamask-icon" />
+                <Icon icon="logos:metamask-icon" className="text-[2.1rem]" />
                 <input type="text" placeholder="Author Name..." className="reginput"/>
                 </div>
 
 
-                <textarea name=""  placeholder="Description..." id=""   className="rounded-2xl resize-none outline-none h-[13rem]  border-[1px] w-[90%] sm:w-[80%] border-[#534c4c] block placeholder:text-[#746e6e] p-[0.8rem] text-black text-[1.7rem] sm:text-[1.8rem] bg-transparent"></textarea>
+                <textarea name=""  placeholder="Description..." id=""   className="rounded-2xl resize-none outline-none h-[13rem]  border-[1px] w-[85%] sm:w-[80%] border-[#534c4c] block placeholder:text-[#746e6e] p-[0.8rem] text-black text-[1.7rem] sm:text-[1.8rem] bg-transparent"></textarea>
 
                 <div className="mb-[1rem] text-[2rem] sm:w-[80%]  flex  space-x-[0rem] sm:space-x-[1rem] space-y-[1rem] sm:space-y-[0rem] flex-col sm:flex-row">
     <button className="bg-blue-500 hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-semibold py-3 px-8  sm:py-3 sm:px-[1.7rem] rounded-full">
