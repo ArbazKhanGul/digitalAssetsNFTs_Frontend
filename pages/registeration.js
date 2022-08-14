@@ -31,7 +31,7 @@ createdOn:""
 return(
     <>
     <Navbar></Navbar>
-    <div className="flex reg flex-col lg:flex-row  px-[4%] xl:px-[6%] py-[3%] heig items-center">
+    <div className="flex reg flex-col lg:flex-row  px-[4%] xl:px-[6%] py-[5%] xl:py-[3%] heig items-center">
    
         <div className="formwid">
         <form onSubmit={handleSubmit}>
