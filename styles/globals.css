@@ -218,9 +218,13 @@ border-radius: 35px;
 color:white;
 background-clip: unset;
 }
+.log {
+  @apply text-[2.8rem]
+}
 
 .footerdirection {
   flex-direction: column;
+  @apply text-[1.8rem];
   
 gap:3rem;
 }
@@ -278,10 +282,15 @@ gap:3rem;
   .resheight{
     height:30rem;
   }
+  .log {
+    @apply text-[2.4rem];
+  }
   .footerdirection {
     flex-direction: row;
     gap:0rem;
+    @apply text-[1.5rem]
   } 
+
   .nftwdith {
     width: 60%;
   }
@@ -322,11 +331,11 @@ gap:3rem;
   .reginp 
 {
  
-  @apply text-[1.8rem] w-[80%]
+  @apply text-[1.8rem] w-[83%]
 }
 
 .errors {
-  @apply w-[80%]
+  @apply w-[83%]
 }
 }
 

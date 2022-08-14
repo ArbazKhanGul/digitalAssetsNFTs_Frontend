@@ -114,7 +114,7 @@ return(
                  onChange={handleChange}
                  onBlur={handleBlur}
                  autoComplete="off"
-                  placeholder="Description..." id=""   className="rounded-2xl resize-none outline-none h-[13rem]  border-[1px] w-[85%] sm:w-[80%] border-[#534c4c] block placeholder:text-[#746e6e] p-[0.8rem] text-black text-[1.7rem] sm:text-[1.8rem] bg-transparent"></textarea>
+                  placeholder="Description..." id=""   className="rounded-2xl resize-none outline-none h-[13rem]  border-[1px] w-[85%] sm:w-[83%] border-[#534c4c] block placeholder:text-[#746e6e] p-[0.8rem] text-black text-[1.7rem] sm:text-[1.8rem] bg-transparent"></textarea>
                     {errors.description && touched.description ? (<p className="text-red-500 text-[1.4rem] errors block">{errors.description}</p>):null}
            </div>
                 <div className="mb-[1rem] text-[2rem] sm:w-[80%]  flex  space-x-[0rem] sm:space-x-[1rem] space-y-[2rem] sm:space-y-[0rem] flex-col sm:flex-row">
