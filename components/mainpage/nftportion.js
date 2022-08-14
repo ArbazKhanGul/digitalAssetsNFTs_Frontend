@@ -22,7 +22,7 @@ const NFTPortion =()=>{
 
 </div>
 
-<div className="mg flex justify-end mt-[1.5rem]">
+<div className="mg flex justify-end my-[1.5rem]">
 <Button></Button>
 </div>
     </div>)
