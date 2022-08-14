@@ -19,6 +19,9 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
  
   @apply w-[85%] text-[1.7rem] flex items-center border-b-[1px] border-[#534c4c] pb-[0.5rem]
 }
+.errors {
+  @apply w-[85%]
+}
 
 .reginput {
 @apply outline-none placeholder:text-[#746e6e] text-black bg-transparent block w-[94%] ml-[0.8rem]
@@ -34,7 +37,7 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 }
 
 .bordd{
-  border-radius: 30px 30px 30px 30px;
+  border-radius: 20px 20px 20px 20px;
 }
 
 .onlinks:hover {
@@ -322,6 +325,9 @@ gap:3rem;
   @apply text-[1.8rem] w-[80%]
 }
 
+.errors {
+  @apply w-[80%]
+}
 }
 
 @media screen and (min-width: 700px) {
