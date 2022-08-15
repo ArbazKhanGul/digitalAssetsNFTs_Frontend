@@ -7,23 +7,23 @@ const IndividualNFT=({nftname,nfttext,owner,creator,creationdate,price,index})=>
              {nfttext}
         </div>
         <div className="px-[2rem] pb-[1.5rem] pt-[0.8rem] flex flex-col bg-[#F2F2F278]">
-           <div className="colgrad text-[2.1rem] text-center">
+           <div className="colgrad text-[2rem] text-center font-semibold tracking-widest">
             {nftname}
            </div>
 <div className="flex justify-between space-x-[1.5rem]">
         <div className="flex flex-col">
-            <span className="colgrad text-[1.8rem] font-['Inconsolata']">Creator </span>
-            <span className="colgrad text-[1.8rem] font-['Inconsolata']">Owner </span>
-            <span className="colgrad text-[1.8rem] whitespace-nowrap font-['Inconsolata']">Create </span>
-            <span className="colgrad text-[1.8rem] font-['Inconsolata']">Price </span>
+            <span className="colgrad text-[1.7rem] font-['Inconsolata'] font-semibold">Creator </span>
+            <span className="colgrad text-[1.7rem] font-['Inconsolata'] font-semibold">Owner </span>
+            <span className="colgrad text-[1.7rem] whitespace-nowrap font-['Inconsolata'] font-semibold">Create </span>
+            <span className="colgrad text-[1.7rem] font-['Inconsolata'] font-semibold">Price </span>
         </div>            
 
     <div className="flex flex-col space-y-[0.3rem] overflow-hidden">
-            <span className="text-[#7D7C7CCF] text-[1.6rem] w-[100%] font-['Inconsolata'] overflow-hidden text-ellipsis">{creator}</span>
-            <span className="text-[#7D7C7CCF] text-[1.6rem] w-[100%] font-['Inconsolata'] overflow-hidden text-ellipsis">{owner}</span>
-            <span className="text-[#7D7C7CCF] text-[1.6rem] font-['Inconsolata']">{creationdate}</span>
-            <span className="text-[#7D7C7CCF] text-[1.6rem] font-['Inconsolata']">{price}</span>
-            <span className="colgrad text-[1.7rem] block font-n">
+            <span className="text-[#615f5fcf] text-[1.6rem] w-[100%] font-['Inconsolata'] font-medium overflow-hidden text-ellipsis">{creator}</span>
+            <span className="text-[#7D7C7CCF] text-[1.6rem] w-[100%] font-['Inconsolata'] font-medium overflow-hidden text-ellipsis">{owner}</span>
+            <span className="text-[#7D7C7CCF] text-[1.6rem] font-['Inconsolata'] font-medium">{creationdate}</span>
+            <span className="text-[#7D7C7CCF] text-[1.6rem] font-['Inconsolata'] font-medium">{price}</span>
+            <span className="text-[#7D7C7CCF] text-[1.6rem] font-['Inconsolata'] font-medium">
             = $1
            </span>
         </div>

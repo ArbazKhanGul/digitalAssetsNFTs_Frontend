@@ -14,8 +14,8 @@ const NFT =()=>{
     <Navbar></Navbar>
     <div className="px-[2rem] sm:px-[4rem] md:px-[5.9rem]">
     <div className="flex flex-col sm:flex-row justify-between items-center mt-[0.5rem] flex-wrap">
-        <div className="nft text-[2.7rem] sm:text-[3rem] md:text-[3.5rem] w-fit font-['DynaPuff'] mt-[0.3rem]">All Selling NFTs</div>
-        <div className="cursor-pointer text-[1.6rem] sm:text-[1.8rem] md:text-[2rem] mt-[0.3rem] font-semibold text-[#353846C7] flex items-center" onClick={()=>{show((prevState)=>{
+        <div className="nft text-[2.7rem] sm:text-[3rem] md:text-[3.7rem] w-fit font-['DynaPuff'] mt-[0.5rem]">All Selling NFTs</div>
+        <div className="cursor-pointer text-[1.6rem] sm:text-[1.9rem] md:text-[2rem] mt-[0.5rem] font-semibold text-[#353846C7] flex items-center font-['Inconsolata']" onClick={()=>{show((prevState)=>{
     return prevState?false:true;
   })}}>Search NFTs By filters <MdFilterList className="text-[2.5rem] pl-[0.3rem]"></MdFilterList>
         </div>
@@ -26,7 +26,7 @@ const NFT =()=>{
     
     <div className="pl-[1.2rem]">
         
-    <span className="colgrad text-[1.5rem] font-semibold text-center sm:text-left mt-[1.2rem] mx-[2.8rem] md:mx-[4.3rem] block">(Click on any NFT to see his full detail and buying option)</span>
+    <span className="colgrad text-[1.6rem] font-semibold text-center sm:text-left mt-[1.2rem] mx-[2.8rem] md:mx-[4.3rem] block font-['Inconsolata'] ">(Click on any NFT to see his full detail and buying option)</span>
 
 <div className="flex flex-wrap jt mx-[4rem] mg">
 

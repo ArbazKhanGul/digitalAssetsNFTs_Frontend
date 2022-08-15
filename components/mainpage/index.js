@@ -1,11 +1,42 @@
 import Image from "next/image";
+import { motion } from "framer-motion"
 
 const Main=()=>{
+
+  const contVar={
+hidden:{
+  x:"-100%",
+  opacity: 0
+},
+visible:{
+  x:0,
+  opacity: 1,
+  transition:{
+    delay: 0.2,
+    duration:0.6
+  }
+}
+}
+
+const right={
+  hidden:{
+    x:"100%",
+    opacity: 0
+  },
+  visible:{
+    x:0,
+    opacity: 1,
+    transition:{
+      delay: 0.2,
+      duration:0.6
+    }
+  }
+  }
 
     return (
         <div className="main py-[1.5rem] overflow-x-hidden flex justify-evenly flex-col md:flex-row items-center px-[5rem] ">
 
-<div className="text-white w-full md:w-1/2">
+<motion.div className="text-white w-full md:w-1/2" variants={contVar} initial="hidden" whileInView="visible">
 
     <h2 className="text-[2.8rem] sm:text-[3.2rem] md:text-[3.6rem] text-center text-[rgb(217,217,217)] mb-10 font-['DynaPuff'] ">Discover And sell your golden words and thoughts</h2>
     <p className="text-[#DAD7D7] text-[1.7rem] sm:text-[1.8rem] md:text-[1.9rem] font-['Inconsolata'] font-semibold text-center mb-10 tracking-widest">Goldernwords is world first NFT platform in which you can create NFTs of your golden words</p>
@@ -17,8 +48,8 @@ const Main=()=>{
   Register
 </button>
     </div>
-</div>
-<div className="w-full md:w-1/2 flex justify-center">
+</motion.div>
+<motion.div className="w-full md:w-1/2 flex justify-center" variants={right} initial="hidden" whileInView="visible">
 <div className=" w-[38rem] h-[16.8rem] sm:w-[40rem] sm:h-[20rem] md:ml-[9rem] md:w-[38rem] md:h-[20rem] lg:w-[55rem] lg:h-[28.5rem]  relative">
   <Image 
   src="/nft.jpg"
@@ -26,7 +57,7 @@ const Main=()=>{
 //   objectFit="cover"
   />
 </div>
-</div>
+</motion.div>
 
 
 

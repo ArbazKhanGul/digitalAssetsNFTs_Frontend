@@ -37,7 +37,7 @@ return(
         <form onSubmit={handleSubmit}>
             <div className="flex flex-col justify-center items-center py-[2rem] sm:py-[3rem] space-y-[2rem] bg-white bordd">
 
-                <h2 className="text-[2.4rem] sm:text-[2.9rem]  md:text-[3.2rem] block">Registeration</h2>
+                <h2 className="text-[2.4rem] sm:text-[2.9rem]  md:text-[3.2rem] block">Registration</h2>
 
             <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem]">
                 <div className="reginp w-[100%]">

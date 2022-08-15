@@ -1,6 +1,6 @@
 const Button=()=>{
 
-    return (<><div className="bord_grad w-fit text-[2rem]"><span className="block px-[4rem] py-[0.5rem] buttonnft ">More...</span></div></>)
+    return (<><div className="bord_grad w-fit text-[2.1rem]"><span className="block px-[3rem] py-[0.4rem] buttonnft ">More...</span></div></>)
 }
 
 export default Button;
