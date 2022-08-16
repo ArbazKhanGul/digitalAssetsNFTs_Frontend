@@ -10,7 +10,7 @@ const Work=()=>{
       x:0,
       opacity: 1,
       transition:{
-        delay: 0.2,
+        // delay: 0.1,
         duration:0.6
       }
     }
@@ -25,16 +25,16 @@ const Work=()=>{
         x:0,
         opacity: 1,
         transition:{
-          delay: 0.2,
+          // delay: 0.2,
           duration:0.6
         }
       }
       }
 return (<>
-<div className=" h-fit  xl:h-fit work mt-[2.5rem] flex flex-col lg:flex-row py-[2.5rem] lg:py-[7rem] px-[2.5rem] lg:px-[7rem] items-center justify-between">
+<div className=" h-fit  overflow-x-hidden xl:h-fit work mt-[2.5rem] flex flex-col lg:flex-row py-[2.5rem] lg:py-[7rem] px-[2.5rem] lg:px-[5rem] items-center justify-between">
 
 <motion.div variants={contVar} initial="hidden" whileInView="visible" className="w-[100%] lg:w-[50%]"><h2 className="workhead  text-[2.8rem] sm:text-[3rem] xl:text-[3.8rem] font-bold  font-['Inconsolata'] leading-[3.5rem]">How Golden Words Nfts Work:</h2>
-<p className="text-[#f5f1f1] text-[1.9rem] xl:text-[1.8rem] text-justify pt-[1.5rem] font-['Inconsolata']">
+<p className="text-[#f5f1f1] text-[1.9rem] xl:text-[1.8rem] text-justify pt-[2.3rem] font-['Inconsolata']">
 Golden Words NFTs is a latest method of creating NFTs, in which one can create NFTs of Golden Words 
 (text format) instead of pictures. Moreover, no one can create a copy of any other person's Golden Words
  NFTs because we use such alogrithms so that if any one want to create NFT by copying some other person NFT text then this platform does

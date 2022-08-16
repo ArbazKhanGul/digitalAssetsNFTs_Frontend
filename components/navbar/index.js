@@ -41,20 +41,20 @@ const Navbar=()=>{
         </Link>
       </li>
       <li className="inline-block links ">
-        <Link href="/blog/hello-world">
+        <Link href="/collection">
           <a className={(router.pathname == "/collection" ? "text-blue-600" : "")}>Collections</a>
         </Link>
       </li>
       <li className="inline-block links ">
         <button className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider">
-        <Link href="/blog/hello-world">
+        <Link href="/login">
           <a>Login</a>
         </Link>
         </button>
       </li>
       <li className="inline-block links">
       <button className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider">
-        <Link href="/blog/hello-world">
+        <Link href="/registration">
           <a>Register</a>
         </Link>
         </button>
@@ -83,7 +83,7 @@ const Navbar=()=>{
       </a>
       </Link>
 
-      <Link href="/blog/hello-world">
+      <Link href="/collection">
       <a>
       <li className={" onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem] md:pl-[6rem] "+(router.pathname == "/collection" ? "text-blue-600" : "text-[#EAE1E1]")}>
           Collections
@@ -91,7 +91,7 @@ const Navbar=()=>{
       </a>
       </Link>
      
-      <Link href="/blog/hello-world">
+      <Link href="/login">
           <a>
       <li className={"onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem] md:pl-[6rem] "+(router.pathname == "/login" ? "text-blue-600" : "text-[#EAE1E1]")}>
         Login            </li>

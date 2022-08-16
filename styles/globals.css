@@ -21,15 +21,21 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 .reginp 
 {
  
-  @apply w-[85%] text-[1.7rem] flex items-center border-b-[1px] border-[#534c4c] pb-[0.5rem]
+  @apply w-[85%] text-[1.7rem] flex items-center border-b-[1px] border-solid border-gray-400 pb-[0.5rem]
+}
+.reginpfile 
+{
+ 
+  @apply w-[85%] text-[1.7rem] flex items-center border-gray-400 font-['Inconsolata']
 }
 .errors {
   @apply w-[85%]
 }
 
 .reginput {
-@apply outline-none placeholder:text-[#746e6e] text-black bg-transparent block w-[94%] ml-[0.8rem]
+@apply outline-none placeholder:text-[#746e6e] text-black bg-transparent block w-[94%] ml-[0.8rem] font-['Inconsolata']
 }
+
 
 .links
 {
@@ -130,7 +136,8 @@ margin-left: 12px;
   justify-content: center;
   display: flex;
   align-items: center;
-  font-size:1.7rem;
+  font-size:1.8rem;
+  font-weight:500;
   margin-bottom:2.2rem;
    color:  #AAB2CF;
     max-width: 100%;
@@ -143,6 +150,7 @@ margin-left: 12px;
   padding: 5px 17px;
   cursor: pointer;
   border-radius: 6px;
+ @apply font-['Inconsolata']
   /* border: 1px solid #AAB2CF; */
 }
 .pagination .active {
@@ -399,7 +407,7 @@ gap:3rem;
   }
 
   .bordd{
-    border-radius: 0px 100px 100px 0px;
+    border-radius: 10px 100px 100px 10px;
   }
 
   .nftwdith {

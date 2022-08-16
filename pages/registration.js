@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import Navbar from "../components/navbar"
 import Image from "next/image"; 
 import {BsPerson} from "react-icons/bs"
@@ -6,7 +7,34 @@ import { Icon } from '@iconify/react';
 import Footer from "../components/footer/footer"
 import { useFormik } from "formik";
 import {SignUpSchema} from "../schema"
+import { connectWallet } from "../metamask";
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useSelector, useDispatch } from 'react-redux'
+import {selectAddress} from '../slice/metamask'
+import { useState } from "react";
+import {CgProfile} from "react-icons/cg"
+
 const Registeration =()=>{
+     
+    const address = useSelector(selectAddress);
+    const dispatch = useDispatch()
+    const inputElement = useRef();
+    const [wallet,setwallet]= useState("");
+
+useEffect(()=>{
+
+    if(address==undefined)
+    {
+        inputElement.current.value="";
+    }
+    else
+    {   setwallet("");
+        inputElement.current.value=address;
+    }
+
+},[address])
+
 
 let initialValues={
 collectionName:"",
@@ -20,13 +48,21 @@ createdOn:""
     const {values,errors,touched,handleSubmit,handleChange,handleBlur} =useFormik({
         initialValues,
         validationSchema:SignUpSchema,
+
         onSubmit:(values,action)=>{
             values.createdOn=new Date().toLocaleString();
+            if(inputElement?.current?.value=="")
+            {
+                setwallet("Please connect to metamask ");
+             
+                return;
+            }
+            values.walletAddress=inputElement?.current?.value;
             console.log("PRinitng values",values);
             action.resetForm();
         }
-    })
 
+    })
 
 return(
     <>
@@ -35,11 +71,11 @@ return(
    
         <div className="formwid">
         <form onSubmit={handleSubmit}>
-            <div className="flex flex-col justify-center items-center py-[2rem] sm:py-[3rem] space-y-[2rem] bg-white bordd">
+            <div className="flex flex-col justify-center items-center py-[2rem] sm:py-[3rem] space-y-[2rem] lg:space-y-[2.6rem] bg-white bordd">
 
-                <h2 className="text-[2.4rem] sm:text-[2.9rem]  md:text-[3.2rem] block">Registration</h2>
+                <h2 className="text-[2.4rem] sm:text-[2.9rem]  md:text-[3.2rem] block font-['DynaPuff']">Registration</h2>
 
-            <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem]">
+            <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem] font-['Inconsolata']">
                 <div className="reginp w-[100%]">
 
                 <BsPerson className="text-[2.5rem]"></BsPerson>
@@ -77,7 +113,7 @@ return(
                 <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem]">
                 <div className="reginp w-[100%]">
 
-                <HiOutlineMail className="text-[2.5rem]"></HiOutlineMail>
+                <HiOutlineMail className="text-[2.5rem] "></HiOutlineMail>
                 <input type="text" 
                 placeholder="Email Address..." 
                 className="reginput"
@@ -92,6 +128,45 @@ return(
             </div>
 
 
+
+            <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem] pl-[0.4rem]">
+
+            <div className="reginpfile w-[100%] mb-[0.3rem] ">
+
+            <CgProfile className="text-[2.5rem]"></CgProfile>
+            <span class="text-start block w-[84%] ml-[1rem] text-[1.7rem]">Choose profile photo</span>
+
+            </div>   
+                <div className="reginpfile w-[100%] ">
+
+                
+                <input class="form-control
+    block
+    w-full
+    text-[1.5rem]
+    placeholder:text-[#746e6e]
+    font-normal
+    text-gray-700
+    bg-white bg-clip-padding
+    border border-solid border-gray-400
+    rounded-lg
+    
+    transition
+    ease-in-out
+    file:border-none
+    file:p-[0.6rem]
+    m-0
+     outline-none" type="file" id="formFile"/>
+
+     
+{/* <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600  text-[1.7rem] py-[1rem]" id="file_input" type="file"/> */}
+
+                </div>
+                {wallet ? (<p className="text-red-500 text-[1.4rem] errors block">{wallet}</p>):null}
+            </div>
+
+
+
                 <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem]">
                 <div className="reginp w-[100%]">
 
@@ -100,28 +175,28 @@ return(
                 placeholder="Wallet Address..." 
                 className="reginput"
                 name="walletAddress"
-                value={values.walletAddress}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                autoComplete="off"
+                ref={inputElement}
+                disabled={true}
                 />
                 </div>
-                {errors.walletAddress && touched.walletAddress ? (<p className="text-red-500 text-[1.4rem] errors block">{errors.walletAddress}</p>):null}
+                {wallet ? (<p className="text-red-500 text-[1.4rem] errors block">{wallet}</p>):null}
             </div>
+
+
             <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem]">
                 <textarea name="description"
                  value={values.description}
                  onChange={handleChange}
                  onBlur={handleBlur}
                  autoComplete="off"
-                  placeholder="Description..." id=""   className="rounded-2xl resize-none outline-none h-[13rem]  border-[1px] w-[85%] sm:w-[83%] border-[#534c4c] block placeholder:text-[#746e6e] p-[0.8rem] text-black text-[1.7rem] sm:text-[1.8rem] bg-transparent"></textarea>
-                    {errors.description && touched.description ? (<p className="text-red-500 text-[1.4rem] errors block">{errors.description}</p>):null}
+                  placeholder="Description..." id=""   className="rounded-2xl resize-none outline-none h-[13rem]  border-[1px] w-[85%] sm:w-[83%]  border-gray-400 block placeholder:text-[#746e6e] p-[0.8rem] text-black text-[1.7rem] sm:text-[1.8rem] bg-transparent font-['Inconsolata']"></textarea>
+                    {errors.description && touched.description  ? (<p className="text-red-500 text-[1.4rem] errors block">{errors.description}</p>):null}
            </div>
                 <div className="mb-[1rem] text-[2rem] sm:w-[80%]  flex  space-x-[0rem] sm:space-x-[1rem] space-y-[2rem] sm:space-y-[0rem] flex-col sm:flex-row">
-    <button className="bg-blue-500 hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-semibold py-3 px-8  sm:py-3 sm:px-[1.7rem] rounded-full">
+    <button type="button" className="font-['Inconsolata'] tracking-wider bg-blue-500 hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-medium py-3 px-8  sm:py-3 sm:px-[1.7rem] rounded-full" onClick={()=>connectWallet(dispatch,address)}>
   Connect Metamask
 </button>
-<button type="submit" className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-semibold py-3  px-8  sm:py-3 sm:px-[5rem] rounded-full">
+<button type="submit" className="font-['Inconsolata'] tracking-wider bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-medium py-3  px-8  sm:py-3 sm:px-[5rem] rounded-full">
   Register
 </button>
     </div>
@@ -143,6 +218,9 @@ return(
     </div>
 
     <Footer></Footer>
+    <div className="text-[1.5rem] font-['Inconsolata']">
+    <ToastContainer pauseOnHover autoClose={5000}/>
+    </div>
     </>
 )
 }
