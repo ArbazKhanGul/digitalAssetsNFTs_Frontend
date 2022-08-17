@@ -20,6 +20,7 @@ const Registeration =()=>{
     const address = useSelector(selectAddress);
     const dispatch = useDispatch()
     const inputElement = useRef(null);
+    const fileRef=useRef(null);
     // const [wallet,setwallet]= useState("");
 
     
@@ -29,25 +30,13 @@ useEffect(()=>{
     if(address==undefined)
     {
         inputElement.current.value="";
-        // console.log(inputElement.current.click())
+
     }
     else
 
     {
 
-        (inputElement.current).addEventListener("change",()=>{
-            console.log("Cusotm event",e)
-            handleChange
-        })
-        // const event=new Event("change", {
-        //     //   detail: {
-        //     //     newValue: "0xrrrrr",
-        //     //   },
-        //       bubbles: true,
-        //     //   cancelable: true,
-        //     })
-        // inputElement.current.dispatchEvent(event);
-        // setwallet("");
+       
         setFieldValue("walletAddress", address)
        
         inputElement.current.value=address;
@@ -57,6 +46,7 @@ useEffect(()=>{
 
 
 let initialValues={
+
 collectionName:"",
 authorName:"",
 email:"",
@@ -64,6 +54,7 @@ walletAddress:"",
 description:"",
 createdOn:"",
 file:""
+
 }
 
 
@@ -78,25 +69,19 @@ file:""
             const formdata=new FormData();
          for ( var key in values ) 
          {
-            console.log("Iside foirm")
         formdata.append(key, values[key]);
          }
-        console.log("Form data",formdata)
-            // if(inputElement?.current?.value=="")
-            // {
-            //     setwallet("Please connect to metamask ");
 
-            //     return;
-            // }
-            // values.walletAddress=inputElement?.current?.value;
-            // console.log("PRinitng values",values);
+            
+            console.log("PRinitng values",values);
+            fileRef.current.value=""
+
             action.resetForm();
         }
 
     })
 
-    console.log(values)
-    console.log(errors)
+
 return(
     <>
     <Navbar></Navbar>
@@ -162,7 +147,7 @@ return(
 
 
 
-            <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem] pl-[0.4rem]">
+            <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem] ">
 
             <div className="reginpfile w-[100%] mb-[0.3rem] ">
 
@@ -191,8 +176,10 @@ return(
     m-0
      outline-none" type="file" id="formFile"
      name="file"
+     ref={fileRef}
+     accept="image/*"
      onChange={(e)=>{
-        console.log(e.target.files[0])
+
         setFieldValue("file",e.target?.files[0] ? e.target?.files[0] : "")
     }
         

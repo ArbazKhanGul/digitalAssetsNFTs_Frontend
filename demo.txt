@@ -1,3 +1,9 @@
+
+        (inputElement.current).addEventListener("change",()=>{
+            console.log("Cusotm event",e)
+            handleChange
+        })
+
   // const event=new Event("change", {
         //     //   detail: {
         //     //     newValue: "0xrrrrr",
@@ -7,3 +13,12 @@
         //     })
         // inputElement.current.dispatchEvent(event);
         // setwallet("");
+
+
+        // if(inputElement?.current?.value=="")
+            // {
+            //     setwallet("Please connect to metamask ");
+
+            //     return;
+            // }
+            // values.walletAddress=inputElement?.current?.value;

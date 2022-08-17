@@ -351,6 +351,11 @@ gap:3rem;
   @apply text-[1.8rem] w-[83%]
 }
 
+.reginpfile 
+{
+ 
+  @apply w-[83%] 
+}
 .errors {
   @apply w-[83%]
 }

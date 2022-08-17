@@ -7,7 +7,6 @@ import { addAddress } from '../slice/metamask'
 export const connectWallet = async (dispatch,address) => {
 
 
-console.log("PRinting adress cheking value ",address);
 
   // const count = useSelector(selectAddress)
 // const dispatch = useDispatch()
@@ -29,7 +28,7 @@ console.log("PRinting adress cheking value ",address);
         
       if(accountsFirst.length > 0 && address==undefined)
         {
-          console.log("first time account connect ",accountsFirst,address);
+
            
           dispatch(addAddress(accountsFirst[0])); 
         toast.success("Account Connected", {
