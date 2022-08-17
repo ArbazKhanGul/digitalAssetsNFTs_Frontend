@@ -19,17 +19,37 @@ const Registeration =()=>{
      
     const address = useSelector(selectAddress);
     const dispatch = useDispatch()
-    const inputElement = useRef();
-    const [wallet,setwallet]= useState("");
+    const inputElement = useRef(null);
+    // const [wallet,setwallet]= useState("");
+
+    
 
 useEffect(()=>{
 
     if(address==undefined)
     {
         inputElement.current.value="";
+        // console.log(inputElement.current.click())
     }
     else
-    {   setwallet("");
+
+    {
+
+        (inputElement.current).addEventListener("change",()=>{
+            console.log("Cusotm event",e)
+            handleChange
+        })
+        // const event=new Event("change", {
+        //     //   detail: {
+        //     //     newValue: "0xrrrrr",
+        //     //   },
+        //       bubbles: true,
+        //     //   cancelable: true,
+        //     })
+        // inputElement.current.dispatchEvent(event);
+        // setwallet("");
+        setFieldValue("walletAddress", address)
+       
         inputElement.current.value=address;
     }
 
@@ -42,28 +62,41 @@ authorName:"",
 email:"",
 walletAddress:"",
 description:"",
-createdOn:""
+createdOn:"",
+file:""
 }
 
-    const {values,errors,touched,handleSubmit,handleChange,handleBlur} =useFormik({
+
+
+    const {values,errors,touched,handleSubmit,handleChange,handleBlur,setFieldValue} =useFormik({
         initialValues,
         validationSchema:SignUpSchema,
 
         onSubmit:(values,action)=>{
             values.createdOn=new Date().toLocaleString();
-            if(inputElement?.current?.value=="")
-            {
-                setwallet("Please connect to metamask ");
-             
-                return;
-            }
-            values.walletAddress=inputElement?.current?.value;
-            console.log("PRinitng values",values);
+
+            const formdata=new FormData();
+         for ( var key in values ) 
+         {
+            console.log("Iside foirm")
+        formdata.append(key, values[key]);
+         }
+        console.log("Form data",formdata)
+            // if(inputElement?.current?.value=="")
+            // {
+            //     setwallet("Please connect to metamask ");
+
+            //     return;
+            // }
+            // values.walletAddress=inputElement?.current?.value;
+            // console.log("PRinitng values",values);
             action.resetForm();
         }
 
     })
 
+    console.log(values)
+    console.log(errors)
 return(
     <>
     <Navbar></Navbar>
@@ -134,13 +167,13 @@ return(
             <div className="reginpfile w-[100%] mb-[0.3rem] ">
 
             <CgProfile className="text-[2.5rem]"></CgProfile>
-            <span class="text-start block w-[84%] ml-[1rem] text-[1.7rem]">Choose profile photo</span>
+            <span className="text-start block w-[84%] ml-[1rem] text-[1.7rem]">Choose profile photo</span>
 
             </div>   
                 <div className="reginpfile w-[100%] ">
 
                 
-                <input class="form-control
+                <input className="form-control
     block
     w-full
     text-[1.5rem]
@@ -156,13 +189,20 @@ return(
     file:border-none
     file:p-[0.6rem]
     m-0
-     outline-none" type="file" id="formFile"/>
+     outline-none" type="file" id="formFile"
+     name="file"
+     onChange={(e)=>{
+        console.log(e.target.files[0])
+        setFieldValue("file",e.target?.files[0] ? e.target?.files[0] : "")
+    }
+        
+    }
+     />
 
      
-{/* <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600  text-[1.7rem] py-[1rem]" id="file_input" type="file"/> */}
-
                 </div>
-                {wallet ? (<p className="text-red-500 text-[1.4rem] errors block">{wallet}</p>):null}
+                {errors.file && touched.file  ? (<p className="text-red-500 text-[1.4rem] errors block">{errors.file}</p>):null}
+
             </div>
 
 
@@ -176,10 +216,11 @@ return(
                 className="reginput"
                 name="walletAddress"
                 ref={inputElement}
+                inputMode="text"
                 disabled={true}
                 />
                 </div>
-                {wallet ? (<p className="text-red-500 text-[1.4rem] errors block">{wallet}</p>):null}
+                {errors.walletAddress && touched.walletAddress  ? (<p className="text-red-500 text-[1.4rem] errors block">{errors.walletAddress}</p>):null}
             </div>
 
 
