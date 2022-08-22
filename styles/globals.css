@@ -23,6 +23,13 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
  
   @apply w-[85%] text-[1.7rem] flex items-center border-b-[1px] border-solid border-gray-400 pb-[0.5rem]
 }
+
+.reginpemail 
+{
+ 
+  @apply w-[100%] text-[1.7rem] flex items-center border-b-[1px] border-solid border-gray-400 pb-[0.5rem]
+}
+
 .reginpfile 
 {
  
@@ -251,6 +258,18 @@ gap:3rem;
   margin-bottom:2rem;
   width: 97%;
 }
+
+.email {
+  background: linear-gradient(90deg, rgba(160,196,255,1) 13%, rgba(218,193,254,1) 99%); 
+  
+}
+
+.textSize {
+  @apply text-[2.4rem]
+}
+.size {
+  @apply w-[90%]
+}
 /* Media queries */
 
 @media screen and (max-width: 330px) {
@@ -276,7 +295,10 @@ gap:3rem;
     .mg {
       margin-left: 4rem;
       margin-right: 4rem;
-    }     
+    }    
+    .size {
+      @apply w-[90%]
+    } 
 }
 @media screen and (min-width: 400px) {
   .resheight{
@@ -292,7 +314,12 @@ gap:3rem;
   .formwid {
     width:95%
   }
-  
+  .size {
+    @apply w-[85%]
+  }
+  .textSize {
+    @apply text-[3rem]
+  }
 }
 
 @media screen and (min-width: 500px) {
@@ -317,6 +344,10 @@ gap:3rem;
   .formwid {
     width:84%
   }
+
+  .size {
+    @apply w-[73%]
+  }
 }
 
 @media screen and (min-width: 580px) {
@@ -328,6 +359,9 @@ gap:3rem;
   }
   .jt {
     justify-content: center;
+  }
+  .size {
+    @apply w-[70%]
   }
 }
 
@@ -360,6 +394,9 @@ gap:3rem;
   @apply w-[83%]
 }
 }
+
+
+
 
 @media screen and (min-width: 700px) {
   

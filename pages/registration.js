@@ -8,12 +8,13 @@ import Footer from "../components/footer/footer"
 import { useFormik } from "formik";
 import {SignUpSchema} from "../schema"
 import { connectWallet } from "../metamask";
-import { ToastContainer} from 'react-toastify';
+import { ToastContainer,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux'
 import {selectAddress} from '../slice/metamask'
 import { useState } from "react";
 import {CgProfile} from "react-icons/cg"
+import axios from "../utils/axiosconfiguration"
 
 const Registeration =()=>{
      
@@ -21,7 +22,8 @@ const Registeration =()=>{
     const dispatch = useDispatch()
     const inputElement = useRef(null);
     const fileRef=useRef(null);
-    // const [wallet,setwallet]= useState("");
+    const fileRefCover=useRef(null);
+    const [checker,setChecker]= useState(false);
 
     
 
@@ -36,9 +38,7 @@ useEffect(()=>{
 
     {
 
-       
         setFieldValue("walletAddress", address)
-       
         inputElement.current.value=address;
     }
 
@@ -52,8 +52,8 @@ authorName:"",
 email:"",
 walletAddress:"",
 description:"",
-createdOn:"",
-file:""
+profile:"",
+cover:""
 
 }
 
@@ -63,20 +63,35 @@ file:""
         initialValues,
         validationSchema:SignUpSchema,
 
-        onSubmit:(values,action)=>{
-            values.createdOn=new Date().toLocaleString();
-
+        onSubmit:async (values,action)=>{
+            setChecker(true);
             const formdata=new FormData();
          for ( var key in values ) 
          {
         formdata.append(key, values[key]);
          }
 
-            
-            console.log("PRinitng values",values);
-            fileRef.current.value=""
+         try{   
+         const response=await axios.post("/register", formdata);
+         
+         if(response?.data?.message=="success")
+         {
+            console.log("Successfully registered");
+        }
+         
 
-            action.resetForm();
+        }
+        catch(error)
+        {
+
+            setChecker(false);
+            console.log(error.response.data)
+            toast.error(error.response.data.message, {
+                position: "top-center",
+              });
+        };
+        setChecker(false);
+
         }
 
     })
@@ -175,12 +190,12 @@ return(
     file:p-[0.6rem]
     m-0
      outline-none" type="file" id="formFile"
-     name="file"
+     name="profile"
      ref={fileRef}
      accept="image/*"
      onChange={(e)=>{
 
-        setFieldValue("file",e.target?.files[0] ? e.target?.files[0] : "")
+        setFieldValue("profile",e.target?.files[0] ? e.target?.files[0] : "")
     }
         
     }
@@ -188,9 +203,58 @@ return(
 
      
                 </div>
-                {errors.file && touched.file  ? (<p className="text-red-500 text-[1.4rem] errors block">{errors.file}</p>):null}
+                {errors.profile && touched.profile  ? (<p className="text-red-500 text-[1.4rem] errors block">{errors.profile}</p>):null}
 
             </div>
+
+
+
+            <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem] ">
+
+<div className="reginpfile w-[100%] mb-[0.3rem] ">
+
+<CgProfile className="text-[2.5rem]"></CgProfile>
+<span className="text-start block w-[84%] ml-[1rem] text-[1.7rem]">Choose cover photo</span>
+
+</div>   
+    <div className="reginpfile w-[100%] ">
+
+    
+    <input className="form-control
+block
+w-full
+text-[1.5rem]
+placeholder:text-[#746e6e]
+font-normal
+text-gray-700
+bg-white bg-clip-padding
+border border-solid border-gray-400
+rounded-lg
+
+transition
+ease-in-out
+file:border-none
+file:p-[0.6rem]
+m-0
+outline-none" type="file" id="formFile"
+name="cover"
+ref={fileRefCover}
+accept="image/*"
+onChange={(e)=>{
+
+setFieldValue("cover",e.target?.files[0] ? e.target?.files[0] : "")
+}
+
+}
+/>
+
+
+    </div>
+    {errors.cover && touched.cover  ? (<p className="text-red-500 text-[1.4rem] errors block">{errors.cover}</p>):null}
+
+</div>
+
+
 
 
 
@@ -224,10 +288,14 @@ return(
     <button type="button" className="font-['Inconsolata'] tracking-wider bg-blue-500 hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-medium py-3 px-8  sm:py-3 sm:px-[1.7rem] rounded-full" onClick={()=>connectWallet(dispatch,address)}>
   Connect Metamask
 </button>
-<button type="submit" className="font-['Inconsolata'] tracking-wider bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-medium py-3  px-8  sm:py-3 sm:px-[5rem] rounded-full">
+
+{!checker ?(<button type="submit" className="font-['Inconsolata'] tracking-wider bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-medium py-3  px-8  sm:py-3 sm:px-[5rem] rounded-full">
   Register
 </button>
-    </div>
+):(<button type="submit" className="font-['Inconsolata'] tracking-wider bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-medium py-3  px-8  sm:py-3 sm:px-[5rem] rounded-full">
+  Submitting...
+</button>)
+   }   </div>
 
    
             </div>
