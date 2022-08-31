@@ -33,7 +33,8 @@ console.log(router.pathname)
         <title>Golden Words NFts</title>
         <meta property="og:type" content="website" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta property="og:url"  content={`https://text`} />
+        <meta property="og:url"  content={`https:/arbazkhan/individualnft`} />
+        <meta property="url"  content={`https://arbazkhan/individualnft`} />
         <meta property="description"  content="How much does culture influence creative thinking?" key="og-desc"/>
         <meta property="og:description"  content="How much does culture influence creative thinking?" key="og-desc"/> 
        <meta property="title" content="The Rock,arbaz" />
