@@ -31,7 +31,7 @@ console.log(router.pathname)
     <>
     <Head>
         <title>Golden Words NFts</title>
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content="website" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta property="og:url"  content={`https://text`} />
         <meta property="title" content="The Rock,arbaz" />
