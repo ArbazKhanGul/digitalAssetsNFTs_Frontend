@@ -34,7 +34,7 @@ console.log(router.pathname)
         <meta property="og:type" content="website" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta property="og:url"  content={`https:/arbazkhan/individualnft`} />
-        <meta property="url"  content={`https://arbazkhan/individualnft`} />
+        <meta property="url"  content={`https://textnft.verce.app/individualnft`} />
         <meta property="description"  content="How much does culture influence creative thinking?" key="og-desc"/>
         <meta property="og:description"  content="How much does culture influence creative thinking?" key="og-desc"/> 
        <meta property="title" content="Sports NFT" />
@@ -211,7 +211,7 @@ console.log(router.pathname)
                               <div className="flex  w-auto sm:w-[350px] flex-wrap  items-center justify-center">
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem]  mr-[2rem] mt-[1rem]'>
                                   <FacebookShareButton
-                                  url={`https://arbazkhan.app/${path}` }
+                                  url={`https://textnft.vercel.app/${path}` }
                                   hashtag="#GoldenWordsNFTs"
                                   quote={"Vist link to buy this Nfts"}
                                   >
