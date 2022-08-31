@@ -30,7 +30,7 @@ console.log(router.pathname)
     <>
       <Navbar></Navbar>
       <div className="px-[2.5rem] sm:px-[3.5rem] md:px-[6rem] ">
-        <div className="pt-[2rem] md:pt-[3rem] lg:pt-[3rem] grid lg:grid-cols-2 lg:gap-x-[2rem]">
+        <div className="pt-[1rem] md:pt-[3rem] lg:pt-[3rem] grid lg:grid-cols-2 lg:gap-x-[2rem]">
       
         <h2 className="color row-start-2 row-end-3  w-fit h-fit block lg:hidden mt-[1rem] mb-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold  md:text-[3.2rem] tracking-wide ">
               NFT Text:
