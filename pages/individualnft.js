@@ -5,7 +5,8 @@ import { ImEmbed } from "react-icons/im";
 import QRCode from 'qrcode.react';
 import { MdQrCode } from "react-icons/md";
 import { useRouter } from 'next/router'
-
+import {FacebookShareButton} from "react-share"
+import Head from 'next/head'
 const IndividualNFT = () => {
   const [showModal, setShowModal] = useState(false);
   const [clickCheck,setclickCheck] = useState("Share");
@@ -28,7 +29,16 @@ console.log(router.pathname)
 
   return (
     <>
-      <Navbar></Navbar>
+    <Head>
+        <title>Golden Words NFts</title>
+        <meta property="og:type"               content="article" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta property="og:url"  content={`${process.env.URL}${path}`} />
+        <meta property="og:description"  content="How much does culture influence creative thinking?" />
+
+      </Head>
+    <Navbar></Navbar>
+
       <div className="px-[2.5rem] sm:px-[3.5rem] md:px-[6rem] ">
         <div className="pt-[0.8rem] sm:pt-[1.5rem] md:pt-[3rem] lg:pt-[3rem] grid lg:grid-cols-2 lg:gap-x-[2rem]">
       
@@ -188,11 +198,18 @@ console.log(router.pathname)
                               {clickCheck=="Share"?(
                               <div className="flex  w-auto sm:w-[350px] flex-wrap  items-center justify-center">
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem]  mr-[2rem] mt-[1rem]'>
+                                  <FacebookShareButton
+                                  url={`${process.env.URL}${path}` }
+                                  hashtag="#GoldenWordsNFTs"
+                                  quote={"Vist link to buy this Nfts"}
+                                  >
                                   <BsFacebook className="text-[blue] share bg-[white] rounded-full "></BsFacebook>
                                   <p className="text-[#A1A1A1] text-[1.1rem]">Facebook</p>
+                                  
+                                  </FacebookShareButton>
                                 </div>
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
-                                  <BsInstagram className="insta  text-[white] share !p-[0.7rem] !rounded-[22px]"></BsInstagram>
+                                  <BsInstagram className="insta  text-[white] share !p-[0.4rem] !rounded-[22px]"></BsInstagram>
                                   <p className="text-[#A1A1A1] text-[1.1rem]">Instagram</p>
                                 </div>
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
