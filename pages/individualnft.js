@@ -37,8 +37,8 @@ console.log(router.pathname)
         <meta property="url"  content={`https://textnft.verce.app/individualnft`} />
         <meta property="description"  content="How much does culture influence creative thinking?" key="og-desc"/>
         <meta property="og:description"  content="How much does culture influence creative thinking?" key="og-desc"/> 
-       <meta property="title" content="Sports NFT" />
-        <meta property="og:title" content="Sports NFT" />
+       <meta property="title" content="Sports NFTs" />
+        <meta property="og:title" content="Sports NFTs" />
         <meta property="og:site_name" content="Golden Words nfts" />
         {/* <meta property="og:site_name" content="my_website_name" /> */}
         <meta property="image" content="https://textnft.vercel.app/social.png" />
