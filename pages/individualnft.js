@@ -33,10 +33,10 @@ console.log(router.pathname)
         <title>Golden Words NFts</title>
         <meta property="og:type" content="website" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta property="og:url"  content={`https:/arbazkhan/individualnft`} />
+        <meta property="og:url"  content={`https:/textnft.vercel.app/individualnft`} />
         {/* <meta property="url"  content={`https://textnft.vercel.app/individualnft`} /> */}
         {/* <meta property="description"  content="If you continue work hard success will follow you" key="og-desc"/> */}
-        <meta property="og:description"  content="If you continue work hard success will follow you so try hard" key="og-desc"/> 
+        <meta property="og:description"  content="If you continue work hard success will follow you so try hard...." key="og-desc"/> 
        {/* <meta property="title" content="Sports NFTs" /> */}
         <meta property="og:title" content="Sports NFTs" />
         <meta property="og:site_name" content="Golden Words Nfts" />
