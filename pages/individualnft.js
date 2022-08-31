@@ -41,8 +41,8 @@ console.log(router.pathname)
         <meta property="og:title" content="The Rock arb arbaz" />
         <meta property="og:site_name" content="Golden Words nfts" />
         {/* <meta property="og:site_name" content="my_website_name" /> */}
-        <meta property="image" content="https://textnft.vercel.app/nft.jpg" />
-        <meta property="og:image" content="https://textnft.vercel.app/nft.jpg" />
+        <meta property="image" content="https://textnft.vercel.app/social.png" />
+        <meta property="og:image" content="https://textnft.vercel.app/social.png" />
         {/* <meta property="og:image:width" content="467" /> */}
         {/* <meta property="og:image:height" content="88" /> */}
         {/* <meta property="image:width" content="467" /> */}
@@ -211,7 +211,7 @@ console.log(router.pathname)
                               <div className="flex  w-auto sm:w-[350px] flex-wrap  items-center justify-center">
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem]  mr-[2rem] mt-[1rem]'>
                                   <FacebookShareButton
-                                  url={`https://textnft.vercel.app/${path}` }
+                                  url={`https://arbazkhan.app/${path}` }
                                   hashtag="#GoldenWordsNFTs"
                                   quote={"Vist link to buy this Nfts"}
                                   >
