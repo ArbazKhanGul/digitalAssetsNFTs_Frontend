@@ -38,10 +38,10 @@ console.log(router.pathname)
         <meta property="og:title" content="The Rock arb arbaz" />
         <meta property="description"  content="How much does culture influence creative thinking?" key="og-desc"/>
         <meta property="og:description"  content="How much does culture influence creative thinking?" key="og-desc"/>
-        <meta property="image" content="https://textnft.vercel.app/logo.png" />
-        <meta property="og:image" content="https://textnft.vercel.app/logo.png" />
-        <meta property="og:image:width" content="467" />
-        <meta property="og:image:height" content="88" />
+        <meta property="image" content="https://textnft.vercel.app/nft.png" />
+        <meta property="og:image" content="https://textnft.vercel.app/nft.png" />
+        {/* <meta property="og:image:width" content="467" /> */}
+        {/* <meta property="og:image:height" content="88" /> */}
         <meta property="image:width" content="467" />
         <meta property="image:height" content="88" />
         <meta property="og:site_name" content="my_website_name" />
