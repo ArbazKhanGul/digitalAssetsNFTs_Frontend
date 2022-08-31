@@ -33,13 +33,13 @@ console.log(router.pathname)
         <title>Golden Words NFts</title>
         <meta property="og:type" content="article" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta property="og:url"  content={`${process.env.URL}${path}`} />
+        <meta property="og:url"  content={`https://text`} />
         <meta property="title" content="The Rock,arbaz" />
         <meta property="og:title" content="The Rock arb arbaz" />
-        <meta property="description"  content="How much does culture influence creative thinking?" />
-        <meta property="og:description"  content="How much does culture influence creative thinking?" />
-        <meta property="image" content="/logo.png" />
-        <meta property="og:image" content="/logo.png" />
+        <meta property="description"  content="How much does culture influence creative thinking?" key="og-desc"/>
+        <meta property="og:description"  content="How much does culture influence creative thinking?" key="og-desc"/>
+        <meta property="image" content="https://textnft.vercel.app/logo.png" />
+        <meta property="og:image" content="https://textnft.vercel.app/logo.png" />
         <meta property="og:site_name" content="my_website_name" />
         <meta property="og:site_name" content="my_website_name" />
       </Head>
