@@ -35,11 +35,11 @@ console.log(router.pathname)
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta property="og:url"  content={`https:/arbazkhan/individualnft`} />
         <meta property="url"  content={`https://textnft.verce.app/individualnft`} />
-        <meta property="description"  content="How much does culture influence creative thinking?" key="og-desc"/>
-        <meta property="og:description"  content="How much does culture influence creative thinking?" key="og-desc"/> 
+        <meta property="description"  content="If you continue work hard success will follow you" key="og-desc"/>
+        <meta property="og:description"  content="If you continue work hard success will follow you" key="og-desc"/> 
        <meta property="title" content="Sports NFTs" />
         <meta property="og:title" content="Sports NFTs" />
-        <meta property="og:site_name" content="Golden Words nfts" />
+        <meta property="og:site_name" content="Golden Words Nfts" />
         {/* <meta property="og:site_name" content="my_website_name" /> */}
         <meta property="image" content="https://textnft.vercel.app/demo.png" />
         <meta property="og:image" content="https://textnft.vercel.app/demo.png" />
