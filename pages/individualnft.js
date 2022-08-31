@@ -5,7 +5,7 @@ import { ImEmbed } from "react-icons/im";
 import QRCode from 'qrcode.react';
 import { MdQrCode } from "react-icons/md";
 import { useRouter } from 'next/router'
-import {FacebookShareButton} from "react-share"
+import {FacebookShareButton, WhatsappShareButton} from "react-share"
 import Head from 'next/head'
 const IndividualNFT = () => {
   const [showModal, setShowModal] = useState(false);
@@ -229,8 +229,13 @@ console.log(router.pathname)
                                   <p className="text-[#A1A1A1] text-[1.1rem]">Twitter</p>
                                 </div>
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
+                                <WhatsappShareButton
+                                title="Golden Words NFTs"
+                                url={`https://textnft.vercel.app/${path}` }
+                                >
                                   <BsWhatsapp className="share bg-[#25D366] text-[white] rounded-[25px] p-[1rem]"></BsWhatsapp>
                                   <p className="text-[#A1A1A1] text-[1.1rem]">Whatsapp</p>
+                                  </WhatsappShareButton>
                                 </div>
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]' onClick={() =>setclickCheck("Embed Video")}>
                                   <ImEmbed className="share bg-[#f1f1f1] text-[#888787] rounded-[25px] p-[0.7rem]"></ImEmbed>
