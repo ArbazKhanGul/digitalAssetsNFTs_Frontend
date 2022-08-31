@@ -41,17 +41,17 @@ console.log(router.pathname)
         <meta property="og:title" content="Sports NFTs" />
         <meta property="og:site_name" content="Golden Words Nfts" />
         {/* <meta property="og:site_name" content="my_website_name" /> */}
-        <meta property="image" content="https://textnft.vercel.app/demo.png" />
-        <meta property="og:image" itemProp="image" content="https://textnft.vercel.app/demo.png" />
+        <meta property="image" content="https://textnft.vercel.app/new.png" />
+        <meta property="og:image" itemProp="image" content="https://textnft.vercel.app/new.png" />
         <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:secure_url" content="https://textnft.vercel.app/demo.png" />
+        <meta property="og:image:secure_url" content="https://textnft.vercel.app/new.png" />
         <meta property="og:image:width" content="270" />
         <meta property="og:image:height" content="260" />
         {/* <meta property="image:width" content="467" /> */}
         {/* <meta property="image:height" content="88" /> */}
 
       </Head>
-      <link itemProp="thumbnailUrl" href="https://textnft.vercel.app/demo.png"/> 
+      <link itemProp="thumbnailUrl" href="https://textnft.vercel.app/new.png"/> 
 <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject"> 
   <link itemProp="url" href="https://textnft.vercel.app/demo.png"/> 
 </span>
