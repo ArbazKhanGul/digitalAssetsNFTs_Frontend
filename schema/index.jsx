@@ -9,3 +9,9 @@ profile:Yup.string().trim().required("Please select profile image"),
 cover:Yup.string().trim().required("Please select Cover image"),
 
 })
+
+
+export const SendEmailSchema=Yup.object({
+    email:Yup.string().trim().required("Please enter email address").email("Please enter valid email address"),
+    
+    })

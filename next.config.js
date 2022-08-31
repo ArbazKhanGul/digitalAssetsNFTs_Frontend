@@ -3,7 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    CONTACT: 'contact@gmail.com',
+    CONTACT: process.env.NEXT_PUBLIC_CONTACT,
+    URL: process.env.NEXT_PUBLIC_URL
   },
 }
 

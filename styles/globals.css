@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Slab&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DynaPuff&family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500&family=Lobster&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -114,6 +114,17 @@ margin-left: 12px;
 }
 
 /* for rounded gradient border */
+.nft_bord{
+
+border: double 3px transparent;
+border-radius: 10px;
+background-image: linear-gradient(white, white), radial-gradient(circle at top left,  rgba(234, 79, 234, 0.93) 24.03%, rgba(36, 158, 173, 0.93) 80.82%);
+background-origin: border-box;
+background-clip: content-box, border-box;
+}
+.nft_round {
+  border-radius:0px 0px 35px 35px;
+}
 
 .bord_grad {
     border: double 3px transparent;
@@ -246,6 +257,10 @@ background-clip: unset;
   @apply text-[2.8rem]
 }
 
+.share {
+  @apply text-[5rem]
+}
+
 .footerdirection {
   flex-direction: column;
   @apply text-[2rem];
@@ -270,6 +285,14 @@ gap:3rem;
 .size {
   @apply w-[90%]
 }
+
+.shadow {
+background: #FFFFFF;
+box-shadow: 0px 0px 4px 2px rgba(151, 131, 131, 0.25);
+border-radius: 20px;
+}
+
+
 /* Media queries */
 
 @media screen and (max-width: 330px) {
@@ -296,9 +319,7 @@ gap:3rem;
       margin-left: 4rem;
       margin-right: 4rem;
     }    
-    .size {
-      @apply w-[90%]
-    } 
+
 }
 @media screen and (min-width: 400px) {
   .resheight{
@@ -315,16 +336,29 @@ gap:3rem;
     width:95%
   }
   .size {
-    @apply w-[85%]
+    @apply w-[85%] 
   }
   .textSize {
     @apply text-[3rem]
   }
 }
 
+@media screen and (max-width:520px) {
+.spacing {
+  @apply !space-x-[4.2rem]
+}  
+
+.spdeatil {
+  @apply !space-x-[3rem]
+}
+}
+
 @media screen and (min-width: 500px) {
   .resheight{
     height:30rem;
+  }
+  .share {
+    @apply text-[5rem]
   }
   .log {
     @apply text-[2.4rem];

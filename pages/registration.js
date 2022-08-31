@@ -82,13 +82,23 @@ cover:""
 
         }
         catch(error)
-        {
 
+        {
+            console.log("🚀 ~ file: registration.js ~ line 85 ~ onSubmit: ~ error", error)
             setChecker(false);
-            console.log(error.response.data)
-            toast.error(error.response.data.message, {
+            if(error?.response?.data==undefined)
+            {
+                toast.error("Server Error Please Try Later", {
+                        position: "top-center",
+                      }); 
+            }
+            else{
+            console.log(error?.response?.data)
+            
+            toast.error(error?.response?.data.message, {
                 position: "top-center",
               });
+            }
         };
         setChecker(false);
 

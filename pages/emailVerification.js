@@ -22,7 +22,7 @@ const EmailVerification=()=>{
         <div className="flex flex-col min-h-screen">
 
             <Navbar></Navbar>
-            <div className="email flex-1 flex justify-center items-center py-[4rem] sm:p-[8rem] rounded-lg">
+            <div className="email flex-1 flex justify-center items-center py-[7rem] sm:p-[8rem] rounded-lg">
 
 
                   <div className="size sm:w-[40rem] bg-white rounded-2xl px-[2.5rem] py-[3.5rem] space-y-[3.3rem]">
@@ -62,7 +62,7 @@ const EmailVerification=()=>{
 
                   <div className="flex justify-center">
 
-                   <h2 className="font-['Inconsolata'] text-[1.4rem] ">Didn't get email? <span className="text-blue-700"><Link href="/login">
+                   <h2 className="font-['Inconsolata'] text-[1.4rem] ">Didn't get email? <span className="text-blue-700"><Link href="/sendEmail">
           <a>Send it again</a>
         </Link></span></h2>
 

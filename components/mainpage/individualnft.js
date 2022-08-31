@@ -6,7 +6,7 @@ const IndividualNFT=({nftname,nfttext,owner,creator,creationdate,price,index})=>
         <div className="text_color h-fit w-fit text-[2.3rem] text-center px-[2rem] py-[1.7rem] font-semibold bord-bottom font-['Inconsolata']">
              {nfttext}
         </div>
-        <div className="px-[2rem] pb-[1.5rem] pt-[0.8rem] flex flex-col bg-[#F2F2F278]">
+        <div className="px-[2rem] pb-[1.5rem] pt-[0.8rem] flex flex-col bg-[#F2F2F278] nft_round">
            <div className="colgrad text-[2rem] text-center font-semibold tracking-widest">
             {nftname}
            </div>
@@ -21,8 +21,8 @@ const IndividualNFT=({nftname,nfttext,owner,creator,creationdate,price,index})=>
     <div className="flex flex-col space-y-[0.3rem] overflow-hidden">
             <span className="text-[#615f5fcf] text-[1.6rem] w-[100%] font-['Inconsolata'] font-medium overflow-hidden text-ellipsis">{creator}</span>
             <span className="text-[#7D7C7CCF] text-[1.6rem] w-[100%] font-['Inconsolata'] font-medium overflow-hidden text-ellipsis">{owner}</span>
-            <span className="text-[#7D7C7CCF] text-[1.6rem] font-['Inconsolata'] font-medium">{creationdate}</span>
-            <span className="text-[#7D7C7CCF] text-[1.6rem] font-['Inconsolata'] font-medium">{price}</span>
+            <span className="text-[#7D7C7CCF] text-[1.6rem] w-[100%] font-['Inconsolata'] font-medium overflow-hidden text-ellipsis whitespace-nowrap">{creationdate}</span>
+            <span className="text-[#7D7C7CCF] text-[1.6rem] w-[100%] font-['Inconsolata'] font-medium overflow-hidden text-ellipsis whitespace-nowrap">{price}</span>
             <span className="text-[#7D7C7CCF] text-[1.6rem] font-['Inconsolata'] font-medium">
             = $1
            </span>
