@@ -38,7 +38,10 @@ console.log(router.pathname)
         <meta property="og:title" content="The Rock" />
         <meta property="description"  content="How much does culture influence creative thinking?" />
         <meta property="og:description"  content="How much does culture influence creative thinking?" />
-
+        <meta property="image" content="/logo.png" />
+        <meta property="og:image" content="/logo.png" />
+        <meta property="og:site_name" content="my_website_name" />
+        <meta property="og:site_name" content="my_website_name" />
       </Head>
     <Navbar></Navbar>
 
