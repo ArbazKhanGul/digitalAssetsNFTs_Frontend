@@ -50,6 +50,30 @@ console.log(router.pathname)
         {/* <meta property="image:width" content="467" /> */}
         {/* <meta property="image:height" content="88" /> */}
 
+
+{/* twitter */}
+
+
+        <meta
+          property="twitter:url"
+          content={`https:/textnft.vercel.app/individualnft`}
+        />
+        <meta
+          property="twitter:description"
+          content="If you continue work hard success will follow you so try hard...."
+          key="og-desc"
+        />
+        <meta property="twitter:title" content="Sports NFTs" />
+        <meta
+          property="twitter:image"
+          itemProp="image"
+          content="https://textnft.vercel.app/new.png"
+        />
+        <meta name="twitter:card" content="summary_large_image"/>
+        {/* <meta property="twitter:image:type" content="image/png" />
+        <meta property="twitter:image:width" content="270" />
+        <meta property="twitter:image:height" content="270" /> */}
+
       </Head>
       <link itemProp="thumbnailUrl" href="https://textnft.vercel.app/new.png"/> 
 <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject"> 
