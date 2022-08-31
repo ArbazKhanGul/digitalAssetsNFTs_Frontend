@@ -34,7 +34,7 @@ console.log(router.pathname)
         <meta property="og:type" content="website" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta property="og:url"  content={`https:/arbazkhan/individualnft`} />
-        <meta property="url"  content={`https://textnft.verce.app/individualnft`} />
+        <meta property="url"  content={`https://textnft.vercel.app/individualnft`} />
         <meta property="description"  content="If you continue work hard success will follow you" key="og-desc"/>
         <meta property="og:description"  content="If you continue work hard success will follow you so try hard" key="og-desc"/> 
        <meta property="title" content="Sports NFTs" />
@@ -42,9 +42,11 @@ console.log(router.pathname)
         <meta property="og:site_name" content="Golden Words Nfts" />
         {/* <meta property="og:site_name" content="my_website_name" /> */}
         <meta property="image" content="https://textnft.vercel.app/demo.png" />
-        <meta property="og:image" content="https://textnft.vercel.app/demo.png" />
-        {/* <meta property="og:image:width" content="467" /> */}
-        {/* <meta property="og:image:height" content="88" /> */}
+        <meta property="og:image" itemProp="image" content="https://textnft.vercel.app/demo.png" />
+        <meta property="og:image:type" content="image/png" />
+        
+        <meta property="og:image:width" content="270" />
+        <meta property="og:image:height" content="260" />
         {/* <meta property="image:width" content="467" /> */}
         {/* <meta property="image:height" content="88" /> */}
 
@@ -211,7 +213,7 @@ console.log(router.pathname)
                               <div className="flex  w-auto sm:w-[350px] flex-wrap  items-center justify-center">
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem]  mr-[2rem] mt-[1rem]'>
                                   <FacebookShareButton
-                                  url={`https://textnft.vercel.app/${path}` }
+                                  url={`https://textnft.vercel.app${path}` }
                                   hashtag="#GoldenWordsNFTs"
                                   quote={"Vist link to buy this Nfts"}
                                   >
@@ -229,14 +231,18 @@ console.log(router.pathname)
                                   <p className="text-[#A1A1A1] text-[1.1rem]">Twitter</p>
                                 </div>
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
+                                
+                                
                                 <WhatsappShareButton
                                 title="Golden Words NFTs"
-                                url={`https://textnft.vercel.app/${path}` }
+                                url={`https://textnft.vercel.app${path}` }
                                 >
                                   <BsWhatsapp className="share bg-[#25D366] text-[white] rounded-[25px] p-[1rem]"></BsWhatsapp>
                                   <p className="text-[#A1A1A1] text-[1.1rem]">Whatsapp</p>
                                   </WhatsappShareButton>
                                 </div>
+
+
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]' onClick={() =>setclickCheck("Embed Video")}>
                                   <ImEmbed className="share bg-[#f1f1f1] text-[#888787] rounded-[25px] p-[0.7rem]"></ImEmbed>
                                   <p className="text-[#A1A1A1] text-[1.1rem]">Embed</p>
