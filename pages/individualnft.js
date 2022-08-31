@@ -42,6 +42,8 @@ console.log(router.pathname)
         <meta property="og:image" content="https://textnft.vercel.app/logo.png" />
         <meta property="og:image:width" content="467" />
         <meta property="og:image:height" content="88" />
+        <meta property="image:width" content="467" />
+        <meta property="image:height" content="88" />
         <meta property="og:site_name" content="my_website_name" />
         <meta property="og:site_name" content="my_website_name" />
       </Head>
