@@ -70,9 +70,6 @@ console.log(router.pathname)
           content="https://textnft.vercel.app/newer.png"
         />
         <meta name="twitter:card" content="summary_large_image"/>
-        {/* <meta property="twitter:image:type" content="image/png" />
-        <meta property="twitter:image:width" content="270" />
-        <meta property="twitter:image:height" content="270" /> */}
 
       </Head>
       <link itemProp="thumbnailUrl" href="https://textnft.vercel.app/new.png"/> 
@@ -234,7 +231,7 @@ console.log(router.pathname)
                           </button>
                         </div>
                         {/*body*/}
-                        <div className="relative pl-6 pb-6 flex-auto">
+                        <div className={"relative pb-6 flex-auto"+(clickCheck=="Share"?" pl-6 ":"")}>
                           <div>
                             <div>
                               {clickCheck=="Share"?(
