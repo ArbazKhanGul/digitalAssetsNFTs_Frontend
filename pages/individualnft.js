@@ -36,7 +36,7 @@ console.log(router.pathname)
         <meta property="og:url"  content={`https:/arbazkhan/individualnft`} />
         <meta property="url"  content={`https://textnft.verce.app/individualnft`} />
         <meta property="description"  content="If you continue work hard success will follow you" key="og-desc"/>
-        <meta property="og:description"  content="If you continue work hard success will follow you" key="og-desc"/> 
+        <meta property="og:description"  content="If you continue work hard success will follow you so try hard" key="og-desc"/> 
        <meta property="title" content="Sports NFTs" />
         <meta property="og:title" content="Sports NFTs" />
         <meta property="og:site_name" content="Golden Words Nfts" />
