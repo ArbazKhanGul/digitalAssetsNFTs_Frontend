@@ -41,8 +41,8 @@ console.log(router.pathname)
         <meta property="og:title" content="Sports NFTs" />
         <meta property="og:site_name" content="Golden Words Nfts" />
         {/* <meta property="og:site_name" content="my_website_name" /> */}
-        <meta property="image" content="https://textnft.vercel.app/new.png" />
-        <meta property="og:image"  content="https://textnft.vercel.app/new.png" />
+        <meta property="image" content="https://textnft.vercel.app/social.png" />
+        <meta property="og:image"  content="https://textnft.vercel.app/social.png" />
         <meta property="og:image:type" content="image/png" />
         {/* <meta property="og:image:secure_url" content="https://textnft.vercel.app/new.png" /> */}
         <meta property="og:image:width" content="270" />
@@ -67,7 +67,7 @@ console.log(router.pathname)
         <meta
           property="twitter:image"
           itemProp="image"
-          content="https://textnft.vercel.app/new.png"
+          content="https://textnft.vercel.app/social.png"
         />
         <meta name="twitter:card" content="summary_large_image"/>
         {/* <meta property="twitter:image:type" content="image/png" />
@@ -250,14 +250,14 @@ console.log(router.pathname)
                                   
                                   </FacebookShareButton>
                                 </div>
-                                <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
+                                {/* <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
                                   <BsInstagram className="insta  text-[white] share !p-[0.4rem] !rounded-[22px]"></BsInstagram>
                                   <p className="text-[#A1A1A1] text-[1.1rem]">Instagram</p>
-                                </div>
+                                </div> */}
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
                                  
                                  <TwitterShareButton
-                                                                   url={`https://textnft.vercel.app${path}` }
+                                  url={`https://textnft.vercel.app${path}` }
                                   hashtag="#GoldenWordsNFTs"
                                  >
                                   <BsTwitter className="text-[white] bg-[#00ACEE] p-[8.9px] rounded-[25px] share"></BsTwitter>
