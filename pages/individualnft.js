@@ -41,8 +41,8 @@ console.log(router.pathname)
         <meta property="og:title" content="Sports NFTs" />
         <meta property="og:site_name" content="Golden Words Nfts" />
         {/* <meta property="og:site_name" content="my_website_name" /> */}
-        <meta property="image" content="https://textnft.vercel.app/social.png" />
-        <meta property="og:image"  content="https://textnft.vercel.app/social.png" />
+        <meta property="image" content="https://textnft.vercel.app/newer.png" />
+        <meta property="og:image"  content="https://textnft.vercel.app/newer.png" />
         <meta property="og:image:type" content="image/png" />
         {/* <meta property="og:image:secure_url" content="https://textnft.vercel.app/new.png" /> */}
         <meta property="og:image:width" content="270" />
@@ -67,7 +67,7 @@ console.log(router.pathname)
         <meta
           property="twitter:image"
           itemProp="image"
-          content="https://textnft.vercel.app/social.png"
+          content="https://textnft.vercel.app/newer.png"
         />
         <meta name="twitter:card" content="summary_large_image"/>
         {/* <meta property="twitter:image:type" content="image/png" />
