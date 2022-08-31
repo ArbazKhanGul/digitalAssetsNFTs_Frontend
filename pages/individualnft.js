@@ -31,7 +31,7 @@ console.log(router.pathname)
     <>
     <Head>
         <title>Golden Words NFts</title>
-        <meta property="og:type"               content="article" />
+        <meta property="og:type" content="article" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta property="og:url"  content={`${process.env.URL}${path}`} />
         <meta property="og:description"  content="How much does culture influence creative thinking?" />
@@ -45,7 +45,7 @@ console.log(router.pathname)
         <h2 className="color row-start-2 row-end-3  w-fit h-fit block lg:hidden mt-[1rem] mb-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold  md:text-[3.2rem] tracking-wide ">
               NFT Text:
             </h2>
-
+{console.log(`${process.env.URL}${path}`)}
       
           <div className="w-[98.5%] sm:w-[100%] nft_bord row-start-3 max-h-[43rem] lg:max-h-[60rem]  row-end-4 lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3">
            
