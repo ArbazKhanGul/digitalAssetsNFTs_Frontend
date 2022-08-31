@@ -51,6 +51,10 @@ console.log(router.pathname)
         {/* <meta property="image:height" content="88" /> */}
 
       </Head>
+      <link itemProp="thumbnailUrl" href="https://textnft.vercel.app/demo.png"/> 
+<span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject"> 
+  <link itemProp="url" href="https://textnft.vercel.app/demo.png"/> 
+</span>
     <Navbar></Navbar>
 
       <div className="px-[2.5rem] sm:px-[3.5rem] md:px-[6rem] ">
@@ -234,7 +238,7 @@ console.log(router.pathname)
                                 
                                 
                                 <WhatsappShareButton
-                                title="Golden Words NFTs"
+                                // title="Golden Words NFTs"
                                 url={`https://textnft.vercel.app${path}` }
                                 >
                                   <BsWhatsapp className="share bg-[#25D366] text-[white] rounded-[25px] p-[1rem]"></BsWhatsapp>
