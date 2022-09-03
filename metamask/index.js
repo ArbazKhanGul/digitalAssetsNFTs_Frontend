@@ -1,45 +1,40 @@
 import { toast } from "react-toastify";
-import { useSelector, useDispatch } from 'react-redux'
 import { addAddress } from '../slice/metamask'
-// import {selectAddress} from '../slice/metamask'
-
+import {ethers} from "ethers";
 
 export const connectWallet = async (dispatch,address) => {
 
 
 
-  // const count = useSelector(selectAddress)
-// const dispatch = useDispatch()
 
     try {
-      if (!window.ethereum)
-        return toast.warn("Please install MetaMask.", {
-          position: "top-center",
-        });
 
+      if (!window?.ethereum && !window?.ethereum?.isMetaMask)
+      return toast.error("Please install MetaMask.", {
+        position: "top-center",
+      });
 
 
         const accountsFirst = await ethereum.request({
           method: "eth_requestAccounts",
         });
-         
 
-        
-        
+
       if(accountsFirst.length > 0 && address==undefined)
         {
+ 
+          let checkSumAddress=ethers.utils.getAddress(accountsFirst[0])
+          dispatch(addAddress(checkSumAddress));
 
-           
-          dispatch(addAddress(accountsFirst[0])); 
         toast.success("Account Connected", {
             position: "top-center",
           });
         }
 
 
-        window.ethereum.on('accountsChanged', function (accounts) {
-          dispatch(addAddress(accounts[0]));
-        })
+        // window.ethereum.on('accountsChanged', function (accounts) {
+        //   dispatch(addAddress(accounts[0]));
+        // })
 
     } catch (error) {
       console.log(error);

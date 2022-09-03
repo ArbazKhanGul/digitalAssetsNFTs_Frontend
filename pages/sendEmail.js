@@ -10,16 +10,17 @@ import { motion } from "framer-motion"
 import {HiOutlineMail} from "react-icons/hi"
 import { useFormik } from "formik";
 import axios from "../utils/axiosconfiguration"
+import { useRouter } from "next/router";
 
 
 const SendEmail=()=>{
-
+  const router = useRouter();
     const contVar={
         hidden:{
           y:5,
         },
         visible:{
-          y:-10,
+          y:-6,
           transition:{
             duration:0.6,
             yoyo:Infinity,
@@ -47,11 +48,7 @@ const SendEmail=()=>{
 
              if(response?.data?.message=="success")
              {
-
-              toast.success("Email Sent Successfully", {
-                position: "top-center",
-              }); 
-                console.log("Successfully registered");
+                router.push("/emailVerification");   
             }
 
             }
@@ -96,7 +93,7 @@ const SendEmail=()=>{
             <div className="email flex-1 flex justify-center items-center py-[7rem] sm:p-[8rem] rounded-lg">
 
 
-<div className="size sm:w-[40rem] bg-white rounded-2xl px-[2.5rem] py-[3.5rem] space-y-[3.3rem]">
+<div className="size sm:w-[40rem] bg-white rounded-2xl px-[2.5rem] py-[2.3rem] space-y-[3.3rem]">
 <div>
 
 <div className="w-[6rem] h-[6rem]   md:w-[4rem] md:h-[4rem]  relative">
@@ -131,7 +128,7 @@ const SendEmail=()=>{
 
 
 <div className="flex justify-center">
-<button type="submit" className="bg-blue-500 block mt-[2rem] hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-8  sm:py-2 sm:px-10 rounded-full font-['Inconsolata'] tracking-wider">
+<button type="submit" className="bg-blue-500 block mt-[2rem] hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-8  sm:py-3 sm:px-10 rounded-full font-['Inconsolata'] tracking-wider">
   Send Email
 </button>
 </div>               

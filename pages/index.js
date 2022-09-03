@@ -5,7 +5,80 @@ import TopCollections from '../components/mainpage/topcollections'
 import Work from '../components/mainpage/work'
 import NFTPortion from "../components/mainpage/nftportion"
 import Footer from '../components/footer/footer'
+import {useEffect,useState} from "react"
+import { selectAddress,addAddress } from "../slice/metamask";
+import { selectUser,addUser } from "../slice/user";
+import { useSelector,useDispatch} from "react-redux";
+import { useRouter } from "next/router";
+import {toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {ethers} from "ethers"
+import axios from "../utils/axiosconfiguration";
+
 export default function Home() {
+
+  const address = useSelector(selectAddress);
+  const[loading,setLoading] = useState(false);
+  const user=useSelector(selectUser);
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  
+useEffect(() => {
+
+    async function load() {
+      const access_token = localStorage.getItem("token");
+      const login_address = localStorage.getItem("address");
+
+
+      if (window?.ethereum?._state?.accounts[0] && address==undefined && window?.ethereum?.chainId == 56) {
+          let checkSumAddress=ethers.utils.getAddress(window?.ethereum?._state?.accounts[0])
+          dispatch(addAddress(checkSumAddress));
+          return;
+        }
+
+
+
+      if (login_address != address || !access_token) {
+        dispatch(addUser(undefined));
+        setLoading(true);
+        return;
+      }
+
+    
+
+      try {
+        const response = await axios.get("/profile", {
+          headers: {
+            Authorization: `${access_token}`,
+          },
+        });
+        //         toast.success("SLogin demo", {
+        //   position: "top-center",
+        // });
+
+        dispatch(addUser(response?.data?.user));
+        setLoading(true);
+
+      } catch (error) {
+        console.log(error);
+        // if (error?.response?.data == undefined) {
+        //   toast.error("Server Error Please Try Later", {
+        //     position: "top-center",
+        //   });
+        // } else {
+        //   toast.error(error?.response?.data.message, {
+        //     position: "top-center",
+        //   });
+        // }
+        dispatch(addUser(undefined));
+        setLoading(true);
+      }
+    }
+    load();
+  }, [address]);
+
+
   return (
     <div >
       <Head>
@@ -15,13 +88,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
+      {!loading?"":(<>
 <Navbar></Navbar>
 <Main></Main>   
 <TopCollections></TopCollections>
 <Work></Work>
 <NFTPortion></NFTPortion>
 <Footer></Footer>
+      </>
+      )}
     </div>
   )
 }
