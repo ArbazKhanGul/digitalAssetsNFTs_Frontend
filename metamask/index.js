@@ -16,7 +16,7 @@ export const connectWallet = async (dispatch,address) => {
       {
 
         const a = document.createElement("a");
-        a.href = "metamask://dapp/textnft.vercel.app";
+        a.href = "metamask://dapp://textnft.vercel.app";
         a.target = "_self";
         document.body.appendChild(a);
         a.click();
