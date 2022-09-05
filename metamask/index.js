@@ -15,8 +15,15 @@ export const connectWallet = async (dispatch,address) => {
       if (!window?.ethereum || !window?.ethereum?.isMetaMask)
       {
 
+        const a = document.createElement("a");
+        a.href = "https://metamask.app.link/dapp/https://textnft.vercel.app";
+        a.target = "_self";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
         // if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-          window.open("https://metamask.app.link/dapp/https://textnft.vercel.app");
+          // window.open("https://metamask.app.link/dapp/https://textnft.vercel.app");
         // return;  
         // } 
       return toast.error("Please install MetaMask.", {
