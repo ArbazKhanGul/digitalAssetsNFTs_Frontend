@@ -272,14 +272,10 @@ useEffect(() => {
           <Link href="/login">
             <a>
               <li
-                className={
-                  "onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem] md:pl-[6rem] " +
-                  (router.pathname == "/login"
-                    ? "text-blue-600"
-                    : "text-[#EAE1E1]")
-                }
+                className="onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem] md:pl-[6rem]"
+                onClick={() => connectWalletLogin(dispatch, address)}
               >
-                Login{" "}
+                Login
               </li>
             </a>
           </Link>
