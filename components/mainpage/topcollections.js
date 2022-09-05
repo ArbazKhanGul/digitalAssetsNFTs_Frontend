@@ -7,7 +7,7 @@ let temp=[{collectionname:"Collection1",volume:100,price:123,image:"/col.jpeg"},
 
     return (
         <div>
-    <div className="color w-fit text-[3.1rem] ml-[2rem] font-['DynaPuff'] sm:text-[3rem] md:text-[3.7rem]  m-[1.2rem] sm:ml-[3.5rem] md:ml-[5rem]">
+    <div className="color w-fit text-[2.7rem] ml-[2rem] font-['DynaPuff'] sm:text-[3rem] md:text-[3.7rem]  m-[1.2rem] sm:ml-[3.5rem] md:ml-[5rem]">
     Top Collections :
     </div>
 

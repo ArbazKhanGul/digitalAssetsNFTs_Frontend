@@ -7,7 +7,7 @@ const NFTPortion =()=>{
 
 
     return (<div>
-        <div className="nft w-fit text-[3.1rem] ml-[2rem] sm:text-[3rem] md:text-[3.7rem] font-['DynaPuff'] mt-[1.2rem] sm:ml-[3.5rem] md:ml-[4rem]">
+        <div className="nft w-fit text-[2.7rem] ml-[2rem] sm:text-[3rem] md:text-[3.7rem] font-['DynaPuff'] mt-[1.2rem] sm:ml-[3.5rem] md:ml-[4rem]">
     Trending NFTs: 
     </div>
     <span className="colgrad text-[1.7rem] font-semibold  mt-[1.2rem] mx-[2.5rem] md:mx-[4rem] block font-['Inconsolata']">(Click on any NFT to see his full detail and buying option)</span>
