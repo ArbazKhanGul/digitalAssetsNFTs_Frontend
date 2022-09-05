@@ -7,10 +7,16 @@ import {ethers} from "ethers";
 export const connectWalletLogin = async (dispatch, address) => {
   try {
     if (!window?.ethereum || !window?.ethereum?.isMetaMask)
-   
-      return toast.error("Please install MetaMask.", {
-        position: "top-center",
-      });
+    {
+
+      // if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        window.open("https://metamask.app.link/dapp/textnft.vercel.app/");
+      // return;  
+      // } 
+    return toast.error("Please install MetaMask.", {
+      position: "top-center",
+    });
+    }
 
     if (window.ethereum.chainId != 56) {
       return toast.error("Please connect to binance smart chain", {
