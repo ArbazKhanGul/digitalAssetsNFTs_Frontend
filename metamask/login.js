@@ -6,17 +6,35 @@ import {ethers} from "ethers";
 
 export const connectWalletLogin = async (dispatch, address) => {
   try {
+    
     if (!window?.ethereum || !window?.ethereum?.isMetaMask)
     {
 
-      // if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-        window.open("https://metamask.app.link/dapp/textnft.vercel.app/");
-      // return;  
-      // } 
+
+      if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+
+        const a = document.createElement("a");
+        a.href = "dapp://textnft.vercel.app";
+        a.target = "_self";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        toast.info("Connecting Metamask...", {
+          position: "top-center",
+        });
+
+        setTimeout(openMetamask,3000);
+        // window.open("https://metamask.app.link/dapp/https://textnft.vercel.app");
+      return;  
+      } 
+
+
+  window.open("https://metamask.app.link/dapp/https://textnft.vercel.app"); 
     return toast.error("Please install MetaMask.", {
       position: "top-center",
     });
-    }
+  }
 
     if (window.ethereum.chainId != 56) {
       return toast.error("Please connect to binance smart chain", {

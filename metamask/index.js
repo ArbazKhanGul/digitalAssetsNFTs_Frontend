@@ -38,10 +38,8 @@ export const connectWallet = async (dispatch,address) => {
         return;  
         } 
 
-        // if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-          // window.open("https://metamask.app.link/dapp/https://textnft.vercel.app");
-        // return;  
-        // } 
+
+    window.open("https://metamask.app.link/dapp/https://textnft.vercel.app"); 
       return toast.error("Please install MetaMask.", {
         position: "top-center",
       });
