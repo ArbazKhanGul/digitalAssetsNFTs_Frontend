@@ -105,11 +105,31 @@ const Profile = () => {
       const login_address = localStorage.getItem("address");
 
 
-      if (window?.ethereum?._state?.accounts[0] && address==undefined && window?.ethereum?.chainId == 56) {
-          let checkSumAddress=ethers.utils.getAddress(window?.ethereum?._state?.accounts[0])
-          dispatch(addAddress(checkSumAddress));
-          return;
+      if (window?.ethereum) {
+        try {
+          if(address==undefined)
+          {
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const signer = provider.getSigner();
+          const SignerAddress = await signer.getAddress();
+          const chainId =await provider.getNetwork();
+          console.log("🚀 ~ file: index.js ~ line 40 ~ load ~ chainId", chainId.chainId)
+          console.log(
+            "🚀 ~ file: index.js ~ line 42 ~ load ~ Signer Address",
+            SignerAddress
+          );
+            if(chainId.chainId==56)
+            {
+          let checkSumAddress = ethers.utils.getAddress(SignerAddress);
+              dispatch(addAddress(checkSumAddress));
+              return;
+            }
         }
+      } 
+        catch (error) {
+          console.log("🚀 ~ file: index.js ~ line 47 ~ load ~ inside error");
+        }
+      }
 
 
       if (login_address != address || !access_token) {
@@ -176,16 +196,14 @@ const Profile = () => {
             <span className="text-[#7D7C7CCF]">By</span>  {user?.authorName}
           </h3>
           <p className="text-[1.4rem] font-['Inconsolata'] w-[70%]">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id et
-            libero expedita ratione, quod, iure laborum eum odio ut, excepturi
-            qui ab eveniet nisi! Iste quam a ex nihil! Architecto.
+               {user?.description}
           </p>
           <div className="flex items-center space-x-[7.6rem] mt-[1.5rem]">
             <h4 className="text-[2.2rem] font-['Inconsolata'] font-bold">
               Email
             </h4>
             <p className="text-[1.8rem] font-['Inconsolata'] text-[#7D7C7CCF] font-medium">
-              {user.email}
+              {user?.email}
             </p>
           </div>
 
@@ -194,7 +212,7 @@ const Profile = () => {
               Address
             </h4>
             <p className="text-[1.8rem] font-['Inconsolata'] text-[#7D7C7CCF] font-medium">
-              {user.address}
+              {user?.address}
             </p>
           </div>
 

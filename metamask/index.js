@@ -5,8 +5,6 @@ import {ethers} from "ethers";
 export const connectWallet = async (dispatch,address) => {
 
 
-
-
     try {
 
       if (!window?.ethereum && !window?.ethereum?.isMetaMask)
@@ -15,7 +13,7 @@ export const connectWallet = async (dispatch,address) => {
       });
 
 
-        const accountsFirst = await ethereum.request({
+        const accountsFirst = await ethereum?.request({
           method: "eth_requestAccounts",
         });
 

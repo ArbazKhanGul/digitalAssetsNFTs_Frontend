@@ -6,8 +6,8 @@ import {ethers} from "ethers";
 
 export const connectWalletLogin = async (dispatch, address) => {
   try {
-
     if (!window?.ethereum && !window?.ethereum?.isMetaMask)
+   
       return toast.error("Please install MetaMask.", {
         position: "top-center",
       });

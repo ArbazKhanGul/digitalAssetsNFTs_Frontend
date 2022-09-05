@@ -49,13 +49,26 @@ useEffect(() => {
       }
     }
 
-    function handleChainChanged(chainId) {
+  async function handleChainChanged(chainId) {
       
       if (chainId == 56) {
-        if (window?.ethereum?._state?.accounts[0]) {
-          let checkSumAddress=ethers.utils.getAddress(window?.ethereum?._state?.accounts[0])
-          dispatch(addAddress(checkSumAddress));
+
+        try{
+        const provider = new ethers.providers.Web3Provider(window?.ethereum);
+        const signer = provider.getSigner();
+        const SignerAddress = await signer.getAddress();
+        let checkSumAddress=ethers.utils.getAddress(SignerAddress)
+        dispatch(addAddress(checkSumAddress));
         }
+        catch(err){
+        }
+        // if (window?.ethereum?._state?.accounts[0]) {
+        //   let checkSumAddress=ethers.utils.getAddress(window?.ethereum?._state?.accounts[0])
+        //   dispatch(addAddress(checkSumAddress));
+        // }
+
+
+
       } else {
         dispatch(addAddress(undefined));
         toast.error("Please connect to binance smart chain", {
@@ -69,8 +82,8 @@ useEffect(() => {
     window?.ethereum?.on("chainChanged", handleChainChanged);
 
     return () => {
-      ethereum.removeListener("accountsChanged", handleAccountChanged);
-      ethereum.removeListener("chainChanged", handleChainChanged);
+      window?.ethereum?.removeListener("accountsChanged", handleAccountChanged);
+      window?.ethereum?.removeListener("chainChanged", handleChainChanged);
     };
   }, [address]);
 
@@ -139,11 +152,14 @@ useEffect(() => {
               </button>
             </li>
             <li className="inline-block links">
-              <button className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider">
+             
                 <Link href="/registration">
-                  <a>Register</a>
+                  <a> <button className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider">
+                        Register
+                  </button>
+                  </a>
                 </Link>
-              </button>
+
             </li>
             </> ):(
               <> 
