@@ -16,7 +16,7 @@ export const connectWallet = async (dispatch,address) => {
       {
 
         const a = document.createElement("a");
-        a.href = "metamask://dapp/textnft.vercel.app";
+        a.href = "dapp://google.com";
         a.target = "_self";
         document.body.appendChild(a);
         a.click();
@@ -26,7 +26,7 @@ export const connectWallet = async (dispatch,address) => {
           // window.open("https://metamask.app.link/dapp/https://textnft.vercel.app");
         // return;  
         // } 
-      return toast.error("Please install MetaMask.", {
+      return toast.error("Please MetaMask.", {
         position: "top-center",
       });
     }
