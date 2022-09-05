@@ -3,7 +3,12 @@ import { addAddress } from '../slice/metamask'
 import {ethers} from "ethers";
 
 function openMetamask(){
-  window.open("https://metamask.app.link/dapp/textnft.vercel.app");  
+  const a = document.createElement("a");
+  a.href = "https://metamask.app.link/dapp/textnft.vercel.app";
+  a.target = "_self";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();  
 }
 
 export const connectWallet = async (dispatch,address) => {
@@ -28,7 +33,7 @@ export const connectWallet = async (dispatch,address) => {
             position: "top-center",
           });
 
-          setTimeout(openMetamask,5000);
+          setTimeout(openMetamask,3000);
           // window.open("https://metamask.app.link/dapp/https://textnft.vercel.app");
         return;  
         } 
