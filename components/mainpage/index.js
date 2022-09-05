@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { motion } from "framer-motion"
-import { useSelector} from "react-redux";
+import { useSelector,useDispatch} from "react-redux";
 import { selectAddress } from "../../slice/metamask";
-
+import { connectWalletLogin } from "../../metamask/login";
+import Link from "next/link";
 const Main=()=>{
   const address = useSelector(selectAddress);
+  const dispatch = useDispatch();
 
   const contVar={
 hidden:{
@@ -49,12 +51,18 @@ const right={
     {address?(<button className="bg-blue-500 hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-12  sm:py-3 sm:px-14 rounded-full font-['Inconsolata'] tracking-wider  max-w-[100%] overflow-hidden">
     {address.substr(0, 8) + "..." + address.substr(37, 5)}
 </button>):(<>
-     <button className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-14 rounded-full font-['Inconsolata'] tracking-wider">
+     <button className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-14 rounded-full font-['Inconsolata'] tracking-wider"
+      onClick={() => connectWalletLogin(dispatch, address)}
+     >
   Login
 </button>
-<button className="bg-blue-500 buttons hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-8  sm:py-2 sm:px-10 rounded-full font-['Inconsolata'] tracking-wider">
-  Register
-</button> 
+
+  
+    <Link href="/registration">
+    <a><button className="bg-blue-500 buttons hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-8  sm:py-2 sm:px-10 rounded-full font-['Inconsolata'] tracking-wider">Register</button> 
+    </a>
+                </Link>
+
 </>)}
 
 
