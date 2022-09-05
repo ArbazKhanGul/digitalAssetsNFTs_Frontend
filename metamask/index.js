@@ -7,6 +7,10 @@ export const connectWallet = async (dispatch,address) => {
 
     try {
 
+toast.error(window?.ethereum?.isMetaMask, {
+        position: "top-center",
+      });
+      
       if (!window?.ethereum && !window?.ethereum?.isMetaMask)
       return toast.error("Please install MetaMask.", {
         position: "top-center",
