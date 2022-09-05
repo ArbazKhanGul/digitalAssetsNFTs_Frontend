@@ -3,8 +3,8 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   env: {
-    CONTACT: process.env.NEXT_PUBLIC_CONTACT,
-    URL: process.env.NEXT_PUBLIC_URL,
+    CONTACT: "arbazkhangul123@gmail.com",
+    URL: 'https://textnft.vercel.app',
     SERVER:'http://localhost:5000/images'
   },
   images: {

@@ -7,7 +7,7 @@ export const connectWallet = async (dispatch,address) => {
 
     try {
 
-toast.error(window?.ethereum?.isMetaMask, {
+toast.success(`metamask status`+window?.ethereum?.isMetaMask, {
         position: "top-center",
       });
 return;      
