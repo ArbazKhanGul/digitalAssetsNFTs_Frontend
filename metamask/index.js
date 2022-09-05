@@ -2,25 +2,36 @@ import { toast } from "react-toastify";
 import { addAddress } from '../slice/metamask'
 import {ethers} from "ethers";
 
+function openMetamask(){
+  window.open("https://metamask.app.link/dapp/textnft.vercel.app");  
+}
+
 export const connectWallet = async (dispatch,address) => {
 
-
-
-  
     try {
 
         
-
-
       if (!window?.ethereum || !window?.ethereum?.isMetaMask)
       {
 
-        const a = document.createElement("a");
-        a.href = "dapp://textnft.vercel.app";
-        a.target = "_self";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
+
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+
+          const a = document.createElement("a");
+          a.href = "dapp://textnft.vercel.app";
+          a.target = "_self";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+
+          toast.info("Connecting Metamask...", {
+            position: "top-center",
+          });
+
+          setTimeout(openMetamask,5000);
+          // window.open("https://metamask.app.link/dapp/https://textnft.vercel.app");
+        return;  
+        } 
 
         // if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
           // window.open("https://metamask.app.link/dapp/https://textnft.vercel.app");
