@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   env: {
-    CONTACT: "arbazkhangul123@gmail.com",
+    CONTACT: "contact@gmailgoldennft.com",
     URL: 'https://textnft.vercel.app',
     SERVER:'http://localhost:5000/images'
   },

@@ -363,11 +363,7 @@ border-radius: 20px;
   .log {
     @apply text-[2.4rem];
   }
-  .footerdirection {
-    flex-direction: row;
-    gap:0rem;
-    @apply text-[1.7rem]
-  } 
+ 
 
   .nftwdith {
     width: 60%;
@@ -427,6 +423,11 @@ border-radius: 20px;
 .errors {
   @apply w-[83%]
 }
+.footerdirection {
+  flex-direction: row;
+  gap:0rem;
+  @apply text-[1.7rem]
+} 
 }
 
 
