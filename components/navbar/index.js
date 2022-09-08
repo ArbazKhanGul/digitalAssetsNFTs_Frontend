@@ -125,7 +125,7 @@ const Navbar = () => {
               <>
                 <li className="inline-block links ">
                   <button
-                    onClick={() => connectWalletLogin(dispatch, address)}
+                    onClick={() => connectWalletLogin(dispatch, address,router)}
                     className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider"
                   >
                     <a>Login</a>
@@ -245,7 +245,7 @@ const Navbar = () => {
               <a>
                 <li
                   className="onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem] md:pl-[6rem] text-[#EAE1E1]"
-                  onClick={() => connectWalletLogin(dispatch, address)}
+                  onClick={() => connectWalletLogin(dispatch, address,router)}
                 >
                   Login
                 </li>

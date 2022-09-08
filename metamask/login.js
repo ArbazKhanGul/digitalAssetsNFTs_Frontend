@@ -13,7 +13,7 @@ function openMetamask(){
   a.remove();  
 }
 
-export const connectWalletLogin = async (dispatch, address) => {
+export const connectWalletLogin = async (dispatch, address,router) => {
   try {
     
     if (!window?.ethereum || !window?.ethereum?.isMetaMask)
@@ -113,9 +113,16 @@ export const connectWalletLogin = async (dispatch, address) => {
               position: "top-center",
             });
           } else {
-            toast.error(error?.response?.data.message, {
+
+             if(error?.response?.data?.message==="Email not Verified") {
+               router.push("/emailVerification");
+               return;
+             }
+            
+             toast.error(error?.response?.data.message, {
               position: "top-center",
             });
+          
           }
     }
 
