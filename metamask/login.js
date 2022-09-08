@@ -46,9 +46,10 @@ export const connectWalletLogin = async (dispatch, address) => {
   }
 
     if (window.ethereum.chainId != 56) {
-      return toast.error("Please connect to binance smart chain", {
+      toast.error("Please connect to binance smart chain", {
         position: "top-center",
       });
+      return;
     }
 
     const accountsFirst = await ethereum.request({
@@ -62,20 +63,32 @@ export const connectWalletLogin = async (dispatch, address) => {
 
     }
 
+    if(localStorage.getItem("token"))
+    {
+     return;
+    }
     try {
       const response = await axios.get(`/nonce/${accountsFirst[0]}`);
 
       if (response?.data?.message == "success") {
 
-       
-
-
+        let signature;
+        let SignerAddress;
+        try{
       const provider=new ethers.providers.Web3Provider(window.ethereum);
       const signer=provider.getSigner();
-      const signature=await signer.signMessage(response.data.nonce);
-      const SignerAddress=await signer.getAddress();
-     
-      const result=await  axios.post("/login",{
+       signature=await signer.signMessage(response.data.nonce);
+       SignerAddress=await signer.getAddress();
+        }
+        catch(error)
+        {
+          toast.error("User reject sign message request", {
+            position: "top-center",
+          });
+          return;
+        }
+        
+       const result=await  axios.post("/login",{
         signature: signature,
         address: SignerAddress
        })
@@ -84,27 +97,22 @@ export const connectWalletLogin = async (dispatch, address) => {
      if (data?.message == "success") {
 
       localStorage.setItem("token",data?.token);
-      localStorage.setItem("address",data.loginAddress);
+      localStorage.setItem("address",data?.loginAddress);
       
       dispatch(addUser(data?.user));
       console.log("🚀 ~ file: login.js ~ line 57 ~ connectWalletLogin ~ response?.data?.user", response?.data?.user)
-
-        toast.success("Successfully Login", {
-       position: "top-center",
-       });
-
 
       }
 
       }
     } catch (error) {
+    console.log("🚀 ~ file: login.js ~ line 103 ~ connectWalletLogin ~ error", error)
 
         if (error?.response?.data == undefined) {
             toast.error("Server Error Please Try Later", {
               position: "top-center",
             });
           } else {
-           
             toast.error(error?.response?.data.message, {
               position: "top-center",
             });
@@ -113,7 +121,7 @@ export const connectWalletLogin = async (dispatch, address) => {
 
 
   } catch (error) {
-    console.log("inside Error", error);
+
     toast.error(error.message, {
       position: "top-center",
     });

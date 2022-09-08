@@ -6,13 +6,12 @@ import Filter from "../components/profile/filter";
 import Pagination from "../components/nft/pagination";
 import Footer from "../components/footer/footer";
 import IndividualNFT from "../components/mainpage/individualnft";
-import axios from "../utils/axiosconfiguration";
 import { selectAddress, addAddress } from "../slice/metamask";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
+import { toast,ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ethers } from "ethers";
+import load from "../utils/validate";
 import { selectUser, addUser } from "../slice/user";
 
 const Profile = () => {
@@ -99,76 +98,18 @@ const Profile = () => {
 
   const user = useSelector(selectUser);
 
+
+  //validate token
   useEffect(() => {
-    async function load() {
-      const access_token = localStorage.getItem("token");
-      const login_address = localStorage.getItem("address");
-
-      if (window?.ethereum) {
-        try {
-          if (address == undefined) {
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            const signer = provider.getSigner();
-            const SignerAddress = await signer.getAddress();
-            const chainId = await provider.getNetwork();
-            console.log(
-              "🚀 ~ file: index.js ~ line 40 ~ load ~ chainId",
-              chainId.chainId
-            );
-            console.log(
-              "🚀 ~ file: index.js ~ line 42 ~ load ~ Signer Address",
-              SignerAddress
-            );
-            if (chainId.chainId == 56) {
-              let checkSumAddress = ethers.utils.getAddress(SignerAddress);
-              dispatch(addAddress(checkSumAddress));
-              return;
-            }
-          }
-        } catch (error) {
-          console.log("🚀 ~ file: index.js ~ line 47 ~ load ~ inside error");
-        }
-      }
-
-      if (login_address != address || !access_token) {
-        dispatch(addUser(undefined));
-        router.push("/");
-        return;
-      }
-
-      try {
-        const response = await axios.get("/profile", {
-          headers: {
-            Authorization: `${access_token}`,
-          },
-        });
-        dispatch(addUser(response?.data?.user));
-        // toast.success("SLogin", {
-        //   position: "top-center",
-        // });
-        setLoading(true);
-      } catch (error) {
-        if (error?.response?.data == undefined) {
-          toast.error("Server Error Please Try Later", {
-            position: "top-center",
-          });
-        } else {
-          toast.error(error?.response?.data.message, {
-            position: "top-center",
-          });
-        }
-        dispatch(addUser(undefined));
-        router.push("/");
-        return;
-      }
-    }
-    load();
+    load(address,dispatch,router,setLoading);
   }, [address]);
 
   return (
     <>
       {!loading ? (
-        ""
+              <div className="text-[1.6rem] font-['Inconsolata']">
+              <ToastContainer pauseOnHover autoClose={5000} />
+            </div>
       ) : (
         <div>
           <Navbar></Navbar>

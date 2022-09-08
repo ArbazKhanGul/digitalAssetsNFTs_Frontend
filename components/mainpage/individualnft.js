@@ -1,5 +1,6 @@
+import {memo} from "react";
+
 const IndividualNFT=({nftname,nfttext,owner,creator,creationdate,price,index})=>{
-    
     return (
 
     <div className={"bord_grad nftwdith mt-[2.5rem] lg:mt-[3rem] transition-all duration-500 hover:-translate-y-2 "+(index==8?"hid":"")}>
@@ -47,4 +48,4 @@ const IndividualNFT=({nftname,nfttext,owner,creator,creationdate,price,index})=>
     )
 }
 
-export default IndividualNFT;
+export default memo(IndividualNFT);

@@ -1,3 +1,4 @@
+import {memo} from "react";
 const Filter=({showItems})=>{
     return (<div className={"bg-[#EDF2F7] rounded-[1.1rem] mt-[0.4rem]  overflow-hidden transition-all duration-700 "+(!showItems ? "max-h-0":"max-h-[60rem]")}>
         <div className="transition-all duration-500 text-[#FD2121DB] text-center text-[1.3rem] md:text-[1.5rem] pt-[1rem] px-[1rem] font-['Inconsolata']">If you don’t want to use any filter from below simply leave it empty</div>
@@ -32,4 +33,4 @@ const Filter=({showItems})=>{
     </div>)
 }
 
-export default Filter;
+export default memo(Filter);

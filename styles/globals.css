@@ -49,7 +49,7 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
   /* font-family: 'Roboto Slab', serif; */
   /* font-family: 'Mukta', sans-serif; */
   font-family: 'DynaPuff', cursive;
-  @apply text-[1.6rem] text-[#EAE1E1] pl-[1.7rem]
+  @apply text-[1.6rem] text-[#EAE1E1] pl-[1.7rem] cursor-pointer
 }
 .onlinks
 {

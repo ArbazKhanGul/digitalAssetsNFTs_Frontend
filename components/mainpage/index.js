@@ -3,6 +3,8 @@ import { motion } from "framer-motion"
 import { useSelector,useDispatch} from "react-redux";
 import { selectAddress } from "../../slice/metamask";
 import { connectWalletLogin } from "../../metamask/login";
+import {memo} from "react";
+
 import Link from "next/link";
 const Main=()=>{
   const address = useSelector(selectAddress);
@@ -87,4 +89,4 @@ const right={
     </div>)
 
 }
-export default Main;
+export default memo(Main);

@@ -1,4 +1,4 @@
-
+import {memo} from "react";
 import IndividualCollections from "./IndividualCollection"
 const TopCollections=()=>{
 
@@ -30,4 +30,4 @@ let temp=[{collectionname:"Collection1",volume:100,price:123,image:"/col.jpeg"},
     )
 }
 
-export default TopCollections;
+export default memo(TopCollections);

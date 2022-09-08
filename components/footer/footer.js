@@ -2,11 +2,11 @@
 import   {BsFacebook} from "react-icons/bs"
 import   {BsInstagram} from "react-icons/bs"
 import   {BsTwitter} from "react-icons/bs"
-
+import {memo} from "react";
 const Footer=()=>{
     const d = new Date();
     let year = d.getFullYear();
-    
+console.log("Render Again")    
     return (<div className="navbar text-[1.4rem] footertext  text-[white] flex justify-between px-[4rem] py-[2rem] items-center footerdirection font-['Inconsolata']">
 
         <div>
@@ -28,4 +28,4 @@ const Footer=()=>{
     </div>)
 }
 
-export default Footer;
+export default memo(Footer);

@@ -10,10 +10,9 @@ import { selectAddress, addAddress } from "../slice/metamask";
 import { selectUser, addUser } from "../slice/user";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
+import { toast,ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ethers } from "ethers";
-import axios from "../utils/axiosconfiguration";
+import load from "../utils/validate";
 
 export default function Home() {
   const address = useSelector(selectAddress);
@@ -24,89 +23,8 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    async function load() {
-      const access_token = localStorage.getItem("token");
-      const login_address = localStorage.getItem("address");
+    load(address,dispatch,router,setLoading,"main");
 
-      //  const wind= window?.ethereum;
-      // console.log("ethereum object",window?.ethereum)
-
-    if (window?.ethereum) {
-        try {
-          if(address==undefined)
-          {
-          const provider = new ethers.providers.Web3Provider(window.ethereum);
-          const signer = provider.getSigner();
-          const SignerAddress = await signer.getAddress();
-          const chainId =await provider.getNetwork();
-          console.log("🚀 ~ file: index.js ~ line 40 ~ load ~ chainId", chainId.chainId)
-          console.log(
-            "🚀 ~ file: index.js ~ line 42 ~ load ~ Signer Address",
-            SignerAddress
-          );
-            if(chainId.chainId==56)
-            {
-          let checkSumAddress = ethers.utils.getAddress(SignerAddress);
-              dispatch(addAddress(checkSumAddress));
-              return;
-            }
-        }
-      } 
-        catch (error) {
-          console.log("🚀 ~ file: index.js ~ line 47 ~ load ~ inside error");
-        }
-      }
-
-      // console.log("🚀 ~ file: index.js ~ line 35 ~ load ~ window?.ethereum?.chainId"+ window.ethereum?.chainId);
-      // console.log("🚀 ~ file: index.js ~ line 35 ~ load ~ address", address)
-      // console.log("🚀 ~ file: index.js ~ line 35 ~ load ~ window?.ethereum?._state?.accounts", window?.ethereum?._state)
-      // if (
-      //   window?.ethereum?._state?.accounts &&
-      //   address == undefined &&
-      //   window?.ethereum?.chainId == 56
-      // ) {
-      //   console.log("inner side");
-      //   let checkSumAddress = ethers.utils.getAddress(
-      //     window?.ethereum?._state?.accounts[0]
-      //   );
-      //   dispatch(addAddress(checkSumAddress));
-      //   return;
-      // }
-
-      if (login_address != address || !access_token) {
-        dispatch(addUser(undefined));
-        setLoading(true);
-        return;
-      }
-
-      try {
-        const response = await axios.get("/profile", {
-          headers: {
-            Authorization: `${access_token}`,
-          },
-        });
-                toast.success("SLogin demo", {
-          position: "top-center",
-        });
-
-        dispatch(addUser(response?.data?.user));
-      } catch (error) {
-        console.log(error);
-        if (error?.response?.data == undefined) {
-          toast.error("Server Error Please Try Later", {
-            position: "top-center",
-          });
-        } else {
-          toast.error(error?.response?.data.message, {
-            position: "top-center",
-          });
-        }
-        dispatch(addUser(undefined));
-       
-      }
-      setLoading(true);
-    }
-    load();
   }, [address]);
 
   return (
@@ -122,7 +40,9 @@ export default function Home() {
       </Head>
 
       {!loading ? (
-        ""
+              <div className="text-[1.6rem] font-['Inconsolata']">
+              <ToastContainer pauseOnHover autoClose={5000} />
+            </div>
       ) : (
         <>
           <Navbar></Navbar>

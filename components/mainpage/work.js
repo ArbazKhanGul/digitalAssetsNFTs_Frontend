@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion"
+import {memo} from "react";
 const Work=()=>{
   const contVar={
     hidden:{
@@ -66,4 +67,4 @@ Golden Words NFTs is a latest method of creating NFTs, in which one can create N
 
 }
 
-export default Work;
+export default memo(Work);

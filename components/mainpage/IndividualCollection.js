@@ -1,3 +1,4 @@
+import {memo} from "react";
 import Image from "next/image";
 import Link from 'next/link'
 const IndividualCollections=({num,collectionname,volume,price,image}) =>{
@@ -52,4 +53,4 @@ const IndividualCollections=({num,collectionname,volume,price,image}) =>{
     </>)
 }
 
-export default IndividualCollections;
+export default memo(IndividualCollections);
