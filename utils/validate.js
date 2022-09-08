@@ -65,7 +65,7 @@ export default async function load(address, dispatch, router, setLoading,page) {
       });
     }
 
-    if(page!="main") {
+    if(page != "main") {
       dispatch(addUser(undefined));
       router.push("/");
       return;
