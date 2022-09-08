@@ -114,9 +114,9 @@ export const connectWalletLogin = async (dispatch, address,router) => {
             });
           } else {
 
-            console.lof("checking value ",error?.response?.data?.message);
-            
-             if(error?.response?.data?.message === "Email not Verified") {
+            console.log("checking value ",error?.response?.data?.message);
+
+             if(error?.response?.data?.message === "Email not verified") {
                router.push("/emailVerification");
                return;
              }
