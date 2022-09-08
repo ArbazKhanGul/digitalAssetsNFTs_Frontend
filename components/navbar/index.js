@@ -175,10 +175,12 @@ const Navbar = () => {
                       <div className="flex items-center space-x-[0.4rem]">
                         <div className=" w-[4.2rem] h-[4.2rem] rounded-full relative">
                           <Image
-                            src={`${process.env.SERVER}/${user.profile}`}
+                            src={`${process.env.SERVER}/${user?.profile}`}
                             layout="fill"
                             className="rounded-full"
                           />
+                          {console.log(`${process.env.SERVER}/${user.profile}`)}
+
                         </div>
                         <h2>{shortText(user.authorName, 10, "...")}</h2>
                       </div>

@@ -8,25 +8,28 @@ import NProgress from "nprogress"
 import "../styles/nprogress.css"; 
 
 function MyApp({ Component, pageProps }) {
+
+
   useEffect(() => {
     NProgress.configure({showSpinner:false});
     const handleRouteStart = () => NProgress.start();
     const handleRouteDone = () => NProgress.done();
 
+
     Router.events.on("routeChangeStart", handleRouteStart);
-    Router.events.on("routeChangeComplete", handleRouteDone);
+    // Router.events.on("routeChangeComplete", handleRouteDone);
     Router.events.on("routeChangeError", handleRouteDone);
 
     return () => {
       Router.events.off("routeChangeStart", handleRouteStart);
-      Router.events.off("routeChangeComplete", handleRouteDone);
+      // Router.events.off("routeChangeComplete", handleRouteDone);
       Router.events.off("routeChangeError", handleRouteDone);
     };
   }, []);
 
   return (
     <Provider store={store}>
-  <Component {...pageProps} />
+  <Component {...pageProps}  routingComplete={"arb"}/>
     </Provider>
   )
 }

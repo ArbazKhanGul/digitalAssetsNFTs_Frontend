@@ -3,8 +3,14 @@ import Footer from "../components/footer/footer"
 import Image from "next/image";
 import Link from 'next/link'
 import { motion } from "framer-motion"
-
+import NProgress from "nprogress"
+import { useEffect} from "react";
 const EmailVerification=()=>{
+
+  useEffect(() => {
+    NProgress.done();
+},[])
+
     const contVar={
         hidden:{
           y:5,

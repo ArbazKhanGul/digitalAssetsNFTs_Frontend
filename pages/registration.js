@@ -16,6 +16,7 @@ import { useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import axios from "../utils/axiosconfiguration";
 import { useRouter } from "next/router";
+import NProgress from "nprogress"
 
 const Registeration = () => {
   const address = useSelector(selectAddress);
@@ -33,6 +34,7 @@ const Registeration = () => {
       setFieldValue("walletAddress", address);
       inputElement.current.value = address;
     }
+    NProgress.done();
   }, [address]);
 
   let initialValues = {

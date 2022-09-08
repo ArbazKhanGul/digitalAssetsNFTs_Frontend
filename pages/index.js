@@ -14,7 +14,9 @@ import { toast,ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import load from "../utils/validate";
 
-export default function Home() {
+export default function Home({arbaz}) {
+  
+  console.log("🚀 ~ file: index.js ~ line 18 ~ Home ~ arbaz", arbaz)
   const address = useSelector(selectAddress);
   const [loading, setLoading] = useState(false);
   const user = useSelector(selectUser);

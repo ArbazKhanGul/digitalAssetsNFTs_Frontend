@@ -11,9 +11,13 @@ import {HiOutlineMail} from "react-icons/hi"
 import { useFormik } from "formik";
 import axios from "../utils/axiosconfiguration"
 import { useRouter } from "next/router";
-
-
+import NProgress from "nprogress"
+import { useEffect} from "react";
 const SendEmail=()=>{
+  
+  useEffect(() => {
+    NProgress.done();
+},[])
   const router = useRouter();
     const contVar={
         hidden:{

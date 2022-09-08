@@ -3,6 +3,7 @@ import { addAddress } from "../slice/metamask";
 import { ethers } from "ethers";
 import axios from "./axiosconfiguration";
 import { toast } from "react-toastify";
+import NProgress from "nprogress"
 
 export default async function load(address, dispatch, router, setLoading,page) {
 
@@ -63,12 +64,18 @@ export default async function load(address, dispatch, router, setLoading,page) {
         position: "top-center",
       });
     }
-    dispatch(addUser(undefined));
-    router.push("/");
-    return;
+
+    if(page!="main") {
+      dispatch(addUser(undefined));
+      router.push("/");
+      return;
+    }
+
   }
 
   if (page == "main") {
     setLoading(true);
   }
+  NProgress.done();
+
 }
