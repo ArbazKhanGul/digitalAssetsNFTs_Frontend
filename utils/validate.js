@@ -35,6 +35,7 @@ export default async function load(address, dispatch, router, setLoading,page) {
     if (login_address != address || !access_token) {
       dispatch(addUser(undefined));
       setLoading(true);
+      NProgress.done();
       return;
     }
   } else {
@@ -77,5 +78,4 @@ export default async function load(address, dispatch, router, setLoading,page) {
     setLoading(true);
   }
   NProgress.done();
-
 }

@@ -51,6 +51,7 @@ export const connectWalletLogin = async (dispatch, address,router) => {
       });
       return;
     }
+  
 
     const accountsFirst = await ethereum.request({
       method: "eth_requestAccounts",
@@ -63,10 +64,14 @@ export const connectWalletLogin = async (dispatch, address,router) => {
 
     }
 
-    if(localStorage.getItem("token"))
+    const login_address = localStorage.getItem("address");
+    let checkSumAddress = ethers.utils.getAddress(accountsFirst[0]);
+    if(login_address === checkSumAddress)
     {
-     return;
+      return;
     }
+
+
     try {
       const response = await axios.get(`/nonce/${accountsFirst[0]}`);
 
