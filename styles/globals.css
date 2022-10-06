@@ -18,6 +18,16 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 }
 
 
+.widthCard {
+  @apply w-[90%] mx-[2%]
+}
+.cardText{
+  font-size:12px
+}
+.collectionJustification{
+  justify-content:center
+}
+
 .reginp 
 {
  
@@ -319,6 +329,9 @@ border-radius: 20px;
       margin-left: 4rem;
       margin-right: 4rem;
     }    
+    .cardText{
+      font-size:13.5px
+    }
 
 }
 @media screen and (min-width: 400px) {
@@ -340,6 +353,16 @@ border-radius: 20px;
   }
   .textSize {
     @apply text-[3rem]
+  }
+
+  .widthCard {
+    @apply w-[90%] mx-[2%]
+  }
+  .cardText{
+    font-size:15.5px
+  }
+  .collectionJustification{
+    justify-content:center
   }
 }
 
@@ -428,6 +451,16 @@ border-radius: 20px;
   gap:0rem;
   @apply text-[1.7rem]
 } 
+
+.widthCard {
+  @apply w-[47%] mx-[1.5%]
+}
+.cardText{
+  font-size:12px
+}
+.collectionJustification{
+  justify-content:center
+}
 }
 
 
@@ -442,6 +475,13 @@ border-radius: 20px;
     .jt {
       justify-content: space-around;
     }
+    .widthCard {
+      @apply w-[45%] mx-[2%]
+    }
+    .cardText{
+      font-size:13px
+    }
+    
 }
 
 
@@ -460,6 +500,10 @@ border-radius: 20px;
     .formwid {
       width:65%
     }
+    .cardText{
+      font-size:14px
+    }
+   
 }
 
 @media screen and (min-width: 960px) {
@@ -475,6 +519,15 @@ border-radius: 20px;
     }
     .hid{
       display: block;
+    }
+    .widthCard {
+      @apply w-[32%] mx-[0%]
+    }
+    .cardText{
+      font-size:12.2px
+    }
+    .collectionJustification{
+      justify-content:space-between
     }
 }
 
@@ -497,6 +550,13 @@ border-radius: 20px;
       margin-top:0rem;
       margin-bottom:0rem;
   }
+
+  .widthCard {
+    @apply w-[31%]
+  }
+  .cardText{
+    font-size:13.5px
+  }
 }
 
 
@@ -508,6 +568,12 @@ border-radius: 20px;
   .hid{
     display: none;
   }
+  .widthCard {
+    @apply w-[31.5%]
+  }
+  .cardText{
+    font-size:15px
+  }
 }
 
 
@@ -517,6 +583,12 @@ border-radius: 20px;
   }
   .formwid {
     width:47%
+  }
+  .widthCard {
+    @apply w-[31%]
+  }
+  .cardText{
+    font-size:1.5rem
   }
 }
 
@@ -529,6 +601,9 @@ border-radius: 20px;
   .main {
     min-height:calc(100vh - 72px);
     }
+    .cardText{
+      font-size:1.6rem
+    }
 }
 
 @media screen and (min-width: 1600px) {
@@ -539,16 +614,20 @@ border-radius: 20px;
   .main {
     min-height:calc(100vh - 86px);
     }
-    /* .nftwdith {
-      width: 23.8%;
-    } */
+    .widthCard {
+      @apply w-[31.5%]
+    }
+    .cardText{
+      font-size:1.5rem
+    }
 }
 
 @media screen and (min-width: 1700px) {
   
-    /* .nftwdith {
-      width: 23.5%;
-    } */
+  .widthCard {
+    @apply w-[31%]
+  }
+
 }
 
 @media screen and (min-width: 1800px) {
@@ -559,6 +638,9 @@ border-radius: 20px;
   /* .nftwdith {
     width: 23%;
   } */
+  .cardText{
+    font-size:1.6rem
+  }
 }
 
 @media screen and (min-width: 2000px) {
@@ -593,6 +675,6 @@ border-radius: 20px;
 @media screen and (min-width: 2600px) {
   
   html {
-    font-size:21px
+    font-size:19px
   }
 }

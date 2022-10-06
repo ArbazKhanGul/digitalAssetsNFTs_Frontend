@@ -13,7 +13,7 @@ function openMetamask(){
   a.remove();  
 }
 
-export const connectWalletLogin = async (dispatch, address,router) => {
+export const connectWalletLogin = async (user,dispatch, address,router) => {
   try {
     
     if (!window?.ethereum || !window?.ethereum?.isMetaMask)
@@ -61,12 +61,11 @@ export const connectWalletLogin = async (dispatch, address,router) => {
     {
       let checkSumAddress=ethers.utils.getAddress(accountsFirst[0])
       dispatch(addAddress(checkSumAddress));
-
     }
 
-    const login_address = localStorage.getItem("address");
+
     let checkSumAddress = ethers.utils.getAddress(accountsFirst[0]);
-    if(login_address === checkSumAddress)
+    if(user.address === checkSumAddress)
     {
       return;
     }
@@ -101,9 +100,7 @@ export const connectWalletLogin = async (dispatch, address,router) => {
        const data=result?.data;
      if (data?.message == "success") {
 
-      localStorage.setItem("token",data?.token);
-      localStorage.setItem("address",data?.loginAddress);
-      
+
       dispatch(addUser(data?.user));
       console.log("🚀 ~ file: login.js ~ line 57 ~ connectWalletLogin ~ response?.data?.user", response?.data?.user)
 

@@ -10,9 +10,11 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { selectUser, addUser } from "../slice/user";
 import { useFormik } from "formik";
-import load from "../utils/validate";
+// import load from "../utils/validate";
 import axios from "../utils/axiosconfiguration";
-const profileUpdate = () => {
+import getServerSideProps from "../utils/serversidelogin"
+import validateUser from "../utils/validatUser";
+const profileUpdate = ({userinfo}) => {
   // const [showItems, show] = useState(false);
 
   const [loading, setLoading] = useState(false);
@@ -36,9 +38,15 @@ const profileUpdate = () => {
     cover: "",
   };
 
+  useEffect(() => {
+    dispatch(addUser(userinfo))
+    },[])
+  
+
   //validate token
   useEffect(() => {
-    load(address, dispatch, router, setLoading);
+    // load(address, dispatch, router, setLoading);
+    validateUser(user,address,dispatch,router,setLoading,"main")
   }, [address]);
 
   useEffect(() => {
@@ -353,3 +361,4 @@ const profileUpdate = () => {
 };
 
 export default profileUpdate;
+export {getServerSideProps}

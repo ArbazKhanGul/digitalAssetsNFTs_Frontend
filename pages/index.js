@@ -12,22 +12,35 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { toast,ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import load from "../utils/validate";
+// import load from "../utils/validate";
+import getServerSideProps from "../utils/serverside"
+import validateUser from "../utils/validatUser";
 
-export default function Home({arbaz}) {
+
+export default function Home({userinfo}) {
+
+  console.log("🚀 ~ file: index.js ~ line 20 ~ Home ~ user", userinfo)
   
-  console.log("🚀 ~ file: index.js ~ line 18 ~ Home ~ arbaz", arbaz)
+
   const address = useSelector(selectAddress);
   const [loading, setLoading] = useState(false);
   const user = useSelector(selectUser);
   const router = useRouter();
-  const [chain, setChain] = useState("");
+  // const [chain, setChain] = useState("");
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    load(address,dispatch,router,setLoading,"main");
 
-  }, [address]);
+  useEffect(() => {
+  dispatch(addUser(userinfo))
+  },[])
+
+
+  useEffect(() => {
+    validateUser(user,address,dispatch,router,setLoading,"main")
+
+    // load(address,dispatch,router,setLoading,"main");
+
+  }, [address,user]);
 
   return (
     <div>
@@ -58,3 +71,5 @@ export default function Home({arbaz}) {
     </div>
   );
 }
+
+export {getServerSideProps}

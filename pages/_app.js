@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={store}>
-  <Component {...pageProps}  routingComplete={"arb"}/>
+  <Component {...pageProps} />
     </Provider>
   )
 }

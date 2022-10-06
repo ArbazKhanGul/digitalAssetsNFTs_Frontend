@@ -11,10 +11,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { toast,ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import load from "../utils/validate";
+// import load from "../utils/validate";
 import { selectUser, addUser } from "../slice/user";
-
-const Profile = () => {
+import getServerSideProps from "../utils/serversidelogin"
+import validateUser from "../utils/validatUser";
+const Profile = ({userinfo}) => {
   const [showItems, show] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -98,10 +99,15 @@ const Profile = () => {
 
   const user = useSelector(selectUser);
 
+  useEffect(() => {
+    dispatch(addUser(userinfo))
+    },[])
+  
 
   //validate token
   useEffect(() => {
-    load(address,dispatch,router,setLoading);
+    // load(address,dispatch,router,setLoading);
+    validateUser(user,address,dispatch,router,setLoading)
   }, [address]);
 
   return (
@@ -309,4 +315,8 @@ const Profile = () => {
   );
 };
 
+
 export default Profile;
+
+
+export {getServerSideProps}
