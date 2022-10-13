@@ -31,7 +31,7 @@ export default async function validateUser(user,address, dispatch, router, setLo
   if (page == "main") {
     
       setLoading(true);
-      NProgress.done();
+      // NProgress.done();
       return;
     
   } else {
@@ -42,5 +42,5 @@ export default async function validateUser(user,address, dispatch, router, setLo
     }
   }
   setLoading(true);
-  NProgress.done();
+  // NProgress.done();
 }

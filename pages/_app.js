@@ -17,12 +17,12 @@ function MyApp({ Component, pageProps }) {
 
 
     Router.events.on("routeChangeStart", handleRouteStart);
-    // Router.events.on("routeChangeComplete", handleRouteDone);
+    Router.events.on("routeChangeComplete", handleRouteDone);
     Router.events.on("routeChangeError", handleRouteDone);
 
     return () => {
       Router.events.off("routeChangeStart", handleRouteStart);
-      // Router.events.off("routeChangeComplete", handleRouteDone);
+      Router.events.off("routeChangeComplete", handleRouteDone);
       Router.events.off("routeChangeError", handleRouteDone);
     };
   }, []);

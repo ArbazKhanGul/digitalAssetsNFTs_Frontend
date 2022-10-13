@@ -1,20 +1,13 @@
 import Head from "next/head";
-import Navbar from "../components/navbar";
-import Main from "../components/mainpage";
-import TopCollections from "../components/mainpage/topcollections";
-import Work from "../components/mainpage/work";
-import NFTPortion from "../components/mainpage/nftportion";
-import Footer from "../components/footer/footer";
-import { useEffect, useState } from "react";
-import { selectAddress, addAddress } from "../slice/metamask";
-import { selectUser, addUser } from "../slice/user";
-import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from "next/router";
-import { toast,ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import load from "../utils/validate";
-import getServerSideProps from "../utils/serverside"
-import validateUser from "../utils/validatUser";
+import {
+    useEffect, Navbar,  Footer, useState,
+    useRouter, validateUser, getServerSideProps, toast, ToastContainer, useSelector,
+    useDispatch, selectAddress, addAddress,NFTPortion,Work,TopCollections,Main,selectUser,addUser
+} from "../components"
+
+
+
 
 
 export default function Home({userinfo}) {
@@ -26,7 +19,6 @@ export default function Home({userinfo}) {
   const [loading, setLoading] = useState(false);
   const user = useSelector(selectUser);
   const router = useRouter();
-  // const [chain, setChain] = useState("");
   const dispatch = useDispatch();
 
 

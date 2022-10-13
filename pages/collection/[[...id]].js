@@ -1,0 +1,135 @@
+import { MdFilterList } from "react-icons/md"
+import Filter from "../../components/collection/filter";
+import "react-toastify/dist/ReactToastify.css";
+
+import {
+    useEffect, Navbar, Pagination, Footer, useState,
+    useRouter, validateUser, getServerSideProps, toast, ToastContainer, useSelector,
+    useDispatch, selectAddress, addAddress, Card, selectUser, addUser, fetcher
+} from "../../components"
+import useSWR from 'swr'
+
+
+const Collection = ({ userinfo }) => {
+
+    const router = useRouter();
+    const result = router.query
+    console.log("🚀 ~ file: [[...id]].js ~ line 17 ~ Collection ~ result", result)
+    let paramid = result.hasOwnProperty('id') ? result.id[0] : 1;
+    paramid = parseInt(paramid) ? parseInt(paramid) : 1;
+    paramid = paramid >= 1 ? paramid : 1
+
+    let route = `/getcollection/${paramid}`
+    
+    var size = Object.keys(result).length;
+    console.log("🚀 ~ file: [[...id]].js ~ line 25 ~ Collection ~ size", size)
+    console.log("🚀 ~ file: [[...id]].js ~ line 27 ~ Collection ~ result[id]", result['id'])
+    if (size > 1 || ( result['id']===undefined && size >0 ) ) {
+        
+        route = route + '?'
+
+        for (let key in result) {
+            if (key !== 'id') {
+    
+                if (route.charAt(route.length - 1) === '?') {
+                    route = route + key + '=' + result[key].trim().toLowerCase();
+                }
+                else {
+                    route = route + '&' + key + '=' + result[key].trim().toLowerCase();
+                }
+            }
+        }
+    }
+
+    console.log("🚀 ~ file: [[...id]].js ~ line 23 ~ Collection ~ route", route)
+
+    const { data, error } = useSWR(route, fetcher);
+    const [showItems, show] = useState(false);
+
+
+
+
+
+    const address = useSelector(selectAddress);
+    const [loading, setLoading] = useState(false);
+    const user = useSelector(selectUser);
+    const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        dispatch(addUser(userinfo))
+    }, [])
+
+
+    useEffect(() => {
+        validateUser(user, address, dispatch, router, setLoading, "main")
+    }, [address, user]);
+
+
+    return <>
+
+
+        {!loading ? (
+            <div className="text-[1.6rem] font-['Inconsolata']">
+                <ToastContainer pauseOnHover autoClose={5000} />
+            </div>
+        ) : (
+            <>
+                <Navbar></Navbar>
+
+
+                <div className="px-[2rem] mb-[2rem] sm:px-[4rem] md:px-[4.9rem] mt-[1.5rem]">
+                    <div className="flex flex-col sm:flex-row justify-between items-center mt-[0.5rem] flex-wrap">
+                        <div className="nft text-[2.7rem] sm:text-[3rem] md:text-[3.3rem] w-fit font-['DynaPuff'] mt-[0.5rem]">All Collections</div>
+                        <div className="cursor-pointer text-[1.6rem] sm:text-[1.9rem] md:text-[2rem] mt-[0.5rem] font-semibold text-[#353846C7] flex items-center font-['Inconsolata']" onClick={() => {
+                            show((prevState) => {
+                                return prevState ? false : true;
+                            })
+                        }}>Search Collection By filters <MdFilterList className="text-[2.5rem] pl-[0.3rem]"></MdFilterList>
+                        </div>
+                    </div>
+                    <Filter showItems={showItems}></Filter>
+
+
+
+                    <div>
+                        <div className=" flex  collectionJustification flex-wrap minheight mb-[3rem]">
+
+
+
+                            {error ? (<div className="nft text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['DynaPuff'] mt-[0.5rem]">
+                                Error in getting Collections Please try later</div>) : ""
+                            }
+
+                            {
+                                (!error && data) ?
+
+                                    data?.user.map((data, index) => {
+                                        return <Card key={index} data={data} />
+
+
+                                    }) : ""
+                            }
+
+
+                        </div>
+                    </div>
+                    {
+                        data?.count > 9 && paramid * 9 < data?.count + 9 ? <Pagination url={"collection"} count={data?.count} pageShow={paramid} /> : ""
+                    }
+                    <div>
+
+
+                    </div>
+                </div>
+                <Footer></Footer>
+
+            </>
+        )}
+    </>
+}
+
+export default Collection;
+
+
+export { getServerSideProps }

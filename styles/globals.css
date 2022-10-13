@@ -11,6 +11,10 @@ html
   font-size: 10px;
 }
 
+.minheight {
+  min-height: 70vh
+}
+
  .navbar{
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
 linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
@@ -21,8 +25,10 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 .widthCard {
   @apply w-[90%] mx-[2%]
 }
+
+
 .cardText{
-  font-size:12px
+  font-size:14px
 }
 .collectionJustification{
   justify-content:center
@@ -185,7 +191,7 @@ background-clip: content-box, border-box;
 .pagination .active {
   background: #487ECFC2;
  color: #fff;
- padding:9px 16px;
+ padding:8px 20px;
  display: block;
 }
 .colgrad {
@@ -339,7 +345,7 @@ border-radius: 20px;
     height:23.5rem;
   }
   .nftwdith {
-    width: 75%;
+    width: 86%;
   }
   .jt {
     justify-content: center;
@@ -356,10 +362,10 @@ border-radius: 20px;
   }
 
   .widthCard {
-    @apply w-[90%] mx-[2%]
+    @apply w-[85%] mx-[2%]
   }
   .cardText{
-    font-size:15.5px
+    font-size:15px
   }
   .collectionJustification{
     justify-content:center
@@ -387,9 +393,11 @@ border-radius: 20px;
     @apply text-[2.4rem];
   }
  
-
+  .cardText{
+    font-size:15px
+  }
   .nftwdith {
-    width: 60%;
+    width: 70%;
   }
   .jt {
     justify-content: center;
@@ -456,7 +464,7 @@ border-radius: 20px;
   @apply w-[47%] mx-[1.5%]
 }
 .cardText{
-  font-size:12px
+  font-size:14px
 }
 .collectionJustification{
   justify-content:center
@@ -476,10 +484,10 @@ border-radius: 20px;
       justify-content: space-around;
     }
     .widthCard {
-      @apply w-[45%] mx-[2%]
+      @apply w-[47%] mx-[1.5%]
     }
     .cardText{
-      font-size:13px
+      font-size:14px
     }
     
 }
@@ -501,7 +509,7 @@ border-radius: 20px;
       width:65%
     }
     .cardText{
-      font-size:14px
+      font-size:16px
     }
    
 }
@@ -524,7 +532,7 @@ border-radius: 20px;
       @apply w-[32%] mx-[0%]
     }
     .cardText{
-      font-size:12.2px
+      font-size:15.2px
     }
     .collectionJustification{
       justify-content:space-between
@@ -552,7 +560,7 @@ border-radius: 20px;
   }
 
   .widthCard {
-    @apply w-[31%]
+    @apply w-[31.7%]
   }
   .cardText{
     font-size:13.5px
@@ -618,7 +626,7 @@ border-radius: 20px;
       @apply w-[31.5%]
     }
     .cardText{
-      font-size:1.5rem
+      font-size:1.7rem
     }
 }
 

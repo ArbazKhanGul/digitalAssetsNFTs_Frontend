@@ -4,7 +4,7 @@ import Image from "next/image";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import { Icon } from "@iconify/react";
-import Footer from "../components/footer/footer";
+import Footer from "../components/footer";
 import { useFormik } from "formik";
 import { SignUpSchema } from "../schema";
 import { connectWallet } from "../metamask";

@@ -3,8 +3,8 @@ import Navbar from "../components/navbar";
 import { useState, useEffect } from "react";
 import { MdFilterList } from "react-icons/md";
 import Filter from "../components/profile/filter";
-import Pagination from "../components/nft/pagination";
-import Footer from "../components/footer/footer";
+import Pagination from "../components/pagination";
+import Footer from "../components/footer";
 import IndividualNFT from "../components/mainpage/individualnft";
 import { selectAddress, addAddress } from "../slice/metamask";
 import { useSelector, useDispatch } from "react-redux";
@@ -123,7 +123,7 @@ const Profile = ({userinfo}) => {
             <div>
             <div className=" w-[100%] h-[26rem]  relative">
                 <Image
-                  src={`${process.env.SERVER}/${user?.cover}`}
+                  src={`${process.env.SERVER_URL}/images/${user?.cover}`}
                   layout="fill"
                   objectFit="cover"
                 />
@@ -135,7 +135,7 @@ const Profile = ({userinfo}) => {
         <div className="  md:ml-[5rem] -mt-[7.5rem]  border-white z-50 relative border-[0.4rem] inline-block rounded-xl">
           <div className="w-[15rem] h-[15rem]  relative">
             <Image
-              src={`${process.env.SERVER}/${user?.profile}`}
+              src={`${process.env.SERVER_URL}/images/${user?.profile}`}
               layout="fill"
               objectFit="cover"
               className="rounded-xl"

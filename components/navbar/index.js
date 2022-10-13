@@ -81,7 +81,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar flex items-center pt-[1rem] !pb-[1rem] pl-[0.8rem] pr-[2rem]  sm:pl-[2rem] sm:pr-[3rem] md:pl-[4rem] md:pr-[5rem] md:!pt-[0.2rem] md:!pb-[0.2rem]">
+      <div className="navbar flex items-center pt-[1rem] !pb-[1rem] pl-[0.8rem] pr-[2rem]  sm:pl-[2rem] sm:pr-[3rem] md:pl-[3rem] md:pr-[4.5rem] md:!pt-[0.2rem] md:!pb-[0.2rem]">
         <div className=" w-[26rem] h-[4.2rem] sm:w-[30rem] sm:h-[5rem]  md:w-[35rem] md:h-[6rem]  relative">
           <Image src="/logo.png" layout="fill" />
         </div>
@@ -177,11 +177,11 @@ const Navbar = () => {
                       <div className="flex items-center space-x-[0.4rem]">
                         <div className=" w-[4.2rem] h-[4.2rem] rounded-full relative">
                           <Image
-                            src={`${process.env.SERVER}/${user?.profile}`}
+                            src={`${process.env.SERVER_URL}/images/${user?.profile}`}
                             layout="fill"
                             className="rounded-full"
                           />
-                          {console.log(`${process.env.SERVER}/${user.profile}`)}
+
 
                         </div>
                         <h2>{shortText(user.authorName, 10, "...")}</h2>
@@ -313,7 +313,7 @@ const Navbar = () => {
                     <div className="flex items-center space-x-[0.8rem]">
                       <div className=" w-[4.2rem] h-[4.2rem] rounded-full relative">
                         <Image
-                          src={`${process.env.SERVER}/${user.profile}`}
+                          src={`${process.env.SERVER_URL}/images/${user.profile}`}
                           layout="fill"
                           className="rounded-full"
                         />

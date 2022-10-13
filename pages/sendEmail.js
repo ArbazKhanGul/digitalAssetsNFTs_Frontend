@@ -1,5 +1,5 @@
 import Navbar from "../components/navbar" 
-import Footer from "../components/footer/footer"
+import Footer from "../components/footer"
 import Image from "next/image";
 import {SendEmailSchema} from "../schema"
 // import Link from 'next/link'

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Navbar from "../components/navbar";
 import { useState, useEffect, useRef } from "react";
-import Footer from "../components/footer/footer";
+import Footer from "../components/footer";
 import { UpdateSchema } from "../schema";
 import { selectAddress, addAddress } from "../slice/metamask";
 import { useSelector, useDispatch } from "react-redux";
