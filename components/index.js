@@ -17,3 +17,4 @@ export {default as Main} from "./mainpage";
 export {default as IndividualNFT} from "./mainpage/individualnft"
 export {default as axios} from "../utils/axiosconfiguration"
 export {default as fetcher} from "../utils/fetcher"
+export {default as Editor} from "./editor"

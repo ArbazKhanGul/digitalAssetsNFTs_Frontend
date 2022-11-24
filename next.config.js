@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: true,
   env: {
     CONTACT: "contact@gmailgoldennft.com",
+    Address:"",
     URL: 'https://textnft.vercel.app',
     // SERVER:'http://localhost:5000/images',
     // SERVER:'https://3a89-119-160-64-216.ngrok.io/images',

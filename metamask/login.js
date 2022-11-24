@@ -14,6 +14,7 @@ function openMetamask(){
 }
 
 export const connectWalletLogin = async (user,dispatch, address,router) => {
+  console.log("🚀 ~ file: login.js ~ line 17 ~ connectWalletLogin ~ address", address)
   try {
     
     if (!window?.ethereum || !window?.ethereum?.isMetaMask)
@@ -53,9 +54,14 @@ export const connectWalletLogin = async (user,dispatch, address,router) => {
     }
   
 
+
+
     const accountsFirst = await ethereum.request({
       method: "eth_requestAccounts",
     });
+
+
+
 
     if(accountsFirst.length > 0 && address==undefined)
     {
@@ -63,13 +69,19 @@ export const connectWalletLogin = async (user,dispatch, address,router) => {
       dispatch(addAddress(checkSumAddress));
     }
 
+    
 
     let checkSumAddress = ethers.utils.getAddress(accountsFirst[0]);
-    if(user.address === checkSumAddress)
+    console.log("before",user)
+
+    if(user?.address === checkSumAddress)
     {
       return;
     }
 
+    console.log("After")
+
+   
 
     try {
       const response = await axios.get(`/nonce/${accountsFirst[0]}`);

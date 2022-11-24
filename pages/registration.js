@@ -70,7 +70,7 @@ const Registeration = () => {
         const response = await axios.post("/register", formdata);
 
         if (response?.data?.message == "success") {
-          
+
           console.log("Successfully registered account");
           router.push("/emailVerification");
         }
@@ -332,14 +332,14 @@ outline-none"
             <Image
               src="/registeration.png"
               layout="fill"
-              //   objectFit="cover"
+            //   objectFit="cover"
             />
           </div>
         </div>
       </div>
 
       <Footer></Footer>
-    
+
     </>
   );
 };
