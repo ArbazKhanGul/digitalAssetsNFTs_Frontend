@@ -7,42 +7,15 @@ import {
     useRouter, validateUser, getServerSideProps, toast, ToastContainer, useSelector,
     useDispatch, selectAddress, addAddress, Card, selectUser, addUser, fetcher
 } from "../../components"
+import getDataRoute from "../../utils/getDataRoute";
 import useSWR from 'swr'
 
 
 const Collection = ({ userinfo }) => {
 
     const router = useRouter();
-    const result = router.query
-    console.log("🚀 ~ file: [[...id]].js ~ line 17 ~ Collection ~ result", result)
-    let paramid = result.hasOwnProperty('id') ? result.id[0] : 1;
-    paramid = parseInt(paramid) ? parseInt(paramid) : 1;
-    paramid = paramid >= 1 ? paramid : 1
-
-    let route = `/getcollection/${paramid}`
     
-    var size = Object.keys(result).length;
-    console.log("🚀 ~ file: [[...id]].js ~ line 25 ~ Collection ~ size", size)
-    console.log("🚀 ~ file: [[...id]].js ~ line 27 ~ Collection ~ result[id]", result['id'])
-    if (size > 1 || ( result['id']===undefined && size >0 ) ) {
-        
-        route = route + '?'
-
-        for (let key in result) {
-            if (key !== 'id') {
-    
-                if (route.charAt(route.length - 1) === '?') {
-                    route = route + key + '=' + result[key].trim().toLowerCase();
-                }
-                else {
-                    route = route + '&' + key + '=' + result[key].trim().toLowerCase();
-                }
-            }
-        }
-    }
-
-    console.log("🚀 ~ file: [[...id]].js ~ line 23 ~ Collection ~ route", route)
-
+    let route=getDataRoute(router);
     const { data, error } = useSWR(route, fetcher);
     const [showItems, show] = useState(false);
 

@@ -19,7 +19,7 @@ export default async function load(address, dispatch, router, setLoading,page) {
         const SignerAddress = await signer.getAddress();
         const chainId = await provider.getNetwork();
 
-        if (chainId.chainId == 56) {
+        if (chainId.chainId == process.env.chainId) {
           let checkSumAddress = ethers.utils.getAddress(SignerAddress);
           dispatch(addAddress(checkSumAddress));
           return;

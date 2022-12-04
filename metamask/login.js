@@ -13,7 +13,7 @@ function openMetamask(){
   a.remove();  
 }
 
-export const connectWalletLogin = async (user,dispatch, address,router) => {
+export const connectWalletLogin = async (user,dispatch, address,router,setShowLogin) => {
   console.log("🚀 ~ file: login.js ~ line 17 ~ connectWalletLogin ~ address", address)
   try {
     
@@ -46,7 +46,7 @@ export const connectWalletLogin = async (user,dispatch, address,router) => {
     });
   }
 
-    if (window.ethereum.chainId != 56) {
+    if (window.ethereum.chainId != process.env.chainId) {
       toast.error("Please connect to binance smart chain", {
         position: "top-center",
       });
@@ -84,6 +84,7 @@ export const connectWalletLogin = async (user,dispatch, address,router) => {
    
 
     try {
+      setShowLogin(true);
       const response = await axios.get(`/nonce/${accountsFirst[0]}`);
 
       if (response?.data?.message == "success") {
@@ -91,19 +92,22 @@ export const connectWalletLogin = async (user,dispatch, address,router) => {
         let signature;
         let SignerAddress;
         try{
+          toast.success("Check metamask for signing message", {
+            position: "top-center",
+          })
       const provider=new ethers.providers.Web3Provider(window.ethereum);
       const signer=provider.getSigner();
        signature=await signer.signMessage(response.data.nonce);
        SignerAddress=await signer.getAddress();
         }
         catch(error)
-        {
+        {  setShowLogin(false);
           toast.error("User reject sign message request", {
             position: "top-center",
           });
           return;
         }
-        
+
        const result=await  axios.post("/login",{
         signature: signature,
         address: SignerAddress
@@ -120,6 +124,8 @@ export const connectWalletLogin = async (user,dispatch, address,router) => {
 
       }
     } catch (error) {
+
+      setShowLogin(false);
     console.log("🚀 ~ file: login.js ~ line 103 ~ connectWalletLogin ~ error", error)
 
         if (error?.response?.data == undefined) {

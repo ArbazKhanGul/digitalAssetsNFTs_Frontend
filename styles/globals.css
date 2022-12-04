@@ -12,6 +12,10 @@ html
 }
 
 
+.heightDetail{
+height: 2.4rem !important;
+}
+
 .ql-container.ql-snow{ 
   /* border: none !important; */
   border: double 2px transparent !important;

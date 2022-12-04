@@ -1,25 +1,30 @@
 import Image from "next/image";
 import Navbar from "../components/navbar";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MdFilterList } from "react-icons/md";
 import Filter from "../components/profile/filter";
 import Pagination from "../components/pagination";
 import Footer from "../components/footer";
 import IndividualNFT from "../components/mainpage/individualnft";
-import { selectAddress, addAddress } from "../slice/metamask";
-import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from "next/router";
+// import { selectAddress, addAddress } from "../slice/metamask";
+// import { useSelector, useDispatch } from "react-redux";
+// import { useRouter } from "next/router";
+
 import { toast,ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import load from "../utils/validate";
-import { selectUser, addUser } from "../slice/user";
+// import { selectUser, addUser } from "../slice/user";
 import getServerSideProps from "../utils/serversidelogin"
-import validateUser from "../utils/validatUser";
+// import validateUser from "../utils/validatUser";
+import useValidate from "../utils/useValidate"
+
 const Profile = ({userinfo}) => {
   const [showItems, show] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const dispatch = useDispatch();
+  // const [loading, setLoading] = useState(false);
+  // const router = useRouter();
+  // const dispatch = useDispatch();
+const [loading,user]=useValidate(userinfo);
+
 
   let temp = [
     {
@@ -95,20 +100,19 @@ const Profile = ({userinfo}) => {
       price: "0.1BNB",
     },
   ];
-  const address = useSelector(selectAddress);
+  // const address = useSelector(selectAddress);
 
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
 
-  useEffect(() => {
-    dispatch(addUser(userinfo))
-    },[])
+  // useEffect(() => {
+  //   dispatch(addUser(userinfo))
+  //   },[])
   
 
-  //validate token
-  useEffect(() => {
-    // load(address,dispatch,router,setLoading);
-    validateUser(user,address,dispatch,router,setLoading)
-  }, [address]);
+  // //validate token
+  // useEffect(() => {
+  //   validateUser(user,address,dispatch,router,setLoading)
+  // }, [address]);
 
   return (
     <>

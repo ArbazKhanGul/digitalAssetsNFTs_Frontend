@@ -1,12 +1,11 @@
 import { addAddress } from "../slice/metamask";
 import { ethers } from "ethers";
-import NProgress from "nprogress"
+
 
 
 export default async function validateUser(user,address, dispatch, router, setLoading,page) {
 
 
- 
   if (window?.ethereum) {
     try {
       if (address == undefined) {
@@ -15,7 +14,7 @@ export default async function validateUser(user,address, dispatch, router, setLo
         const SignerAddress = await signer.getAddress();
         const chainId = await provider.getNetwork();
 
-        if (chainId.chainId == 56) {
+        if (chainId.chainId == process.env.chainId) {
           let checkSumAddress = ethers.utils.getAddress(SignerAddress);
           dispatch(addAddress(checkSumAddress));
           return;
@@ -29,11 +28,10 @@ export default async function validateUser(user,address, dispatch, router, setLo
 
   //check page
   if (page == "main") {
-    
+
       setLoading(true);
-      // NProgress.done();
       return;
-    
+
   } else {
 
     if (user?.address != address || !user || !address) {
@@ -42,5 +40,4 @@ export default async function validateUser(user,address, dispatch, router, setLo
     }
   }
   setLoading(true);
-  // NProgress.done();
 }

@@ -22,6 +22,8 @@ const Navbar = () => {
 
   const router = useRouter();
   const [showItems, show] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+
   const address = useSelector(selectAddress);
 
   // console.log("Address ", address);
@@ -49,7 +51,7 @@ const Navbar = () => {
     }
 
     async function handleChainChanged(chainId) {
-      if (chainId == 56) {
+      if (chainId == process.env.chainId) {
         try {
           const provider = new ethers.providers.Web3Provider(window?.ethereum);
           const signer = provider.getSigner();
@@ -127,8 +129,9 @@ const Navbar = () => {
               <>
                 <li className="inline-block links ">
                   <button
-                    onClick={() => connectWalletLogin(user,dispatch, address,router)}
+                    onClick={() => connectWalletLogin(user,dispatch, address,router,setShowLogin)}
                     className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider"
+                    disabled={showLogin}
                   >
                     <a>Login</a>
                   </button>
@@ -136,7 +139,7 @@ const Navbar = () => {
                 <li className="inline-block links">
                   <Link href="/registration">
                     <a>
-                      
+
                       <button className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider">
                         Register
                       </button>
@@ -249,7 +252,7 @@ const Navbar = () => {
               <a>
                 <li
                   className="onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem] md:pl-[6rem] text-[#EAE1E1]"
-                  onClick={() => connectWalletLogin(user,dispatch, address,router)}
+                  onClick={() => connectWalletLogin(user,dispatch, address,router,setShowLogin)}
                 >
                   Login
                 </li>

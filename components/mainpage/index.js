@@ -3,12 +3,16 @@ import { motion } from "framer-motion"
 import { useSelector,useDispatch} from "react-redux";
 import { selectAddress } from "../../slice/metamask";
 import { connectWalletLogin } from "../../metamask/login";
-import {memo} from "react";
-
+import {memo,useState} from "react";
+import { selectUser } from "../../slice/user";
+import { useRouter } from "next/router";
 import Link from "next/link";
 const Main=()=>{
+  const user = useSelector(selectUser);
+  const router= useRouter();
   const address = useSelector(selectAddress);
   const dispatch = useDispatch();
+  const [showLoginButton, setShowLoginButton] = useState(false);
 
   const contVar={
 hidden:{
@@ -54,7 +58,8 @@ const right={
     {address.substr(0, 8) + "..." + address.substr(37, 5)}
 </button>):(<>
      <button className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-14 rounded-full font-['Inconsolata'] tracking-wider"
-      onClick={() => connectWalletLogin(dispatch, address)}
+      onClick={() => connectWalletLogin(user,dispatch, address,router,setShowLoginButton)}
+      disabled={showLoginButton}
      >
   Login
 </button>
