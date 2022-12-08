@@ -1,7 +1,10 @@
-import { useState } from "react";
 import Binance from 'binance-api-node'
 import Select from 'react-select';
-
+import { useFormik } from "formik";
+import {NFTSellSchema} from "../../schema/index"
+import ClipLoader from "react-spinners/ClipLoader";
+import { ethers } from "ethers";
+import { useState,  axios } from "../"
 const style = {
   control: (provided, state) => ({
     ...provided,
@@ -12,23 +15,111 @@ const style = {
 
 let options = [
   { "label": "BNB", "value": "bnb" },
-  { "label": "Dollar", "value": "dollar" }
+  { "label": "Jagar (1Jagar = 10^-8 BNB)", "value": "jagar" }
 ]
 
-function Sell() {
+
+
+
+
+
+
+function Sell({nftHash}) {
 
   const [showModal, setShowModal] = useState(false);
-  const [checker, setChecker] = useState(false);
+  const [checker, setChecker] = useState("price");
 
-  async function priceBNB() {
-    const client = Binance()
-    let ticker = await client.prices({ symbol: 'BNBUSDT' });
-    console.info(`Price of BNB: ${ticker.BNBUSDT}`);
+  // async function priceBNB() {
+  //   const client = Binance()
+  //   let ticker = await client.prices({ symbol: 'BNBUSDT' });
+  //   console.info(`Price of BNB: ${ticker.BNBUSDT}`);
 
+  // }
+  //  priceBNB();
+
+
+
+
+
+
+  let initialValues = {
+    nftCurrency: "",
+    nftPrice: "",
+  };
+
+
+  const handleSelect = (e) => {
+    setFieldValue("nftCurrency", e.value)
   }
 
-  priceBNB();
 
+  const {
+    values,
+    errors,
+    touched,
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    setFieldValue,
+    setTouched
+  } = useFormik({
+
+    initialValues,
+    validationSchema: NFTSellSchema,
+
+    onSubmit: async (values, action) => {
+
+
+      console.log("🚀 ~ file: createnft.js ~ line 39 ~ onSubmit: ~ values", values)
+      setChecker("confirm")
+
+      let reqObject = {
+        nftPrice: values.nftPrice,
+        nftCurrency: values.nftCurrency,
+        nftHash
+      }
+
+      console.log("🚀 ~ file: sell.js:82 ~ onSubmit: ~ nftHash", nftHash)
+
+      try {
+
+        const response = await axios.post("/nftselling", reqObject);
+        console.log("🚀 ~ file: sell.js:88 ~ onSubmit: ~ response", response)
+
+
+
+      } catch (error) {
+        console.log("🚀 ~ file: createnft.js ~ line 95 ~ onSubmit: ~ error", error)
+
+
+        if (error?.response?.data == undefined) {
+          toast.error("Server Error Please Try Later", {
+            position: "top-center",
+          });
+        } else {
+          toast.error(error?.response?.data.message, {
+            position: "top-center",
+          });
+        }
+      }
+    }
+  })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
   return (
     <>
       <button
@@ -36,7 +127,7 @@ function Sell() {
         type="button"
         onClick={() => setShowModal(true)}
       >
-        Share
+        Sell Now
       </button>
 
       {showModal ? (
@@ -63,23 +154,24 @@ function Sell() {
                   </button>
                 </div>
                 {/*body*/}
-                <form >
+                <form onSubmit={handleSubmit}>
                 <div className={"relative pb-6 flex-auto"}>
-                
 
-                {checker?(                  <div>
+
+                {checker=="price"?(                  <div>
 
                     <div>
                    
                         <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:mx-[1.8rem] mt-[1rem] w-[90%]  ">
                           <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2rem] tracking-wider">Choose the currency</h2>
+         
                           <div className="mt-[1rem] w-[100%] relative ">
                             <div className="input_bord_grad  mb-[0.2rem] !w-[100%]">
 
                               <Select className=" p-[0.2rem] text-[1.6rem] md:text-[1.7rem] font-['Inconsolata']  tracking-wider outline-none"
                                 defaultValue={"Select Currency"}
                                 name="nftLanguage"
-                                // onChange={handleSelect}
+                                onChange={handleSelect}
                                 options={options}
                                 styles={style}
                                 id="long-value-select"
@@ -87,34 +179,41 @@ function Sell() {
                               />
 
                             </div>
-                            {/* {errors.nftLanguage && touched.nftLanguage ? (
+                            {errors.nftCurrency && touched.nftCurrency ? (
                     <p className="text-red-500 text-[1.4rem] block">
-                      {errors.nftLanguage}
+                      {errors.nftCurrency}
                     </p>
-                  ) : null} */}
+                  ) : null}
 
                           </div>
                         </div>
 
                         <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:mx-[1.8rem] mt-[1rem] w-[90%]  ">
 
-                          <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2rem] ml-[0.3rem] mb-[0.4rem] tracking-wider">Enter the NFT price </h2>
+                          <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2rem] ml-[0.3rem] mb-[0rem] tracking-wider">Enter the NFT price </h2>
+                          <h2 className="font-['Inconsolata'] text-[black] text-[1.1rem] ml-[0.3rem] text-justify font-medium tracking-wider mb-[0.7rem]">
+
+                           (You are not allow to enter BNB in decimals like 0.1 if you want to enter 0.1 BNB then select jagar from
+                            currency and enter 10000000 because 1 jagar = 10^-8 BNB)
+                          </h2>
+         
                           <div className="input_bord_grad w-[100%]  mb-[0.2rem] ">
                             <input type="number"
                               className=" outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
                               placeholder="Price..."
-                              name="collectionName"
-                            //   value={values.collectionName}
-                            //   onChange={handleChange}
-                            //   onBlur={handleBlur}
-                            //   autoComplete="off"
+                              name="nftPrice"
+                              value={values.nftPrice}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              autoComplete="off"
+                              min="0"
                             />
                           </div>
-                          {/* {errors.collectionName && touched.collectionName ? (
+                          {errors.nftPrice && touched.nftPrice ? (
 <p className="text-red-500 text-[1.4rem] errors block">
-{errors.collectionName}
+{errors.nftPrice}
 </p>
-) : null} */}
+) : null}
                         </div>
 
 
@@ -127,7 +226,7 @@ function Sell() {
                         </div>
 
                         <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:mx-[1.8rem] mt-[0.5rem] ">
-                          <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[1.3rem] ml-[0.3rem] mb-[0.4rem] h-[14rem] text-justify overflow-y-auto tracking-wider pr-[0.3rem]">
+                          <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[1.3rem] ml-[0.3rem] mb-[0.4rem] h-[10rem] text-justify overflow-y-auto tracking-wider pr-[0.3rem]">
                             10% from profit after selling nft goes to the creator of nft and 5% goes to goldenWords nft platform and remaining 85%
                             automatically transfer to your metamask account after selling but if you are also creator of this nft then only 5% from profit goes to goldenWords nft platform
                             and remaining all coin transfer to your metamask account but if you don't earn any profit after selling this nft means you sell it at lower price then you buy
@@ -140,33 +239,49 @@ function Sell() {
                           </h2>
 
                         </div>
-
-
-
                     </div>
 
 
 
 
                   </div>
-                  ):
+                  ):          null    }
 
+{checker=="confirm"?(
                   <div>
  <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:mx-[1.8rem] mt-[0.5rem] ">
-                          <h2 className="font-['Inconsolata'] text-[#0D1344E5']  text-[1.8rem] font-medium ml-[0.3rem] mb-[0.4rem] tracking-wider">                    NFT price that is set by you for selling is 10 dollars which is approximately 0.3 BNB So please confirms it ...
-                          
+                          <h2 className="font-['Inconsolata'] text-[#0D1344E5']  text-[1.8rem] font-medium ml-[0.3rem] mb-[0.4rem] tracking-wider">            
+                    NFT price that is set by you for selling is<span className="font-semibold"> {values.nftCurrency=="jagar"?values.nftPrice:ethers.utils.parseUnits(values.nftPrice.toString(), 8).toString()}  Jagar </span>
+                     which is approximately   <span className="font-semibold">  {values.nftCurrency=="bnb"?values.nftPrice:ethers.utils.formatUnits(values.nftPrice.toString(), 8).toString()}  BNB </span> So please
+                     confirms it if it is right ...
                           </h2>
                         </div>
 
 
                   </div>
+):null}
 
-                  }
+{checker=="loader"?(
+  <div className="flex justify-center  mt-[2rem]">
+
+<ClipLoader
+  color={"#30DCBA"}
+  // loading={loader}
+  cssOverride={{ marginBottom: "20px" }}
+  size={140}
+  aria-label="Loading Spinner"
+  data-testid="loader"
+/>
+</div>
+
+):null}
+
 
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
 
+{checker=="price"?
                   <button
                     className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] rounded-full font-['Inconsolata'] tracking-wider"
                     type="submit"
@@ -174,10 +289,30 @@ function Sell() {
                   >
                     Sell Now
                   </button>
+:null
+                 }
+          {checker=="confirm"?       
+           <button
+                    className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] rounded-full font-['Inconsolata'] tracking-wider"
+                    type="submit"
+                  // onClick={() => setShowModal(true)}
+                  >
+                    Confirm
+                  </button>
+:null
+                }
+
                   <button
                     className="bg-red-500 mr-[2rem]  hover:bg-red-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] rounded-full font-['Inconsolata'] tracking-wider"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() =>{ setShowModal(false)
+                      setChecker("price")
+                        setFieldValue("nftCurrency", "")
+                        setFieldValue("nftPrice", "")
+                        setTouched({}, false)
+                      
+                    }
+                    }
                   >
                     Close
                   </button>

@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+
 export const SignUpSchema=Yup.object({
 collectionName:Yup.string().trim().required("Please enter collection name ").min(2,"Minimum character should be 2").max(25,"Maximum character should be 20"),
 authorName:Yup.string().trim().required("Please enter author name ").min(2,"Minimum character should be 2").max(25,"Maximum character should be 25"),
@@ -44,4 +45,9 @@ export const NFTCreationSchema=Yup.object({
     nftDescription:Yup.string().trim().required("Please Enter NFT description").min(10,"Minimum character should be 10").max(250,"Maximum character should be 250"),
     nftText:Yup.string().trim().required("Please Enter NFT Text").min(2,"Minimum character should be 3")
 
+})
+
+export const NFTSellSchema=Yup.object({
+    nftCurrency:Yup.string().trim().required("Please choose NFT language"),
+    nftPrice: Yup.number().moreThan(0,"you must specify a positive number").typeError('you must specify a positive number').required("Please enter NFT price"),
 })

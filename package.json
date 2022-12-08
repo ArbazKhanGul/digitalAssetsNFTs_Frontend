@@ -15,6 +15,7 @@
     "ethers": "^5.7.0",
     "formik": "^2.2.9",
     "framer-motion": "^7.1.0",
+    "html-react-parser": "^3.0.4",
     "limit-text-js": "^1.0.2",
     "net": "^1.0.2",
     "next": "12.2.3",

@@ -19,7 +19,7 @@ console.log("🚀 ~ file: nftCreate.js ~ line 4 ~ nftTokenCreate ~ price", price
         "function creatorOf(uint tokenId) public view returns(address)",
         //Event
         "event Creation(address indexed owner_address,string indexed tokenURI,uint indexed tokenId)",
-        "function testing() public"
+       
     ];
 
     const nftContract = new ethers.Contract(process.env.Address,Abi,signer);
@@ -29,10 +29,11 @@ console.log("🚀 ~ file: nftCreate.js ~ line 4 ~ nftTokenCreate ~ price", price
     const res = await nftContract.createToken(textHash,options);
     let tx = await res.wait() // it return when transaction is mined
 
-     let abi = [ "event Creation(address indexed owner_address,string tokenURI)" ];
+     let abi = [ "event Creation(address indexed owner_address,uint indexed tokenId,string tokenURI)" ];
      let iface = new ethers.utils.Interface(abi);
-     let log = iface.parseLog(tx?.logs[2]); 
-     const {owner_address, tokenURI} = log?.args;
+     let log = iface.parseLog(tx?.logs[2]);
+     const {owner_address,tokenId ,tokenURI} = log?.args;
+     console.log("🚀 ~ file: nftCreate.js:36 ~ nftTokenCreate ~ tokenId", tokenId)
 
      if(tokenURI==textHash){
 
