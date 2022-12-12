@@ -16,6 +16,8 @@
     "formik": "^2.2.9",
     "framer-motion": "^7.1.0",
     "html-react-parser": "^3.0.4",
+    "ipfs-http-client": "^59.0.0",
+    "javascript-time-ago": "^2.5.9",
     "limit-text-js": "^1.0.2",
     "net": "^1.0.2",
     "next": "12.2.3",
@@ -27,6 +29,7 @@
     "react-countdown-circle-timer": "^3.1.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-paginate": "^8.1.3",
     "react-quilljs": "^1.3.3",
     "react-redux": "^8.0.2",
@@ -45,6 +48,7 @@
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.3",
     "postcss": "^8.4.14",
+    "tailwind-scrollbar": "^2.0.1",
     "tailwindcss": "^3.1.7"
   }
 }

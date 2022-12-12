@@ -16,6 +16,7 @@ const Collection = ({ userinfo }) => {
     const router = useRouter();
     
     let route=getDataRoute(router);
+    
     const { data, error } = useSWR(route, fetcher);
     const [showItems, show] = useState(false);
 

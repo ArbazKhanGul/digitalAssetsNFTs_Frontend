@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect,memo } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
+import {IoNotificationsOutline} from "react-icons/io5"
 import { useRouter } from "next/router";
 import { connectWalletLogin } from "../../metamask/login";
 import { ToastContainer, toast } from "react-toastify";
@@ -12,10 +13,11 @@ import { ethers } from "ethers";
 import { shortText } from "limit-text-js";
 import { selectUser } from "../../slice/user";
 import Logout from "../../utils/logout";
-
+import Notification from "../notification"
 
 const Navbar = () => {
   const user = useSelector(selectUser);
+
   // user =user ? user : userinfo
 
   console.log("🚀 ~ file: index.js ~ line 22 ~ Navbar ~ user", user);
@@ -23,6 +25,7 @@ const Navbar = () => {
   const router = useRouter();
   const [showItems, show] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [notificationControl, setNotificationControl] = useState(false);
 
   const address = useSelector(selectAddress);
 
@@ -170,6 +173,19 @@ const Navbar = () => {
                  
                 </li>
 
+                <li className="inline-block links " onClick={()=>{
+                  // Logout(dispatch,router)
+                }} >
+                    <a>
+                      <div className="bell-notification" current-count="4" onClick={()=>{setNotificationControl(!notificationControl)}} >
+                    <IoNotificationsOutline
+                     className="w-[2.7rem] ml-auto h-[2.7rem]  inline-block   text-white"
+                    />
+                    </div>
+                    </a>
+                 
+                </li>
+
                 <li className="inline-block links">
                   <Link href="/profile">
                     <a
@@ -196,6 +212,8 @@ const Navbar = () => {
             )}
           </ul>
         </div>
+
+        <Notification control={notificationControl}/>
       </div>
 
       <div

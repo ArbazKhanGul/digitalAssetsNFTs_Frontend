@@ -3,6 +3,10 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
+  plugins: [
+    require('tailwind-scrollbar')({ nocompatible: true })
+  ],
+
   theme: {
       screens: {
         'sm': '640px',
@@ -21,5 +25,5 @@ module.exports = {
         // => @media (min-width: 1536px) { ... }
       },
   },
-  plugins: [],
+ 
 }

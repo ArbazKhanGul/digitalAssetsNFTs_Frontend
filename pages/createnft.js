@@ -9,7 +9,7 @@ import getServerSideProps from "../utils/serversidelogin"
 import useValidate from '../utils/useValidate';
 import ClipLoader from "react-spinners/ClipLoader";
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
-
+import IPFS from "../utils/ipfs"
 const style = {
   control: (provided, state) => ({
     ...provided,
@@ -71,6 +71,7 @@ const Item = ({ userinfo }) => {
           nftDescription: values.nftDescription
         }
 
+          // let ipfsRes=await IPFS(reqObject);
 
         const response = await axios.post("/nftcreation", reqObject);
         console.log("🚀 ~ file: createnft.js ~ line 59 ~ onSubmit: ~ response", response)

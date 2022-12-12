@@ -11,6 +11,27 @@ html
   font-size: 10px;
 }
 
+.bell-notification {
+color: #ffffff;
+position: relative;
+
+}
+
+.bell-notification::after{
+  content:attr(current-count);
+  position:absolute;
+  top: 0;
+  right: -1px;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: red;
+  font-size:9px;
+
+}
 
 .heightDetail{
 height: 2.4rem !important;
