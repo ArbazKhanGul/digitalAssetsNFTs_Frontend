@@ -11,7 +11,8 @@ function individual({data,index}) {
     const timeAgo = new TimeAgo('en-US');
 
   return (
-<div className={`flex items-center space-x-[0.4rem] py-[0.9rem] transition-all duration-500  linear border-[#d4dee2] ${index==5?"":"border-b-[1px]"}`}>
+<div className={`flex items-center space-x-[0.4rem] py-[0.9rem] transition-all duration-500  linear border-[#d4dee2] cursor-pointer ${index==5?"":"border-b-[1px]"}`}>
+                        <div className=" w-[4.9rem] h-[4.9rem]">
                         <div className=" w-[4.7rem] h-[4.7rem] rounded-full relative">
                           <Image
                             src={`/profile.jpg`}
@@ -21,8 +22,9 @@ function individual({data,index}) {
 
 
                         </div>
-                        <div className="grow">
-                        <h2 className="text-[1.7rem] w-[29rem] font-medium overflow-hidden whitespace-nowrap text-ellipsis">
+                        </div>
+                        <div className="grow text-ellipsis overflow-x-hidden">
+                        <h2 className="text-[1.7rem] font-medium overflow-x-hidden whitespace-nowrap text-ellipsis">
                             {/* 0x456775...5555 so come here Buy your nft */}
                             {data.description}
                             </h2>

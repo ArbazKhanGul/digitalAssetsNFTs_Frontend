@@ -37,6 +37,10 @@ position: relative;
 height: 2.4rem !important;
 }
 
+.hp {
+height:calc(100vh - 6.4rem)
+}
+
 .ql-container.ql-snow{ 
   /* border: none !important; */
   border: double 2px transparent !important;

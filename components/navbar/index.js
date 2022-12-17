@@ -212,8 +212,9 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-
-        <Notification control={notificationControl}/>
+        <div id="scrollableDiv" className={`absolute z-50 font-['Inconsolata'] w-[39rem] bg-[#FFFFFF] rounded-[1rem] right-[3rem] top-[6.4rem] px-[1.5rem] overflow-y-auto  box-border transition-all duration-500  scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-[#FFF] scrollbar-thumb-rounded-xl scrollbar-track-rounded-full  ${!notificationControl?"h-0":"h-[510px]"}`}>
+        <Notification />
+        </div>
       </div>
 
       <div
