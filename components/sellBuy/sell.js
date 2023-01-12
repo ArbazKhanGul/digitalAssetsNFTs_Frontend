@@ -1,10 +1,14 @@
-import Binance from 'binance-api-node'
+
 import Select from 'react-select';
 import { useFormik } from "formik";
 import {NFTSellSchema} from "../../schema/index"
-import ClipLoader from "react-spinners/ClipLoader";
+import PulseLoader from "react-spinners/PulseLoader";
 import { ethers } from "ethers";
-import { useState,  axios } from "../"
+import { useState,  axios,useRouter, useEffect } from "../"
+import sell from "../../utils/sell"
+import { toast } from "react-toastify";
+import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+
 const style = {
   control: (provided, state) => ({
     ...provided,
@@ -20,24 +24,15 @@ let options = [
 
 
 
-
-
-
-
-function Sell({nftHash}) {
+function Sell({nftHash,tokenId}) {
+console.log("🚀 ~ file: sell.js:28 ~ Sell ~ nftHash", nftHash)
+console.log("🚀 ~ file: sell.js:28 ~ Sell ~ tokenId", tokenId)
 
   const [showModal, setShowModal] = useState(false);
   const [checker, setChecker] = useState("price");
+  const [loader,setLoader]=useState(false);
 
-  // async function priceBNB() {
-  //   const client = Binance()
-  //   let ticker = await client.prices({ symbol: 'BNBUSDT' });
-  //   console.info(`Price of BNB: ${ticker.BNBUSDT}`);
-
-  // }
-  //  priceBNB();
-
-
+  let router=useRouter();
 
 
 
@@ -69,46 +64,10 @@ function Sell({nftHash}) {
 
     onSubmit: async (values, action) => {
 
-
-      console.log("🚀 ~ file: createnft.js ~ line 39 ~ onSubmit: ~ values", values)
       setChecker("confirm")
 
-      let reqObject = {
-        nftPrice: values.nftPrice,
-        nftCurrency: values.nftCurrency,
-        nftHash
-      }
-
-      console.log("🚀 ~ file: sell.js:82 ~ onSubmit: ~ nftHash", nftHash)
-
-      try {
-
-        const response = await axios.post("/nftselling", reqObject);
-        console.log("🚀 ~ file: sell.js:88 ~ onSubmit: ~ response", response)
-
-
-
-      } catch (error) {
-        console.log("🚀 ~ file: createnft.js ~ line 95 ~ onSubmit: ~ error", error)
-
-
-        if (error?.response?.data == undefined) {
-          toast.error("Server Error Please Try Later", {
-            position: "top-center",
-          });
-        } else {
-          toast.error(error?.response?.data.message, {
-            position: "top-center",
-          });
-        }
-      }
     }
   })
-
-
-
-
-
 
 
 
@@ -125,22 +84,72 @@ function Sell({nftHash}) {
       <button
         className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[4rem] rounded-full font-['Inconsolata'] tracking-wider"
         type="button"
+        disabled={loader}
         onClick={() => setShowModal(true)}
       >
         Sell Now
       </button>
 
+
+      {loader=="transaction waiting" ?
+                  <div className="flex justify-center items-center  !mt-[8px]">
+<h2 className='text-[2rem]'>Waiting For Transaction Verification </h2>
+<div className="w-fit h-fit">
+                    <PulseLoader
+                      color={"#30DCBA"}
+                      loading={loader}
+                      cssOverride={{ marginTop: "5px",marginLeft:"5px" }}
+                      size={8}
+                      aria-label="Loading Spinner"
+                      data-testid="loader"
+                    />
+            </div>      </div>
+                  :""}
+
+
+
+
+{loader=="transaction confirmation"?(
+      <div className="flex justify-center items-center  !mt-[8px]">
+         <h2 className='text-[2rem] mr-[1.2rem]'>Confirming Mined Transaction ....  </h2>
+            <div className="w-fit h-fit">
+<CountdownCircleTimer
+    isPlaying={loader=="transaction confirmation"}
+    duration={8}
+    size={40}
+    strokeWidth={3}
+    colors={['#e74c3c', '#d63031','#d63031']}
+    colorsTime={[5, 2,0]}
+    onComplete={() => {
+      router.replace(router.asPath)
+    }}
+  >
+    {({ remainingTime }) => <h2 className="font-['Inconsolata'] text-[2rem] ">{remainingTime}</h2>}
+  </CountdownCircleTimer></div></div>):""
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       {showModal ? (
         <>
           <div className="px-[13px] justify-center items-center flex overflow-x-hidden h-fit absolute inset-0 z-50 outline-none focus:outline-none top-[4rem]">
             <div className="relative  my-6 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%]">
-              {/*content*/}
+             
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                   <h3 className="text-3xl font-semibold">
-                    {/* {clickCheck} */}
-
+             
                     Sell NFT
 
                   </h3>
@@ -161,10 +170,9 @@ function Sell({nftHash}) {
                 {checker=="price"?(                  <div>
 
                     <div>
-                   
                         <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:mx-[1.8rem] mt-[1rem] w-[90%]  ">
                           <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2rem] tracking-wider">Choose the currency</h2>
-         
+
                           <div className="mt-[1rem] w-[100%] relative ">
                             <div className="input_bord_grad  mb-[0.2rem] !w-[100%]">
 
@@ -278,7 +286,6 @@ function Sell({nftHash}) {
 
 
                 </div>
-                {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
 
 {checker=="price"?
@@ -294,8 +301,8 @@ function Sell({nftHash}) {
           {checker=="confirm"?       
            <button
                     className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] rounded-full font-['Inconsolata'] tracking-wider"
-                    type="submit"
-                  // onClick={() => setShowModal(true)}
+                    type="button"
+                  onClick={() => sell(parseInt(tokenId),values.nftCurrency=="bnb"?ethers.utils.parseUnits(values.nftPrice.toString(), 18):ethers.utils.parseUnits(values.nftPrice.toString(), 8),router,setLoader,setShowModal,setChecker)}
                   >
                     Confirm
                   </button>
@@ -310,7 +317,6 @@ function Sell({nftHash}) {
                         setFieldValue("nftCurrency", "")
                         setFieldValue("nftPrice", "")
                         setTouched({}, false)
-                      
                     }
                     }
                   >

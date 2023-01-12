@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 import { toast } from "react-toastify";
 
-export async function nftTokenCreate(price,textHash,router, setLoader) {
+export async function nftTokenCreate(price,textHash,router, setLoader,setHash) {
 console.log("🚀 ~ file: nftCreate.js ~ line 5 ~ nftTokenCreate ~ textHash", textHash)
 
 
@@ -36,7 +36,8 @@ console.log("🚀 ~ file: nftCreate.js ~ line 4 ~ nftTokenCreate ~ price", price
      console.log("🚀 ~ file: nftCreate.js:36 ~ nftTokenCreate ~ tokenId", tokenId)
 
      if(tokenURI==textHash){
-
+        
+        setHash(tokenURI);
         setLoader("Token transaction verification...")
      }
      else{

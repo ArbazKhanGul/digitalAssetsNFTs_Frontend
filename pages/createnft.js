@@ -9,7 +9,7 @@ import getServerSideProps from "../utils/serversidelogin"
 import useValidate from '../utils/useValidate';
 import ClipLoader from "react-spinners/ClipLoader";
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
-import IPFS from "../utils/ipfs"
+
 const style = {
   control: (provided, state) => ({
     ...provided,
@@ -23,6 +23,7 @@ const Item = ({ userinfo }) => {
   const [duplicateNft, changeDuplicate] = useState("");
   const [loader, setLoader] = useState(false);
   const [timeNotPass, setTimeNotPass] = useState(false);
+  const [hash, setHash] = useState("");
 
   const router = useRouter();
 
@@ -84,7 +85,7 @@ const Item = ({ userinfo }) => {
           console.log("🚀 ~ file: createnft.js ~ line 66 ~ onSubmit: ~ response?.data?", response?.data)
           changeDuplicate("")
 
-          await nftTokenCreate(response?.data?.price, response?.data?.hash, router,setLoader);
+          await nftTokenCreate(response?.data?.price, response?.data?.hash, router,setLoader,setHash);
 
         }
         else if(response?.data?.status == "timeNotPass"){
@@ -288,7 +289,7 @@ const Item = ({ userinfo }) => {
     colors={['#7f8c8d', '#95a5a6']}
     colorsTime={[5, 2]}
     onComplete={() => {
-      router.push("/individualnft");
+      router.push(`/individualnft/${hash}`);
     }}
   >
     {({ remainingTime }) => <h2 className="font-['Inconsolata'] text-[2rem] ">{remainingTime}</h2>}

@@ -1,6 +1,7 @@
 import Navbar from "../../components/navbar";
-import { useState } from "react";
-import { useRouter } from 'next/router'
+import { useEffect ,useState} from "react";
+import Binance from 'binance-api-node'
+import {ethers} from 'ethers'
 import Head from 'next/head'
 import Meta from "../../components/meta"
 import getServerSideProps from "../../utils/ServerSideNft"
@@ -10,12 +11,35 @@ import Language from "../../utils/languageShow.json"
 import Share from "../../components/share"
 import Sell from "../../components/sellBuy/sell"
 import parse from 'html-react-parser';
+import CancelSelling from "../../components/sellBuy/cancelSelling";
+import Buy from "../../components/sellBuy/buy";
 
 const IndividualNFT = ({ userinfo, nftData }) => {
+  const  [dollar,setDollar]=useState("...");
+
+  const BNBPrice=async ()=>{
+    try{
+
+      const client = Binance()
+      let ticker = await client.prices({ symbol: 'BNBUSDT' });
+      setDollar((ethers.utils.formatUnits(nftData?.price.toString(), 18) * ticker.BNBUSDT).toFixed(8))
+      console.log
+      console.log(`Price of BNB:,`, ticker);
+    }
+    catch(error){
+console.log(error)
+    }
+  }
+
+
+  useEffect(()=>{
+    if(nftData?.status=="selling"){
+         BNBPrice();
+    }
+  },[nftData])
 
 
   let date = new Date(nftData?.createdAt);
-  let a = "<p>popularity</p>"
 
 
   const [loading, user, address] = useValidate(userinfo, "main");
@@ -52,7 +76,7 @@ const IndividualNFT = ({ userinfo, nftData }) => {
 
                 <div className="w-[100%] h-[100%] lg:h-[47rem] flex justify-content items-center  overflow-y-auto relative p-[1.5rem] sm:p-[3rem] ">
 
-                  <h2 className="text-[2rem] sm:text-[2.5rem]  text-['#2d3436'] font-['Inconsolata'] font-normal text-justify  max-h-[100%]">
+                  <h2 className="text-[2rem] sm:text-[2.5rem]  text-['#2d3436'] font-['Inconsolata'] font-normal w-[100%] text-center max-h-[100%]">
                     {parse(nftData?.nftText)}
                   </h2>
                 </div>
@@ -67,10 +91,16 @@ const IndividualNFT = ({ userinfo, nftData }) => {
                     <h2 className="text-[#545151] text-[1.9rem]  font-['Inconsolata'] font-medium block heightDetail">
                       Name
                     </h2>
-                    {/* <h2 className="text-[#545151] text-[1.9rem] sm:text-[2rem] font-['Inconsolata'] font-medium">
+                    {nftData?.status=="selling"?
+                      <>
+                    <h2 className="text-[#545151] text-[1.9rem] sm:text-[2rem] font-['Inconsolata'] font-medium">
                   Price
-                </h2> */}
-                    {/* <div className="text-transparent">jj</div> */}
+                </h2>
+                <h2 className="text-transparent text-[#545151] text-[1.9rem] sm:text-[1.6rem] font-['Inconsolata'] font-medium">
+                  j
+                </h2>
+                </>:null}
+                   
                     <h3 className="text-[#545151] text-[1.9rem]  font-['Inconsolata'] font-medium  whitespace-nowrap block heightDetail">
                       Creation Date
                     </h3>
@@ -86,12 +116,18 @@ const IndividualNFT = ({ userinfo, nftData }) => {
                     <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] font-medium block heightDetail whitespace-nowrap overflow-hidden text-ellipsis">
                       {nftData?.nftName}
                     </p>
-                    {/* <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] font-medium sm:pt-[0.2rem]">
-                  0.1 BNB
+
+
+                    {nftData?.status=="selling"?
+                <> <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] font-medium sm:pt-[0.2rem]">
+                  {ethers.utils.formatUnits(nftData?.price.toString(), 18).toString() } BNB
                 </p>
-                <div className="text-[#686767cf] font-['Inconsolata'] text-[1.5rem] sm:text-[1.6rem] font-medium">
-                  1 $
-                </div> */}
+                <div className="text-[#686767cf] whitespace-nowrap font-['Inconsolata'] text-[1.5rem] sm:text-[1.6rem] font-medium">
+                  {dollar} $
+                </div>
+                </>:null}
+
+
                     <p className="text-[#00000] font-semibold font-['Inconsolata'] text-[1.5rem] sm:text-[1.6rem] whitespace-nowrap h-[2.4rem] overflow-hidden text-ellipsis block heightDetail">
                       {date.toLocaleString()}
                     </p>
@@ -164,8 +200,16 @@ const IndividualNFT = ({ userinfo, nftData }) => {
 
                 <Share />
 
-                {address == nftData?.owner_address && user?.address == address ?
-                 <Sell nftHash={nftData?.hash}/> : null
+                {address == nftData?.owner_address && user?.address == address && nftData?.status =="verified"?
+                 <Sell nftHash={nftData?.hash} tokenId={nftData?.tokenId}/> : null
+                }
+
+                {address == nftData?.owner_address && user?.address == address && nftData?.status =="selling"?
+                     <CancelSelling itemId={nftData?.currentSellingId}/> : null
+                }
+
+                {address != nftData?.owner_address && user?.address == address && nftData?.status =="selling"?
+                     <Buy itemId={nftData?.currentSellingId} price={nftData?.price} />:null
                 }
 
                 {
@@ -211,4 +255,4 @@ const IndividualNFT = ({ userinfo, nftData }) => {
 
 export default IndividualNFT;
 
-export { getServerSideProps };
+export { getServerSideProps};
