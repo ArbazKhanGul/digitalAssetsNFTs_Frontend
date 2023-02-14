@@ -1,8 +1,7 @@
 import { ethers } from "ethers";
 import { toast } from "react-toastify";
 
-const cancelSelling =async (itemId,setShowModal,setLoader) => {
-console.log("🚀 ~ file: cancelSelling.js:5 ~ cancelSelling ~ itemId", itemId)
+const buyNft =async (tokenId,setShowModal,setLoader) => {
 
     try{
         const provider = new ethers.providers.Web3Provider(window?.ethereum);
@@ -10,10 +9,10 @@ console.log("🚀 ~ file: cancelSelling.js:5 ~ cancelSelling ~ itemId", itemId)
 
         const Abi = [
             // Cancel the market item
-            " function cancelMarketItem(uint256 itemId) public",
+            "function approveMarketplace(uint tokenId) public",
         ];
 
-        const marketContract = new ethers.Contract(process.env.marketAddress,Abi,signer);
+        const nftContract = new ethers.Contract(process.env.Address,Abi,signer);
 
         toast.success("Please check your metamask" , {
             position: "top-center",
@@ -23,7 +22,7 @@ console.log("🚀 ~ file: cancelSelling.js:5 ~ cancelSelling ~ itemId", itemId)
           setLoader("transaction waiting");
 
 
-        const res = await marketContract.cancelMarketItem(itemId);
+        const res = await nftContract.approveMarketplace(tokenId);
 
 
         let tx = await res.wait() // it return when transaction is mined
@@ -42,4 +41,4 @@ console.log("🚀 ~ file: cancelSelling.js:5 ~ cancelSelling ~ itemId", itemId)
                   });
         }
 }
-export default cancelSelling;
+export default buyNft;

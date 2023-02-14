@@ -1,8 +1,8 @@
 import { ethers } from "ethers";
 import { toast } from "react-toastify";
 
-export async function nftTokenCreate(price,textHash,router, setLoader,setHash) {
-console.log("🚀 ~ file: nftCreate.js ~ line 5 ~ nftTokenCreate ~ textHash", textHash)
+export async function nftTokenCreate(price,ipfspath, setLoader,setPath) {
+console.log("🚀 ~ file: nftCreate.js ~ line 5 ~ nftTokenCreate ~ ipfspath", ipfspath)
 
 
     try{
@@ -19,14 +19,14 @@ console.log("🚀 ~ file: nftCreate.js ~ line 4 ~ nftTokenCreate ~ price", price
         "function creatorOf(uint tokenId) public view returns(address)",
         //Event
         "event Creation(address indexed owner_address,string indexed tokenURI,uint indexed tokenId)",
-       
+
     ];
 
     const nftContract = new ethers.Contract(process.env.Address,Abi,signer);
     //send trasaction through metamask
     var options = {value: price};
 
-    const res = await nftContract.createToken(textHash,options);
+    const res = await nftContract.createToken(ipfspath,options);
     let tx = await res.wait() // it return when transaction is mined
 
      let abi = [ "event Creation(address indexed owner_address,uint indexed tokenId,string tokenURI)" ];
@@ -35,9 +35,8 @@ console.log("🚀 ~ file: nftCreate.js ~ line 4 ~ nftTokenCreate ~ price", price
      const {owner_address,tokenId ,tokenURI} = log?.args;
      console.log("🚀 ~ file: nftCreate.js:36 ~ nftTokenCreate ~ tokenId", tokenId)
 
-     if(tokenURI==textHash){
-        
-        setHash(tokenURI);
+     if(tokenURI==ipfspath){
+        setPath(tokenURI);
         setLoader("Token transaction verification...")
      }
      else{

@@ -1,10 +1,13 @@
 import Head from "next/head";
 import "react-toastify/dist/ReactToastify.css";
+import useSWR from "swr";
 import {
     useEffect, Navbar,  Footer, useState,
     useRouter, validateUser, getServerSideProps, toast, ToastContainer, useSelector,
     useDispatch, selectAddress, addAddress,NFTPortion,Work,TopCollections,Main,selectUser,addUser
 } from "../components"
+import { fetcherHome } from "../utils/fetcher";
+import useValidate from "../utils/useValidate";
 
 
 
@@ -12,27 +15,10 @@ import {
 
 export default function Home({userinfo}) {
 
-  console.log("🚀 ~ file: index.js ~ line 20 ~ Home ~ user", userinfo)
-  
 
-  const address = useSelector(selectAddress);
-  const [loading, setLoading] = useState(false);
-  const user = useSelector(selectUser);
-  const router = useRouter();
-  const dispatch = useDispatch();
+  const [loading, user, address] = useValidate(userinfo, "main");
+  const { data, error,isLoading  } = useSWR("/homepage", fetcherHome);
 
-
-  useEffect(() => {
-  dispatch(addUser(userinfo))
-  },[])
-
-
-  useEffect(() => {
-    validateUser(user,address,dispatch,router,setLoading,"main")
-
-    // load(address,dispatch,router,setLoading,"main");
-
-  }, [address,user]);
 
   return (
     <div>
@@ -54,9 +40,10 @@ export default function Home({userinfo}) {
         <>
           <Navbar></Navbar>
           <Main></Main>
-          <TopCollections></TopCollections>
+          <TopCollections error={error} data={data?.profiles} isLoading={isLoading}></TopCollections>
+
           <Work></Work>
-          <NFTPortion></NFTPortion>
+          <NFTPortion error={error} data={data?.nfts} isLoading={isLoading}></NFTPortion>
           <Footer></Footer>
         </>
       )}

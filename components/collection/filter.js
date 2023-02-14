@@ -3,6 +3,7 @@ import { filterCollectionSchema } from "../../schema/index"
 import { useRouter, useState } from "../"
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
+
 const Filter = ({ showItems }) => {
 
   const router = useRouter();
@@ -32,15 +33,15 @@ const Filter = ({ showItems }) => {
 
     onSubmit: async (values, action) => {
 
-      const isEmpty = Object.values(values).every(x => x === '');
-      if (isEmpty) {
-        toast.error('Please use at least one filter', {
-          position: "top-center",
-        })
-        return;
-      }
+      // const isEmpty = Object.values(values).every(x => x === '');
+      // if (isEmpty) {
+      //   toast.error('Please use at least one filter', {
+      //     position: "top-center",
+      //   })
+      //   return;
+      // }
 
-      let route='collection/1?'
+      let route='?'
       
       // var route =path.substr(0, path.indexOf('?'))   + '?'
       // console.log("🚀 ~ file: filter.js ~ line 46 ~ onSubmit: ~ route substring", route)
@@ -56,7 +57,7 @@ const Filter = ({ showItems }) => {
         }
       }
     }
-      
+
 
       console.log("🚀 ~ file: filter.js ~ line 49 ~ onSubmit: ~ route", route)
     router.push(route);

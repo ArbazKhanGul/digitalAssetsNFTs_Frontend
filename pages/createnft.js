@@ -23,7 +23,7 @@ const Item = ({ userinfo }) => {
   const [duplicateNft, changeDuplicate] = useState("");
   const [loader, setLoader] = useState(false);
   const [timeNotPass, setTimeNotPass] = useState(false);
-  const [hash, setHash] = useState("");
+  const [path, setPath] = useState("");
 
   const router = useRouter();
 
@@ -72,7 +72,6 @@ const Item = ({ userinfo }) => {
           nftDescription: values.nftDescription
         }
 
-          // let ipfsRes=await IPFS(reqObject);
 
         const response = await axios.post("/nftcreation", reqObject);
         console.log("🚀 ~ file: createnft.js ~ line 59 ~ onSubmit: ~ response", response)
@@ -85,7 +84,7 @@ const Item = ({ userinfo }) => {
           console.log("🚀 ~ file: createnft.js ~ line 66 ~ onSubmit: ~ response?.data?", response?.data)
           changeDuplicate("")
 
-          await nftTokenCreate(response?.data?.price, response?.data?.hash, router,setLoader,setHash);
+          await nftTokenCreate(response?.data?.price, response?.data?.ipfspath, setLoader,setPath);
 
         }
         else if(response?.data?.status == "timeNotPass"){
@@ -289,7 +288,7 @@ const Item = ({ userinfo }) => {
     colors={['#7f8c8d', '#95a5a6']}
     colorsTime={[5, 2]}
     onComplete={() => {
-      router.push(`/individualnft/${hash}`);
+      router.push(`/individualnft/${path}`);
     }}
   >
     {({ remainingTime }) => <h2 className="font-['Inconsolata'] text-[2rem] ">{remainingTime}</h2>}

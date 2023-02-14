@@ -1,20 +1,29 @@
 import Individual from './individual'
 import usePaginationNF from '../../utils/usePaginationNF';
 import Link from 'next/link'
-import PuffLoader from "react-spinners/PuffLoader";
+import PuffLoader from "react-spinners/puffLoader";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {useRouter} from '../'
+import { useEffect } from 'react';
 
 const Notification = ({page}) => {
 
-console.log("calling again");
-let router=useRouter();
- const { data, error, isLoading, isReachedEnd, mutate, size, setSize } = usePaginationNF();
-let obj={};
+    let router=useRouter();
+    const { data, error, isLoading, isReachedEnd, mutate, size, setSize } = usePaginationNF();
 
-if(page !="main"){
-  obj.scrollableTarget=`scrollableDiv`
-}
+
+    useEffect(() => {
+        const handleRouteChange = (url, { shallow }) => {
+          // SWR mutate function
+          mutate()
+        }
+        router.events.on('routeChangeComplete', handleRouteChange)
+        return () => {
+          router.events.off('routeChangeComplete', handleRouteChange)
+        }
+      }, [])
+
+
 
 
   return (
@@ -44,8 +53,7 @@ if(page !="main"){
           aria-label="Loading Spinner"
           data-testid="loader"
         />}
-        
-        {...obj}
+        scrollableTarget="scrollable"
 
         endMessage={<p className="text-[2.2rem] text-center py-[0.5rem] font-[Inconsolata] font-medium text-[#5f6668]">
           { error?"Something went wrong": data?.length?"Reached to the end":"Nothing to show"}</p>}
@@ -54,9 +62,9 @@ if(page !="main"){
         {data?.map((data,index)=>{
 
           return(
-            <Link href={`/notification/${data?._id}?status=${data?.status}`}  key={index}>
+            <Link href={`/notification/${data?._id}?status=${data?.status}`}   key={index}>
                <a>
-                <Individual key={index} index={1} data={data}/></a></Link>)
+                <Individual key={index} index={1} data={data} /></a></Link>)
                 
         })}
       </InfiniteScroll>

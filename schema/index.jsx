@@ -39,11 +39,22 @@ export const filterCollectionSchema=Yup.object({
 })
 
 
+export const filterNftSchema=Yup.object({
+    nftName:Yup.string().trim().min(2,"Minimum character should be 2").max(25,"Maximum character should be 20"),
+    ownerEmail:Yup.string().trim().email("Please enter valid email address"),
+    creatorEmail:Yup.string().trim().email("Please enter valid email address"),
+    ownerWalletAddress:Yup.string().trim().min(42,"Wallet address should be 42 character long").max(42,"Wallet address should be 42 character long"),
+    creatorWalletAddress:Yup.string().trim().min(42,"Wallet address should be 42 character long").max(42,"Wallet address should be 42 character long"),
+    minimumPrice: Yup.number().moreThan(-0.0000000000001,"you must specify a positive number").typeError('you must specify a positive number'),
+    maximumPrice: Yup.number().moreThan(-0.0000000000001,"you must specify a positive number").typeError('you must specify a positive number'),
+})
+
+
 export const NFTCreationSchema=Yup.object({
-    nftName:Yup.string().trim().required("Please Enter NFT Name").min(2,"Minimum character should be 2").max(25,"Maximum character should be 25"),
+    nftName:Yup.string().trim().required("Please Enter NFT Name").min(2,"Minimum character should be 2").max(20,"Maximum character should be 20"),
     nftLanguage:Yup.string().trim().required("Please choose NFT language"),
     nftDescription:Yup.string().trim().required("Please Enter NFT description").min(10,"Minimum character should be 10").max(250,"Maximum character should be 250"),
-    nftText:Yup.string().trim().required("Please Enter NFT Text").min(2,"Minimum character should be 3")
+    nftText:Yup.string().trim().required("Please Enter NFT Text").min(2,"Minimum character should be 2")
 
 })
 

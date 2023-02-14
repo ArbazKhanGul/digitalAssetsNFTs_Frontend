@@ -3,9 +3,9 @@ import { useEffect, useState,axios,useRouter } from '../';
 import {memo} from "react";
 
 
-function Pagination ({url,count,pageShow}) {
+function Pagination ({url,count,pageShow,div}) {
 
-  let pageCount=parseInt((count-1)/9);
+  let pageCount=parseInt((count-1)/div);
   let router=useRouter();
 
 
@@ -42,7 +42,7 @@ setmarginPage(()=>(0))
        let param=event.selected + 1
     
        const result = router.query
-       let route = `/collection/${param}`
+       let route = `/${url}/${param}`
     
        var size = Object.keys(result).length;
        if (size > 1 || ( result['id']===undefined && size >0 ) ) {

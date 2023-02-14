@@ -22,7 +22,7 @@ const buyNft =async (itemId,price,setShowModal,setLoader) => {
           setLoader("transaction waiting");
 
 
-        const res = await marketContract.createMarketSale(itemId,{value:price});
+        const res = await marketContract.createMarketSale(itemId,{value:price.toString()});
 
 
         let tx = await res.wait() // it return when transaction is mined

@@ -10,6 +10,15 @@ html
 {
   font-size: 10px;
 }
+.listitem ol,.listitem ul{
+  list-style-position: inside;
+}
+.listitem ul li{
+  list-style-type: disc;
+}
+.listitem ol li {
+  list-style-type: decimal
+}
 
 .bell-notification {
 color: #ffffff;
@@ -33,6 +42,8 @@ position: relative;
 
 }
 
+
+
 .heightDetail{
 height: 2.4rem !important;
 }
@@ -42,6 +53,15 @@ height:calc(100vh - 6.4rem)
 }
 button {
   cursor: pointer;
+}
+.ql-size-huge {
+  font-size: 3.3rem
+}
+.ql-size-large {
+  font-size: 2.8rem
+}
+.ql-size-small {
+  font-size: 1.8rem
 }
 .ql-container.ql-snow{ 
   /* border: none !important; */
@@ -300,6 +320,7 @@ background-clip: content-box, border-box;
 }
 .jt {
   justify-content: center;
+  margin-bottom: 3rem;
 }
 .hid{
   display: none;
@@ -320,6 +341,13 @@ background-clip: content-box, border-box;
   color:transparent;
 }
 .buttonnft:hover {
+  background-image: linear-gradient(137.22deg, rgba(234, 79, 234, 0.93) 24.03%, rgba(36, 158, 173, 0.93) 80.82%);
+border-radius: 35px;
+color:white;
+background-clip: unset;
+}
+
+.button_grad{
   background-image: linear-gradient(137.22deg, rgba(234, 79, 234, 0.93) 24.03%, rgba(36, 158, 173, 0.93) 80.82%);
 border-radius: 35px;
 color:white;
@@ -494,7 +522,8 @@ border-radius: 20px;
     width: 48%;
   }
   .jt {
-    justify-content: space-between;
+    justify-content: center;
+    column-gap:1.7rem
   }
 
   .formwid {
@@ -542,7 +571,8 @@ border-radius: 20px;
       width: 42%;
     }
     .jt {
-      justify-content: space-around;
+      justify-content: center;
+      column-gap:4.1rem
     }
     .widthCard {
       @apply w-[47%] mx-[1.5%]
@@ -563,7 +593,8 @@ border-radius: 20px;
       width: 34%;
     }
     .jt {
-      justify-content: space-around;
+      justify-content: center;
+      column-gap:4.1rem
     }
 
     .formwid {
@@ -584,7 +615,8 @@ border-radius: 20px;
       width: 29%;
     }
     .jt {
-      justify-content: space-between;
+      justify-content: flex-start;
+      column-gap:4.1rem
     }
     .hid{
       display: block;

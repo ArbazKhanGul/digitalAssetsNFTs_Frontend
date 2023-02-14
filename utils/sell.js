@@ -10,7 +10,7 @@ const sell =async (tokenIdArg,priceArg,router,setLoader,setShowModal,setChecker)
 
         const Abi = [
             // Create the market item
-            "function createMarketSale(uint256 itemId) public payable",
+            "function createMarketItem(uint256 tokenId,uint256 price) public ",
         ];
 
         const marketContract = new ethers.Contract(process.env.marketAddress,Abi,signer);
@@ -18,9 +18,9 @@ const sell =async (tokenIdArg,priceArg,router,setLoader,setShowModal,setChecker)
         toast.success("Please check your metamask" , {
             position: "top-center",
           });
-        //   setChecker("price")
-        //   setShowModal(false);
-        //   setLoader("transaction waiting");
+          setChecker("price")
+          setShowModal(false);
+          setLoader("transaction waiting");
 
 
         const res = await marketContract.createMarketItem(tokenIdArg,priceArg);
@@ -54,8 +54,11 @@ const sell =async (tokenIdArg,priceArg,router,setLoader,setShowModal,setChecker)
             setLoader(false);
 
             console.log("printing error",err.message);
-            if(err.message.startsWith("cannot estimate gas"))
-            {router.replace(router.asPath)
+            if(err.message.startsWith("Cannot estimate gas"))
+            { toast.error( "Cannot estimate gas Please try later" , {
+                position: "top-center",
+              });
+                router.replace(router.asPath)
                 //   router.reload(window.location.pathname)
             }
             else{

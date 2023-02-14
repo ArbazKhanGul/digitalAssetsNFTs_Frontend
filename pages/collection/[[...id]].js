@@ -5,39 +5,39 @@ import "react-toastify/dist/ReactToastify.css";
 import {
     useEffect, Navbar, Pagination, Footer, useState,
     useRouter, validateUser, getServerSideProps, toast, ToastContainer, useSelector,
-    useDispatch, selectAddress, addAddress, Card, selectUser, addUser, fetcher
+    useDispatch, selectAddress, addAddress, Card, selectUser, addUser
 } from "../../components"
+
 import getDataRoute from "../../utils/getDataRoute";
 import useSWR from 'swr'
-
+import useValidate from "../../utils/useValidate";
+import {fetcherCollection} from "../../utils/fetcher"
 
 const Collection = ({ userinfo }) => {
 
     const router = useRouter();
-    
-    let route=getDataRoute(router);
-    
-    const { data, error } = useSWR(route, fetcher);
+    let {route,paramid}=getDataRoute(router,"getcollection");
+    const { data, error } = useSWR(route, fetcherCollection);
     const [showItems, show] = useState(false);
 
 
+    const [loading, user, address] = useValidate(userinfo, "main");
 
 
-
-    const address = useSelector(selectAddress);
-    const [loading, setLoading] = useState(false);
-    const user = useSelector(selectUser);
-    const dispatch = useDispatch();
-
-
-    useEffect(() => {
-        dispatch(addUser(userinfo))
-    }, [])
+    // const address = useSelector(selectAddress);
+    // const [loading, setLoading] = useState(false);
+    // const user = useSelector(selectUser);
+    // const dispatch = useDispatch();
 
 
-    useEffect(() => {
-        validateUser(user, address, dispatch, router, setLoading, "main")
-    }, [address, user]);
+    // useEffect(() => {
+    //     dispatch(addUser(userinfo))
+    // }, [])
+
+
+    // useEffect(() => {
+    //     validateUser(user, address, dispatch, router, setLoading, "main")
+    // }, [address, user]);
 
 
     return <>
@@ -85,11 +85,13 @@ const Collection = ({ userinfo }) => {
                                     }) : ""
                             }
 
-
+{data?.user?.length==0 && !error? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3.3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
+                            OOPS!   Nothing to show...</div>) : ""
+                            }
                         </div>
                     </div>
                     {
-                        data?.count > 9 && paramid * 9 < data?.count + 9 ? <Pagination url={"collection"} count={data?.count} pageShow={paramid} /> : ""
+                        data?.count > 9 && paramid * 9 < data?.count + 9 ? <Pagination url={"collection"} count={data?.count} pageShow={paramid} div={9} /> : ""
                     }
                     <div>
 

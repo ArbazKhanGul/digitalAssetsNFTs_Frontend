@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { shortText } from "limit-text-js";
+import { useRouter } from "../index";
+import { usePresence } from "framer-motion";
 
 const Card = ({data}) => {
-    let {collectionName,authorName,email,profile,cover,volume,floorPrice} = data;
-    // console.log("🚀 ~ file: card.js ~ line 5 ~ Card ~ collectionName", collectionName)
-    return <>
-        <div className="border-[#87757587] border-2 widthCard rounded-[4rem] mt-[3rem] h-fit ">
+    let {collectionName,authorName,email,profile,cover,volume,floorPrice,_id} = data;
+ let router=useRouter();
+ return <>
+        <div onClick={()=>{router.push(`/individualprofile/${_id}`)}} className="cursor-pointer border-[#87757587] border-2 widthCard rounded-[4rem] mt-[3rem] h-fit ">
 
             <div>
                 <div>
@@ -54,18 +56,19 @@ const Card = ({data}) => {
                 </div> */}
                 <div className="flex px-[2rem] lg:px-[2.3rem] justify-between pt-[1rem] lg:pt-[1.5rem] box-border ">
                    <div className="flex flex-col"> 
-                    <span className="text-[#524848cf]  cardText font-medium font-['Inconsolata']">Volume </span>
-                    <span className="text-[#524848cf] cardText font-medium font-['Inconsolata'] whitespace-nowrap">Floor Price </span>
+                    <span className="text-[#524848cf]  cardText font-bold font-['Inconsolata']">Total Revenue </span>
+                    <span className="text-[#524848cf]  cardText font-bold font-['Inconsolata'] -mt-[0.4rem]">(Sold + Buy) </span>
+                    {/* <span className="text-[#524848cf] cardText font-medium font-['Inconsolata'] whitespace-nowrap">Floor Price </span> */}
                    </div>
 
                    <div className="flex flex-col ">
 
                    <span className="text-[#221f1fcf] cardText font-bold font-['Inconsolata'] whitespace-nowrap mr-[4] overflow-hidden text-ellipsis">
-                    
+
                    {shortText(volume,12 , "..")} BNB
                          </span>
-                    
-                    <span className="text-[#221f1fcf] cardText font-bold font-['Inconsolata'] whitespace-nowrap">  {shortText(floorPrice,12 , "..")} BNB</span>
+                         <span className="text-[#221f1fcf] cardText font-bold font-['Inconsolata'] whitespace-nowrap -mt-[0.4rem]"> &asymp; {shortText(floorPrice,12 , "..")} $</span> 
+                    {/* <span className="text-[#221f1fcf] cardText font-bold font-['Inconsolata'] whitespace-nowrap">  {shortText(floorPrice,12 , "..")} BNB</span> */}
                    </div>
                 </div>
             </div>
