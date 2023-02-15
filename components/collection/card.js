@@ -7,7 +7,7 @@ const Card = ({data}) => {
     let {collectionName,authorName,email,profile,cover,volume,floorPrice,_id} = data;
  let router=useRouter();
  return <>
-        <div onClick={()=>{router.push(`/individualprofile/${_id}`)}} className="cursor-pointer border-[#87757587] border-2 widthCard rounded-[4rem] mt-[3rem] h-fit ">
+        <div onClick={()=>{router.push(`/profile/${_id}`)}} className="cursor-pointer border-[#87757587] border-2 widthCard rounded-[4rem] mt-[3rem] h-fit ">
 
             <div>
                 <div>

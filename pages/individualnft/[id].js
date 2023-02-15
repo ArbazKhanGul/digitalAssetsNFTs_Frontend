@@ -317,7 +317,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
             <div className="mg flex justify-end my-[1.5rem]  font-['Inconsolata']">
 
 <button className="bg-blue-500 mr-[1.5rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold  px-12  py-[1rem] sm:px-14 rounded-full font-['Inconsolata'] tracking-wider"
-      onClick={() =>{router.push(`/individualprofile/${data?.ownerId}`)} }
+      onClick={() =>{router.push(`/profile/${data?.ownerId}`)} }
      >
   View Profile
 </button>

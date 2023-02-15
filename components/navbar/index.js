@@ -23,6 +23,7 @@ const Navbar = () => {
   console.log("🚀 ~ file: index.js ~ line 22 ~ Navbar ~ user", user);
 
   const router = useRouter();
+  console.log("Printing path name",router.query)
   const [showItems, show] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [notificationControl, setNotificationControl] = useState(false);
@@ -110,8 +111,8 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="inline-block links">
-              <Link href="/nft">
-                <a className={router.pathname == "/nft" ? "text-blue-600" : ""}>
+              <Link href="/nfts">
+                <a className={router.pathname == "/nfts" ? "text-blue-600" : ""}>
                   NFTs
                 </a>
               </Link>
@@ -153,7 +154,7 @@ const Navbar = () => {
             ) : (
               <>
                 <li className="inline-block links">
-                  <Link href="/">
+                  <Link href="/createnft">
                     <a
                       className={
                         router.pathname == "/createnft" ? "text-blue-600" : ""
@@ -187,10 +188,10 @@ const Navbar = () => {
                 </li>
 
                 <li className="inline-block links">
-                  <Link href="/profile">
+                  <Link href={`/profile/${user._id}`}>
                     <a
                       className={
-                        router.pathname == "/profile" ? "text-blue-600" : ""
+                        router.pathname.startsWith("/profile") && router.query.id== `${user._id}` ? "text-blue-600" : ""
                       }
                     >
                       <div className="flex items-center space-x-[0.4rem]">
@@ -322,12 +323,12 @@ const Navbar = () => {
                 </li>
               </a>
 
-              <Link href="/profile">
+              <Link href={`/profile/${user._id}`}>
                 <a>
                   <li
                     className={
                       " onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem] md:pl-[6rem] " +
-                      (router.pathname == "/profile"
+                      (router.pathname.startsWith("/profile") && router.query.id== `${user._id}`
                         ? "text-blue-600"
                         : "text-[#EAE1E1]")
                     }

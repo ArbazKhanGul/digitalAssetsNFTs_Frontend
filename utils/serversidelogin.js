@@ -16,7 +16,7 @@ export default async function getServerSideProps(context) {
 
 
         if (result?.data?.status === "success") {
-            console.log("printing result ", result?.data?.status)
+            console.log("printing result ", result?.data)
             return {
                 props: {
                     userinfo: result?.data?.user

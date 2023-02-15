@@ -10,22 +10,23 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { selectUser, addUser } from "../slice/user";
 import { useFormik } from "formik";
-// import load from "../utils/validate";
 import axios from "../utils/axiosconfiguration";
 import getServerSideProps from "../utils/serversidelogin"
 import validateUser from "../utils/validatUser";
+import useValidate from "../utils/useValidate";
+import ClipLoader from "react-spinners/ClipLoader";
+
 const profileUpdate = ({userinfo}) => {
   // const [showItems, show] = useState(false);
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
-  const address = useSelector(selectAddress);
-  const user = useSelector(selectUser);
   const [checker, setChecker] = useState(false);
   const profileRef = useRef(null);
   const coverRef = useRef(null);
 
+  const [loading,user,address]=useValidate(userinfo);
   const [profileInfo, setProfileInfo] = useState("");
   const [coverInfo, setcoverInfo] = useState("");
 
@@ -38,27 +39,26 @@ const profileUpdate = ({userinfo}) => {
     cover: "",
   };
 
-  useEffect(() => {
-    dispatch(addUser(userinfo))
-    },[])
+  // useEffect(() => {
+  //   dispatch(addUser(userinfo))
+  //   },[])
   
 
-  //validate token
-  useEffect(() => {
-    // load(address, dispatch, router, setLoading);
-    validateUser(user,address,dispatch,router,setLoading,"main")
-  }, [address]);
+  // //validate token
+  // useEffect(() => {
+  //   // load(address, dispatch, router, setLoading);
+  //   validateUser(user,address,dispatch,router,setLoading,"main")
+  // }, [address]);
 
   useEffect(() => {
     if (user) {
-      console.log("Running update user useEffect")
       setFieldValue("collectionName", user?.collectionName);
       setFieldValue("authorName", user?.authorName);
       setFieldValue("description", user?.description);
       setFieldValue("profile", "");
       setFieldValue("cover", "");
-      setProfileInfo(process.env.SERVER + "/" + user?.profile);
-      setcoverInfo(process.env.SERVER + "/" + user?.cover);
+      setProfileInfo(`${process.env.SERVER_URL}/images/${user?.profile}`);
+      setcoverInfo(`${process.env.SERVER_URL}/images/${user?.cover}`);
     }
   }, [user]);
 
@@ -75,8 +75,7 @@ const profileUpdate = ({userinfo}) => {
     validationSchema: UpdateSchema,
 
     onSubmit: async (values, action) => {
-      console.log(
-        "🚀 ~ file: profileUpdate.js ~ line 34 ~ onSubmit: ~ values",values);
+
       setChecker(true);
         let updateObject={};
 
@@ -105,35 +104,27 @@ const profileUpdate = ({userinfo}) => {
           updateObject.cover=values.cover
         }
 
-        console.log("🚀 ~ file: profileUpdate.js ~ line 72 ~ onSubmit: ~ updateObject", updateObject)
-
         if(Object.keys(updateObject).length === 0){
+          setChecker(false)
           return;
         }
+
       const formdata = new FormData();
       for (var key in updateObject) {
         formdata.append(key, values[key]);
       }
       try {
-        const access_token = localStorage.getItem("token");
-        const response = await axios.patch("/profileUpdate", formdata, {
-          headers: {
-            Authorization: `${access_token}`,
-          },
-        });
+
+        const response = await axios.patch("/profileUpdate", formdata);
 
         if (response?.data?.message == "success") {
-          
           if(response?.data?.user)
           dispatch(addUser(response?.data?.user));
 
-
-        console.log("🚀 ~ file: profileUpdate.js ~ line 116 ~ onSubmit: ~ response?.data?", response?.data?.user);
-          
         toast.success("Successfully update", {
             position: "top-center",
           });
-        
+
         }
       } catch (error) {
         console.log(
@@ -154,13 +145,9 @@ const profileUpdate = ({userinfo}) => {
       setChecker(false);
     },
   });
-  // console.log(
-  //   "🚀 ~ file: profileUpdate.js ~ line 109 ~ profileUpdate ~ errors",
-  //   errors
-  // );
+
 
   const preview = (file, type) => {
-    console.log("Calling preview");
     if (file == "") {
       console.log("empty file");
       return;
@@ -347,9 +334,24 @@ const profileUpdate = ({userinfo}) => {
                 hidden
               />
 
-              <button className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  mt-[1.2rem] mb-[4rem] sm:py-2 sm:px-14 rounded-xl font-['Inconsolata'] tracking-wider">
+              <button disabled={checker} className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  mt-[1.2rem] mb-[4rem] sm:py-2 sm:px-14 rounded-xl font-['Inconsolata'] tracking-wider">
                 Update
               </button>
+
+              {
+            checker ?
+             ( <div className="flex justify-center  mt-[4px]">
+
+            <ClipLoader
+              color={"#30DCBA"}
+              cssOverride={{ marginBottom: "20px" }}
+              size={110}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>)
+          :null
+        }
             </form>
           </div>
 

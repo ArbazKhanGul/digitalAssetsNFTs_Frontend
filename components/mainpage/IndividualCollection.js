@@ -8,7 +8,7 @@ const IndividualCollections = ({ num, collectionname, volume, price, image, id }
 
   return (<>
 
-    <div onClick={() => { router.push(`/individualprofile/${id}`) }} className={"hidden cursor-pointer sm:border-b-0 sm:flex border-[#b1b1b1]   justify-start space-y-[1rem] pl-[2.3rem] sm:pl-[0rem]  sm:pb-[0rem] sm:space-y-[0.5rem] sm:justify-around items-start sm:items-center  flex-col sm:flex-row font-['Inconsolata']" + (num != 9 ? "border-b-[1px] pb-[1rem]" : "")}>
+    <div onClick={() => { router.push(`/profile/${id}`) }} className={"hidden cursor-pointer sm:border-b-0 sm:flex border-[#b1b1b1]   justify-start space-y-[1rem] pl-[2.3rem] sm:pl-[0rem]  sm:pb-[0rem] sm:space-y-[0.5rem] sm:justify-around items-start sm:items-center  flex-col sm:flex-row font-['Inconsolata']" + (num != 9 ? "border-b-[1px] pb-[1rem]" : "")}>
 
       <div className="flex gap-[1.5rem] items-center w-[28%] overflow-hidden text-ellipsis">
         <div className="text-[#0B0A0A8A] text-[2rem] sm:text-[2rem] md:text-[2rem] font-bold font-['Inconsolata']" >{num}. </div>
