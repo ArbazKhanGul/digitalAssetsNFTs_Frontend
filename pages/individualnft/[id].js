@@ -28,16 +28,14 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
   const { data, error, isLoading } = useSWR(`/ownernfts/${nftSellingData?.owner_email}?nftName=${nftData?.name}`, fetcherOwnerNft);
 
-  const [dollar, setDollar] = useState("...");
+  const [dollar, setDollar] = useState(0);
 
   const BNBPrice = async () => {
     try {
 
       const client = Binance()
       let ticker = await client.prices({ symbol: 'BNBUSDT' });
-      setDollar((ethers.utils.formatUnits(nftSellingData?.price.toString(), 18) * ticker.BNBUSDT).toFixed(8))
-      console.log
-      console.log(`Price of BNB:,`, ticker);
+      setDollar(ticker?.BNBUSDT); 
     }
     catch (error) {
       console.log(error)
@@ -46,10 +44,10 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
 
   useEffect(() => {
-    if (nftSellingData?.status == "selling") {
+    if (nftSellingData?.status == "selling" || data?.nft?.length != 0) {
       BNBPrice();
     }
-  }, [nftSellingData])
+  }, [nftSellingData,data])
 
 
   let date = new Date(nftData?.creationDate);
@@ -87,9 +85,9 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
               <div className="w-[98.5%] overflow-hidden sm:w-[100%] nft_bord row-start-3 max-h-[43rem] lg:max-h-[60rem]  row-end-4 lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3">
 
-                <div className="w-[100%] listitem h-[100%] lg:h-[47rem] break-words flex justify-content items-center  overflow-auto relative p-[1.5rem] sm:p-[3rem] scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-[#FFF] scrollbar-thumb-rounded-xl scrollbar-track-rounded-full ">
+                <div className="w-[100%] listitem h-[100%] lg:h-[47rem] break-words flex justify-center items-center  overflow-auto relative p-[1.5rem] sm:p-[3rem] scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-[#FFF] scrollbar-thumb-rounded-xl scrollbar-track-rounded-full ">
 
-                  <h2 className="text-[2.3rem]  text-['#2d3436'] break-words overflow-y-hidden font-['Inconsolata'] font-normal w-[100%]  text-justify max-h-[100%] ">
+                  <h2 className="!text-[2.3rem]  text-['#2d3436'] break-words overflow-y-hidden font-['Inconsolata'] font-normal w-[100%]  text-center max-h-[100%] ">
                     {parse(nftData?.text?nftData.text:"")}
 
                 </h2>
@@ -134,10 +132,11 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
                     {nftSellingData?.status == "selling" ?
                       <> <p className="text-[#686767cf] font-['Inconsolata']  text-[1.6rem] font-medium whitespace-nowrap overflow-x-scroll scrollbar-none pt-[0.2rem]">
-                        {ethers.utils.formatUnits(nftSellingData?.price.toString(), 18).toString()} BNB
+                        {ethers.utils.formatUnits(nftSellingData?.price.toLocaleString('fullwide', {useGrouping:false}), 18)} BNB
+                     
                       </p>
                         <div className="text-[#686767cf] whitespace-nowrap font-['Inconsolata'] text-[1.6rem] sm:text-[1.6rem] font-medium overflow-x-scroll scrollbar-none">
-                          {dollar} $
+        {(ethers.utils.formatUnits(nftSellingData?.price.toLocaleString('fullwide', {useGrouping:false}), 18) * dollar).toFixed(2)} USD
                         </div>
                       </> : null}
 
@@ -300,7 +299,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
                 (!error && data) ?
 
                   data?.nft?.map((data, index) => {
-                    return <Individualnft key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} nfttext={data?.title}  id={data?.tokenURI}></Individualnft>
+                    return <Individualnft key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} nfttext={data?.title}  id={data?.tokenURI} priceDollar={(ethers.utils.formatUnits(data?.price.toLocaleString('fullwide', {useGrouping:false}), 18) * dollar).toFixed(2)}></Individualnft>
 
 
                   }) : ""

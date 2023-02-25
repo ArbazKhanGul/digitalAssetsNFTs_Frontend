@@ -2,14 +2,12 @@ import { memo } from "react";
 import { filterCollectionSchema } from "../../schema/index"
 import { useRouter, useState } from "../"
 import { useFormik } from "formik";
-import { toast } from "react-toastify";
 
 const Filter = ({ showItems }) => {
 
   const router = useRouter();
 
   let initialValues = {
-    collectionName: "",
     authorName: "",
     email: "",
     walletAddress: "",
@@ -72,24 +70,7 @@ return (
 
       <div className="flex flex-wrap md:space-x-[1.5rem] md:justify-center lg:justify-center lg:mr-[0.6rem] xl:mr-[0rem] xl:justify-center lg:space-x-[1rem] xl:space-x-[1.8rem] px-[1.5rem] md:px-[1rem] pb-[1.5rem] ">
 
-        <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:ml-[1.8rem] mt-[1.5rem] w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem]">
-          <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
-            <input type="text"
-              className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-              placeholder="Enter Collection Name"
-              name="collectionName"
-              value={values.collectionName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              autoComplete="off"
-            />
-          </div>
-          {errors.collectionName && touched.collectionName ? (
-            <p className="text-red-500 text-[1.4rem] errors block">
-              {errors.collectionName}
-            </p>
-          ) : null}
-        </div>
+
 
 
 
@@ -117,7 +98,7 @@ return (
           <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
             <input type="text"
               className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-              placeholder="Enter collection author name"
+              placeholder="Enter  author name"
               name="authorName"
               value={values.authorName}
               onChange={handleChange}
@@ -139,7 +120,7 @@ return (
           <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
             <input type="text"
               className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-              placeholder="Enter collection author name"
+              placeholder="Enter author wallet Address"
               name="walletAddress"
               value={values.walletAddress}
               onChange={handleChange}

@@ -2,14 +2,13 @@ import useSWRInfinite from 'swr/infinite'
 import notificationFetcher from "./notificationFetcher"
 
 
-function usePaginationNF() {
+function usePaginationNF(state) {
+// console.log("🚀 ~ file: usePaginationNF.js:6 ~ usePaginationNF ~ state", state)
 
 
     const getKey = (pageIndex, previousPageData) => {
-        console.log("🚀 ~ file: usePaginationNF.js:9 ~ getKey ~ previousPageData", previousPageData)
-        console.log("🚀 ~ file: usePaginationNF.js:9 ~ getKey ~ pageIndex", pageIndex)
         if (previousPageData && !previousPageData.length) return null // reached the end
-        return `/notification?skip=${pageIndex * 12}`
+        return `/notification?skip=${pageIndex * 12}&state=${state}`
       }
 
      const { data, error, isLoading, isValidating, mutate, size, setSize } = useSWRInfinite(getKey,notificationFetcher)

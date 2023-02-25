@@ -22,11 +22,19 @@ console.log("🚀 ~ file: nftCreate.js ~ line 4 ~ nftTokenCreate ~ price", price
 
     ];
 
+
     const nftContract = new ethers.Contract(process.env.Address,Abi,signer);
     //send trasaction through metamask
+    
     var options = {value: price};
+    
+    toast.success("Please check your metamask", {
+        position: "top-center",
+      });
+    
+      let tokenipfs=`${process.env.ipfsURL}${ipfspath}`;
 
-    const res = await nftContract.createToken(ipfspath,options);
+    const res = await nftContract.createToken(tokenipfs,options);
     let tx = await res.wait() // it return when transaction is mined
 
      let abi = [ "event Creation(address indexed owner_address,uint indexed tokenId,string tokenURI)" ];
@@ -35,8 +43,8 @@ console.log("🚀 ~ file: nftCreate.js ~ line 4 ~ nftTokenCreate ~ price", price
      const {owner_address,tokenId ,tokenURI} = log?.args;
      console.log("🚀 ~ file: nftCreate.js:36 ~ nftTokenCreate ~ tokenId", tokenId)
 
-     if(tokenURI==ipfspath){
-        setPath(tokenURI);
+     if(tokenURI==tokenipfs){
+        setPath(ipfspath);
         setLoader("Token transaction verification...")
      }
      else{
@@ -46,9 +54,15 @@ console.log("🚀 ~ file: nftCreate.js ~ line 4 ~ nftTokenCreate ~ price", price
     }
     catch (err) {
         setLoader(false);
-        console.log(err)
+            if (err.message.startsWith("user rejected"))
+            {
+                toast.error("User reject sign message request", {
+                    position: "top-center",
+                  });
+            } 
+            else{       
         toast.error(err.message, {
             position: "top-center",
-          });
+          });}
     }
 }

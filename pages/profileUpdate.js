@@ -32,7 +32,6 @@ const profileUpdate = ({userinfo}) => {
 
 
   let initialValues = {
-    collectionName: "",
     authorName: "",
     description: "",
     profile: "",
@@ -52,7 +51,6 @@ const profileUpdate = ({userinfo}) => {
 
   useEffect(() => {
     if (user) {
-      setFieldValue("collectionName", user?.collectionName);
       setFieldValue("authorName", user?.authorName);
       setFieldValue("description", user?.description);
       setFieldValue("profile", "");
@@ -79,11 +77,7 @@ const profileUpdate = ({userinfo}) => {
       setChecker(true);
         let updateObject={};
 
-        if(user?.collectionName!=values.collectionName.trim())
-        {
-          updateObject.collectionName=values.collectionName;
-        }
-
+      
         if(user?.authorName!=values.authorName.trim())
         {
           updateObject.authorName=values.authorName;
@@ -226,28 +220,6 @@ const profileUpdate = ({userinfo}) => {
 
           <div className="ml-[2.5rem] md:ml-[5rem] mr-[2.5rem]">
             <form onSubmit={handleSubmit}>
-              <div className="mt-[1.5rem]">
-                <h2 className="font-['Inconsolata'] text-[2.4rem] font-medium">
-                  Collection Name
-                </h2>
-                <div className="input_bord_grad w-[100%] md:w-[50rem]  mt-[0.8rem] ">
-                  <input
-                    type="text"
-                    className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-                    placeholder="Collection Name..."
-                    name="collectionName"
-                    value={values?.collectionName}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    autoComplete="off"
-                  />
-                </div>
-                {errors.collectionName && touched.collectionName ? (
-                  <p className="text-red-500 text-[1.4rem] errors block">
-                    {errors.collectionName}
-                  </p>
-                ) : null}
-              </div>
 
               <div className="mt-[1.5rem]">
                 <h2 className="font-['Inconsolata'] text-[2.4rem] font-medium">
@@ -302,6 +274,24 @@ const profileUpdate = ({userinfo}) => {
                 ref={profileRef}
                 accept="image/*"
                 onChange={(e) => {
+
+                  let size=e.target?.files[0]?.size / 1024 ** 2;
+                  console.log("🚀 ~ file: profileUpdate.js:307 ~ profileUpdate ~ size", size)
+                  if(size>4){
+                    e.target.value = null;
+                    setProfileInfo(`${process.env.SERVER_URL}/images/${user?.profile}`)
+                    setFieldValue(
+                      "profile",
+                       ""
+                    );
+                    toast.error("Picture size must be less than 4 MB", {
+                      position: "top-center",
+                    });
+                    return;
+                  }
+
+
+
                   preview(
                     e.target?.files[0] ? e.target?.files[0] : "",
                     "profile"
@@ -322,6 +312,22 @@ const profileUpdate = ({userinfo}) => {
                 ref={coverRef}
                 accept="image/*"
                 onChange={(e) => {
+                  
+                  let size=e.target?.files[0]?.size / 1024 ** 2;
+                  
+                  if(size>4){
+                    e.target.value = null;
+                    setcoverInfo(`${process.env.SERVER_URL}/images/${user?.cover}`)
+                    setFieldValue(
+                      "cover",
+                       ""
+                    );
+                    toast.error("Picture size must be less than 4 MB", {
+                      position: "top-center",
+                    });
+                    return;
+                  }
+
                   preview(
                     e.target?.files[0] ? e.target?.files[0] : "",
                     "cover"
@@ -334,7 +340,7 @@ const profileUpdate = ({userinfo}) => {
                 hidden
               />
 
-              <button disabled={checker} className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  mt-[1.2rem] mb-[4rem] sm:py-2 sm:px-14 rounded-xl font-['Inconsolata'] tracking-wider">
+              <button disabled={checker} type="submit" className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  mt-[1.2rem] mb-[4rem] sm:py-2 sm:px-14 rounded-xl font-['Inconsolata'] tracking-wider">
                 Update
               </button>
 

@@ -3,6 +3,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import { useState, useRouter } from "../"
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 // import {ethers} from 'ethers'
+import { AiOutlineClose } from "react-icons/ai";
 
 function Approval({ tokenId }) {
 
@@ -72,19 +73,23 @@ function Approval({ tokenId }) {
             <div className="relative  my-6 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%]">
 
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                <div className="flex items-start justify-between py-5 px-[2rem] border-b border-solid border-slate-200 rounded-t">
                   <h3 className="text-3xl font-semibold">
 
                     Buy NFT
 
                   </h3>
                   <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}
+                    className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    onClick={() => {
+                      setShowModal(false)
+                      setLoader(false)
+                    }
+                    }
                   >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
+                                        <AiOutlineClose className="text-[red] text-[2.2rem]"></AiOutlineClose>
+
+      
                   </button>
                 </div>
                 {/*body*/}
@@ -94,7 +99,7 @@ function Approval({ tokenId }) {
 
 
                   <div>
-                    <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:mx-[1.8rem] mt-[0.5rem] ">
+                    <div className="mx-[1.5rem] lg:ml-[1rem] xl:mx-[1.8rem] mt-[0.5rem] ">
                       <h2 className="font-['Inconsolata'] text-[#0D1344E5']  text-[1.8rem] font-medium ml-[0.3rem] mb-[0.4rem] tracking-wider">
                         For selling this nft first you have to approved that marketplace can transfer the ownership of this nft from your account address to marketplace contract address
                         but if you cancel the selling in future at any time then ownership transfer back to you
@@ -116,7 +121,7 @@ function Approval({ tokenId }) {
                     Confirm
                   </button>
 
-                  <button
+                  {/* <button
                     className="bg-red-500 mr-[2rem]  hover:bg-red-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] rounded-full font-['Inconsolata'] tracking-wider"
                     type="button"
                     onClick={() => {
@@ -126,7 +131,7 @@ function Approval({ tokenId }) {
                     }
                   >
                     Close
-                  </button>
+                  </button> */}
 
                 </div>
               </div>

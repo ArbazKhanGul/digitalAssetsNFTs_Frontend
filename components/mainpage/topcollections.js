@@ -23,11 +23,11 @@ const TopCollections=({error,data,isLoading})=>{
         
 
             <div className="ml-[4rem] text-[2.3rem] sm:text-[2rem]  md:text-[2.5rem] w-[26%] pl-[2rem] box-border colgrad">Profile</div>
-            <div className="ml-[9.5rem] text-[2.3rem] sm:text-[2rem]  md:text-[2.5rem] text-center  colgrad flex flex-col w-[22%]"><span>Total Revenue</span>
-            <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]">(Buy + Sell)</span>
+            <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.5rem] text-center  colgrad flex flex-col w-[22%]"><span>Total Revenue</span>
+            <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]"></span>
              </div>
-             <div className="ml-[9.5rem] text-[2.3rem] sm:text-[2rem]  md:text-[2.5rem] text-center colgrad flex flex-col w-[22%]"><span>Total Items</span>
-            <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]">(Create + Buy)</span>
+             <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.5rem] text-center colgrad flex flex-col w-[22%]"><span>Total Items</span>
+            <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]">(Sell + Buy)</span>
              </div>
         </div>
         {
@@ -56,7 +56,7 @@ const TopCollections=({error,data,isLoading})=>{
                                 (!error && data) ?
 
                                     data?.map((data, index) => {
-                                        return <IndividualCollections key={index} num={index+1} collectionname={data?.authorName} volume={data?.volume} price={data?.itemsCreated + data?.itemsBuy} image={data?.profile} id={data?._id}></IndividualCollections> 
+                                        return <IndividualCollections key={index} num={index+1} authorname={data?.authorName} volume={data?.volume} items={data?.itemsSell + data?.itemsBuy} image={data?.profile} id={data?._id}></IndividualCollections> 
 
                                     }) : ""
                             }

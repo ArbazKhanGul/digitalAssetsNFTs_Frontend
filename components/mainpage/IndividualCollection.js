@@ -1,9 +1,10 @@
 import { memo } from "react";
 import Image from "next/image";
 import { useRouter } from "../index"
+import { ethers } from 'ethers'
 
-const IndividualCollections = ({ num, collectionname, volume, price, image, id }) => {
-  console.log("🚀 ~ file: IndividualCollection.js:5 ~ IndividualCollections ~ id", id)
+const IndividualCollections = ({ num, authorname, volume, items, image, id }) => {
+
   let router = useRouter();
 
   return (<>
@@ -21,11 +22,11 @@ const IndividualCollections = ({ num, collectionname, volume, price, image, id }
             //   objectFit="cover"
             /></div>
         </div>
-        <div className=" text-[2rem] sm:text-[2rem] md:text-[2.2rem] text-[#5F5454CF] font-['Inconsolata'] text-ellipsis overflow-hidden">{collectionname} </div>
+        <div className=" text-[2rem] sm:text-[2rem] md:text-[2.2rem] text-[#5F5454CF] font-['Inconsolata'] text-ellipsis overflow-hidden">{authorname} </div>
       </div>
 
-      <div className="text-[#5F5454CF] w-[20%] text-center ml-[3.4rem] sm:ml-[0rem] text-[1.8rem] sm:text-[1.8rem] md:text-[2.2rem] font-['Inconsolata']">  $ {volume}</div>
-      <div className="text-[#5F5454CF] w-[20%] text-center ml-[3.4rem] sm:ml-[0rem] text-[1.8rem] sm:text-[1.8rem] md:text-[2.2rem] font-['Inconsolata']">${price}</div>
+      <div className="text-[#5F5454CF] w-[20%] text-center ml-[3.4rem] sm:ml-[0rem] text-[1.8rem] sm:text-[1.8rem] md:text-[2.2rem] font-['Inconsolata'] whitespace-nowrap overflow-hidden text-ellipsis">  {ethers.utils.formatUnits(volume.toLocaleString('fullwide', {useGrouping:false}), 18)} BNB</div>
+      <div className="text-[#5F5454CF] w-[20%] text-center ml-[3.4rem] sm:ml-[0rem] text-[1.8rem] sm:text-[1.8rem] md:text-[2.2rem] font-['Inconsolata'] whitespace-nowrap overflow-hidden text-ellipsis">{items}</div>
     </div>
 
 
@@ -45,12 +46,12 @@ const IndividualCollections = ({ num, collectionname, volume, price, image, id }
           /></div>
         <div className="flex-1 font-['Inconsolata'] overflow-hidden break-words text-[1.8rem] sm:text-[2rem] md:text-[2.2rem] text-[#5F5454CF] ">
           <div className="text-black font-bold overflow-x-auto break-words  pr-[0.3rem]">
-            {collectionname}
+            {authorname}
             </div>
 
 
           <div className="flex justify-between">
-            <div className="text-[#5F5454CF] text-[1.7rem] font-['Inconsolata']"><span className="inline-block sm:hidden text-[1.7rem] colgrad">Total Revenue  :   </span> ${volume}</div>
+            <div className="text-[#5F5454CF] text-[1.7rem] font-['Inconsolata']"><span className="inline-block sm:hidden text-[1.7rem] colgrad">Revenue     </span><span className="whitespace-nowrap"> {ethers.utils.formatUnits(volume.toLocaleString('fullwide', {useGrouping:false}), 18)} BNB </span></div>
             {/* <div className="text-[#5F5454CF] ml-[3.4rem] sm:ml-[0rem] text-[1.8rem] sm:text-[1.8rem] md:text-[2rem] font-['Inter']">  ${volume}</div> */}
 
           </div>

@@ -1,15 +1,33 @@
-import Button from "./button"
 import IndividualNFT from "./individualnft"
 import {memo} from "react";
 import ClipLoader from "react-spinners/PuffLoader";
 import { useRouter } from "next/router";
+import Binance from 'binance-api-node'
+import {useState,useEffect} from "react";
+import { ethers } from 'ethers'
+
+
+
 const NFTPortion =({error,data,isLoading})=>{
     let router=useRouter();
+    const[dollar,setDollar]=useState(0)
 
-    let temp=[{nftname:"Home",creator:"arbazkhangul123@gmail.com",owner:"owner@gmail.com",creationdate:"10/9/2202  24:33:12",nfttext:"If you continue work ",price:"0.1"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10 /9/2002",nfttext:"If you continue work hard success will follow you",price:"0.1"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10 /9/2002",nfttext:"If you continue work hard success will follow you",price:"0.1"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10 /9/2002",nfttext:"If you continue work hard success will follow you",price:"0.1"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10 /9/2002",nfttext:"If you continue work hard success will follow you",price:"0.1"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10 /9/2002",nfttext:"If you continue work  success will follow you",price:"0.1"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10 /9/2002",nfttext:"If you continue work hard success will follow you",price:"0.1"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10/9/2002",nfttext:"If you continue work hard success will follow you",price:"0.1"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10/9/2002",nfttext:"If you continue work hard success will follow you",price:"0.1"}
-]
-
-
+    const BNBPrice = async () => {
+        try {
+    
+          const client = Binance()
+          let ticker = await client.prices({ symbol: 'BNBUSDT' });
+          setDollar(ticker?.BNBUSDT)
+        }
+        catch (error) {
+          console.log(error)
+        }
+      }
+    
+      useEffect(() => {
+          BNBPrice();
+      }, [])
+    
     return (<div>
         <div className="nft w-fit text-[2.7rem] ml-[2rem] sm:text-[3rem] md:text-[3.7rem] font-['DynaPuff'] mt-[1.2rem] sm:ml-[3.5rem] md:ml-[4rem]">
     Trending NFTs: 
@@ -37,14 +55,14 @@ const NFTPortion =({error,data,isLoading})=>{
           </div>):null
         }
 
-{error ? (<div className=" text-[red] text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['Inconsolata'] mt-[0.5rem]">
-                                Error in getting NFTs Please try later</div>) : ""
+{error ? (<div className=" text-[red] font-bold text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['Inconsolata'] mt-[0.5rem]">
+                                Error in getting NFTs Please try later!</div>) : ""
                             }
 
                             {
                                 (!error && data) ?
                                    data?.map((data, index) => {
-                                        return <IndividualNFT key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} nfttext={data?.title} id={data?.tokenURI}></IndividualNFT>
+                                        return <IndividualNFT key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} nfttext={data?.title} id={data?.tokenURI} priceDollar={(ethers.utils.formatUnits(data?.price.toLocaleString('fullwide', {useGrouping:false}), 18) * dollar).toFixed(2)}></IndividualNFT>
                                     }) : ""
                             }
 

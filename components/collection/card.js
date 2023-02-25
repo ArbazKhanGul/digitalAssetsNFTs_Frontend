@@ -1,10 +1,9 @@
 import Image from "next/image";
 import { shortText } from "limit-text-js";
 import { useRouter } from "../index";
-import { usePresence } from "framer-motion";
-
-const Card = ({data}) => {
-    let {collectionName,authorName,email,profile,cover,volume,floorPrice,_id} = data;
+import { ethers } from 'ethers'
+const Card = ({data,priceDollar}) => {
+    let {authorName,email,profile,cover,volume,floorPrice,_id} = data;
  let router=useRouter();
  return <>
         <div onClick={()=>{router.push(`/profile/${_id}`)}} className="cursor-pointer border-[#87757587] border-2 widthCard rounded-[4rem] mt-[3rem] h-fit ">
@@ -42,7 +41,7 @@ const Card = ({data}) => {
             <div className=" pb-[2rem]">
 
                 <div className="text-[#545151] flex mt-[0.5rem] lg:mt-[1rem] justify-center w-[100%] font-['DynaPuff'] text-[2.2rem] font-medium">
-                {shortText(collectionName.charAt(0).toUpperCase() + collectionName.slice(1), 20, "...")}
+                {shortText(authorName.charAt(0).toUpperCase() + authorName.slice(1), 20, "...")}
                 </div>
 
                 <div className="flex justify-center lg:mt-[0.3rem]">
@@ -54,21 +53,21 @@ const Card = ({data}) => {
                     <span>Email </span>
                     <span>{email}</span>
                 </div> */}
-                <div className="flex px-[2rem] lg:px-[2.3rem] justify-between pt-[1rem] lg:pt-[1.5rem] box-border ">
-                   <div className="flex flex-col"> 
-                    <span className="text-[#524848cf]  cardText font-bold font-['Inconsolata']">Total Revenue </span>
-                    <span className="text-[#524848cf]  cardText font-bold font-['Inconsolata'] -mt-[0.4rem]">(Sold + Buy) </span>
+                <div className="flex w-[100%] px-[2rem] lg:px-[2.3rem] justify-between pt-[1rem] lg:pt-[1.5rem] box-border ">
+                   <div className="flex flex-col w-[10rem]"> 
+                    <span className="text-[#383838] text-[2rem] cardText font-bold font-['Inconsolata']">Revenue </span>
+                    {/* <span className="text-[#524848cf]  cardText font-bold font-['Inconsolata'] -mt-[0.4rem]">(Sell + Buy) </span> */}
                     {/* <span className="text-[#524848cf] cardText font-medium font-['Inconsolata'] whitespace-nowrap">Floor Price </span> */}
                    </div>
 
-                   <div className="flex flex-col ">
+                   <div className="flex flex-col overflow-x-auto flex-1 scrollbar-none ml-[1rem]">
 
-                   <span className="text-[#221f1fcf] cardText font-bold font-['Inconsolata'] whitespace-nowrap mr-[4] overflow-hidden text-ellipsis">
+                   <span className="text-[#221f1fcf] block cardText font-bold font-['Inconsolata'] text-right whitespace-nowrap mr-[4]  overflow-hidden text-ellipsis">
 
-                   {shortText(volume,12 , "..")} BNB
+                   {ethers.utils.formatUnits(volume.toLocaleString('fullwide', {useGrouping:false}), 18)} BNB 
                          </span>
-                         <span className="text-[#221f1fcf] cardText font-bold font-['Inconsolata'] whitespace-nowrap -mt-[0.4rem]"> &asymp; {shortText(floorPrice,12 , "..")} $</span> 
-                    {/* <span className="text-[#221f1fcf] cardText font-bold font-['Inconsolata'] whitespace-nowrap">  {shortText(floorPrice,12 , "..")} BNB</span> */}
+                         {/* <span className="w-[100%] text-[#221f1fcf] cardText block font-bold font-['Inconsolata'] whitespace-nowrap mr-[4] -mt-[0.4rem]  overflow-hidden text-ellipsis text-right"> &asymp; $ {priceDollar}
+                         </span>  */}
                    </div>
                 </div>
             </div>

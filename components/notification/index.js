@@ -4,12 +4,14 @@ import Link from 'next/link'
 import PuffLoader from "react-spinners/PuffLoader";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {useRouter} from '../'
+import { useState } from 'react';
 
 const Notification = ({page}) => {
 
-console.log("calling again");
+  const [state,setState]=useState(true);
+
 let router=useRouter();
- const { data, error, isLoading, isReachedEnd, mutate, size, setSize } = usePaginationNF();
+ const { data, error, isLoading, isReachedEnd, mutate, size, setSize } = usePaginationNF(state);
 let obj={};
 
 if(page !="main"){
@@ -19,14 +21,13 @@ if(page !="main"){
 
   return (
     <>
-          <div className=" flex items-center justify-between border-b-[1px] border-[#d4dee2] pb-[0.5rem] pt-[1.2rem]">
+          <div className="px-[1.5rem] flex items-center justify-between border-b-[1px] border-[#d4dee2] pb-[0.5rem] pt-[1.2rem]">
       <h2 className="text-[2.3rem] font-bold">Notifications</h2>
-      {page!="main"?<h2 className="text-[2rem] font-medium text-[#3e8ef0] pr-[1rem] cursor-pointer" onClick={()=>{router.push("/notification")}}>See All</h2>:""}
+      {/* {page!="main"?<h2 className="text-[2rem] font-medium text-[#3e8ef0] pr-[1rem] cursor-pointer" onClick={()=>{router.push("/notification")}}>See All</h2>:""} */}
       </div>
       <div className="flex space-x-[1rem] mt-[1rem]  items-center ml-[1.5rem] mb-[0.5rem]">
-        <h2 className="font-['DynaPuff'] text-[1.7rem] font-medium w-fit">All</h2>
-        <h2 className="font-['DynaPuff'] text-[1.7rem] font-medium bg-[#E7F3FF] w-fit text-[#3e8ef0] py-[0.7rem] px-[2rem] rounded-[2rem]">Unread</h2>
-       
+        <h2 onClick={()=>setState(true)} className={`font-['DynaPuff'] text-[1.7rem] font-medium cursor-pointer py-[0.7rem] px-[2rem] w-fit ${state?"bg-[#E7F3FF] text-[#3e8ef0] rounded-[2rem]":""}`}>All</h2>
+        <h2 onClick={()=>setState(false)} className={`font-['DynaPuff'] text-[1.7rem] font-medium cursor-pointer py-[0.7rem] px-[2rem] w-fit ${!state?"bg-[#E7F3FF] text-[#3e8ef0]  rounded-[2rem]":""}`}>Unread</h2>
       </div>
 
 
@@ -57,7 +58,6 @@ if(page !="main"){
             <Link href={`/notification/${data?._id}?status=${data?.status}`}  key={index}>
                <a>
                 <Individual key={index} index={1} data={data}/></a></Link>)
-                
         })}
       </InfiniteScroll>
 

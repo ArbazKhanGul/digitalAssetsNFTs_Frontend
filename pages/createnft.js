@@ -24,6 +24,7 @@ const Item = ({ userinfo }) => {
   const [loader, setLoader] = useState(false);
   const [timeNotPass, setTimeNotPass] = useState(false);
   const [path, setPath] = useState("");
+  const [type, setType] = useState("");
 
   const router = useRouter();
 
@@ -81,7 +82,6 @@ const Item = ({ userinfo }) => {
           setTimeNotPass(false);
           setLoader("Waiting for transaction confirmation and mined transaction...");
 
-          console.log("🚀 ~ file: createnft.js ~ line 66 ~ onSubmit: ~ response?.data?", response?.data)
           changeDuplicate("")
 
           await nftTokenCreate(response?.data?.price, response?.data?.ipfspath, setLoader,setPath);
@@ -90,11 +90,13 @@ const Item = ({ userinfo }) => {
         else if(response?.data?.status == "timeNotPass"){
           setLoader(false);
            setTimeNotPass(Math.ceil(response?.data?.time / 60000));
+           setType(response?.data?.type)
         }
         else if (response?.data?.status == "duplicate") {
           setLoader(false);
           setTimeNotPass(false);
-          toast.error("Nft with this text already exist ", {
+          setType(response?.data?.type)
+          toast.error(`Nft with this ${response?.data?.type} already exist `, {
             position: "top-center",
           });
           changeDuplicate(response?.data?.result)
@@ -299,8 +301,8 @@ const Item = ({ userinfo }) => {
                  { timeNotPass?(
                       <div className="flex justify-center">
                       <h2 className="mb-[2rem] text-justify w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 font-['Inconsolata'] text-[1.4rem] text-[red]">
-                        NFT with the same text is also present but that NFT is waiting for transaction confirmation if that transaction
-                        is not mined in {timeNotPass} minutes or some error come in transaction confirmation then you can use this text for another NFT after {timeNotPass} minutes so please wait untill the specified time is pass
+                        NFT with the same {type} is also present but that NFT is waiting for transaction confirmation if that transaction
+                        is not mined in {timeNotPass} minutes or some error come in transaction confirmation then you can use this {type} for another NFT after {timeNotPass} minutes so please wait untill the specified time is pass
                       </h2>
                     </div>  ):""
                  }
@@ -310,10 +312,10 @@ const Item = ({ userinfo }) => {
                   (
                     <>
                       <div className="flex justify-center">
-                        <h2 className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 font-['Inconsolata'] text-[2.2rem] text-[red]">Your text match with below nft text:</h2>
+                        <h2 className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 font-['Inconsolata'] text-[2.2rem] text-[red]">Your Nft {type} match with below nft {type}:</h2>
                       </div>
                       <div class="flex justify-center mb-[2rem]">
-                        <IndividualNFT index={1} nftname={duplicateNft.nftName} owner={duplicateNft.owner_email} creator={duplicateNft.creator_email} price={duplicateNft.price} creationdate={duplicateNft.createdAt} nfttext={duplicateNft.title}></IndividualNFT>
+                        <IndividualNFT index={1} nftname={duplicateNft.nftName} owner={duplicateNft.owner_email} creator={duplicateNft.creator_email} price={duplicateNft.price} creationdate={duplicateNft.createdAt} nfttext={duplicateNft.title} priceDollar={0} id={duplicateNft?.tokenURI}></IndividualNFT>
                       </div>
                     </>
                   ) : ""

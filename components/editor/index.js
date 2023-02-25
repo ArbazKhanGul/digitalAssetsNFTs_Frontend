@@ -39,8 +39,8 @@ const Editor=({setFieldValue})=>{
     return (
 <>
 <div className="w-[100%] h-[30rem] mgeditior block ">
-      <div ref={quillRef} className="h-[30rem] mb-[1rem]"/>
-      <h4 className="text-right text-['Inconsolata] text-[1.6rem] font-semibold mt-[0.3rem]">Count = {count}</h4>
+      <div ref={quillRef} className="h-[30rem] mb-[1rem] !font-['Inconsolata] !text-[2rem]"/>
+      <h4 className="text-right font-['Inconsolata] text-[1.6rem] font-semibold mt-[0.3rem]">Count = {count}</h4>
     </div>
     
     </>

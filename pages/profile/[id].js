@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Navbar from "../../components/navbar";
-import { useState } from "react";
 import { MdFilterList } from "react-icons/md";
 import Filter from "../../components/profile/filter";
 import Pagination from "../../components/pagination/paginationProfile";
@@ -15,6 +14,9 @@ import { shortText } from "limit-text-js";
 import useSWR from "swr";
 import { fetcherNft } from "../../utils/fetcher";
 import PuffLoader from "react-spinners/PuffLoader";
+import Binance from 'binance-api-node'
+import {useState,useEffect} from "react";
+import { ethers } from 'ethers'
 
 
 
@@ -32,8 +34,25 @@ const Profile = ({userinfo,profileData}) => {
 
   const { data, error,isLoading  } = useSWR(`/profilenft/${profileData?.email}?skip=${pageIndex}&type=${nftType}&nftName=${nftName}`, fetcherNft);
 
+  const[dollar,setDollar]=useState(0)
 
+    const BNBPrice = async () => {
+        try {
 
+          const client = Binance()
+          let ticker = await client.prices({ symbol: 'BNBUSDT' });
+          setDollar(ticker?.BNBUSDT)
+        }
+        catch (error) {
+          console.log(error)
+        }
+      }
+      useEffect(() => {
+        if (data?.nft?.length != 0) {
+          BNBPrice();
+        }
+      }, [data])
+    
   return (
     <>
       {!loading ? (
@@ -84,11 +103,11 @@ const Profile = ({userinfo,profileData}) => {
 
           <div className="mx-[2.3rem] sm:mx-[3.5rem] md:mx-[5rem]">
             <h2 className="text-[2.8rem] font-['DynaPuff'] overflow-hidden text-ellipsis">
-              {profileData?.collectionName}
+              {profileData?.authorName}
             </h2>
-            <h3 className="text-[2.3rem] font-['Inconsolata'] font-bold overflow-hidden text-ellipsis">
+            {/* <h3 className="text-[2.3rem] font-['Inconsolata'] font-bold overflow-hidden text-ellipsis">
               <span className="text-[#7D7C7CCF]">By</span> {profileData?.authorName}
-            </h3>
+            </h3> */}
             <p className="text-[1.7rem] font-['Inconsolata'] w-[100%] md:w-[80%] lg:w-[70%]">
               {profileData?.description}
             
@@ -124,53 +143,54 @@ const Profile = ({userinfo,profileData}) => {
                 }
 
 
-            <div className="flex flex-wrap justify-center md:justify-start -ml-[2rem] -mr-[2rem]  mb-[2rem] ">
-              <div className="shadow inline-block p-[3rem] w-[190px]  ml-[2rem] mr-[2rem] mt-[2rem]">
+            <div className="flex flex-wrap justify-center lg:justify-start -ml-[2rem] -mr-[2rem]  mb-[2rem] ">
+
+              <div className="shadow inline-block p-[3rem] profileitems  ml-[2rem] mr-[2rem] mt-[2rem]">
                 <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
                   Revenue
                 </h2>
-                <p className="text-[2rem] font-['Inconsolata'] font-bold text-center">
-                   {shortText(profileData?.volume, 7, "..")} BNB
-                </p>
-                <h4 className="text-[1.7rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
-                  (Buy + Sold)
-                </h4>
-              </div>
-
-              <div className="shadow inline-block p-[3rem] w-[190px] ml-[2rem] mr-[2rem] mt-[2rem]">
-                <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
-                  NFTs Created
-                </h2>
-                <p className="text-[2rem] text-center font-['Inconsolata'] font-bold">
-                  {shortText(profileData?.itemsCreated, 7, "..")}
+                <p className="text-[2rem] font-['Inconsolata'] font-bold text-center overflow-x-auto whitespace-nowrap scrollbar-none ">
+                   {ethers.utils.formatUnits(profileData?.volume.toLocaleString('fullwide', {useGrouping:false}), 18)} BNB
                 </p>
                 <h4 className="text-[1.7rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
                   Total
                 </h4>
               </div>
 
-              <div className="shadow inline-block p-[3rem] w-[190px] ml-[2rem] mr-[2rem] mt-[2rem]">
+              <div className="shadow inline-block p-[3rem] profileitems ml-[2rem] mr-[2rem] mt-[2rem]">
+                <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium ">
+                  NFTs Created
+                </h2>
+                <p className="text-[2rem] text-center font-['Inconsolata'] font-bold overflow-x-auto whitespace-nowrap scrollbar-none ">
+                {  profileData?.itemsCreated}
+                </p>
+                <h4 className="text-[1.7rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
+                  Total
+                </h4>
+              </div>
+
+              <div className="shadow inline-block p-[3rem] profileitems ml-[2rem] mr-[2rem] mt-[2rem]">
                 <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
                 NFTs Buy
                 </h2>
-                <p className="text-[2rem] font-['Inconsolata'] font-bold text-center">
+                <p className="text-[2rem] font-['Inconsolata'] font-bold text-center overflow-x-auto whitespace-nowrap scrollbar-none ">
 
-          {shortText(profileData?.itemsBuy, 7, "..")}
+          {profileData?.itemsBuy}
                 </p>
                 <h4 className="text-[1.7rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
                   Total
                 </h4>
               </div>
 
-              <div className="shadow inline-block p-[3rem] w-[190px] ml-[2rem] mr-[2rem] mt-[2rem]">
-                <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
-                  Total
+              <div className="shadow inline-block p-[3rem] profileitems ml-[2rem] mr-[2rem] mt-[2rem]">
+                <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium ">
+                  NFTs Sell
                 </h2>
-                <p className="text-[2rem] font-['Inconsolata'] font-bold text-center">
-                {shortText(profileData?.itemsBuy + profileData?.itemsCreated, 7, "..")}
+                <p className="text-[2rem] font-['Inconsolata'] font-bold text-center overflow-x-auto whitespace-nowrap scrollbar-none">
+               { profileData?.itemsSell}
                 </p>
                 <h4 className="text-[1.7rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
-                  (Buy + Create)
+                  Total
                 </h4>
               </div>
             </div>
@@ -222,7 +242,6 @@ const Profile = ({userinfo,profileData}) => {
 
               <span className="colgrad text-[2.1rem] break-all sm:text-[2.7rem] font-semibold text-center sm:text-left mt-[1.2rem] mx-[2.8rem] md:mx-[4.3rem] block font-['Inconsolata'] ">
                 {nftName ? `Search Results For ${nftName}` :null}
-                
               </span>
 
               {
@@ -251,7 +270,7 @@ const Profile = ({userinfo,profileData}) => {
                             {
                                 (!error && data) ?
                                   data?.nft?.map((data, index) => {
-                                        return <IndividualNFT key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} nfttext={data?.title}  id={data?.tokenURI}></IndividualNFT>
+                                        return <IndividualNFT key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} nfttext={data?.title}  id={data?.tokenURI} priceDollar={(ethers.utils.formatUnits(data?.price.toLocaleString('fullwide', {useGrouping:false}), 18) * dollar).toFixed(2)}></IndividualNFT>
 
 
                                     }) : ""

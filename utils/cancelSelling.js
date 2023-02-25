@@ -37,9 +37,18 @@ console.log("🚀 ~ file: cancelSelling.js:5 ~ cancelSelling ~ itemId", itemId)
         catch (err) {
 
             setLoader(false);
-                toast.error( err.message , {
+
+            if (err.message.startsWith("user rejected"))
+            {
+                toast.error("User reject sign message request", {
                     position: "top-center",
                   });
+            } 
+            else{
+        toast.error(err.message, {
+            position: "top-center",
+          });}
+
         }
 }
 export default cancelSelling;

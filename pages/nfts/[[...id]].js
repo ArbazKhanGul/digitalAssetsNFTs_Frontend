@@ -1,7 +1,8 @@
 import {MdFilterList} from "react-icons/md"
 import Filter from "../..//components/nft/filter";
 import "react-toastify/dist/ReactToastify.css";
-
+import { ethers } from 'ethers'
+import Binance from 'binance-api-node'
 import {
     useEffect, Navbar, Pagination, Footer, useState,
     useRouter, validateUser, getServerSideProps, toast, ToastContainer, useSelector,fetcher,
@@ -16,15 +17,31 @@ import {fetcherNft} from "../../utils/fetcher"
 
 const NFT =({userinfo})=>{
 
+    const BNBPrice = async () => {
+        try {
+    
+          const client = Binance()
+          let ticker = await client.prices({ symbol: 'BNBUSDT' });
+          setDollar(ticker?.BNBUSDT)
+        }
+        catch (error) {
+          console.log(error)
+        }
+      }
+    
+      useEffect(() => {
+          BNBPrice();
+      }, [])
+
+
+
+    const[dollar,setDollar]=useState(0)
     const router = useRouter();
     let {route,paramid}=getDataRoute(router,"getnfts");
     const { data, error } = useSWR(route, fetcherNft);
-    console.log("🚀 ~ file: [[...id]].js:20 ~ NFT ~ data", data)
 
     const [showItems, show]=useState(false);
 
-    let temp=[{nftname:"NFT name",creator:"arbazkhangul123@gmail.com",owner:"owner@gmail.com",creationdate:"10/9/22-24:33:12",nfttext:"If you continue to work hard, success will follow you",price:"0.1BNB"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10 /9/2002",nfttext:"If you continue to work hard, success will follow you",price:"0.1BNB"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10 /9/2002",nfttext:"If you continue to work hard, success will follow you",price:"0.1BNB"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10 /9/2002",nfttext:"If you continue to work hard, success will follow you",price:"0.1BNB"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10 /9/2002",nfttext:"If you continue to work hard, success will follow you",price:"0.1BNB"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10 /9/2002",nfttext:"If you continue to work hard, success will follow you",price:"0.1BNB"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10 /9/2002",nfttext:"If you continue to work hard, success will follow you",price:"0.1BNB"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10/9/2002",nfttext:"If you continue to work hard, success will follow you",price:"0.1BNB"},{nftname:"NFT name",creator:"creator@gmail.com",owner:"owner@gmail.com",creationdate:"10/9/2002",nfttext:"If you continue to work hard, success will follow you",price:"0.1BNB"}
-]
 
 const [loading, user, address] = useValidate(userinfo, "main");
 
@@ -41,7 +58,7 @@ const [loading, user, address] = useValidate(userinfo, "main");
     <Navbar></Navbar>
     <div className="px-[2rem] sm:px-[4rem] md:px-[4.9rem]">
     <div className="flex flex-col sm:flex-row justify-between items-center mt-[0.5rem] flex-wrap">
-        <div className="nft text-[2.7rem] sm:text-[3rem] md:text-[3.7rem] w-fit font-['DynaPuff'] mt-[0.5rem]">All Selling NFTs</div>
+        <div className="nft text-[2.7rem] sm:text-[3rem] md:text-[3.7rem] w-fit font-['DynaPuff'] mt-[0.5rem]">All NFTs</div>
         <div className="cursor-pointer text-[1.6rem] sm:text-[1.9rem] md:text-[2rem] mt-[0.5rem] font-semibold text-[#353846C7] flex items-center font-['Inconsolata']" onClick={()=>{show((prevState)=>{
     return prevState?false:true;
   })}}>Search NFTs By filters <MdFilterList className="text-[2.5rem] pl-[0.3rem]"></MdFilterList>
@@ -67,15 +84,15 @@ const [loading, user, address] = useValidate(userinfo, "main");
     } */}
 
 
-                  {error ? (<div className="nft text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['DynaPuff'] mt-[0.5rem]">
-                                Error in getting NFTs Please try later</div>) : ""
+                  {error ? (<div className="text-[red] font-bold text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['Inconsolata'] mt-[0.5rem]">
+                                Error in getting NFTs Please try later!</div>) : ""
                             }
 
                             {
                                 (!error && data) ?
 
                                     data?.nft?.map((data, index) => {
-                                        return <IndividualNFT key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} nfttext={data?.title}  id={data?.tokenURI}></IndividualNFT>
+                                        return <IndividualNFT key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} nfttext={data?.title}  id={data?.tokenURI} priceDollar={(ethers.utils.formatUnits(data?.price.toLocaleString('fullwide', {useGrouping:false}), 18) * dollar).toFixed(2)}></IndividualNFT>
 
 
                                     }) : ""

@@ -79,9 +79,7 @@ export const connectWalletLogin = async (user,dispatch, address,router,setShowLo
       return;
     }
 
-    console.log("After")
 
-   
 
     try {
       setShowLogin(true);
@@ -118,6 +116,7 @@ export const connectWalletLogin = async (user,dispatch, address,router,setShowLo
 
 
       dispatch(addUser(data?.user));
+      setShowLogin(false);
       console.log("🚀 ~ file: login.js ~ line 57 ~ connectWalletLogin ~ response?.data?.user", response?.data?.user)
 
       }
@@ -150,7 +149,7 @@ export const connectWalletLogin = async (user,dispatch, address,router,setShowLo
 
 
   } catch (error) {
-
+    setShowLogin(false);
     toast.error(error.message, {
       position: "top-center",
     });

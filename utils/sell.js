@@ -59,8 +59,13 @@ const sell =async (tokenIdArg,priceArg,router,setLoader,setShowModal,setChecker)
                 position: "top-center",
               });
                 router.replace(router.asPath)
-                //   router.reload(window.location.pathname)
             }
+            else if (err.message.startsWith("user rejected"))
+            {
+                toast.error("User reject sign message request", {
+                    position: "top-center",
+                  });
+            } 
             else{
                 toast.error( err.message , {
                     position: "top-center",

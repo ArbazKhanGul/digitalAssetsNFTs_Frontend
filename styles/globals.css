@@ -26,19 +26,24 @@ position: relative;
 
 }
 
+.hp {
+  max-height:calc(100vh - 15.4rem) !important;
+}
+
 .bell-notification::after{
   content:attr(current-count);
   position:absolute;
   top: 0;
-  right: -1px;
+  left: 14px;
   display: flex;
   justify-content:center;
   align-items: center;
-  width: 13px;
-  height: 13px;
+  width: auto;
+  height: auto;
   border-radius: 50%;
   background-color: red;
-  font-size:9px;
+  font-size:9.2px;
+  padding: 0px 3px;
 
 }
 
@@ -48,20 +53,18 @@ position: relative;
 height: 2.4rem !important;
 }
 
-.hp {
-height:calc(100vh - 6.4rem)
-}
+
 button {
   cursor: pointer;
 }
 .ql-size-huge {
-  font-size: 3.3rem
+  font-size: 4.9rem !important
 }
 .ql-size-large {
-  font-size: 2.8rem
+  font-size: 3.8rem !important
 }
 .ql-size-small {
-  font-size: 1.8rem
+  font-size: 1.8rem !important
 }
 .ql-container.ql-snow{ 
   /* border: none !important; */
@@ -88,6 +91,10 @@ button {
   @apply mb-[6rem]
 }
 .minheight {
+  min-height: 70vh
+}
+
+.minheightnotification {
   min-height: 70vh
 }
 
@@ -134,8 +141,9 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 .reginput {
 @apply outline-none placeholder:text-[#746e6e] text-black bg-transparent block w-[94%] ml-[0.8rem] font-['Inconsolata']
 }
-
-
+.profileitems {
+  width: 80%;
+} 
 .links
 {
   /* font-family: 'Roboto Slab', serif; */
@@ -446,7 +454,7 @@ border-radius: 20px;
   }
 
   .widthCard {
-    @apply w-[85%] mx-[2%]
+    @apply w-[75%] mx-[2%]
   }
   .cardText{
     font-size:15px
@@ -458,6 +466,9 @@ border-radius: 20px;
 @media screen and (min-width:484px) {
   .mgeditior {
 @apply mb-[4rem]
+  }
+  .profileitems {
+    width: 41.5%;
   }  
 }
 
@@ -474,6 +485,12 @@ border-radius: 20px;
 @media screen and (min-width: 500px) {
   .resheight{
     height:30rem;
+  }
+  .profileitems {
+    width: 41%;
+  }
+  .widthCard {
+    @apply w-[70%]
   }
   .share {
     @apply text-[4.5rem]
@@ -520,10 +537,14 @@ border-radius: 20px;
 
   .nftwdith {
     width: 48%;
+    margin:1.5rem 1% ;
+  }
+  .profileitems {
+    width: 40%;
   }
   .jt {
     justify-content: center;
-    column-gap:1.7rem
+    /* column-gap:1.7rem */
   }
 
   .formwid {
@@ -569,18 +590,20 @@ border-radius: 20px;
 
     .nftwdith {
       width: 42%;
+      margin:1.5rem 3% ;
     }
     .jt {
       justify-content: center;
-      column-gap:4.1rem
+      /* column-gap:4.1rem */
     }
     .widthCard {
-      @apply w-[47%] mx-[1.5%]
+      @apply w-[45%] mx-[1.5%]
     }
     .cardText{
       font-size:14px
     }
     
+   
 }
 
 
@@ -591,12 +614,15 @@ border-radius: 20px;
 
     .nftwdith {
       width: 34%;
+      margin:1.5rem 4% ;
     }
     .jt {
       justify-content: center;
-      column-gap:4.1rem
+      /* column-gap:4.1rem */
     }
-
+    .widthCard {
+      @apply w-[42%] mx-[1.5%]
+    }
     .formwid {
       width:65%
     }
@@ -610,25 +636,26 @@ border-radius: 20px;
   .main {
     min-height:calc(100vh - 60px);
     }  
-
+    
     .nftwdith {
       width: 29%;
+      margin:1.5rem 2% ;
     }
     .jt {
       justify-content: flex-start;
-      column-gap:4.1rem
+      /* column-gap:4.1rem */
     }
     .hid{
       display: block;
     }
     .widthCard {
-      @apply w-[32%] mx-[0%]
+      @apply w-[31%] mx-[1%]
     }
     .cardText{
       font-size:15.2px
     }
     .collectionJustification{
-      justify-content:space-between
+      justify-content:start
     }
 }
 
@@ -637,6 +664,13 @@ border-radius: 20px;
     background: linear-gradient(90deg, #717888 0.83%, #D0D9EE 99.31%);
   
   }
+  .profileitems {
+    width: 190px;
+  }
+  .hp {
+    height:calc(100vh - 6.4rem) !important;
+    max-height:calc(100vh - 6.4rem) !important;
+  }
 
   .bordd{
     border-radius: 10px 100px 100px 10px;
@@ -644,6 +678,7 @@ border-radius: 20px;
 
   .nftwdith {
     width: 26.5%;
+    margin:1.5rem 3% ;
   }
 
   .formwid {
@@ -653,7 +688,7 @@ border-radius: 20px;
   }
 
   .widthCard {
-    @apply w-[31.7%]
+    @apply w-[29%] mx-[2%]
   }
   .cardText{
     font-size:13.5px
@@ -665,12 +700,13 @@ border-radius: 20px;
   
   .nftwdith {
     width: 22%;
+    margin:1.5rem 1.5% ;
   }
   .hid{
     display: none;
   }
   .widthCard {
-    @apply w-[31.5%]
+    @apply w-[27%] mx-[3%]
   }
   .cardText{
     font-size:15px
@@ -686,7 +722,7 @@ border-radius: 20px;
     width:47%
   }
   .widthCard {
-    @apply w-[31%]
+    @apply w-[26%] mx-[3.5%]
   }
   .cardText{
     font-size:1.5rem
@@ -716,7 +752,7 @@ border-radius: 20px;
     min-height:calc(100vh - 86px);
     }
     .widthCard {
-      @apply w-[31.5%]
+      @apply w-[26%]
     }
     .cardText{
       font-size:1.7rem
@@ -726,7 +762,7 @@ border-radius: 20px;
 @media screen and (min-width: 1700px) {
   
   .widthCard {
-    @apply w-[31%]
+    @apply w-[26%]
   }
 
 }

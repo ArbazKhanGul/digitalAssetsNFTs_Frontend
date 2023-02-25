@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect,memo } from "react";
+import { useState, useEffect, memo } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
-import {IoNotificationsOutline} from "react-icons/io5"
+import { IoNotificationsOutline } from "react-icons/io5"
 import { useRouter } from "next/router";
 import { connectWalletLogin } from "../../metamask/login";
 import { ToastContainer, toast } from "react-toastify";
@@ -14,37 +14,34 @@ import { shortText } from "limit-text-js";
 import { selectUser } from "../../slice/user";
 import Logout from "../../utils/logout";
 import Notification from "../notification"
+import useSWR from "swr";
+import { fetcherCount } from "../../utils/fetcher";
 
 const Navbar = () => {
+
   const user = useSelector(selectUser);
-
-  // user =user ? user : userinfo
-
-  console.log("🚀 ~ file: index.js ~ line 22 ~ Navbar ~ user", user);
-
-  const router = useRouter();
-  console.log("Printing path name",router.query)
-  const [showItems, show] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [notificationControl, setNotificationControl] = useState(false);
-
   const address = useSelector(selectAddress);
 
-  // console.log("Address ", address);
+  const router = useRouter();
+  const [showItems, show] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+  console.log("🚀 ~ file: index.js:28 ~ Navbar ~ showLogin", showLogin)
+  const [notificationControl, setNotificationControl] = useState(false);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    // if (window?.ethereum?._state?.accounts[0]) {
-    // // console.log("🚀 ~ file: index.js ~ line 23 ~ useEffect ~ window?.ethereum?._state?.accounts[0]", window?.ethereum?._state?.accounts[0])
-    //   let checkSumAddress=ethers.utils.getAddress(window?.ethereum?._state?.accounts[0])
-    //   dispatch(addAddress(checkSumAddress));
-    // }
 
+
+  const { data, error,isLoading  } = useSWR(user && router.pathname != "/notification/[id]"?`/unreadnotification`:null, fetcherCount);
+
+
+
+  useEffect(() => {
     function handleAccountChanged(accounts) {
       if (address) {
         toast.warn("Account Changed or Disconnect", {
           position: "top-center",
         });
+
         if (!accounts[0]) {
           dispatch(addAddress(accounts[0]));
           return;
@@ -62,11 +59,7 @@ const Navbar = () => {
           const SignerAddress = await signer.getAddress();
           let checkSumAddress = ethers.utils.getAddress(SignerAddress);
           dispatch(addAddress(checkSumAddress));
-        } catch (err) {}
-        // if (window?.ethereum?._state?.accounts[0]) {
-        //   let checkSumAddress=ethers.utils.getAddress(window?.ethereum?._state?.accounts[0])
-        //   dispatch(addAddress(checkSumAddress));
-        // }
+        } catch (err) { }
       } else {
         dispatch(addAddress(undefined));
         toast.error("Please connect to binance smart chain", {
@@ -85,6 +78,9 @@ const Navbar = () => {
     };
   }, [address]);
 
+
+
+
   return (
     <>
       <div className="navbar flex items-center pt-[1rem] !pb-[1rem] pl-[0.8rem] pr-[2rem]  sm:pl-[2rem] sm:pr-[3rem] md:pl-[3rem] md:pr-[4.5rem] md:!pt-[0.2rem] md:!pb-[0.2rem]">
@@ -92,15 +88,28 @@ const Navbar = () => {
           <Image src="/logo.png" layout="fill" />
         </div>
 
-        <div className="flex-1 items-center flex">
+        <div className="flex-1 items-center flex ml-[1rem]">
+         
+        {router.pathname != "/notification/[id]" && user && user.address == address ?  
+                  
+                    <div className="ml-auto mr-[1rem] sm:mr-[2rem] lg:hidden bell-notification" current-count={data && data > 0?data:""} onClick={() => { setNotificationControl(!notificationControl) }} >
+                      <IoNotificationsOutline
+                        className="w-[2.5rem] h-[2.5rem] sm:w-[2.7rem]  sm:h-[2.7rem]  ml-auto  inline-block   text-white"
+                      />
+                    </div>
+                   : null
+                }
+
           <AiOutlineMenu
-            className="w-[2.7rem] ml-auto h-[2.7rem]  inline-block lg:hidden text-white"
+            className={`w-[2.4rem] h-[2.4rem] sm:w-[2.7rem]  sm:h-[2.7rem]  inline-block lg:hidden text-white ${router.pathname != "/notification/[id]" && user && user.address == address?"":"ml-auto"}`}
             onClick={() => {
               show((prevState) => {
                 return prevState ? false : true;
               });
             }}
           ></AiOutlineMenu>
+
+
 
           <ul className=" ml-auto hidden lg:inline-flex items-center">
             <li className="inline-block links">
@@ -124,7 +133,7 @@ const Navbar = () => {
                     router.pathname == "/collection" ? "text-blue-600" : ""
                   }
                 >
-                  Collections
+                  Profiles
                 </a>
               </Link>
             </li>
@@ -133,7 +142,7 @@ const Navbar = () => {
               <>
                 <li className="inline-block links ">
                   <button
-                    onClick={() => connectWalletLogin(user,dispatch, address,router,setShowLogin)}
+                    onClick={() => connectWalletLogin(user, dispatch, address, router, setShowLogin)}
                     className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider"
                     disabled={showLogin}
                   >
@@ -165,33 +174,31 @@ const Navbar = () => {
                   </Link>
                 </li>
 
-                <li className="inline-block links " onClick={()=>{
-                  Logout(dispatch,router)
+                <li className="inline-block links " onClick={() => {
+                  Logout(dispatch, router)
                 }} >
-                    <a>
-                      Logout
-                    </a>
+                  <a>
+                    Logout
+                  </a>
 
                 </li>
 
-                <li className="inline-block links " onClick={()=>{
-                  // Logout(dispatch,router)
-                }} >
-                    <a>
-                      <div className="bell-notification" current-count="4" onClick={()=>{setNotificationControl(!notificationControl)}} >
-                    <IoNotificationsOutline
-                     className="w-[2.7rem] ml-auto h-[2.7rem]  inline-block   text-white"
-                    />
+                {router.pathname != "/notification/[id]" ? <li className="inline-block links "  >
+                  <a>
+                    <div className="bell-notification" current-count={data && data > 0?data:""} onClick={() => { setNotificationControl(!notificationControl) }} >
+                      <IoNotificationsOutline
+                        className="w-[2.7rem] ml-auto h-[2.7rem]  inline-block   text-white"
+                      />
                     </div>
-                    </a>
-                 
-                </li>
+                  </a>
 
+                </li> : null
+                }
                 <li className="inline-block links">
                   <Link href={`/profile/${user._id}`}>
                     <a
                       className={
-                        router.pathname.startsWith("/profile") && router.query.id== `${user._id}` ? "text-blue-600" : ""
+                        router.pathname.startsWith("/profile") && router.query.id == `${user._id}` ? "text-blue-600" : ""
                       }
                     >
                       <div className="flex items-center space-x-[0.4rem]">
@@ -213,15 +220,15 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        <div id="scrollableDiv" className={`absolute z-50 font-['Inconsolata'] w-[39rem] bg-[#FFFFFF] rounded-[1rem] right-[3rem] top-[6.4rem] px-[1.5rem] overflow-y-auto  box-border transition-all duration-500  scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-[#FFF] scrollbar-thumb-rounded-xl scrollbar-track-rounded-full  ${!notificationControl?"h-0":"h-[510px]"}`}>
-        {!user || user.address != address ?null:<Notification />}
+        <div id="scrollableDiv" className={`absolute z-[100] font-['Inconsolata'] w-[96%] sm:w-[39rem] bg-[#FFFFFF] rounded-[1rem] right-[2%] sm:right-[3rem] top-[6.18rem] sm:top-[6.4rem]  overflow-y-auto  box-border transition-all duration-500  scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-[#FFF] scrollbar-thumb-rounded-xl scrollbar-track-rounded-full  ${!notificationControl ? "h-0" : "h-[440px] sm:h-[510px] border-[0.18rem]"}`}>
+          {!user || user.address != address ? null : <Notification />}
         </div>
       </div>
 
       <div
         className={
           "onclicklist transition-all duration-500 overflow-hidden lg:hidden linear " +
-          (!showItems ? "h-0 " :  (!user || user.address != address ?"h-[212px]":"h-[265px]") )
+          (!showItems ? "h-0 " : (!user || user.address != address ? "h-[212px]" : "h-[265px]"))
         }
       >
         <ul className={" ml-auto divide-y-[1px] divide-[#454f5a]"}>
@@ -262,7 +269,7 @@ const Navbar = () => {
                     : "text-[#EAE1E1]")
                 }
               >
-                Collections
+                Profiles
               </li>
             </a>
           </Link>
@@ -272,7 +279,7 @@ const Navbar = () => {
               <a>
                 <li
                   className="onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem] md:pl-[6rem] text-[#EAE1E1]"
-                  onClick={() => connectWalletLogin(user,dispatch, address,router,setShowLogin)}
+                  onClick={() => connectWalletLogin(user, dispatch, address, router, setShowLogin)}
                 >
                   Login
                 </li>
@@ -296,7 +303,7 @@ const Navbar = () => {
           ) : (
             <>
 
-<Link href="/createnft">
+              <Link href="/createnft">
                 <a>
                   <li
                     className={
@@ -312,23 +319,24 @@ const Navbar = () => {
               </Link>
 
 
-             
+
               <a>
                 <li
                   className="onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem] md:pl-[6rem] text-[#EAE1E1] cursor-pointer"
-                  onClick={()=>{Logout(dispatch,router)}}
+                  onClick={() => { Logout(dispatch, router) }}
 
                 >
                   Logout
                 </li>
               </a>
 
+
               <Link href={`/profile/${user._id}`}>
                 <a>
                   <li
                     className={
                       " onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem] md:pl-[6rem] " +
-                      (router.pathname.startsWith("/profile") && router.query.id== `${user._id}`
+                      (router.pathname.startsWith("/profile") && router.query.id == `${user._id}`
                         ? "text-blue-600"
                         : "text-[#EAE1E1]")
                     }

@@ -36,9 +36,16 @@ const buyNft =async (tokenId,setShowModal,setLoader) => {
         catch (err) {
 
             setLoader(false);
-                toast.error( err.message , {
+            if (err.message.startsWith("user rejected"))
+            {
+                toast.error("User reject sign message request", {
                     position: "top-center",
                   });
+            } 
+            else{
+        toast.error(err.message, {
+            position: "top-center",
+          });}
         }
 }
 export default buyNft;

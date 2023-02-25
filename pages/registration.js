@@ -38,7 +38,6 @@ const Registeration = () => {
   }, [address]);
 
   let initialValues = {
-    collectionName: "",
     authorName: "",
     email: "",
     walletAddress: "",
@@ -102,31 +101,11 @@ const Registeration = () => {
       <div className="flex reg flex-col lg:flex-row  px-[4%] xl:px-[6%] py-[5%] xl:py-[3%] heig items-center">
         <div className="formwid">
           <form onSubmit={handleSubmit}>
-            <div className="flex flex-col justify-center items-center py-[2rem] sm:py-[3rem] space-y-[2rem] lg:space-y-[2.6rem] bg-white bordd">
+            <div className="flex flex-col justify-center items-center py-[2rem] sm:py-[3rem] space-y-[2rem] lg:space-y-[2.3rem] bg-white bordd">
               <h2 className="text-[2.4rem] sm:text-[2.9rem]  md:text-[3.2rem] block font-['DynaPuff']">
                 Registration
               </h2>
 
-              <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem] font-['Inconsolata']">
-                <div className="reginp w-[100%]">
-                  <BsPerson className="text-[2.5rem]"></BsPerson>
-                  <input
-                    type="text"
-                    placeholder="Collection Name..."
-                    className="reginput"
-                    name="collectionName"
-                    value={values.collectionName}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    autoComplete="off"
-                  />
-                </div>
-                {errors.collectionName && touched.collectionName ? (
-                  <p className="text-red-500 text-[1.4rem] errors block">
-                    {errors.collectionName}
-                  </p>
-                ) : null}
-              </div>
 
               <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem]">
                 <div className="reginp w-[100%]">
@@ -202,6 +181,20 @@ const Registeration = () => {
                     ref={fileRef}
                     accept="image/*"
                     onChange={(e) => {
+                
+                      let size=e.target?.files[0]?.size / 1024 ** 2;
+                      if(size>4){
+                        e.target.value = null;
+                        setFieldValue(
+                          "profile",
+                           ""
+                        );
+                        toast.error("Picture size must be less than 4 MB", {
+                          position: "top-center",
+                        });
+                        return;
+                      }
+                        
                       setFieldValue(
                         "profile",
                         e.target?.files[0] ? e.target?.files[0] : ""
@@ -248,6 +241,20 @@ outline-none"
                     ref={fileRefCover}
                     accept="image/*"
                     onChange={(e) => {
+
+                      let size=e.target?.files[0]?.size / 1024 ** 2;
+                      if(size>4){
+                        e.target.value = null;
+                        setFieldValue(
+                          "cover",
+                           ""
+                        );
+                        toast.error("Picture size must be less than 4 MB", {
+                          position: "top-center",
+                        });
+                        return;
+                      }
+
                       setFieldValue(
                         "cover",
                         e.target?.files[0] ? e.target?.files[0] : ""
@@ -343,6 +350,7 @@ outline-none"
     </>
   );
 };
+
 
 
 export default Registeration;
