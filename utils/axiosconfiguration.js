@@ -4,7 +4,7 @@ const API=axios.create({
     baseURL: process.env.SERVER_URL,
     withCredentials: true,
     credentials: 'include',
-    // crossDomain: true,
+    crossDomain: true,
 })
 
 export default API;
