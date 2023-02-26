@@ -6,13 +6,13 @@ import { MdQrCode } from "react-icons/md";
 import { useRouter } from 'next/router'
 import {FacebookShareButton, TwitterShareButton, WhatsappShareButton} from "react-share"
 
-function index() {
+function index({path}) {
   
     const [showModal, setShowModal] = useState(false);
   const [clickCheck,setclickCheck] = useState("Share");
-  const router = useRouter()
-  const [path,setpath] = useState(router.pathname);
-  console.log(router.pathname)
+  // const router = useRouter()
+  // const [path,setpath] = useState(router.pathname);
+  // console.log(router.pathname)
 
 
   const downloadQR = () => {
@@ -67,7 +67,7 @@ function index() {
                               <div className="flex  w-auto sm:w-[350px] flex-wrap  items-center justify-center">
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem]  mr-[2rem] mt-[1rem]'>
                                   <FacebookShareButton
-                                  url={`https://textnft.vercel.app${path}` }
+                                  url={`${path}` }
                                   hashtag="#GoldenWordsNFTs"
                                   quote={"Vist link to buy this Nfts"}
                                   >
@@ -83,7 +83,7 @@ function index() {
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
                                  
                                  <TwitterShareButton
-                                  url={`https://textnft.vercel.app${path}` }
+                                  url={`${path}` }
                                   hashtag="#GoldenWordsNFTs"
                                  >
                                   <BsTwitter className="text-[white] bg-[#00ACEE] p-[8.9px] rounded-[25px] share"></BsTwitter>
@@ -96,7 +96,7 @@ function index() {
                                 
                                 <WhatsappShareButton
                                 // title="Golden Words NFTs"
-                                url={`https://textnft.vercel.app${path}` }
+                                url={`${path}` }
                                 >
                                   <BsWhatsapp className="share bg-[#25D366] text-[white] rounded-[25px] p-[1rem]"></BsWhatsapp>
                                   <p className="text-[#A1A1A1] text-[1.1rem]">Whatsapp</p>
@@ -124,7 +124,7 @@ function index() {
     <div className="flex justify-center flex-col items-center">
   <QRCode
     id={path}
-    value={process.env.URL+path}
+    value={path}
     size={290}
     level={"H"}
     includeMargin={true}

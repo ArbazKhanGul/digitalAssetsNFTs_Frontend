@@ -36,8 +36,8 @@ export default async function getServerSideProps(context) {
                 return {
                     props: {
                         userinfo: result?.data?.user ? result?.data?.user:"",
+                        nftSellingData:result?.data?.nft,
                         nftData: ipfsdata?.data,
-                        nftSellingData:result?.data?.nft
                     }
                 }
 

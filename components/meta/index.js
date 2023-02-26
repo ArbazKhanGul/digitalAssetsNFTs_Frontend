@@ -1,7 +1,8 @@
 
 
-const Meta=({nftData})=>{
-
+const Meta=({nftData}) => {
+  console.log("🚀 ~ file: index.js:4 ~ Meta ~ nftData", nftData)
+ 
     return(
         <>
         <meta property="og:type" content="website" />
@@ -30,7 +31,7 @@ const Meta=({nftData})=>{
 
         <meta
           property="twitter:url"
-          content={`https:/textnft.vercel.app/individualnft`}
+          content={`https:/textnft.vercel.app/individualnft/${nftData?.tokenURI}`}
         />
         <meta
           property="twitter:description"
