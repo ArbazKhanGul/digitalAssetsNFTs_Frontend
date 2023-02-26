@@ -35,16 +35,17 @@ const Meta=({nftData}) => {
         />
         <meta
           property="twitter:description"
-          content="If you continue work hard success will follow you so try hard...."
+          content={nftData?.title}
           key="og-desc"
         />
-        <meta property="twitter:title" content="Sports NFTs" />
+        <meta property="twitter:title" 
+        content={nftData?.nftName} />
         <meta
           property="twitter:image"
           itemProp="image"
           content="https://textnft.vercel.app/newer.png"
         />
-        <meta name="twitter:card" content="summary_large_image"/>
+        {/* <meta name="twitter:card" content="summary_large_image"/> */}
         </>
     )
 }

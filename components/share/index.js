@@ -84,7 +84,7 @@ function index({path}) {
                                  
                                  <TwitterShareButton
                                   url={`${path}` }
-                                  hashtag="#GoldenWordsNFTs"
+                                  hashtags={["GoldenWordsNFTs"]}
                                  >
                                   <BsTwitter className="text-[white] bg-[#00ACEE] p-[8.9px] rounded-[25px] share"></BsTwitter>
                                   <p className="text-[#A1A1A1] text-[1.1rem]">Twitter</p>
@@ -96,6 +96,7 @@ function index({path}) {
                                 
                                 <WhatsappShareButton
                                 // title="Golden Words NFTs"
+                                hashtag="#GoldenWordsNFTs"
                                 url={`${path}` }
                                 >
                                   <BsWhatsapp className="share bg-[#25D366] text-[white] rounded-[25px] p-[1rem]"></BsWhatsapp>
