@@ -1,6 +1,6 @@
 
 
-const Meta=()=>{
+const Meta=({nftData})=>{
 
     return(
         <>
@@ -9,10 +9,10 @@ const Meta=()=>{
         <meta property="og:url"  content={`https:/textnft.vercel.app/individualnft`} />
         <meta property="fb:app_id" content="966242223397117" />
         {/* <meta property="url"  content={`https://textnft.vercel.app/individualnft`} /> */}
-        <meta property="description"  content="If you continue work hard success will follow you..." />
-        <meta property="og:description"  content="If you continue work hard success will follow you so try hard...." /> 
+        <meta property="description"  content={nftData?.title}/>
+        <meta property="og:description"  content={nftData?.title} /> 
        {/* <meta property="title" content="Sports NFTs" /> */}
-        <meta property="og:title" content="Sports NFTs" />
+        <meta property="og:title" content={nftData?.nftName} />
         <meta property="og:site_name" content="Golden Words Nfts" />
         {/* <meta property="og:site_name" content="my_website_name" /> */}
         <meta property="image" content="https://textnft.vercel.app/newer.png" />

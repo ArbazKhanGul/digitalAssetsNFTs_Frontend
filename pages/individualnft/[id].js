@@ -60,7 +60,8 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
     <>
       <Head>
         <title>Golden Words NFts</title>
-        <Meta />
+  
+        <Meta  nftData={nftSellingData}/>
       </Head>
       <link itemProp="thumbnailUrl" href="https://textnft.vercel.app/new.png" />
       <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject">
