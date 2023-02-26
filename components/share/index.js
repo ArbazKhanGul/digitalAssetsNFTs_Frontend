@@ -104,10 +104,11 @@ function index({path}) {
                                 </div>
 
 
-                                <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]' onClick={() =>setclickCheck("Embed Video")}>
+                                {/* <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]' onClick={() =>setclickCheck("Embed Video")}>
                                   <ImEmbed className="share bg-[#f1f1f1] text-[#888787] rounded-[25px] p-[0.7rem]"></ImEmbed>
                                   <p className="text-[#A1A1A1] text-[1.1rem]">Embed</p>
-                                </div>
+                                </div> */}
+
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem] ' onClick={() =>setclickCheck("Qr code")}>
                             
                                   <MdQrCode className="share bg-[#f1f1f1] text-[black] rounded-[25px] p-[1rem]"></MdQrCode>
