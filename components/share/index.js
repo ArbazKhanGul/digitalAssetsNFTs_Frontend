@@ -10,9 +10,6 @@ function index({path}) {
   
     const [showModal, setShowModal] = useState(false);
   const [clickCheck,setclickCheck] = useState("Share");
-  // const router = useRouter()
-  // const [path,setpath] = useState(router.pathname);
-  // console.log(router.pathname)
 
 
   const downloadQR = () => {
@@ -123,11 +120,11 @@ function index({path}) {
                               </div> */}
 
                               {clickCheck=="Qr code"?(
-    <div className="flex justify-center flex-col items-center">
+    <div className="flex w-[28.5rem] sm:w-[35rem] justify-center flex-col items-center">
   <QRCode
     id={path}
     value={path}
-    size={290}
+    size={200}
     level={"H"}
     includeMargin={true}
   />

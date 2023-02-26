@@ -34,7 +34,7 @@ const NFTPortion =({error,data,isLoading})=>{
     </div>
     <span className="colgrad text-[1.7rem] font-semibold  mt-[1.2rem] mx-[2.5rem] md:mx-[4rem] block font-['Inconsolata']">(Click on any NFT to see his full detail and buying option)</span>
 
-<div className="flex flex-wrap jt mx-[4rem] mg">
+<div className={ `mx-[3rem]  sm:mx-[4rem] ${data ?"flex flex-wrap mg jt":""}`}>
 
 
 {/* {temp.map((value,index)=>{

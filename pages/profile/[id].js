@@ -258,7 +258,7 @@ const Profile = ({userinfo,profileData}) => {
           </div>)
           :null
         }
-              <div className="flex flex-wrap jt mx-[4rem] mg">
+              <div className={ `mx-[3rem] sm:mx-[4rem] ${data ?"flex flex-wrap mg jt":""}`}>
 
 
 

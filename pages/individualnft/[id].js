@@ -290,7 +290,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
           :null
         }
 
-            <div className="flex flex-wrap jt mg">
+          <div className={ `${data ?"flex flex-wrap mg jt":""}`}>
 
               {error ? (<div className="text-red-400 text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['Inconsolata'] mt-[0.5rem]">
                 Error in getting NFTs Please try later</div>) : ""
