@@ -6,7 +6,7 @@ const Meta=({nftData})=>{
         <>
         <meta property="og:type" content="website" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta property="og:url"  content={`https:/textnft.vercel.app/individualnft`} />
+        <meta property="og:url"  content={`https:/textnft.vercel.app/individualnft/${nftData?.tokenURI}`} />
         <meta property="fb:app_id" content="966242223397117" />
         {/* <meta property="url"  content={`https://textnft.vercel.app/individualnft`} /> */}
         <meta property="description"  content={nftData?.title}/>
