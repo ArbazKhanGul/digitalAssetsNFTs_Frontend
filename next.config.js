@@ -11,11 +11,11 @@ const nextConfig = {
     // SERVER:'http://localhost:5000/images',
     // SERVER:'https://3a89-119-160-64-216.ngrok.io/images',
     // SERVER_URL: 'http://localhost:5000',
-    SERVER_URL:'https://famous-hats-eat-119-160-67-12.loca.lt',
+    SERVER_URL:'https://grumpy-schools-study-119-160-67-12.loca.lt',
     chainId:31337
   },
   images: {
-    domains: ['localhost','famous-hats-eat-119-160-67-12.loca.lt'],
+    domains: ['localhost','grumpy-schools-study-119-160-67-12.loca.lt'],
 },
 }
 
