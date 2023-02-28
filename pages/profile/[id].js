@@ -12,12 +12,14 @@ import getServerSideProps from "../../utils/serverSideProfile"
 import useValidate from "../../utils/useValidate"
 import { shortText } from "limit-text-js";
 import useSWR from "swr";
+import Share from "../../components/share"
 import { fetcherNft } from "../../utils/fetcher";
 import PuffLoader from "react-spinners/PuffLoader";
 import Binance from 'binance-api-node'
 import {useState,useEffect} from "react";
 import { ethers } from 'ethers'
-
+import Meta from "../../components/meta/metaprofile"
+import Head from "next/head";
 
 
 
@@ -55,6 +57,11 @@ const Profile = ({userinfo,profileData}) => {
     
   return (
     <>
+         <Head>
+        <title>Golden Words NFts</title>
+  
+        <Meta  data={profileData}/>
+      </Head>
       {!loading ? (
               <div className="text-[1.6rem] font-['Inconsolata']">
               <ToastContainer pauseOnHover autoClose={5000} />
@@ -123,7 +130,7 @@ const Profile = ({userinfo,profileData}) => {
               </p>
             </div>
 
-            <div className="flex items-center space-x-[3rem] sm:space-x-[5.3rem] mt-[1.5rem]">
+            <div className="flex items-center space-x-[3rem] sm:space-x-[5.3rem] my-[1.5rem]">
               <h4 className="text-[2.2rem] font-['Inconsolata'] font-bold">
                 Address
               </h4>
@@ -131,9 +138,9 @@ const Profile = ({userinfo,profileData}) => {
                 {profileData?.address}
               </p>
             </div>
-
+<div className="flex flex-col sm:flex-row gap-[1.5rem]">
             {address == profileData?.address && user?.address == address ?
-                             <div className="mt-[2rem]" onClick={()=>{router.push("/profileUpdate")}}>
+                             <div className="" onClick={()=>{router.push("/profileUpdate")}}>
                              <div className="bord_grad w-fit text-[2.1rem]">
                                <span className="block px-[2.5rem] py-[0.4rem]  cursor-pointer buttonnft font-['Inconsolata']">
                                  Update Profile
@@ -142,6 +149,9 @@ const Profile = ({userinfo,profileData}) => {
                            </div> : null
                 }
 
+                             <Share path={`${process.env.URL}/profile/${profileData?._id}`} page="profile"/>
+
+                             </div>
 
             <div className="flex flex-wrap justify-center lg:justify-start -ml-[2rem] -mr-[2rem]  mb-[2rem] ">
 

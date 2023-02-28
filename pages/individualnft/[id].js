@@ -212,7 +212,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
               <div className="mt-[1.3rem] h-fit lg:mt-[0.5rem] flex items-center flex-wrap lg:col-start-2 lg:col-end-3 space-y-2 sm:space-y-0">
 
 
-                <Share path={`https://textnft.vercel.app/individualnft/${nftSellingData?.tokenURI}`}/>
+                <Share path={`${process.env.URL}/individualnft/${nftSellingData?.tokenURI}`}/>
 
                 {address == nftSellingData?.owner_address && user?.address == address && nftSellingData.status == "verified" && nftSellingData?.approved ?
                   <Sell nftHash={nftData?.hash} tokenId={nftSellingData?.tokenId} /> : null

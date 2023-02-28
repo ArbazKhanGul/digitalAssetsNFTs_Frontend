@@ -6,7 +6,7 @@ import { MdQrCode } from "react-icons/md";
 import { useRouter } from 'next/router'
 import {FacebookShareButton, TwitterShareButton, WhatsappShareButton} from "react-share"
 
-function index({path}) {
+function index({path,page}) {
   
     const [showModal, setShowModal] = useState(false);
   const [clickCheck,setclickCheck] = useState("Share");
@@ -27,13 +27,19 @@ function index({path}) {
   
     return (
       <>
-      <button
+  
+  {page=="profile"?   <div className="bord_grad w-fit text-[2.1rem]"       onClick={() => setShowModal(true)}>
+                               <span className="block px-[7rem] py-[0.4rem]  cursor-pointer buttonnft font-['Inconsolata']">
+                                 Share
+                               </span>
+                             </div>:      <button
       className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[4rem] rounded-full font-['Inconsolata'] tracking-wider"
       type="button"
       onClick={() => setShowModal(true)}
     >
       Share
-    </button>
+    </button>}
+
 
                     {showModal ? (
                 <>

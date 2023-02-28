@@ -142,7 +142,7 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 @apply outline-none placeholder:text-[#746e6e] text-black bg-transparent block w-[94%] ml-[0.8rem] font-['Inconsolata']
 }
 .profileitems {
-  width: 80%;
+  width: 90%;
 } 
 .links
 {
