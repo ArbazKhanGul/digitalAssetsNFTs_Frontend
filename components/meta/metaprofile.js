@@ -1,8 +1,7 @@
 
 
 const Meta=({data}) => {
-    console.log("🚀 ~ file: index.js:4 ~ Meta ~ nftData", nftData)
-   
+
       return(
           <>
           <meta property="og:type" content="website" />
@@ -18,7 +17,7 @@ const Meta=({data}) => {
           {/* <meta property="og:site_name" content="my_website_name" /> */}
           <meta property="image" content={`${process.env.SERVER_URL}/images/${data?.profile}`} />
           <meta property="og:image"  content={`${process.env.SERVER_URL}/images/${data?.profile}`} />
-          {/* <meta property="og:image:type" content="image/*" /> */}
+          <meta property="og:image:type" content="image/*" />
           {/* <meta property="og:image:secure_url" content="https://textnft.vercel.app/new.png" /> */}
           <meta property="og:image:width" content="270" />
           <meta property="og:image:height" content="270" />
@@ -27,7 +26,7 @@ const Meta=({data}) => {
 
   {/* twitter */}
 
-          <meta
+          {/* <meta
             property="twitter:url"
             content={`https:/textnft.vercel.app/individualnft/${nftData?.tokenURI}`}
           />
@@ -42,7 +41,7 @@ const Meta=({data}) => {
             property="twitter:image"
             itemProp="image"
             content="https://textnft.vercel.app/newer.png"
-          />
+          /> */}
           {/* <meta name="twitter:card" content="summary_large_image"/> */}
           </>
       )
