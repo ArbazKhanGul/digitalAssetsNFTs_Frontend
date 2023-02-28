@@ -26,22 +26,22 @@ const Meta=({data}) => {
 
   {/* twitter */}
 
-          {/* <meta
+          <meta
             property="twitter:url"
-            content={`https:/textnft.vercel.app/individualnft/${nftData?.tokenURI}`}
+            content={`http://localhost:3000/profile/${data._id}`}
           />
           <meta
             property="twitter:description"
-            content={nftData?.title}
+            content={data?.description}
             key="og-desc"
           />
           <meta property="twitter:title" 
-          content={nftData?.nftName} />
+          content={data?.authorName} />
           <meta
             property="twitter:image"
             itemProp="image"
-            content="https://textnft.vercel.app/newer.png"
-          /> */}
+            content={`${process.env.SERVER_URL}/images/${data?.profile}`}
+          />
           {/* <meta name="twitter:card" content="summary_large_image"/> */}
           </>
       )
