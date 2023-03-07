@@ -3,6 +3,8 @@ import Filter from "../..//components/nft/filter";
 import "react-toastify/dist/ReactToastify.css";
 import { ethers } from 'ethers'
 import Binance from 'binance-api-node'
+import PuffLoader from "react-spinners/PuffLoader";
+
 import {
     useEffect, Navbar, Pagination, Footer, useState,
     useRouter, validateUser, getServerSideProps, toast, ToastContainer, useSelector,fetcher,
@@ -38,7 +40,7 @@ const NFT =({userinfo})=>{
     const[dollar,setDollar]=useState(0)
     const router = useRouter();
     let {route,paramid}=getDataRoute(router,"getnfts");
-    const { data, error } = useSWR(route, fetcherNft);
+    const { data, error,isLoading } = useSWR(route, fetcherNft);
 
     const [showItems, show]=useState(false);
 
@@ -76,7 +78,20 @@ const [loading, user, address] = useValidate(userinfo, "main");
 
 
 
+        {
+            isLoading ?
+             ( <div className="flex w-[100%] h-[100%] justify-center ">
 
+            <PuffLoader
+              color={"#30DCBA"}
+              cssOverride={{ marginBottom: "20px" }}
+              size={160}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>)
+           :null }
+        
 
 {/* {temp.map((value,index)=>{
             return(<IndividualNFT key={index} index={index} nftname={value.nftname} owner={value.owner} creator={value.creator} price={value.price} creationdate={value.creationdate} nfttext={value.nfttext}></IndividualNFT>)

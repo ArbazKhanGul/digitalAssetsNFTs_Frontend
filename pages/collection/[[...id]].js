@@ -3,6 +3,7 @@ import Filter from "../../components/collection/filter";
 import "react-toastify/dist/ReactToastify.css";
 import Binance from 'binance-api-node'
 import { ethers } from 'ethers'
+import PuffLoader from "react-spinners/PuffLoader";
 
 import {
     useEffect, Navbar, Pagination, Footer, useState,
@@ -35,7 +36,7 @@ const Collection = ({ userinfo }) => {
 
     const router = useRouter();
     let {route,paramid}=getDataRoute(router,"getcollection");
-    const { data, error } = useSWR(route, fetcherCollection);
+    const { data, error,isLoading } = useSWR(route, fetcherCollection);
     const [showItems, show] = useState(false);
 
 
@@ -80,7 +81,19 @@ const Collection = ({ userinfo }) => {
                     <div>
                         <div className=" flex  collectionJustification flex-wrap minheight mb-[3rem]">
 
+                        {
+            isLoading ?
+             ( <div className="flex w-[100%] h-[100%] justify-center ">
 
+            <PuffLoader
+              color={"#30DCBA"}
+              cssOverride={{ marginBottom: "20px" }}
+              size={160}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>)
+           :null }
 
                             {error ? (<div className="text-[red]  font-bold text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['Inconsolata']  mt-[0.5rem]">
                                 Error in getting Collections Please try later!</div>) : ""

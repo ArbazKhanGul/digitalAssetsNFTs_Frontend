@@ -20,13 +20,15 @@ import { fetcherOwnerNft } from "../../utils/fetcher";
 import Footer from "../../components/footer";
 import PuffLoader from "react-spinners/PuffLoader";
 import { useRouter } from "next/router";
+import Transactions from "../../components/transactions";
+
 
 const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
 
   let router=useRouter();
 
-  const { data, error, isLoading } = useSWR(`/ownernfts/${nftSellingData?.owner_email}?nftName=${nftData?.name}`, fetcherOwnerNft);
+  const { data, error, isLoading } = useSWR(`/nftdata/${nftSellingData?.owner_email}?nftName=${nftData?.name}&nftId=${nftSellingData?._id}`, fetcherOwnerNft);
 
   const [dollar, setDollar] = useState(0);
 
@@ -266,6 +268,8 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
 
 
+            <Transactions data={data?.transactions} error={error} isLoading={isLoading}/>
+
             <div className="mt-[3rem]">
               <h2 className="color w-fit h-fit -mt-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold  md:text-[3.2rem] tracking-wide ">
                 More Nfts Of Owner:
@@ -290,9 +294,9 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
           :null
         }
 
-          <div className={ `${data ?"flex flex-wrap mg jt":""}`}>
+          <div className={ `mg ${data?.nft?.length!=0 ?"flex flex-wrap jt":"!ml-[2rem] sm:!ml-[4rem]"}`}>
 
-              {error ? (<div className="text-red-400 text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['Inconsolata'] mt-[0.5rem]">
+              {error ? (<div className="text-[red] text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['Inconsolata'] mt-[0.5rem]">
                 Error in getting NFTs Please try later</div>) : ""
               }
 
@@ -307,7 +311,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
               }
 
 
-              {data?.nft?.length == 0 && !error ? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3.3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
+              {data?.nft?.length == 0 && !error ? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
                 OOPS!   Nothing to show...</div>) : ""
               }
             </div>

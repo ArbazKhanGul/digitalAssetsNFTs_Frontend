@@ -39,9 +39,9 @@ export const connectWalletLogin = async (user,dispatch, address,router,setShowLo
       return;  
       } 
 
-
+      
   window.open("https://metamask.app.link/dapp/https://textnft.vercel.app"); 
-    return toast.error("Please install MetaMask.", {
+    return toast.error("Please install MetaMask or if you just install metamask then refresh the page", {
       position: "top-center",
     });
   }

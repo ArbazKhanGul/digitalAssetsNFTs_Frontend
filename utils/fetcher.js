@@ -40,7 +40,8 @@ export const fetcherOwnerNft = async (url, options) => {
   let response= await axios.get(url)
   let nft=response?.data?.nft;
   let ownerId=response?.data?.ownerId;
-  return {nft,ownerId};
+  let transactions=response?.data?.transactions;
+  return {nft,ownerId,transactions};
 }
 
 

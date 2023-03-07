@@ -22,7 +22,7 @@ const IndividualCollections = ({ num, authorname, volume, items, image, id }) =>
             //   objectFit="cover"
             /></div>
         </div>
-        <div className=" text-[2rem] sm:text-[2rem] md:text-[2.2rem] text-[#5F5454CF] font-['Inconsolata'] text-ellipsis overflow-hidden">{authorname} </div>
+        <div className=" text-[2rem] sm:text-[2rem] md:text-[2.2rem] text-[#5F5454CF] font-['Inconsolata'] text-ellipsis overflow-hidden whitespace-nowrap">{authorname} </div>
       </div>
 
       <div className="text-[#5F5454CF] w-[20%] text-center ml-[3.4rem] sm:ml-[0rem] text-[1.8rem] sm:text-[1.8rem] md:text-[2.2rem] font-['Inconsolata'] whitespace-nowrap overflow-hidden text-ellipsis">  {ethers.utils.formatUnits(volume.toLocaleString('fullwide', {useGrouping:false}), 18)} BNB</div>
@@ -51,7 +51,7 @@ const IndividualCollections = ({ num, authorname, volume, items, image, id }) =>
 
 
           <div className="flex justify-between">
-            <div className="text-[#5F5454CF] text-[1.7rem] font-['Inconsolata']"><span className="inline-block sm:hidden text-[1.7rem] colgrad">Revenue     </span><span className="whitespace-nowrap"> {ethers.utils.formatUnits(volume.toLocaleString('fullwide', {useGrouping:false}), 18)} BNB </span></div>
+            <div className="text-[#5F5454CF] text-[1.7rem] font-['Inconsolata'] whitespace-nowrap overflow-hidden text-ellipsis mr-[0.3rem]"><span className="inline-block sm:hidden text-[1.7rem] colgrad ">Revenue     </span><span className="whitespace-nowrap"> {ethers.utils.formatUnits(volume.toLocaleString('fullwide', {useGrouping:false}), 18)} BNB </span></div>
             {/* <div className="text-[#5F5454CF] ml-[3.4rem] sm:ml-[0rem] text-[1.8rem] sm:text-[1.8rem] md:text-[2rem] font-['Inter']">  ${volume}</div> */}
 
           </div>

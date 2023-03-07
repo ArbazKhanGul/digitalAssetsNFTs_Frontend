@@ -39,8 +39,8 @@ export const connectWallet = async (dispatch,address) => {
         } 
 
 
-    window.open("https://metamask.app.link/dapp/https://textnft.vercel.app"); 
-      return toast.error("Please install MetaMask.", {
+    window.open("https://metamask.app.link/dapp/https://textnft.vercel.app");
+      return toast.error("Please install MetaMask or if you just install metamask then refresh the page", {
         position: "top-center",
       });
     }
@@ -61,10 +61,6 @@ export const connectWallet = async (dispatch,address) => {
           });
         }
 
-
-        // window.ethereum.on('accountsChanged', function (accounts) {
-        //   dispatch(addAddress(accounts[0]));
-        // })
 
     } catch (error) {
       console.log(error);

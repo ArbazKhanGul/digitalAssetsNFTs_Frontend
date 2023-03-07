@@ -18,7 +18,10 @@ const TopCollections=({error,data,isLoading})=>{
     Top Profiles :
     </div>
 
+    
     <div className="space-y-[2rem] flex-col justify-center">
+
+    {  (!error && data) ?
         <div className="  hidden sm:flex sm:justify-around items-start sm:items-center overflow-hidden">
         
 
@@ -29,7 +32,7 @@ const TopCollections=({error,data,isLoading})=>{
              <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.5rem] text-center colgrad flex flex-col w-[22%]"><span>Total Items</span>
             <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]">(Sell + Buy)</span>
              </div>
-        </div>
+        </div>:""}
         {
             isLoading ? ( <div className="flex justify-center  mt-[4px]">
 

@@ -10,8 +10,8 @@ const nextConfig = {
     URL: 'https://textnft.vercel.app',
     // SERVER:'http://localhost:5000/images',
     // SERVER:'https://3a89-119-160-64-216.ngrok.io/images',
-    // SERVER_URL: 'http://localhost:5000',
-    SERVER_URL:'https://7109-119-160-64-133.ngrok.io',
+    SERVER_URL: 'http://localhost:5000',
+    // SERVER_URL:'https://7109-119-160-64-133.ngrok.io',
     chainId:31337
   },
   images: {

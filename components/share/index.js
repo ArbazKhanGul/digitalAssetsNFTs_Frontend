@@ -67,7 +67,7 @@ function index({path,page}) {
                           <div>
                             <div>
                               {clickCheck=="Share"?(
-                              <div className="flex  w-auto sm:w-[350px] flex-wrap  items-center justify-center">
+                              <div className="flex  w-auto px-[2rem] sm:px-0 sm:w-[350px] flex-wrap  items-center justify-center">
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem]  mr-[2rem] mt-[1rem]'>
                                   <FacebookShareButton
                                   url={`${path}` }
@@ -141,7 +141,7 @@ function index({path,page}) {
                           </div>
                         </div>
                         {/*footer*/}
-                        <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                        <div className="flex items-center justify-end p-6 py-[1rem] border-t border-solid border-slate-200 rounded-b">
                           <button
                             className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-[1.3rem] outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                             type="button"

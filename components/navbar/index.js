@@ -16,6 +16,7 @@ import Logout from "../../utils/logout";
 import Notification from "../notification"
 import useSWR from "swr";
 import { fetcherCount } from "../../utils/fetcher";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const Navbar = () => {
 
@@ -146,7 +147,22 @@ const Navbar = () => {
                     className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider"
                     disabled={showLogin}
                   >
-                    <a>Login</a>
+
+                    <a className="flex justify-center items-center gap-[0.5rem]">
+                    Login {
+            showLogin ?
+             (
+
+            <PulseLoader
+              color={"#ffffff"}
+              // cssOverride={{ }}
+              size={5}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+        )
+          :null
+        }</a>
                   </button>
                 </li>
                 <li className="inline-block links">
@@ -228,7 +244,7 @@ const Navbar = () => {
       <div
         className={
           "onclicklist transition-all duration-500 overflow-hidden lg:hidden linear " +
-          (!showItems ? "h-0 " : (!user || user.address != address ? "h-[212px]" : "h-[265px]"))
+          (!showItems ? "h-0 " : (!user || user.address != address ? "h-[212px]" : "h-[268px]"))
         }
       >
         <ul className={" ml-auto divide-y-[1px] divide-[#454f5a]"}>
@@ -279,9 +295,24 @@ const Navbar = () => {
               <a>
                 <li
                   className="onlinks py-[0.7rem] px-[2.5rem] sm:pl-[3.7rem] md:pl-[6rem] text-[#EAE1E1]"
-                  onClick={() => connectWalletLogin(user, dispatch, address, router, setShowLogin)}
+                  onClick={() => {!showLogin?connectWalletLogin(user, dispatch, address, router, setShowLogin):""}}
+                  // disabled={showLogin}
                 >
-                  Login
+                       <span className="flex  items-center gap-[0.5rem] cursor-pointer">
+                    Login {
+            showLogin ?
+             (
+
+            <PulseLoader
+              color={"#ffffff"}
+              // cssOverride={{ }}
+              size={5}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+        )
+          :null
+        }</span>
                 </li>
               </a>
 
