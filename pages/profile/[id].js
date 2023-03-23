@@ -15,7 +15,6 @@ import useSWR from "swr";
 import Share from "../../components/share"
 import { fetcherNft } from "../../utils/fetcher";
 import PuffLoader from "react-spinners/PuffLoader";
-import Binance from 'binance-api-node'
 import {useState,useEffect} from "react";
 import { ethers } from 'ethers'
 import Meta from "../../components/meta/metaprofile"
@@ -36,30 +35,13 @@ const Profile = ({userinfo,profileData}) => {
 
   const { data, error,isLoading  } = useSWR(`/profilenft/${profileData?.email}?skip=${pageIndex}&type=${nftType}&nftName=${nftName}`, fetcherNft);
 
-  const[dollar,setDollar]=useState(0)
 
-    const BNBPrice = async () => {
-        try {
 
-          const client = Binance()
-          let ticker = await client.prices({ symbol: 'BNBUSDT' });
-          setDollar(ticker?.BNBUSDT)
-        }
-        catch (error) {
-          console.log(error)
-        }
-      }
-      useEffect(() => {
-        if (data?.nft?.length != 0) {
-          BNBPrice();
-        }
-      }, [data])
-    
   return (
     <>
          <Head>
-        <title>Golden Words NFts</title>
-  
+        <title>Digital Assets NFts</title>
+
         <Meta  data={profileData}/>
       </Head>
       {!loading ? (
@@ -280,9 +262,7 @@ const Profile = ({userinfo,profileData}) => {
                             {
                                 (!error && data) ?
                                   data?.nft?.map((data, index) => {
-                                        return <IndividualNFT key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} nfttext={data?.title}  id={data?.tokenURI} priceDollar={(ethers.utils.formatUnits(data?.price.toLocaleString('fullwide', {useGrouping:false}), 18) * dollar).toFixed(2)}></IndividualNFT>
-
-
+                                    return <IndividualNFT data={data} key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI} ></IndividualNFT>
                                     }) : ""
                             }
 

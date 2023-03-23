@@ -84,9 +84,9 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar flex items-center pt-[1rem] !pb-[1rem] pl-[0.8rem] pr-[2rem]  sm:pl-[2rem] sm:pr-[3rem] md:pl-[3rem] md:pr-[4.5rem] md:!pt-[0.2rem] md:!pb-[0.2rem]">
-        <div className=" w-[26rem] h-[4.2rem] sm:w-[30rem] sm:h-[5rem]  md:w-[35rem] md:h-[6rem]  relative">
-          <Image src="/logo.png" layout="fill" />
+      <div className="navbar flex items-center pt-[1rem] !pb-[1rem] pl-[0.8rem] pr-[2rem]  sm:pl-[2rem] sm:pr-[3rem] md:pl-[3rem] md:pr-[4.5rem] md:!pt-[1.2rem] md:!pb-[1.2rem]">
+        <div className=" w-[26rem] h-[4.2rem] sm:w-[30rem] sm:h-[5rem]  md:w-[40rem] md:h-[4rem]  relative">
+          <Image src="/po.png" layout="fill" />
         </div>
 
         <div className="flex-1 items-center flex ml-[1rem]">

@@ -2,32 +2,13 @@ import IndividualNFT from "./individualnft"
 import {memo} from "react";
 import ClipLoader from "react-spinners/PuffLoader";
 import { useRouter } from "next/router";
-import Binance from 'binance-api-node'
-import {useState,useEffect} from "react";
 import { ethers } from 'ethers'
 
 
 
 const NFTPortion =({error,data,isLoading})=>{
     let router=useRouter();
-    const[dollar,setDollar]=useState(0)
-
-    const BNBPrice = async () => {
-        try {
-    
-          const client = Binance()
-          let ticker = await client.prices({ symbol: 'BNBUSDT' });
-          setDollar(ticker?.BNBUSDT)
-        }
-        catch (error) {
-          console.log(error)
-        }
-      }
-    
-      useEffect(() => {
-          BNBPrice();
-      }, [])
-    
+ 
     return (<div>
         <div className="nft w-fit text-[2.7rem] ml-[2rem] sm:text-[3rem] md:text-[3.7rem] font-['DynaPuff'] mt-[1.2rem] sm:ml-[3.5rem] md:ml-[4rem]">
     Trending NFTs: 
@@ -62,7 +43,7 @@ const NFTPortion =({error,data,isLoading})=>{
                             {
                                 (!error && data) ?
                                    data?.map((data, index) => {
-                                        return <IndividualNFT key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} nfttext={data?.title} id={data?.tokenURI} priceDollar={(ethers.utils.formatUnits(data?.price.toLocaleString('fullwide', {useGrouping:false}), 18) * dollar).toFixed(2)}></IndividualNFT>
+                                        return <IndividualNFT data={data} key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI}></IndividualNFT>
                                     }) : ""
                             }
 

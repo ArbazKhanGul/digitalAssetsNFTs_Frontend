@@ -1,10 +1,7 @@
 import {MdFilterList} from "react-icons/md"
 import Filter from "../..//components/nft/filter";
 import "react-toastify/dist/ReactToastify.css";
-import { ethers } from 'ethers'
-import Binance from 'binance-api-node'
 import PuffLoader from "react-spinners/PuffLoader";
-
 import {
     useEffect, Navbar, Pagination, Footer, useState,
     useRouter, validateUser, getServerSideProps, toast, ToastContainer, useSelector,fetcher,
@@ -19,25 +16,7 @@ import {fetcherNft} from "../../utils/fetcher"
 
 const NFT =({userinfo})=>{
 
-    const BNBPrice = async () => {
-        try {
-    
-          const client = Binance()
-          let ticker = await client.prices({ symbol: 'BNBUSDT' });
-          setDollar(ticker?.BNBUSDT)
-        }
-        catch (error) {
-          console.log(error)
-        }
-      }
-    
-      useEffect(() => {
-          BNBPrice();
-      }, [])
 
-
-
-    const[dollar,setDollar]=useState(0)
     const router = useRouter();
     let {route,paramid}=getDataRoute(router,"getnfts");
     const { data, error,isLoading } = useSWR(route, fetcherNft);
@@ -107,9 +86,7 @@ const [loading, user, address] = useValidate(userinfo, "main");
                                 (!error && data) ?
 
                                     data?.nft?.map((data, index) => {
-                                        return <IndividualNFT key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} nfttext={data?.title}  id={data?.tokenURI} priceDollar={(ethers.utils.formatUnits(data?.price.toLocaleString('fullwide', {useGrouping:false}), 18) * dollar).toFixed(2)}></IndividualNFT>
-
-
+                                      return <IndividualNFT data={data} key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI} ></IndividualNFT>
                                     }) : ""
                             }
 

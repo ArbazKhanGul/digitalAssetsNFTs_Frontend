@@ -25,11 +25,16 @@ color: #ffffff;
 position: relative;
 
 }
-
+video {
+  object-fit: cover !important;
+}
 .hp {
   max-height:calc(100vh - 15.4rem) !important;
 }
 
+.heightAdjust  video {
+  border-radius: 3rem 3rem 0 0;
+}
 .bell-notification::after{
   content:attr(current-count);
   position:absolute;

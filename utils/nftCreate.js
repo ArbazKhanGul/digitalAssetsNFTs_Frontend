@@ -2,7 +2,7 @@ import { ethers } from "ethers";
 import { toast } from "react-toastify";
 
 export async function nftTokenCreate(price,ipfspath, setLoader,setPath) {
-console.log("🚀 ~ file: nftCreate.js ~ line 5 ~ nftTokenCreate ~ ipfspath", ipfspath)
+console.log("🚀 ~ file: nftCreate.js:5 ~ nftTokenCreate ~ ipfspath:", ipfspath)
 
 
     try{
@@ -39,8 +39,11 @@ console.log("🚀 ~ file: nftCreate.js ~ line 4 ~ nftTokenCreate ~ price", price
 
      let abi = [ "event Creation(address indexed owner_address,uint indexed tokenId,string tokenURI)" ];
      let iface = new ethers.utils.Interface(abi);
+     console.log("🚀 ~ file: nftCreate.js:42 ~ nftTokenCreate ~ iface:", iface)
      let log = iface.parseLog(tx?.logs[2]);
+     console.log("🚀 ~ file: nftCreate.js:43 ~ nftTokenCreate ~ log:", log)
      const {owner_address,tokenId ,tokenURI} = log?.args;
+
      console.log("🚀 ~ file: nftCreate.js:36 ~ nftTokenCreate ~ tokenId", tokenId)
 
      if(tokenURI==tokenipfs){

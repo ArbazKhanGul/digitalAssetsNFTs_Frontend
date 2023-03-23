@@ -12,10 +12,12 @@ const nextConfig = {
     // SERVER:'https://3a89-119-160-64-216.ngrok.io/images',
     SERVER_URL: 'http://localhost:5000',
     // SERVER_URL:'https://7109-119-160-64-133.ngrok.io',
-    chainId:31337
+    chainId:31337,
+    PROJECT_KEY_INFLURA:"2J1VjR9BuVpSDC33nS6hpLONikL",
+    INFLURA_KEY:"6967a1bdc3d1ca8c2d10c472705917dc"
   },
   images: {
-    domains: ['localhost','7109-119-160-64-133.ngrok.io'],
+    domains: ['localhost','7109-119-160-64-133.ngrok.io','goldenwords.infura-ipfs.io'],
 },
 }
 

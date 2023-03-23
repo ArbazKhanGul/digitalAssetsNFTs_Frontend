@@ -9,6 +9,7 @@ import getServerSideProps from "../utils/serversidelogin"
 import useValidate from '../utils/useValidate';
 import ClipLoader from "react-spinners/ClipLoader";
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import ipfsUpload from '../utils/ipfsUpload';
 
 const style = {
   control: (provided, state) => ({
@@ -32,7 +33,11 @@ const Item = ({ userinfo }) => {
 
   let initialValues = {
     nftName: "",
+    nftContentType: "text",
     nftLanguage: "",
+    nftVideo: null,
+    nftAudio: null,
+    nftImage: null,
     nftText: "",
     nftTextHTML: "",
     nftDescription: "",
@@ -40,7 +45,6 @@ const Item = ({ userinfo }) => {
 
 
   const handleSelect = (e) => {
-
     setFieldValue("nftLanguage", e.value)
   }
 
@@ -64,33 +68,42 @@ const Item = ({ userinfo }) => {
 
 
       try {
-        setLoader("Verifying Text...");
+        setLoader("Verifying NFT Name...");
         setTimeNotPass(false);
-        let reqObject = {
-          nftName: values.nftName,
-          nftLanguage: values.nftLanguage,
-          nftText: values.nftTextHTML,
-          nftDescription: values.nftDescription
-        }
+        // let reqObject = {
+        //   nftName: values.nftName,
+        //   nftLanguage: values.nftLanguage,
+        //   nftText: values.nftTextHTML,
+        //   nftDescription: values.nftDescription
+        // }
+
+        const response = await axios.post("/nftnameverify", { nftName: values.nftName });
+
+        // console.log("🚀 ~ file: createnft.js ~ line 59 ~ onSubmit: ~ response", response)
 
 
-        const response = await axios.post("/nftcreation", reqObject);
-        console.log("🚀 ~ file: createnft.js ~ line 59 ~ onSubmit: ~ response", response)
+        //   console.log("🚀 ~ file: createnft.js:76 ~ onSubmit: ~ values:", values)
+        //   await ipfsUpload(values);
+        //        return;
 
+
+        // console.log("🚀 ~ file: createnft.js ~ line 59 ~ onSubmit: ~ response", response)
 
         if (response?.data?.status == "success") {
           setTimeNotPass(false);
-          setLoader("Waiting for transaction confirmation and mined transaction...");
-
           changeDuplicate("")
+          setLoader("Uploading nft content on ipfs 0%");
+          await ipfsUpload(values, userinfo, setLoader, setPath);
+          // const  back_res = await axios.post("/nftcreation", reqObject);
 
-          await nftTokenCreate(response?.data?.price, response?.data?.ipfspath, setLoader,setPath);
+          // setLoader("Waiting for transaction confirmation and mined transaction...");
+          // await nftTokenCreate(response?.data?.price, response?.data?.ipfspath, setLoader, setPath);
 
         }
-        else if(response?.data?.status == "timeNotPass"){
+        else if (response?.data?.status == "timeNotPass") {
           setLoader(false);
-           setTimeNotPass(Math.ceil(response?.data?.time / 60000));
-           setType(response?.data?.type)
+          setTimeNotPass(Math.ceil(response?.data?.time / 60000));
+          setType(response?.data?.type)
         }
         else if (response?.data?.status == "duplicate") {
           setLoader(false);
@@ -166,25 +179,35 @@ const Item = ({ userinfo }) => {
                 </div>
               </div>
 
+
+
+
               <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12">
-                <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.2rem] tracking-wider">Choose language for text of NFT:</h2>
+                <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.2rem] tracking-wider">Choose the Type Of Content</h2>
                 <div className="mt-[1rem] w-[100%] relative ">
                   <div className="input_bord_grad  mb-[0.2rem] !w-[100%]">
 
                     <Select className=" p-[0.2rem] text-[1.6rem] md:text-[1.7rem] font-['Inconsolata']  tracking-wider outline-none"
-                      defaultValue={"Select Language"}
-                      name="nftLanguage"
-                      onChange={handleSelect}
-                      options={options}
+                      defaultValue={{ "label": "text", "value": "text" }}
+                      name="nftContentType"
+                      onChange={(e) => {
+                        setFieldValue("nftContentType", e.value)
+                      }}
+                      options={[
+                        { "label": "text", "value": "text" },
+                        { "label": "audio", "value": "audio" },
+                        { "label": "video", "value": "video" },
+                        { "label": "image", "value": "image" },
+                        ]}
                       styles={style}
                       id="long-value-select"
                       instanceId="long-value-select"
                     />
 
                   </div>
-                  {errors.nftLanguage && touched.nftLanguage ? (
+                  {errors.nftContentType && touched.nftContentType ? (
                     <p className="text-red-500 text-[1.4rem] block">
-                      {errors.nftLanguage}
+                      {errors.nftContentType}
                     </p>
                   ) : null}
 
@@ -194,34 +217,165 @@ const Item = ({ userinfo }) => {
 
 
 
-              <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 ">
-                <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.4rem] tracking-wider">Enter Text for NFT:</h2>
-                <h2 className="font-['Inconsolata'] text-[red] text-[1.8rem] tracking-wider">Instructions:</h2>
-                <h2 className=" text-[1.3rem] font-['Inconsolata'] text-[#0D1344E5'] flex mt-[0.3rem]">
-                  <span className="text-[1.4rem] font-bold text-black pr-[0.5rem]">1.</span>
-                  <p>Only 500 letter is allowed free for nft text and then 0.1 dollar charge is apply for every next 1000 letters and first 15 characters of nft text is used as title of nft
-                  </p>
-                </h2>
 
-                <h2 className=" text-[1.3rem] font-['Inconsolata'] text-[#0D1344E5'] flex mt-[0.3rem]">
-                  <span className="text-[1.4rem] font-bold text-black pr-[0.5rem]">2.</span>
-                  <p>Make sure that text belong to you and you don't copy some other person text
-                  </p>
-                </h2>
-                <div className="mb-[2rem] mt-[1rem]">
 
-                  <Editor setFieldValue={setFieldValue}></Editor>
 
-                </div>
+              {values?.nftContentType == "image" ?
+                <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12">
+                  <div className="reginpfile w-[100%] mb-[1rem] ">
+                    <span className="text-start block w-[84%] font-['Inconsolata'] text-[#0D1344E5'] text-[2.2rem] tracking-wider">
+                      Choose Image For NFT 
+                    </span>
+                  </div>
+                  <div className="input_bord_grad w-[100%] ">
+                    <input
+                      className="form-control block w-full text-[1.6rem] md:text-[1.7rem] placeholder:text-[#746e6e] font-[Inconsolata] text-gray-700 bg-white bg-clip-padding rounded-[1.2rem] p-[0rem]   border-none  transition ease-in-out file:border-none  file:p-[0.9rem]  cursor-pointer m-0 outline-none"
+                      type="file"
+                      id="nftImage"
+                      name="nftImage"
+                      // ref={fileRef}
+                      accept="image/*"
+                      onChange={(e) => {
+                        setFieldValue(
+                          "nftImage",
+                          e.target?.files[0] ? e.target?.files[0] : null
+                        );
+                      }}
+                    />
+                  </div>
+                  {errors.nftImage && touched.nftImage ? (
+                    <p className="text-red-500 text-[1.4rem] errors block">
+                      {errors.nftImage}
+                    </p>
+                  ) : null}
+                </div> : null}
 
-              </div>
-              <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 ">
-                {errors.nftText && touched.nftText ? (
-                  <p className="text-red-500 text-[1.4rem] block">
-                    {errors.nftText}
-                  </p>
-                ) : null}
-              </div>
+
+              {values?.nftContentType == "video" ?
+                <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12">
+                  <div className="reginpfile w-[100%] mb-[1rem] ">
+                    <span className="text-start block w-[84%] font-['Inconsolata'] text-[#0D1344E5'] text-[2.2rem] tracking-wider">
+                      Choose Video For NFT
+                    </span>
+                  </div>
+                  <div className="input_bord_grad w-[100%] ">
+                    <input
+
+                      className="form-control block w-full text-[1.6rem] md:text-[1.7rem] placeholder:text-[#746e6e] font-[Inconsolata] text-gray-700 bg-white bg-clip-padding  rounded-[1.2rem] p-[0rem] border-none  transition ease-in-out  file:border-none  file:p-[0.9rem]  cursor-pointer m-0 outline-none"
+                      type="file"
+                      id="nftVideo"
+                      name="nftVideo"
+                      // ref={fileRef}
+                      accept="audio/*,video/*"
+                      onChange={(e) => {
+                        setFieldValue(
+                          "nftVideo",
+                          e.target?.files[0] ? e.target?.files[0] : null
+                        );
+                      }}
+                    />
+                  </div>
+                  {errors.nftVideo && touched.nftVideo ? (
+                    <p className="text-red-500 text-[1.4rem] errors block">
+                      {errors.nftVideo}
+                    </p>
+                  ) : null}
+                </div> : null}
+
+
+                {values?.nftContentType == "audio" ?
+                <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12">
+                  <div className="reginpfile w-[100%] mb-[1rem] ">
+                    <span className="text-start block w-[84%] font-['Inconsolata'] text-[#0D1344E5'] text-[2.2rem] tracking-wider">
+                      Choose Audio For NFT
+                    </span>
+                  </div>
+                  <div className="input_bord_grad w-[100%] ">
+                    <input
+
+                      className="form-control block w-full text-[1.6rem] md:text-[1.7rem] placeholder:text-[#746e6e] font-[Inconsolata] text-gray-700 bg-white bg-clip-padding  rounded-[1.2rem] p-[0rem] border-none  transition ease-in-out  file:border-none  file:p-[0.9rem]  cursor-pointer m-0 outline-none"
+                      type="file"
+                      id="nftAudio"
+                      name="nftAudio"
+                      accept="audio/*"
+                      onChange={(e) => {
+                        setFieldValue(
+                          "nftAudio",
+                          e.target?.files[0] ? e.target?.files[0] : null
+                        );
+                      }}
+                    />
+                  </div>
+                  {errors.nftAudio && touched.nftAudio ? (
+                    <p className="text-red-500 text-[1.4rem] errors block">
+                      {errors.nftAudio}
+                    </p>
+                  ) : null}
+                </div> : null}
+
+
+
+
+              {values?.nftContentType == "text" ?
+                <>
+                  <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12">
+                    <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.2rem] tracking-wider">Choose language for text of NFT:</h2>
+                    <div className="mt-[1rem] w-[100%] relative ">
+                      <div className="input_bord_grad  mb-[0.2rem] !w-[100%]">
+
+                        <Select className=" p-[0.2rem] text-[1.6rem] md:text-[1.7rem] font-['Inconsolata']  tracking-wider outline-none"
+                          defaultValue={"Select Language"}
+                          name="nftLanguage"
+                          onChange={handleSelect}
+                          options={options}
+                          styles={style}
+                          id="long-value-select"
+                          instanceId="long-value-select"
+                        />
+
+                      </div>
+                      {errors.nftLanguage && touched.nftLanguage ? (
+                        <p className="text-red-500 text-[1.4rem] block">
+                          {errors.nftLanguage}
+                        </p>
+                      ) : null}
+
+                    </div>
+                  </div>
+
+
+
+
+                  <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 ">
+                    <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.4rem] tracking-wider">Enter Text for NFT:</h2>
+                    <h2 className="font-['Inconsolata'] text-[red] text-[1.8rem] tracking-wider">Instructions:</h2>
+                    <h2 className=" text-[1.3rem] font-['Inconsolata'] text-[#0D1344E5'] flex mt-[0.3rem]">
+                      <span className="text-[1.4rem] font-bold text-black pr-[0.5rem]">1.</span>
+                      <p>Only 500 letter is allowed free for nft text and then 0.1 dollar charge is apply for every next 1000 letters and first 15 characters of nft text is used as title of nft
+                      </p>
+                    </h2>
+
+                    <h2 className=" text-[1.3rem] font-['Inconsolata'] text-[#0D1344E5'] flex mt-[0.3rem]">
+                      <span className="text-[1.4rem] font-bold text-black pr-[0.5rem]">2.</span>
+                      <p>Make sure that text belong to you and you don't copy some other person text
+                      </p>
+                    </h2>
+                    <div className="mb-[2rem] mt-[1rem]">
+
+                      <Editor setFieldValue={setFieldValue}></Editor>
+
+                    </div>
+
+                  </div>
+                  <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 ">
+                    {errors.nftText && touched.nftText ? (
+                      <p className="text-red-500 text-[1.4rem] block">
+                        {errors.nftText}
+                      </p>
+                    ) : null}
+                  </div>
+                </> : null
+              }
               <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 ">
                 <h2 className="font-['Inconsolata'] text-[2.2rem] ">
                   Description
@@ -265,48 +419,48 @@ const Item = ({ userinfo }) => {
                     </h2>
                   </div>
 
-          {loader!="Token transaction verification..."?
-                  <div className="flex justify-center  -mt-[4px]">
+                  {loader != "Token transaction verification..." ?
+                    <div className="flex justify-center  -mt-[4px]">
 
-                    <ClipLoader
-                      color={"#30DCBA"}
-                      loading={loader}
-                      cssOverride={{ marginBottom: "20px" }}
-                      size={110}
-                      aria-label="Loading Spinner"
-                      data-testid="loader"
-                    />
-                  </div>:""}
+                      <ClipLoader
+                        color={"#30DCBA"}
+                        loading={loader}
+                        cssOverride={{ marginBottom: "20px" }}
+                        size={110}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                      />
+                    </div> : ""}
                 </>) : ""}
 
 
 
-{loader=="Token transaction verification..."?(<div>
-<CountdownCircleTimer
-    isPlaying={loader=="Token transaction verification..."}
-    duration={8}
-    size={95}
-    strokeWidth={5}
-    colors={['#7f8c8d', '#95a5a6']}
-    colorsTime={[5, 2]}
-    onComplete={() => {
-      router.push(`/individualnft/${path}`);
-    }}
-  >
-    {({ remainingTime }) => <h2 className="font-['Inconsolata'] text-[2rem] ">{remainingTime}</h2>}
-  </CountdownCircleTimer></div>):""
-}
+              {loader == "Token transaction verification..." ? (<div>
+                <CountdownCircleTimer
+                  isPlaying={loader == "Token transaction verification..."}
+                  duration={8}
+                  size={95}
+                  strokeWidth={5}
+                  colors={['#7f8c8d', '#95a5a6']}
+                  colorsTime={[5, 2]}
+                  onComplete={() => {
+                    router.push(`/individualnft/${path}`);
+                  }}
+                >
+                  {({ remainingTime }) => <h2 className="font-['Inconsolata'] text-[2rem] ">{remainingTime}</h2>}
+                </CountdownCircleTimer></div>) : ""
+              }
             </div>
             <div >
-                 { timeNotPass?(
-                      <div className="flex justify-center">
-                      <h2 className="mb-[2rem] text-justify w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 font-['Inconsolata'] text-[1.4rem] text-[red]">
-                        NFT with the same {type} is also present but that NFT is waiting for transaction confirmation if that transaction
-                        is not mined in {timeNotPass} minutes or some error come in transaction confirmation then you can use this {type} for another NFT after {timeNotPass} minutes so please wait untill the specified time is pass
-                      </h2>
-                    </div>  ):""
-                 }
-                {
+              {timeNotPass ? (
+                <div className="flex justify-center">
+                  <h2 className="mb-[2rem] text-justify w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 font-['Inconsolata'] text-[1.4rem] text-[red]">
+                    NFT with the same {type} is also present but that NFT is waiting for transaction confirmation if that transaction
+                    is not mined in {timeNotPass} minutes or some error come in transaction confirmation then you can use this {type} for another NFT after {timeNotPass} minutes so please wait untill the specified time is pass
+                  </h2>
+                </div>) : ""
+              }
+              {
                 duplicateNft ?
 
                   (
@@ -314,7 +468,7 @@ const Item = ({ userinfo }) => {
                       <div className="flex justify-center">
                         <h2 className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 font-['Inconsolata'] text-[2.2rem] text-[red]">Your Nft {type} match with below nft {type}:</h2>
                       </div>
-                      <div class="flex justify-center mb-[2rem]">
+                      <div className="flex justify-center mb-[2rem]">
                         <IndividualNFT index={1} nftname={duplicateNft.nftName} owner={duplicateNft.owner_email} creator={duplicateNft.creator_email} price={duplicateNft.price} creationdate={duplicateNft.createdAt} nfttext={duplicateNft.title} priceDollar={0} id={duplicateNft?.tokenURI}></IndividualNFT>
                       </div>
                     </>

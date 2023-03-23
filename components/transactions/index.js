@@ -4,8 +4,8 @@ import IndividualTranaction from "./individualtransaction"
 import useSWR from 'swr'
 import { fetcherCollection } from "../../utils/fetcher";
 
-const Transaction=({error,data,isLoading})=>{
-
+const Transaction=({error,data,isLoading}) => {
+    console.log("🚀 ~ file: index.js:8 ~ Transaction ~ data:", data)
 
 
     return (
@@ -16,7 +16,7 @@ const Transaction=({error,data,isLoading})=>{
 
     <div className="space-y-[2.5rem] flex-col justify-center">
        
-{  (!error && data) ?
+{  (!error && data && data.length > 0) ?
         <div className="  hidden sm:flex sm:justify-around items-start sm:items-center overflow-hidden">
         
 

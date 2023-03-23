@@ -34,10 +34,9 @@ const Work=()=>{
 return (<>
 <div className=" h-fit  overflow-x-hidden xl:h-fit work mt-[2.5rem] flex flex-col lg:flex-row py-[2.5rem] lg:py-[7rem] px-[2.5rem] lg:px-[5rem] items-center justify-between">
 
-<motion.div variants={contVar} initial="hidden" whileInView="visible" className="w-[100%] lg:w-[50%]"><h2 className="workhead  text-[2.8rem] sm:text-[3rem] xl:text-[3.8rem] font-bold  font-['Inconsolata'] leading-[3.5rem]">How Golden Words Nfts Work:</h2>
+<motion.div variants={contVar} initial="hidden" whileInView="visible" className="w-[100%] lg:w-[50%]"><h2 className="workhead  text-[2.8rem] sm:text-[3rem] xl:text-[3.8rem] font-bold  font-['Inconsolata'] leading-[3.5rem]">How Digital Assets Nfts Work:</h2>
 <p className="text-[#f5f1f1] text-[1.9rem] xl:text-[1.8rem] text-justify pt-[2.3rem] font-['Inconsolata']">
-Golden Words NFTs is a latest method of creating NFTs, in which one can create NFTs of Golden Words 
-(text format) instead of pictures. Moreover, no one can create a copy of any other person's Golden Words
+Digital NFTs is a latest method of creating NFTs, in which one can create NFTs of digital assets (video/audio/image/text). Moreover, no one can create a copy of any other person's Golden Words
  NFTs because we use such alogrithms so that if any one want to create NFT by copying some other person NFT text then this platform does
  not allow them to create NFT of this text that is already use by some other person. And there is also verified email is associated with every collection
  and one email can be used for one collection only

@@ -1,5 +1,6 @@
 import Navbar from "../../components/navbar";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Binance from 'binance-api-node'
 import { ethers } from 'ethers'
 import Head from 'next/head'
@@ -21,49 +22,72 @@ import Footer from "../../components/footer";
 import PuffLoader from "react-spinners/PuffLoader";
 import { useRouter } from "next/router";
 import Transactions from "../../components/transactions";
-
+import ReactPlayer from "react-player";
+import axios from "axios";
 
 const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
+  const [loading, user, address] = useValidate(userinfo, "main");
 
-  let router=useRouter();
+  const [playing, setPlaying] = useState(false)
+  const handleReady = () => {
+    setPlaying(true)
+  }
 
+
+
+  let router = useRouter();
   const { data, error, isLoading } = useSWR(`/nftdata/${nftSellingData?.owner_email}?nftName=${nftData?.name}&nftId=${nftSellingData?._id}`, fetcherOwnerNft);
-
   const [dollar, setDollar] = useState(0);
-
   const BNBPrice = async () => {
     try {
 
       const client = Binance()
       let ticker = await client.prices({ symbol: 'BNBUSDT' });
-      setDollar(ticker?.BNBUSDT); 
+      setDollar(ticker?.BNBUSDT);
     }
     catch (error) {
       console.log(error)
     }
   }
 
+  const [textData, setTextData] = useState("");
+  const [textLoading, setTextLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+
+        const response = await axios.get(`${process.env.ipfsURL}${nftData?.content}`);
+        setTextData(response.data);
+        setTextLoading(false)
+      } catch (err) {
+      }
+    }
+    if (nftData?.type == "text") {
+      fetchData();
+    }
+
+  }, [])
+
 
   useEffect(() => {
     if (nftSellingData?.status == "selling" || data?.nft?.length != 0) {
       BNBPrice();
     }
-  }, [nftSellingData,data])
+  }, [nftSellingData, data])
 
 
   let date = new Date(nftData?.creationDate);
 
 
-  const [loading, user, address] = useValidate(userinfo, "main");
-
-
+  
   return (
     <>
       <Head>
         <title>Golden Words NFts</title>
-  
-        <Meta  nftData={nftSellingData}/>
+
+        <Meta nftData={nftSellingData} />
       </Head>
       <link itemProp="thumbnailUrl" href="https://textnft.vercel.app/new.png" />
       <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject">
@@ -86,15 +110,83 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
                 NFT Text:
               </h2>
 
-              <div className="w-[98.5%] overflow-hidden sm:w-[100%] nft_bord row-start-3 max-h-[43rem] lg:max-h-[60rem]  row-end-4 lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3">
+              <div className="w-[98.5%] overflow-hidden sm:w-[100%] nft_bord row-start-3 max-h-[43rem] relative lg:max-h-[60rem]  row-end-4 lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3">
 
-                <div className="w-[100%] listitem h-[100%] lg:h-[47rem] break-words flex justify-center items-center  overflow-auto relative p-[1.5rem] sm:p-[3rem] scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-[#FFF] scrollbar-thumb-rounded-xl scrollbar-track-rounded-full ">
 
-                  <h2 className="!text-[2.3rem]  text-['#2d3436'] break-words overflow-y-hidden font-['Inconsolata'] font-normal w-[100%]  text-center max-h-[100%] ">
-                    {parse(nftData?.text?nftData.text:"")}
+                {nftData?.type == "text" ?
+                  <div className="w-[100%] listitem h-[100%] lg:h-[47rem] break-words flex justify-center items-center  overflow-auto relative p-[1.5rem] sm:p-[3rem] scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-[#FFF] scrollbar-thumb-rounded-xl scrollbar-track-rounded-full ">
 
-                </h2>
-                </div>
+                    {
+                      textLoading ? (<div className="flex justify-center  mt-[4px]">
+
+                        <PuffLoader
+                          color={"#30DCBA"}
+                          cssOverride={{ marginBottom: "20px" }}
+                          size={110}
+                          aria-label="Loading Spinner"
+                          data-testid="loader"
+                        />
+                      </div>) : <h2 className="!text-[2.3rem] text-['#2d3436'] break-words overflow-y-hidden font-['Inconsolata'] font-normal w-[100%]  text-center max-h-[100%] ">
+                      {parse(`<pre class="whitespace-pre-wrap">${textData}</pre>`)}
+
+                    </h2>
+                    }
+
+
+                  </div> : null}
+
+                {nftData?.type == "image" ?
+                  <div className="w-[100%] pt-[0%] relative listitem h-[100%] lg:h-[47rem] break-words flex justify-center items-center scrollbar-thin scroll ">
+                    <div className=" inline-block w-[100%] h-[100%]  relative">
+                      <Image
+                        src={`${process.env.ipfsURL}${nftData?.content}`}
+                        layout="fill"
+                      /></div>
+                  </div> : null}
+
+                {nftData?.type == "video" ?
+                  <div className="w-[100%] pt-[0%] relative listitem h-[100%] lg:h-[47rem] break-words flex justify-center items-center scrollbar-thin scroll ">
+                    <ReactPlayer
+                      url={`${process.env.ipfsURL}${nftData?.content}`}
+                      controls={true}
+                      loop={true}
+                      config={{
+                        file: {
+                          attributes: {
+                            controlsList: 'nodownload'
+                          }
+                        }
+                      }}
+                      playing={playing}
+                      onReady={() => { setPlaying(true) }}
+                      key={playing}
+                      width="100%"
+                      height="100%"
+                      style={{ position: 'absolute', top: 0, left: 0 }}
+                    />
+                  </div> : null}
+
+                {nftData?.type == "audio" ?
+                  <div className="w-[100%] pt-[0%] relative listitem h-[100%] lg:h-[47rem] break-words flex justify-center items-center scrollbar-thin scroll ">
+                    <ReactPlayer
+                      url={`${process.env.ipfsURL}${nftData?.content}`}
+                      controls={true}
+                      config={{
+                        file: {
+                          attributes: {
+                            controlsList: 'nodownload'
+                          }
+                        }
+                      }}
+                      playing={playing}
+                      onReady={() => { setPlaying(true) }}
+                      key={playing}
+                      width="90%"
+                      height="60px"
+                      style={{ height: "100px" }}
+                    />
+                  </div> : null}
+
               </div>
               <div className="w-[53.5%] mt-[2rem] lg:mt-0 row-start-1 row-end-2 lg:col-start-2 lg:col-end-3">
                 <h2 className="whitespace-nowrap color w-fit h-fit -mt-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold  md:text-[3.2rem] tracking-wide ">
@@ -119,12 +211,12 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
                     <h3 className="text-[#545151] text-[1.9rem]  font-['Inconsolata'] font-medium  whitespace-nowrap block heightDetail">
                       Creation Date
                     </h3>
-                    <h3 className="text-[#545151] text-[1.9rem]  font-['Inconsolata'] font-medium  whitespace-nowrap block heightDetail">
-                      NFT Language
-                    </h3>
-                    {/* <h3 className="text-[#545151] text-[1.9rem] sm:text-[2rem] font-['Inconsolata'] font-medium whitespace-nowrap">
-                  Sales Ends In
-                </h3> */}
+
+                    {nftData?.type == "text" ?
+                      <h3 className="text-[#545151] text-[1.9rem]  font-['Inconsolata'] font-medium  whitespace-nowrap block heightDetail">
+                        NFT Language
+                      </h3> : null}
+
                   </div>
 
                   <div className="flex flex-col space-y-[0.75rem] grow overflow-x-scroll sm:grow-0 sm:overflow-visible">
@@ -135,11 +227,11 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
                     {nftSellingData?.status == "selling" ?
                       <> <p className="text-[#686767cf] font-['Inconsolata']  text-[1.6rem] font-medium whitespace-nowrap overflow-x-scroll scrollbar-none pt-[0.2rem]">
-                        {ethers.utils.formatUnits(nftSellingData?.price.toLocaleString('fullwide', {useGrouping:false}), 18)} BNB
-                     
+                        {ethers.utils.formatUnits(nftSellingData?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB
+
                       </p>
                         <div className="text-[#686767cf] whitespace-nowrap font-['Inconsolata'] text-[1.6rem] sm:text-[1.6rem] font-medium overflow-x-scroll scrollbar-none">
-        {(ethers.utils.formatUnits(nftSellingData?.price.toLocaleString('fullwide', {useGrouping:false}), 18) * dollar).toFixed(2)} USD
+                          {(ethers.utils.formatUnits(nftSellingData?.price.toLocaleString('fullwide', { useGrouping: false }), 18) * dollar).toFixed(2)} USD
                         </div>
                       </> : null}
 
@@ -148,15 +240,11 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
                       {date.toLocaleString()}
                     </p>
 
-                    <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] font-medium block heightDetail overflow-x-scroll scrollbar-none">
-                      {Language[nftData?.language]}
-                    </p>
-                    {/* <p className="text-[#00000] font-semibold font-['Inconsolata']  w-[100%] overflow-hidden text-ellipsis text-[1.5rem] sm:text-[1.6rem] pt-[0.2rem] sm:pt-[0rem] whitespace-nowrap">
-                  5 <span className="text-[#686767cf] font-medium">Days</span> 8{" "}
-                  <span className="text-[#686767cf] font-medium">Hours</span> 52{" "}
-                  <span className="text-[#686767cf] font-medium">Mins</span> 32
-                  <span className="text-[#686767cf] font-medium"> Secs</span>
-                </p> */}
+                    {nftData?.type == "text" ?
+                      <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] font-medium block heightDetail overflow-x-scroll scrollbar-none">
+                        {Language[nftData?.language]}
+                      </p> : null}
+
                   </div>
                 </div>
 
@@ -211,10 +299,10 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
               </div>
 
-              <div className="mt-[1.3rem] h-fit lg:mt-[0.5rem] flex items-center flex-wrap lg:col-start-2 lg:col-end-3 space-y-2 sm:space-y-0">
+              <div className="mt-[1rem] h-fit lg:mt-[0.1rem] flex items-center flex-wrap lg:col-start-2 lg:col-end-3 space-y-2 sm:space-y-0">
 
 
-                <Share path={`${process.env.URL}/individualnft/${nftSellingData?.tokenURI}`}/>
+                <Share path={`${process.env.URL}/individualnft/${nftSellingData?.tokenURI}`} />
 
                 {address == nftSellingData?.owner_address && user?.address == address && nftSellingData.status == "verified" && nftSellingData?.approved ?
                   <Sell nftHash={nftData?.hash} tokenId={nftSellingData?.tokenId} /> : null
@@ -247,14 +335,6 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
             </div>
             <div>
 
-              <div className="mt-[2rem]">
-                <h2 className="whitespace-nowrap text-[#34495e] w-fit h-fit -mt-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-med md:text-[3.2rem] tracking-wide ">
-                  NFT Text Hash:
-                </h2>
-                <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] font-medium pt-[0.1rem] w-[100%]  break-words">
-                  {nftData?.hash}
-                </p>
-              </div>
 
               <div className="mt-[2rem]">
                 <h2 className="whitespace-nowrap text-[#34495e] w-fit h-fit -mt-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-medium  md:text-[3.2rem] tracking-wide ">
@@ -268,7 +348,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
 
 
-            <Transactions data={data?.transactions} error={error} isLoading={isLoading}/>
+            <Transactions data={data?.transactions} error={error} isLoading={isLoading} />
 
             <div className="mt-[3rem]">
               <h2 className="color w-fit h-fit -mt-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold  md:text-[3.2rem] tracking-wide ">
@@ -279,22 +359,22 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
           <div className="md:mx-[2rem]">
 
 
-          {
-            isLoading ?
-             ( <div className="flex justify-center  mt-[4px]">
+            {
+              isLoading ?
+                (<div className="flex justify-center  mt-[4px]">
 
-            <PuffLoader
-              color={"#30DCBA"}
-              cssOverride={{ marginBottom: "20px" }}
-              size={110}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            />
-          </div>)
-          :null
-        }
+                  <PuffLoader
+                    color={"#30DCBA"}
+                    cssOverride={{ marginBottom: "20px" }}
+                    size={110}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
+                </div>)
+                : null
+            }
 
-          <div className={ `mg ${data?.nft?.length!=0 ?"flex flex-wrap jt":"!ml-[2rem] sm:!ml-[4rem]"}`}>
+            <div className={`mg ${data?.nft?.length != 0 ? "flex flex-wrap jt" : "!ml-[2rem] sm:!ml-[4rem]"}`}>
 
               {error ? (<div className="text-[red] text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['Inconsolata'] mt-[0.5rem]">
                 Error in getting NFTs Please try later</div>) : ""
@@ -304,8 +384,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
                 (!error && data) ?
 
                   data?.nft?.map((data, index) => {
-                    return <Individualnft key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} nfttext={data?.title}  id={data?.tokenURI} priceDollar={(ethers.utils.formatUnits(data?.price.toLocaleString('fullwide', {useGrouping:false}), 18) * dollar).toFixed(2)}></Individualnft>
-
+                    return <Individualnft key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI}></Individualnft>
 
                   }) : ""
               }
@@ -317,19 +396,19 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
             </div>
 
 
-{ !isLoading && !error?
-            <div className="mg flex justify-end my-[1.5rem]  font-['Inconsolata']">
+            {!isLoading && !error ?
+              <div className="mg flex justify-end my-[1.5rem]  font-['Inconsolata']">
 
-<button className="bg-blue-500 mr-[1.5rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold  px-12  py-[1rem] sm:px-14 rounded-full font-['Inconsolata'] tracking-wider"
-      onClick={() =>{router.push(`/profile/${data?.ownerId}`)} }
-     >
-  View Profile
-</button>
+                <button className="bg-blue-500 mr-[1.5rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold  px-12  py-[1rem] sm:px-14 rounded-full font-['Inconsolata'] tracking-wider"
+                  onClick={() => { router.push(`/profile/${data?.ownerId}`) }}
+                >
+                  View Profile
+                </button>
 
-</div>:null
-       }       </div>
+              </div> : null
+            }       </div>
 
-<Footer />
+          <Footer />
         </>)}
     </>
   );

@@ -47,13 +47,91 @@ export const filterNftSchema=Yup.object({
 })
 
 
-export const NFTCreationSchema=Yup.object({
-    nftName:Yup.string().trim().required("Please Enter NFT Name").min(2,"Minimum character should be 2").max(20,"Maximum character should be 20"),
-    nftLanguage:Yup.string().trim().required("Please choose NFT language"),
-    nftDescription:Yup.string().trim().required("Please Enter NFT description").min(10,"Minimum character should be 10").max(250,"Maximum character should be 250"),
-    nftText:Yup.string().trim().required("Please Enter NFT Text").min(2,"Minimum character should be 2")
 
+const FILE_SIZE_MEDIA = 500 * 1024 * 1024;
+const FILE_SIZE_IMAGE = 10 * 1024 * 1024;
+
+export const NFTCreationSchema=Yup.object().shape({
+    nftName:Yup.string().trim().required("Please Enter NFT Name").min(2,"Minimum character should be 2").max(20,"Maximum character should be 20"),
+    nftContentType:Yup.string(),
+    nftLanguage:Yup.string().trim().when("nftContentType",{
+        is: "text", 
+        then: Yup.string().required("Please choose NFT language"),
+        otherwise:Yup.string()
+    }),
+    nftDescription:Yup.string().trim().required("Please Enter NFT description").min(10,"Minimum character should be 10").max(250,"Maximum character should be 250"),
+    nftText:Yup.string().trim().when("nftContentType",{
+        is: "text", 
+        then: Yup.string().required("Please Enter NFT Text").min(2,"Minimum character should be 2"),
+        otherwise:Yup.string()
+    }),
+    nftVideo: Yup.mixed().when("nftContentType",{
+    is: "video",
+    then: Yup.mixed().required('Please select a file').test('fileType', 'Only video files are allowed', (value) => {
+        if (!value) {
+          return false;
+        }
+        const allowedTypes = 'video/';
+        const { type } = value;
+        return type.startsWith(allowedTypes);
+      }).test(
+          "fileSize",
+          "File size must be less than 500MB",
+          (value) => {
+              if (!value) {
+                  return false;
+                }
+             return value.size <= FILE_SIZE_MEDIA
+          }
+        ),
+    otherwise: Yup.mixed(),
+    }) ,
+    nftAudio: Yup.mixed().when("nftContentType",{
+        is: "audio",
+        then: Yup.mixed().required('Please select a file').test('fileType', 'Only audio files are allowed', (value) => {
+            if (!value) {
+              return false;
+            }
+            const allowedTypes = 'audio/';
+            const { type } = value;
+            return type.startsWith(allowedTypes);
+          }).test(
+              "fileSize",
+              "File size must be less than 500MB",
+              (value) => {
+                  if (!value) {
+                      return false;
+                    }
+                 return value.size <= FILE_SIZE_MEDIA
+              }
+            ),
+        otherwise: Yup.mixed(),
+        }) ,
+    nftImage: Yup.mixed().when("nftContentType",{
+        is: "image",
+        then: Yup.mixed().required('Please select a Image').test('fileType', 'Only image files are allowed', (value) => {
+            if (!value) {
+              return false;
+            }
+            const allowedTypes = 'image/';
+            const { type } = value;
+            return type.startsWith(allowedTypes);
+          }).test(
+              "fileSize",
+              "File size must be less than 10MB",
+              (value) => {
+                  if (!value) {
+                      return false;
+                    }
+                 return value.size <= FILE_SIZE_IMAGE
+              }
+            ),
+        otherwise: Yup.mixed(),
+        })
 })
+
+
+
 
 export const NFTSellSchema=Yup.object({
     nftCurrency:Yup.string().trim().required("Please choose NFT language"),
