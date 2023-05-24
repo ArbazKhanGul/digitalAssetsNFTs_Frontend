@@ -33,6 +33,13 @@ function individual({data,index,id}) {
 
 {data?.type == "first_sell" ? (<>Your created nft  {data?.nftName} that you upload for selling has been sell and 10 percent platform charges is deducted from selling price  and remaining amount (90 percent of selling price) i.e<span className="font-bold text-black">{ethers.utils.formatUnits(data?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB  </span> is successfully transferred to your wallet and  now the new owner of your created nft is  {data?.transfer_to}  </>) : null}
 
+{data?.type == "request_copyright" ? (<>There is a copyright request for your owned nft  {data?.nftName} and request is sent by {data?.transfer_to}  and offered money is <span className="font-bold text-black">{ethers.utils.formatUnits(data?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB  </span>  </>) : null}
+
+{data?.type == "action_copyright_reject" ? (<>Copyright request that you submitted for nft  {data?.nftName} is rejected by the owner {data?.transfer_to}  </>) : null}
+
+{data?.type == "action_copyright_accept" ? (<>Copyright request that you submitted for nft  {data?.nftName} is accepted by the owner {data?.transfer_to}  </>) : null}
+
+
                             </h2>
                         <h3 className={`-mt-[0.4rem] text-[1.3rem] font-medium text-[#5f6668]`}>{timeAgo.format(new Date(data?.createdAt))}</h3>
                         </div>

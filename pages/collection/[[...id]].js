@@ -1,20 +1,13 @@
 import { MdFilterList } from "react-icons/md"
-import Filter from "../../components/collection/filter";
-import "react-toastify/dist/ReactToastify.css";
 import Binance from 'binance-api-node'
-import { ethers } from 'ethers'
-import PuffLoader from "react-spinners/PuffLoader";
-
-import {
-    useEffect, Navbar, Pagination, Footer, useState,
-    useRouter, validateUser, getServerSideProps, toast, ToastContainer, useSelector,
-    useDispatch, selectAddress, addAddress, Card, selectUser, addUser
-} from "../../components"
-
 import getDataRoute from "../../utils/getDataRoute";
-import useSWR from 'swr'
 import useValidate from "../../utils/useValidate";
 import {fetcherCollection} from "../../utils/fetcher"
+import {
+    useEffect, Navbar, Pagination, Footer, useState,
+    useRouter, getServerSideProps, PuffLoader,ToastContainer, Card, ethers,useSWR,CollectionFilter as Filter
+} from "../../components"
+
 
 const Collection = ({ userinfo }) => {
 

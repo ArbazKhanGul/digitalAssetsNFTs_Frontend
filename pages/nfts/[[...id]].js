@@ -1,17 +1,10 @@
 import {MdFilterList} from "react-icons/md"
-import Filter from "../..//components/nft/filter";
-import "react-toastify/dist/ReactToastify.css";
-import PuffLoader from "react-spinners/PuffLoader";
-import {
-    useEffect, Navbar, Pagination, Footer, useState,
-    useRouter, validateUser, getServerSideProps, toast, ToastContainer, useSelector,fetcher,
-    useDispatch, selectAddress, addAddress,NFTPortion,Work,TopCollections,Main,selectUser,addUser,IndividualNFT
-} from "../../components"
-
-import useSWR from 'swr'
 import getDataRoute from "../../utils/getDataRoute";
 import useValidate from "../../utils/useValidate";
 import {fetcherNft} from "../../utils/fetcher"
+import {
+  Navbar, Pagination, Footer,NftFilter as Filter, useState,useRouter,  getServerSideProps, ToastContainer,IndividualNFT,useSWR,PuffLoader
+} from "../../components"
 
 
 const NFT =({userinfo})=>{

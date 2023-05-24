@@ -133,7 +133,115 @@ export const NFTCreationSchema=Yup.object().shape({
 
 
 
+
+
+
+export const NFTCopySchema=Yup.object().shape({
+    // nftName:Yup.string().trim().required("Please Enter NFT Name").min(2,"Minimum character should be 2").max(20,"Maximum character should be 20"),
+   
+    nftContentUse:Yup.string(),
+    nftContentType:Yup.string(),
+
+    nftLanguage:Yup.string().trim().when(["nftContentUse","nftContentType"],{
+        is: (field1, field2) => field1 === 'no' && field2 === 'text', 
+        then: Yup.string().required("Please choose NFT language"),
+        otherwise:Yup.string()
+    }),
+    nftDescription:Yup.string().when("nftContentUse",{
+        is:"no",
+        then:Yup.string().trim().required("Please Enter NFT description").min(10,"Minimum character should be 10").max(250,"Maximum character should be 250"),
+        otherwise:Yup.string()
+        }
+    ),
+    nftText:Yup.string().trim().when(["nftContentUse","nftContentType"],{
+        is: (field1, field2) => field1 === 'no' && field2 === 'text', 
+        then: Yup.string().required("Please Enter NFT Text").min(2,"Minimum character should be 2"),
+        otherwise:Yup.string()
+    }),
+    nftVideo: Yup.mixed().when(["nftContentUse","nftContentType"],{
+    is: (field1, field2) => field1 === 'no' && field2 === 'video',
+    then: Yup.mixed().required('Please select a file').test('fileType', 'Only video files are allowed', (value) => {
+        if (!value) {
+          return false;
+        }
+        const allowedTypes = 'video/';
+        const { type } = value;
+        return type.startsWith(allowedTypes);
+      }).test(
+          "fileSize",
+          "File size must be less than 500MB",
+          (value) => {
+              if (!value) {
+                  return false;
+                }
+             return value.size <= FILE_SIZE_MEDIA
+          }
+        ),
+    otherwise: Yup.mixed(),
+    }) ,
+    nftAudio: Yup.mixed().when(["nftContentUse","nftContentType"],{
+        is: (field1, field2) => field1 === 'no' && field2 === 'audio',
+        then: Yup.mixed().required('Please select a file').test('fileType', 'Only audio files are allowed', (value) => {
+            if (!value) {
+              return false;
+            }
+            const allowedTypes = 'audio/';
+            const { type } = value;
+            return type.startsWith(allowedTypes);
+          }).test(
+              "fileSize",
+              "File size must be less than 500MB",
+              (value) => {
+                  if (!value) {
+                      return false;
+                    }
+                 return value.size <= FILE_SIZE_MEDIA
+              }
+            ),
+        otherwise: Yup.mixed(),
+        }) ,
+    nftImage: Yup.mixed().when(["nftContentUse","nftContentType"],{
+        is: (field1, field2) => field1 === 'no' && field2 === 'image',
+        then: Yup.mixed().required('Please select a Image').test('fileType', 'Only image files are allowed', (value) => {
+            if (!value) {
+              return false;
+            }
+            const allowedTypes = 'image/';
+            const { type } = value;
+            return type.startsWith(allowedTypes);
+          }).test(
+              "fileSize",
+              "File size must be less than 10MB",
+              (value) => {
+                  if (!value) {
+                      return false;
+                    }
+                 return value.size <= FILE_SIZE_IMAGE
+              }
+            ),
+        otherwise: Yup.mixed(),
+        })
+})
+
+
+
+
+
+
+
+
 export const NFTSellSchema=Yup.object({
-    nftCurrency:Yup.string().trim().required("Please choose NFT language"),
+    nftCurrency:Yup.string().trim().required("Please choose currency"),
     nftPrice: Yup.number().moreThan(0,"you must specify a positive number").typeError('you must specify a positive number').required("Please enter NFT price"),
+})
+
+export const NFTCopyRightSchema=Yup.object({
+    nftCurrency:Yup.string().trim().required("Please choose Currency"),
+    CopyRightPrice: Yup.number().moreThan(0,"you must specify a positive number").typeError('you must specify a positive number').required("Please enter Copyrights Offered Money"),
+})
+
+
+export const NFTCopyRightAllowSchema=Yup.object({
+  nftCurrency:Yup.string().trim(),
+  CopyRightPrice: Yup.number().moreThan(0,"you must specify a positive number").typeError('you must specify a positive number'),
 })

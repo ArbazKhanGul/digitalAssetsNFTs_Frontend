@@ -13,7 +13,7 @@ const IndividualCollections = ({ num, sellerProfile,sellerName,sellerId,ownerPro
     
     className={"hidden sm:border-b-0 sm:flex border-[#b1b1b1]   justify-start space-y-[1rem] pl-[2.3rem] sm:pl-[0rem]  sm:pb-[0rem] sm:space-y-[0.5rem] sm:justify-around items-start sm:items-center  flex-col sm:flex-row font-['Inconsolata']" + (num != 3 ? "border-b-[1px] pb-[1rem]" : "") }>
 
-      <div className="flex gap-[1.5rem] items-center w-[28%] overflow-hidden text-ellipsis cursor-pointer"  onClick={() => { router.push(`/profile/${sellerId}`) }} >
+      <div className="flex gap-[1.5rem] items-center w-[32%] overflow-hidden text-ellipsis cursor-pointer"  onClick={() => { router.push(`/profile/${sellerId}`) }} >
         <div className="text-[#0B0A0A8A] text-[2rem] sm:text-[2rem] md:text-[2rem] font-bold font-['Inconsolata']" >{num}. </div>
         <div >
           <div className=" inline-block w-[3.5rem] h-[3.5rem] sm:w-[3.7rem] md:w-[4.3rem] sm:h-[3.7rem] md:h-[4.3rem] rounded-full relative">

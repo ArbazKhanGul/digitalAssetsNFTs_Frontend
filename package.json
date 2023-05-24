@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^1.8.3",
     "axios": "^0.27.2",
     "binance-api-node": "^0.12.1",
+    "cli-truncate": "^3.1.0",
     "ethers": "^5.7.0",
     "formik": "^2.2.9",
     "framer-motion": "^7.1.0",

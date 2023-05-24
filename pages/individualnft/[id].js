@@ -1,44 +1,49 @@
-import Navbar from "../../components/navbar";
-import { useEffect, useState } from "react";
-import Image from "next/image";
 import Binance from 'binance-api-node'
-import { ethers } from 'ethers'
-import Head from 'next/head'
-import Meta from "../../components/meta"
 import getServerSideProps from "../../utils/ServerSideNft"
 import useValidate from "../../utils/useValidate"
-import { toast, ToastContainer } from "react-toastify";
 import Language from "../../utils/languageShow.json"
-import Share from "../../components/share"
-import Sell from "../../components/sellBuy/sell"
 import parse from 'html-react-parser';
-import CancelSelling from "../../components/sellBuy/cancelSelling";
-import Buy from "../../components/sellBuy/buy";
-import Approval from "../../components/sellBuy/approval";
-import Individualnft from "../../components/mainpage/individualnft";
-import useSWR from "swr";
 import { fetcherOwnerNft } from "../../utils/fetcher";
-import Footer from "../../components/footer";
-import PuffLoader from "react-spinners/PuffLoader";
-import { useRouter } from "next/router";
-import Transactions from "../../components/transactions";
 import ReactPlayer from "react-player";
 import axios from "axios";
+import {
+  Navbar, Footer,IndividualNFT as Individualnft, Sell, Head, Transactions, Approval, CancelSelling, Buy, Share, Meta, useState, useEffect, useRouter, ethers, Image, ToastContainer, useSWR, PuffLoader
+  , CopyRight
+} from "../../components"
+
+
+
+
+
+
+
+
+
 
 const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
+console.log("🚀 ~ file: [id].js:24 ~ IndividualNFT ~ nftSellingData:", nftSellingData)
+
 
   const [loading, user, address] = useValidate(userinfo, "main");
 
   const [playing, setPlaying] = useState(false)
-  const handleReady = () => {
-    setPlaying(true)
-  }
+
 
 
 
   let router = useRouter();
-  const { data, error, isLoading } = useSWR(`/nftdata/${nftSellingData?.owner_email}?nftName=${nftData?.name}&nftId=${nftSellingData?._id}`, fetcherOwnerNft);
+  const { data, error, mutate, isValidating } = useSWR(`/nftdata/${nftSellingData?.owner_email}?nftName=${nftData?.name}&nftId=${nftSellingData?._id}&original=${nftSellingData?.original}`, fetcherOwnerNft);
+
   const [dollar, setDollar] = useState(0);
+
+
+  useEffect(() => {
+    if (user) {
+      mutate();
+    }
+  }, [user])
+
+
   const BNBPrice = async () => {
     try {
 
@@ -67,8 +72,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
     if (nftData?.type == "text") {
       fetchData();
     }
-
-  }, [])
+    }, [])
 
 
   useEffect(() => {
@@ -81,7 +85,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
   let date = new Date(nftData?.creationDate);
 
 
-  
+
   return (
     <>
       <Head>
@@ -127,9 +131,9 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
                           data-testid="loader"
                         />
                       </div>) : <h2 className="!text-[2.3rem] text-['#2d3436'] break-words overflow-y-hidden font-['Inconsolata'] font-normal w-[100%]  text-center max-h-[100%] ">
-                      {parse(`<pre class="whitespace-pre-wrap">${textData}</pre>`)}
+                        {parse(`<pre class="whitespace-pre-wrap">${textData}</pre>`)}
 
-                    </h2>
+                      </h2>
                     }
 
 
@@ -195,9 +199,18 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
                 <div className="flex spdeatil space-x-[6rem] sm:space-x-[13rem] lg:space-x-[4rem] xl:space-x-[10rem] w-[89.5vw] sm:w-auto">
                   <div className="flex flex-col space-y-2">
-                    <h2 className="text-[#545151] text-[1.9rem]  font-['Inconsolata'] font-medium block heightDetail">
-                      Name
-                    </h2>
+                    {nftSellingData?.original ?
+                      <h2 className="text-[#545151] text-[1.9rem]  font-['Inconsolata'] font-medium block heightDetail">
+                        Name
+                      </h2> : null
+                    }
+
+                    {!nftSellingData?.original ?
+                      <h2 className="text-[#545151] text-[1.9rem]  font-['Inconsolata'] font-medium block heightDetail">
+                        Copy of
+                      </h2> : null
+                    }
+
                     {nftSellingData?.status == "selling" ?
                       <>
                         <h2 className="text-[#545151] text-[1.9rem] sm:text-[2rem] font-['Inconsolata'] font-medium">
@@ -220,9 +233,20 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
                   </div>
 
                   <div className="flex flex-col space-y-[0.75rem] grow overflow-x-scroll sm:grow-0 sm:overflow-visible">
-                    <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] pt-[0.3rem] sm:pt-[0rem] font-medium block heightDetail whitespace-nowrap  overflow-y-hidden hd scrollbar-none">
-                      {nftData?.name}
-                    </p>
+
+                    {nftSellingData?.original ?
+                      <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] pt-[0.3rem] sm:pt-[0rem] font-medium block heightDetail whitespace-nowrap  overflow-y-hidden hd scrollbar-none">
+                        {nftData?.name}
+                      </p> : null
+                    }
+
+                    {!nftSellingData?.original ?
+                      <p onClick={() => { router.push(`/individualnft/${nftSellingData?.originalTokenURI}`) }} className="w-fit text-[#069EBF] cursor-pointer decoration-[#069EBF] decoration-1 underline underline-offset-1  sm:text-[2.1rem]   font-['Inconsolata'] text-[1.6rem] pt-[0.3rem] sm:pt-[0rem] font-medium block heightDetail whitespace-nowrap  overflow-y-hidden hd scrollbar-none">
+                        {nftData?.name}
+                      </p> : null}
+                    {/* // <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] pt-[0.3rem] sm:pt-[0rem] font-medium block heightDetail whitespace-nowrap  overflow-y-hidden hd scrollbar-none"> */}
+                    {/* </p>:null */}
+
 
 
                     {nftSellingData?.status == "selling" ?
@@ -346,9 +370,11 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
               </div>
             </div>
 
+            {nftSellingData?.original ? <CopyRight ownerAddress={nftSellingData?.owner_address} ownercopyrightStatus={nftSellingData?.copyrightStatus} ownercopyrightPrice={nftSellingData?.copyrightPrice} nftName={nftData?.name} nftid={nftSellingData?.tokenURI} copyrightStatus={data?.copyright_status} user={user} address={address} isLoading={isValidating} dataError={error} mutate={mutate} ownerId={data?.ownerId} /> : null
+            }
 
 
-            <Transactions data={data?.transactions} error={error} isLoading={isLoading} />
+            <Transactions data={data?.transactions} error={error} isLoading={isValidating} />
 
             <div className="mt-[3rem]">
               <h2 className="color w-fit h-fit -mt-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold  md:text-[3.2rem] tracking-wide ">
@@ -360,7 +386,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
 
             {
-              isLoading ?
+              isValidating ?
                 (<div className="flex justify-center  mt-[4px]">
 
                   <PuffLoader
@@ -385,7 +411,6 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
                   data?.nft?.map((data, index) => {
                     return <Individualnft key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI}></Individualnft>
-
                   }) : ""
               }
 
@@ -396,7 +421,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
             </div>
 
 
-            {!isLoading && !error ?
+            {!isValidating && !error ?
               <div className="mg flex justify-end my-[1.5rem]  font-['Inconsolata']">
 
                 <button className="bg-blue-500 mr-[1.5rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold  px-12  py-[1rem] sm:px-14 rounded-full font-['Inconsolata'] tracking-wider"

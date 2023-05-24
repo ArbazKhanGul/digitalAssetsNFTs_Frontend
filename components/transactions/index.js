@@ -1,8 +1,6 @@
 import ClipLoader from "react-spinners/PuffLoader";
 import {memo} from "react";
 import IndividualTranaction from "./individualtransaction"
-import useSWR from 'swr'
-import { fetcherCollection } from "../../utils/fetcher";
 
 const Transaction=({error,data,isLoading}) => {
     console.log("🚀 ~ file: index.js:8 ~ Transaction ~ data:", data)
@@ -23,7 +21,7 @@ const Transaction=({error,data,isLoading}) => {
             <div className="ml-[3rem] text-[2.3rem] sm:text-[2rem]  md:text-[2.5rem] w-[20%] pl-[2rem] box-border font-medium colgrad">Seller</div>
             <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.5rem] text-center  colgrad flex flex-col font-medium w-[28%] mr-[5%]"> Buyer
              </div>
-             <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.5rem] text-center colgrad flex flex-col font-medium w-[22%]">Price
+             <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.5rem] text-center colgrad flex flex-col font-medium ml-[4%] w-[22%]">Price
              </div>
         </div>:""}
         {
@@ -45,7 +43,7 @@ const Transaction=({error,data,isLoading}) => {
                             }
 
                             {
-                                (!error && data) ?
+                                (!error && data && !isLoading) ?
 
                                     data?.map((data, index) => {
                                         return <IndividualTranaction key={index} num={index+1} sellerName={data?.sellerName} sellerProfile={data?.sellerProfile} sellerId={data?.sellerId} ownerId={data?.ownerId} ownerName={data?.ownerName} ownerProfile={data?.ownerProfile} price={data?.price}></IndividualTranaction> 
@@ -53,7 +51,8 @@ const Transaction=({error,data,isLoading}) => {
                                     }) : ""
                             }
 
-{data?.length==0 && !error? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
+{data?.length==0 && !error? (
+<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
                             OOPS!   Nothing to show...</div>) : ""
                             }
 

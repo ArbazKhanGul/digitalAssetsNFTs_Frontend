@@ -6,6 +6,7 @@ import { store } from '../store'
 import { Provider } from 'react-redux'
 import NProgress from "nprogress"
 import "../styles/nprogress.css"; 
+import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }) {
 

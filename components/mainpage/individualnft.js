@@ -121,7 +121,7 @@ const IndividualNFT = ({ nftname, owner, creator, creationdate, price, index, id
         </div> : null}
 
       {type == "audio" ?
-        <div className="w-[100%] bg-[#F1F3F4] rounded-tr-[3rem] rounded-tl-[3rem] pt-[0%] relative listitem h-[20.5rem] break-words flex justify-center items-center scrollbar-thin scroll ">
+        <div className="w-[100%] px-[1rem] bg-[black] rounded-tr-[3rem] rounded-tl-[3rem] pt-[0%] relative listitem h-[20.5rem] break-words flex justify-center items-center scrollbar-thin scroll ">
           <ReactPlayer
             url={`${process.env.ipfsURL}${contentURI}`}
             controls={true}
@@ -133,7 +133,7 @@ const IndividualNFT = ({ nftname, owner, creator, creationdate, price, index, id
               }
             }}
             width="100%"
-            height="60px"
+            height="48px"
             style={{ height: "100px" }}
           />
         </div> : null}

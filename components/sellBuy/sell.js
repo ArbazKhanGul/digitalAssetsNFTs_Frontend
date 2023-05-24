@@ -25,8 +25,6 @@ let options = [
 
 
 function Sell({ nftHash, tokenId }) {
-  console.log("🚀 ~ file: sell.js:28 ~ Sell ~ nftHash", nftHash)
-  console.log("🚀 ~ file: sell.js:28 ~ Sell ~ tokenId", tokenId)
 
   const [showModal, setShowModal] = useState(false);
   const [checker, setChecker] = useState("price");

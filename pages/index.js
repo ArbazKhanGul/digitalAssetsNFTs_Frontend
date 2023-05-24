@@ -1,6 +1,7 @@
 import Head from "next/head";
 import "react-toastify/dist/ReactToastify.css";
 import useSWR from "swr";
+
 import {
     useEffect, Navbar,  Footer, useState,
     useRouter, validateUser, getServerSideProps, toast, ToastContainer, useSelector,

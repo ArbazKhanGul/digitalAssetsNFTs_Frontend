@@ -38,14 +38,28 @@ function IndividualNotification({ userinfo, notificationData }) {
 
               {notificationData?.type == "first_sell" ? (<>Your created nft <span   onClick={()=>router.push(`/individualnft/${notificationData?.nftId}`)} className='text-[1.8rem] sm:text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.nftName}</span> that you upload for selling has been sell and 10 percent platform charges is deducted from selling price  and remaining amount (90 percent of selling price) i.e<span className="font-bold text-black">{ethers.utils.formatUnits(notificationData?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB  </span> is successfully transferred to your wallet and  now the new owner of your created nft is <span onClick={()=>router.push(`/profile/${notificationData?.ownerId}`)} className='text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.transfer_to}</span>  </>) : null}
 
+              {notificationData?.type == "request_copyright" ? (<>There is a copyright request for your owned nft <span   onClick={()=>router.push(`/individualnft/${notificationData?.nftId}`)} className='text-[1.8rem] sm:text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.nftName}</span> and request is sent by <span onClick={()=>router.push(`/profile/${notificationData?.ownerId}`)} className='text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.transfer_to}</span> and offered money is <span className="font-bold text-black">{ethers.utils.formatUnits(notificationData?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB  </span>    </>) : null}
+
+              {notificationData?.type == "action_copyright_reject" ? (<>Copyright request that you submitted for nft  <span   onClick={()=>router.push(`/individualnft/${notificationData?.nftId}`)} className='text-[1.8rem] sm:text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.nftName}</span> is rejected by the owner <span onClick={()=>router.push(`/profile/${notificationData?.ownerId}`)} className='text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.transfer_to}</span>. </>) : null}
+
+              {notificationData?.type == "action_copyright_accept" ? (<>Copyright request that you submitted for nft  <span   onClick={()=>router.push(`/individualnft/${notificationData?.nftId}`)} className='text-[1.8rem] sm:text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.nftName}</span> is accepted by the owner <span onClick={()=>router.push(`/profile/${notificationData?.ownerId}`)} className='text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.transfer_to}</span>. </>) : null}
+
             </p>
             <h2 className="text-[#0f1111] font-medium font-['Inconsolata'] text-[2.2rem]">Regards</h2>
             <h2 className="text-[#0f1111] font-medium font-['Inconsolata'] text-[2.2rem]">Golden Words NFTs</h2>
           </div>
           <div className="flex justify-end mt-[1rem]">
+
+          <button onClick={()=>router.push(`/copyright/${notificationData?.copyrightId}`)} className="mt-[2rem] mr-[1rem] sm:mt-[0rem] bg-blue-500 w-fit inline-block hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-3 sm:px-14 rounded-full font-['Inconsolata'] tracking-wider">
+              <a>View Request</a>
+            </button>
+
             <button onClick={()=>deleteNotification(notificationData?._id,router)} className="mt-[2rem] sm:mt-[0rem] bg-blue-500 w-fit inline-block hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-3 sm:px-14 rounded-full font-['Inconsolata'] tracking-wider">
               <a>Delete</a>
             </button>
+
+
+
           </div>
         </div>
         <div className="mb-[2rem] w-[100%] lg:w-[40rem]">
