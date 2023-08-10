@@ -12,7 +12,7 @@ const NFT =({userinfo})=>{
 
     const router = useRouter();
     let {route,paramid}=getDataRoute(router,"getnfts");
-    const { data, error,isLoading } = useSWR(route, fetcherNft);
+    const { data, error,isValidating } = useSWR(route, fetcherNft);
 
     const [showItems, show]=useState(false);
 
@@ -51,8 +51,8 @@ const [loading, user, address] = useValidate(userinfo, "main");
 
 
         {
-            isLoading ?
-             ( <div className="flex w-[100%] h-[100%] justify-center ">
+            isValidating ?
+             ( <div className="flex w-[100%] h-[100%] mt-[5rem] justify-center ">
 
             <PuffLoader
               color={"#30DCBA"}
@@ -76,15 +76,15 @@ const [loading, user, address] = useValidate(userinfo, "main");
                             }
 
                             {
-                                (!error && data) ?
+                                (!error && data && !isValidating) ?
 
                                     data?.nft?.map((data, index) => {
-                                      return <IndividualNFT data={data} key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI} ></IndividualNFT>
+                                      return <IndividualNFT data={data} original={data?.original} key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI} ></IndividualNFT>
                                     }) : ""
                             }
 
 
-{data?.nft?.length==0 && !error ? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3.3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
+                 {data?.nft?.length==0 && !error ? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3.3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
                             OOPS!   Nothing to show...</div>) : ""
                             }
 

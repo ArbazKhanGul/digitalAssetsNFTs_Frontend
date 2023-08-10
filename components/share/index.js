@@ -33,7 +33,7 @@ function index({path,page}) {
                                  Share
                                </span>
                              </div>:      <button
-      className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[4rem] rounded-full font-['Inconsolata'] tracking-wider"
+      className="bg-blue-500 xs:mr-[2rem] w-[100%] xs:w-fit hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-4 xs:py-3 px-[4rem] rounded-[1.3rem] xs:rounded-full font-['Inconsolata'] tracking-wider"
       type="button"
       onClick={() => setShowModal(true)}
     >

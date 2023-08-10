@@ -4,7 +4,6 @@ import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { Editor, useEffect, Image, useState, Navbar, Footer, useRouter, axios, IndividualNFT, ToastContainer } from "../../components"
 import { NFTCopySchema } from "../../schema/index"
-// import { nftTokenCreate } from "../utils/nftCreate"
 import getServerSideProps from "../../utils/serverSideCopy"
 import useValidate from '../../utils/useValidate';
 import ClipLoader from "react-spinners/ClipLoader";
@@ -117,19 +116,19 @@ console.log("🚀 ~ file: [id].js:23 ~ Item ~ nftData:", nftData)
 
                             <div className=" flex justify-center mb-[1rem]">
                                 <div className="input_bord_grad_bottom w-fit ">
-                                    <div className="color text-[3.7rem] w-fit  tracking-wide font-['Barlow Condensed'] ">
+                                    <div className="color text-[3rem] sm:text-[3.4rem] lg:text-[3.7rem] w-fit  tracking-wide font-['Barlow Condensed'] ">
                                         NFT Copy Creation
 
                                     </div></div>
                             </div>
 
                             <div className=" mt-[2.5rem]">
-                                <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.7rem] font-[2.3rem]  tracking-wider">Original NFT Detail: </h2>
+                                <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.4rem] sm:text-[2.7rem]   tracking-wider">Original NFT Detail: </h2>
 
                             </div>
 
                             <div className="flex space-x-[9rem] items-center">
-                                <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.1rem] tracking-wider">NFT Name: </h2>
+                                <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2rem] sm:text-[2.1rem] tracking-wider">NFT Name: </h2>
                                 <h3
                                     onClick={() => { router.push(`/individualnft/${nftData?.tokenURI}`) }}
                                     className="w-fit text-[#069EBF] cursor-pointer decoration-[#069EBF] decoration-1 underline underline-offset-1 text-[1.7rem] sm:text-[2rem] font-['Inconsolata'] font-medium">
@@ -140,7 +139,7 @@ console.log("🚀 ~ file: [id].js:23 ~ Item ~ nftData:", nftData)
 
                             <div className=" flex space-x-[5rem] items-center">
                                 <div className="flex items-center space-x-[4rem]">
-                                    <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.1rem] tracking-wider">NFT Creator: </h2>
+                                    <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2rem] sm:text-[2.1rem] tracking-wider">NFT Creator: </h2>
                                     <div onClick={() => { router.push(`/profile/${nftData?.creator?._id}`) }} className={`flex  items-center space-x-[0.4rem] hover:text-[blue] py-[0.9rem] border-[#d4dee2] cursor-pointer`}>
                                         <div className=" w-[4.6rem] h-[4.6rem] sm:px-[1.3rem]">
                                             <div className=" w-[4.5rem] h-[4.5rem] rounded-full relative">
@@ -152,7 +151,7 @@ console.log("🚀 ~ file: [id].js:23 ~ Item ~ nftData:", nftData)
                                                 />
                                             </div>
                                         </div>
-                                        <div className="grow text-ellipsis overflow-x-hidden px-[1.4rem]">
+                                        <div className="grow text-ellipsis overflow-x-hidden px-[0.4rem] sm:px-[1.4rem]">
                                             <h3 className="text-[#069EBF] decoration-[#069EBF] decoration-1 underline underline-offset-1 text-[1.9rem] sm:text-[2rem] font-['Inconsolata'] font-medium">
                                                 {nftData?.creator?.authorName}
                                             </h3>
@@ -164,7 +163,7 @@ console.log("🚀 ~ file: [id].js:23 ~ Item ~ nftData:", nftData)
 
                             <div className="flex space-x-[4rem] items-center">
                                 <div className="flex items-center space-x-[2rem]">
-                                    <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.1rem] tracking-wider">Current Owner: </h2>
+                                    <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2rem] sm:text-[2.1rem] tracking-wider">Current Owner: </h2>
                                     <div onClick={() => { router.push(`/profile/${nftData?.owner?._id}`) }} className={`flex  items-center space-x-[0.4rem] hover:text-[blue] py-[0.9rem] border-[#d4dee2] cursor-pointer`}>
                                         <div className=" w-[4.6rem] h-[4.6rem] sm:px-[1.3rem]">
                                             <div className=" w-[4.5rem] h-[4.5rem] rounded-full relative">
@@ -176,7 +175,7 @@ console.log("🚀 ~ file: [id].js:23 ~ Item ~ nftData:", nftData)
                                                 />
                                             </div>
                                         </div>
-                                        <div className="grow text-ellipsis overflow-x-hidden px-[1.4rem]">
+                                        <div className="grow text-ellipsis overflow-x-hidden px-[0.4rem] sm:px-[1.4rem]">
                                             <h3 className="text-[#069EBF] decoration-[#069EBF] decoration-1 underline underline-offset-1 text-[1.9rem] sm:text-[2rem] font-['Inconsolata'] font-medium">
                                                 {nftData?.creator?.authorName}
                                             </h3>
@@ -187,7 +186,7 @@ console.log("🚀 ~ file: [id].js:23 ~ Item ~ nftData:", nftData)
 
 
                             <div className="mb-[0.4rem] flex space-x-[5rem] items-center">
-                                <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.1rem] tracking-wider">Content Type: </h2>
+                                <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2rem] sm:text-[2.1rem] tracking-wider">Content Type: </h2>
                                 <h3
                                     // onClick={() => { router.push(`/individualnft/${data?.nftId}`) }}
                                     className="w-fit cursor-pointer text-[#545151]  text-[1.9rem] sm:text-[2rem] font-['Inconsolata'] font-medium">
@@ -200,12 +199,12 @@ console.log("🚀 ~ file: [id].js:23 ~ Item ~ nftData:", nftData)
 
                             </div>
                             <div className="mt-[0rem]">
-                                <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.7rem] font-[2.3rem]  tracking-wider mt-[0.4rem]">NFT Creation Detail: </h2>
+                                <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.4rem] sm:text-[2.7rem] font-[2.3rem]  tracking-wider mt-[0.4rem]">NFT Creation Detail: </h2>
 
                             </div>
 
                             <div className="">
-                                <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.1rem] tracking-wider">Use the same content of original nft: </h2>
+                                <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2rem] sm:text-[2.1rem] tracking-wider">Use the same content of original nft: </h2>
                                 <div className='flex space-x-[2rem] mt-[0.5rem]'>
                                     <div class="flex items-center mb-4">
                                         <input id="default-radio-1" type="radio" value="yes"
@@ -396,7 +395,7 @@ console.log("🚀 ~ file: [id].js:23 ~ Item ~ nftData:", nftData)
 
 
 
-                                    <div className="">
+                                    <div className="flex flex-col h-fit">
                                         <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.4rem] tracking-wider">Enter Text for NFT:</h2>
                                         <h2 className="font-['Inconsolata'] text-[red] text-[1.8rem] tracking-wider">Instructions:</h2>
                                         <h2 className=" text-[1.3rem] font-['Inconsolata'] text-[#0D1344E5'] flex mt-[0.3rem]">

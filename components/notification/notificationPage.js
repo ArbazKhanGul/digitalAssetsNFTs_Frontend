@@ -37,7 +37,7 @@ const Notification = ({ page,}) => {
         {/* {page!="main"?<h2 className="text-[2rem] font-medium text-[#3e8ef0] pr-[1rem] cursor-pointer" onClick={()=>{router.push("/notification")}}>See All</h2>:""} */}
       </div>
       <div className="flex space-x-[1rem] mt-[1rem]  items-center sm:ml-[1.5rem] mb-[0.5rem]">
-        <h2 onClick={() => setState(true)} className={`font-['DynaPuff'] text-[1.7rem] font-medium cursor-pointer py-[0.7rem] px-[2rem] w-fit ${state ? "bg-[#E7F3FF] text-[#3e8ef0] rounded-[2rem]" : ""}`}>All</h2>
+        <h2 onClick={() => setState(true)} className={`font-['DynaPuff'] text-[1.7rem] font-medium cursor-pointer py-[0.7rem] px-[2rem] w-fit ${state ? "bg-[#E7F3FF] text-[#3e8ef0] rounded-[2rem]" : ""}`} > All</h2>
         <h2 onClick={() => setState(false)} className={`font-['DynaPuff'] text-[1.7rem] font-medium cursor-pointer py-[0.7rem] px-[2rem] w-fit ${!state ? "bg-[#E7F3FF] text-[#3e8ef0]  rounded-[2rem]" : ""}`}>Unread</h2>
       </div>
 

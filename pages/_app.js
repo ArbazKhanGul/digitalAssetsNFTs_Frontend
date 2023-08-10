@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import NProgress from "nprogress"
 import "../styles/nprogress.css"; 
 import "react-toastify/dist/ReactToastify.css";
+import {ToastContainer } from "react-toastify";
 
 function MyApp({ Component, pageProps }) {
 
@@ -30,7 +31,12 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={store}>
-  <Component {...pageProps} />
+      <> <Component {...pageProps} />
+  <div className="text-[1.6rem] font-['Inconsolata']">
+          <ToastContainer pauseOnHover autoClose={5000} />
+        </div>
+        </>
+ 
     </Provider>
   )
 }

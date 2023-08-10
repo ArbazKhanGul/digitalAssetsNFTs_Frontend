@@ -70,20 +70,20 @@ const CopyRightNFT = ({ userinfo, data }) => {
             ) : (
                 <>
                     <Navbar></Navbar>
-                    <div className="email flex-1 flex justify-center items-center py-[6rem] sm:p-[6rem] rounded-lg">
-                        <div className="bg-white w-[57%] rounded-[2rem] ">
+                    <div className="email flex-1 flex justify-center items-center py-[4rem] sm:py-[6rem] sm:p-[6rem] rounded-lg">
+                        <div className="bg-white w-[95%] sm:w-[85%] md:w-[75%] lg:w-[57%] rounded-[2rem] ">
 
-                            <div className="color px-[3rem] py-[1.5rem] tracking-wide w-fit text-[2.4rem] font-medium font-['Inconsolata'] sm:text-[3rem] md:text-[3rem] ]">
+                            <div className="color pl-[2rem] sm:pl-[3rem] py-[1.5rem] tracking-wide w-fit text-[2.4rem] font-medium font-['Inconsolata'] sm:text-[3rem] md:text-[3rem] ]">
                                 Copyrights Request:
                             </div>
                             <div className="border-b-[0.2rem]  w-[100%]"></div>
-                            <div className='px-[3rem] py-[2rem] space-y-[2.7rem]'>
+                            <div className='pl-[2rem] pr-[1rem] sm:pl-[3rem] py-[2rem] space-y-[2.7rem]'>
 
 
 
 
 
-                                {userinfo._id != data?.ownerId ? <div className="flex items-center space-x-[7rem]">
+                                {userinfo._id != data?.ownerId ? <div className="flex items-center space-x-[4rem] sm:space-x-[7rem]">
                                     <h3 className="text-[#545151] font-semibold text-[1.9rem] sm:text-[2rem] font-['Inconsolata'] tracking-wider">
                                         Owner Profile:
                                     </h3>
@@ -98,7 +98,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="grow text-ellipsis overflow-x-hidden px-[1.4rem]">
+                                        <div className="grow text-ellipsis overflow-x-hidden px-[0.7rem]">
                                             <h3 className="text-[#069EBF] decoration-[#069EBF] decoration-1 underline underline-offset-1 text-[1.9rem] sm:text-[2.1rem] font-['Inconsolata'] font-medium">
                                                 {data?.ownerName}
                                             </h3>
@@ -112,9 +112,9 @@ const CopyRightNFT = ({ userinfo, data }) => {
 
 
                                 {userinfo._id == data?.ownerId ?
-                                    <div className="flex items-center space-x-[2.5rem]">
-                                        <h3 className="text-[#545151] font-semibold text-[1.9rem] sm:text-[2rem] font-['Inconsolata'] tracking-wider">
-                                            Requester Profile:
+                                    <div className="flex items-center space-x-[8rem] sm:space-x-[11rem]">
+                                        <h3 className="text-[#545151] font-semibold text-[1.9rem] sm:text-[2.1rem] font-['Inconsolata'] tracking-wider">
+                                            Requester:
                                         </h3>
                                         <div onClick={() => { router.push(`/profile/${data?.ownerId}`) }} className={`flex  items-center space-x-[0.4rem] hover:text-[blue] border-[#d4dee2] cursor-pointer`}>
                                             <div className=" w-[4.6rem] h-[4.6rem] sm:px-[1.3rem]">
@@ -127,7 +127,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
                                                     />
                                                 </div>
                                             </div>
-                                            <div className="grow text-ellipsis overflow-x-hidden px-[1.4rem]">
+                                            <div className="grow text-ellipsis overflow-x-hidden px-[1rem]">
                                                 <h3 className="text-[#069EBF] decoration-[#069EBF] decoration-1 underline underline-offset-1 text-[1.9rem] sm:text-[2.1rem] font-['Inconsolata'] font-medium">
                                                     {data?.requestorName}
                                                 </h3>
@@ -135,7 +135,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
                                         </div>
                                     </div> : null}
 
-                                <div className="flex items-center space-x-[8rem] ">
+                                <div className="flex items-center space-x-[4rem] sm:space-x-[8rem] ">
                                     <h3 className="text-[#545151] font-semibold text-[1.9rem] sm:text-[2.1rem] font-['Inconsolata'] tracking-wider">
                                         Offered Money:
                                     </h3>
@@ -146,7 +146,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
 
 
 
-                                <div className="flex space-x-[8rem] ">
+                                <div className="flex space-x-[4rem] sm:space-x-[8rem] ">
                                     <h3 className="text-[#545151] font-semibold text-[1.9rem] sm:text-[2.1rem] font-['Inconsolata'] tracking-wider">
                                         Requested NFT:
                                     </h3>
@@ -156,7 +156,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
                                 </div>
 
 
-                                <div className="flex space-x-[7rem] ">
+                                <div className="flex space-x-[3rem] sm:space-x-[7rem] ">
                                     <h3 className="text-[#545151] font-semibold text-[1.9rem] sm:text-[2.1rem] font-['Inconsolata'] tracking-wider">
                                         Request Status:
                                     </h3>

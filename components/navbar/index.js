@@ -122,7 +122,7 @@ const Navbar = () => {
             </li>
             <li className="inline-block links">
               <Link href="/nfts">
-                <a className={router.pathname == "/nfts" ? "text-blue-600" : ""}>
+                <a className={router.pathname.startsWith("/nfts") ? "text-blue-600" : ""}>
                   NFTs
                 </a>
               </Link>
@@ -131,7 +131,7 @@ const Navbar = () => {
               <Link href="/collection">
                 <a
                   className={
-                    router.pathname == "/collection" ? "text-blue-600" : ""
+                    router.pathname.startsWith("/collection") ? "text-blue-600" : ""
                   }
                 >
                   Profiles

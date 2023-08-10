@@ -13,7 +13,7 @@ function Buy({ itemId, price }) {
   return (
     <>
       <button
-        className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[4rem] rounded-full font-['Inconsolata'] tracking-wider"
+        className="bg-blue-500 xs:mr-[2rem] w-[100%] xs:w-fit py-4 xs:py-3 rounded-[1.3rem] xs:rounded-full  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold  px-[4rem]  font-['Inconsolata'] tracking-wider"
         type="button"
         onClick={() => { setShowModal(true) }}
         disabled={loader}

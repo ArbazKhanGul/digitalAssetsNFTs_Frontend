@@ -48,6 +48,16 @@ export const filterNftSchema=Yup.object({
 
 
 
+export const filterTransactionSchema=Yup.object({
+  nftName:Yup.string().trim().min(2,"Minimum character should be 2").max(25,"Maximum character should be 20"),
+  sellerEmail:Yup.string().trim().email("Please enter valid email address"),
+  buyerEmail:Yup.string().trim().email("Please enter valid email address"),
+  sellerWalletAddress:Yup.string().trim().min(42,"Wallet address should be 42 character long").max(42,"Wallet address should be 42 character long"),
+  buyerWalletAddress:Yup.string().trim().min(42,"Wallet address should be 42 character long").max(42,"Wallet address should be 42 character long"),
+  tokenId: Yup.number().moreThan(0,"you must specify id greater than 0").typeError('you must specify id greater than 0'),
+})
+
+
 const FILE_SIZE_MEDIA = 500 * 1024 * 1024;
 const FILE_SIZE_IMAGE = 10 * 1024 * 1024;
 
@@ -245,3 +255,13 @@ export const NFTCopyRightAllowSchema=Yup.object({
   nftCurrency:Yup.string().trim(),
   CopyRightPrice: Yup.number().moreThan(0,"you must specify a positive number").typeError('you must specify a positive number'),
 })
+
+
+
+export const TokenIDinput= Yup.object({
+  tokenId: Yup.number()
+    .integer('Please enter an integer')
+    .positive('Please enter a positive number')
+    .moreThan(0, 'Number must be greater than zero')
+    .required('Number is required'),
+});

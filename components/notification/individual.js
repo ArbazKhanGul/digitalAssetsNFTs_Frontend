@@ -27,7 +27,7 @@ function individual({data,index,id}) {
                             {/* 0x456775...5555 so come here Buy your nft */}
 
                             {/* {data.description} */}
-                            {data?.type == "creator_profit" ? <>Your created nft  {data?.nftName} owner has been changed and now the new owner is  {data?.transfer_to} and after selling 10 percent from profit i.e <span className="font-bold text-black">{ethers.utils.formatUnits(data?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB  </span> is successfully transferred to your wallet</> : null}
+{data?.type == "creator_profit" ? <>Your created nft  {data?.nftName} owner has been changed and now the new owner is  {data?.transfer_to} and after selling 10 percent from profit i.e <span className="font-bold text-black">{ethers.utils.formatUnits(data?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB  </span> is successfully transferred to your wallet</> : null}
 
 {data?.type == "seller_profit" ? (<>Your owned nft  {data?.nftName} that you upload for selling has been sell and {ethers.utils.formatUnits(data?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB  is transferred to your wallet now the new owner is  {data?.transfer_to} and in case you get profit from selling this nft (means you sell at higher price from the price you buy it) then from profit  10 percent creator profit and 10 percent platform charges is deducted from profit but if you don't get any profit  by selling this  then no money is deducted and all money  is successfully transferred to your wallet </>) : null}
 
@@ -38,6 +38,11 @@ function individual({data,index,id}) {
 {data?.type == "action_copyright_reject" ? (<>Copyright request that you submitted for nft  {data?.nftName} is rejected by the owner {data?.transfer_to}  </>) : null}
 
 {data?.type == "action_copyright_accept" ? (<>Copyright request that you submitted for nft  {data?.nftName} is accepted by the owner {data?.transfer_to}  </>) : null}
+
+{data?.type == "copyright_money" ? (<>Copyright request for nft {data?.nftName} submitted by {data?.transfer_to} and you accept copyright permission has been completed </>) : null}
+
+
+{data?.type == "delete_copyright" ? (<>Copyright request for nft {data?.nftName} submitted by {data?.transfer_to} and you accept copyright permission has been delted by the requester  {data?.transfer_to}</>) : null}
 
 
                             </h2>

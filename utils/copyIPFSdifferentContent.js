@@ -141,10 +141,10 @@ const ipfsUpload = async (data, id, tokenId, setLoader, setPath) => {
         console.log("🚀 ~ file: copyIPFSdifferentContent.js:138 ~ ipfsUpload ~ back_res?.data?.price:", back_res?.data?.price)
 
         // let op = ethers.utils.formatUnits(back_res.data.price, "ether");
-
+        let resultData=back_res?.data;
         setLoader("Waiting for transaction confirmation and mined transaction...");
-        await nftTokenCreate(back_res?.data?.price, metadataURL.path, setLoader, setPath, true , tokenId,  back_res?.data?.nonce,  back_res?.data?.signature);
 
+        await nftTokenCreate(resultData?.price, metadataURL.path, setLoader, setPath, true , tokenId,  resultData?.nonce, resultData?.signature,resultData?.copyrightPrice,resultData?.copyrightOwner);
     }
 
     catch (err) {

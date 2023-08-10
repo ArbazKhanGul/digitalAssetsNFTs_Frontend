@@ -12,8 +12,6 @@ import {MdCopyright} from "react-icons/md"
 const IndividualNFT = ({ nftname, owner, creator, creationdate,original, price, index, id,  type, contentURI,tokenURI }) => {
 console.log("🚀 ~ file: individualnft.js:13 ~ IndividualNFT ~ original:", original)
 
-  
-  
   let router = useRouter()
   let date = new Date(creationdate);
   const [textData, setTextData] = useState("");
@@ -25,7 +23,7 @@ console.log("🚀 ~ file: individualnft.js:13 ~ IndividualNFT ~ original:", orig
   }
 
 
-
+f
 
   useEffect(() => {
     async function fetchData() {

@@ -10,7 +10,7 @@ const NFTPortion =({error,data,isLoading})=>{
     let router=useRouter();
  
     return (<div>
-        <div className="nft w-fit text-[2.7rem] ml-[2rem] sm:text-[3rem] md:text-[3.7rem] font-['DynaPuff'] mt-[1.2rem] sm:ml-[3.5rem] md:ml-[4rem]">
+        <div className="nft w-fit text-[2.7rem] ml-[2rem] sm:text-[3rem] md:text-[3.7rem] font-['Raleway'] font-semibold  mt-[1.2rem] sm:ml-[3.5rem] md:ml-[4rem]">
     Trending NFTs: 
     </div>
     <span className="colgrad text-[1.7rem] font-semibold  mt-[1.2rem] mx-[2.5rem] sm:mx-[4rem] md:mx-[4rem] block font-['Inconsolata']">(Click on any NFT to see his full detail and buying option)</span>
@@ -18,10 +18,6 @@ const NFTPortion =({error,data,isLoading})=>{
 <div className={`mx-[3rem]  sm:mx-[4rem] ${data ?"flex flex-wrap mg jt":""}`}>
 
 
-{/* {temp.map((value,index)=>{
-            return(<IndividualNFT key={index} index={index} nftname={value.nftname} owner={value.owner} creator={value.creator} price={value.price} creationdate={value.creationdate} nfttext={value.nfttext}></IndividualNFT>)
-        })
-    } */}
 
 {
             isLoading ? ( <div className="flex justify-center  mt-[4px]">
@@ -43,7 +39,7 @@ const NFTPortion =({error,data,isLoading})=>{
                             {
                                 (!error && data) ?
                                    data?.map((data, index) => {
-                                        return <IndividualNFT data={data} key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI}></IndividualNFT>
+                                        return <IndividualNFT data={data} original={data?.original} key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI}></IndividualNFT>
                                     }) : ""
                             }
 

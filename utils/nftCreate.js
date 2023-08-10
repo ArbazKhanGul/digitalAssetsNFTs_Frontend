@@ -1,11 +1,7 @@
 import { ethers } from "ethers";
 import { toast } from "react-toastify";
 
-export async function nftTokenCreate(price,ipfspath, setLoader,setPath,copyrightStatus=false,tokenIdCopyrights=0,nonce=0,signature='0x') {
-console.log("🚀 ~ file: nftCreate.js:5 ~ nftTokenCreate ~ signature:", signature)
-console.log("🚀 ~ file: nftCreate.js:5 ~ nftTokenCreate ~ nonce:", nonce)
-console.log("🚀 ~ file: nftCreate.js:5 ~ nftTokenCreate ~ tokenIdCopyrights:", tokenIdCopyrights)
-console.log("🚀 ~ file: nftCreate.js:5 ~ nftTokenCreate ~ copyrightStatus:", copyrightStatus)
+export async function nftTokenCreate(price,ipfspath, setLoader,setPath,copyrightStatus=false,tokenIdCopyrights=0,nonce=0,signature='0x',copyrightPrice=0,copyrightOwner='0x0000000000000000000000000000000000000000') {
 
 
     try{
@@ -16,7 +12,7 @@ console.log("🚀 ~ file: nftCreate.js:5 ~ nftTokenCreate ~ copyrightStatus:", c
 
     const Abi = [
         // Create the token
-        "function createToken(string tokenURI,bool copyrightStatus,uint tokenIdCopyrights,uint nonce,bytes signature) public payable returns(uint)",
+       "function createToken(string tokenURI,bool copyrightStatus,uint tokenIdCopyrights,uint nonce,uint copyrightPrice,address copyrightOwner,bytes signature) public payable returns(uint)",
         // Get the creator of token
         "function creatorOf(uint tokenId) public view returns(address)",
         //Event
@@ -36,10 +32,10 @@ console.log("🚀 ~ file: nftCreate.js:5 ~ nftTokenCreate ~ copyrightStatus:", c
 
       let tokenipfs=`${process.env.ipfsURL}${ipfspath}`;
 
-    const res = await nftContract.createToken(tokenipfs,copyrightStatus,tokenIdCopyrights,nonce,signature,options);
+    const res = await nftContract.createToken(tokenipfs,copyrightStatus,tokenIdCopyrights,nonce,copyrightPrice,copyrightOwner,signature,options);
     let tx = await res.wait() // it return when transaction is mined
 
-     let abi = [ "event Creation(address indexed owner_address,uint indexed tokenId,string tokenURI,bool copyright)" ];
+     let abi = [ "    event Creation(address indexed owner_address,uint indexed tokenId,string tokenURI,bool copyright,uint copyrightprice,address copyrightOwner);" ];
      let iface = new ethers.utils.Interface(abi);
      let log = iface.parseLog(tx?.logs[2]);
      const {owner_address,tokenId ,tokenURI,copyright} = log?.args;
@@ -60,10 +56,11 @@ console.log("🚀 ~ file: nftCreate.js:5 ~ nftTokenCreate ~ copyrightStatus:", c
                 toast.error("User reject sign message request", {
                     position: "top-center",
                   });
-            } 
-            else{       
+            }
+            else{
         toast.error(err.message, {
             position: "top-center",
-          });}
+          });
+        }
     }
 }

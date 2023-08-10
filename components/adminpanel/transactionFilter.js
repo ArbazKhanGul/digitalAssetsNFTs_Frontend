@@ -1,10 +1,8 @@
-import { memo } from "react";
 import Select from 'react-select';
-import { filterNftSchema } from "../../schema/index"
-import { useRouter, useState } from "../"
+import { filterTransactionSchema } from "../../schema/index"
 import { useFormik } from "formik";
-
-
+import {useRouter} from  "next/router";
+import {useState,useEffect} from "react"
 const style = {
    control: (provided, state) => ({
        ...provided,
@@ -18,20 +16,42 @@ let options=[
    { "label": "both", "value": "both" },
 ]
 
-const Filter = ({ showItems }) => {
+let optionsTransaction=[
+   { "label": "create", "value": "create" },
+   { "label": "sell", "value": "sell" },
+   { "label": "all", "value": "all" },
+]
 
-   const router = useRouter();
-   console.log("🚀 ~ file: filter.js:19 ~ Filter ~ router:", router)
+const Filter = ({ showItems ,router}) => {
+
+   // let router=useRouter()
+   const [isInitialized, setIsInitialized] = useState(false);
+
+
+   useEffect(() => {
+      if (router.query && !isInitialized) {
+         console.log("running")
+         setIsInitialized(true);
+         setFieldValue("nftName", router.query.nftName || "");
+         setFieldValue("buyerEmail", router.query.buyerEmail || "");
+         setFieldValue("sellerEmail", router.query.sellerEmail || "");
+         setFieldValue("buyerWalletAddress", router.query.buyerWalletAddress || "");
+         setFieldValue("sellerWalletAddress", router.query.sellerWalletAddress || "");
+         setFieldValue("nftType", router.query.nftType ? options.find(option => option.value === router.query.nftType) : "");
+         setFieldValue("transactionType", router.query.transactionType ? optionsTransaction.find(option => option.value === router.query.transactionType) : "");
+      }
+   }, [router.query, isInitialized]);
+
+
 
    let initialValues = {
-      nftName: router.query?.nftName?router.query?.nftName:"",
-      ownerEmail: router.query?.ownerEmail?router.query?.ownerEmail:"",
-      creatorEmail: router.query?.creatorEmail?router.query?.creatorEmail:"",
-      ownerWalletAddress: router.query?.ownerWalletAddress?router.query?.ownerWalletAddress:"",
-      creatorWalletAddress: router.query?.creatorWalletAddress?router.query?.creatorWalletAddress:"",
-      minimumPrice: router.query?.minimumPrice?router.query?.minimumPrice:"",
-      maximumPrice: router.query?.maximumPrice?router.query?.maximumPrice:"",
-      nftType: router.query.nftType ? options.find(option => option.value === router.query.nftType):""
+      nftName: "",
+      buyerEmail: "",
+      sellerEmail: "",
+      buyerWalletAddress: "",
+      sellerWalletAddress: "",
+      nftType: "",
+      transactionType: ""
    };
 
 
@@ -45,12 +65,14 @@ const Filter = ({ showItems }) => {
       setFieldValue,resetForm
    } = useFormik({
       initialValues,
-      validationSchema: filterNftSchema,
+      validationSchema: filterTransactionSchema,
       onSubmit: async (values, action) => {
       console.log("🚀 ~ file: filter.js:45 ~ onSubmit: ~ values:", values)
 
          let parameter={...values};
           parameter.nftType=parameter.nftType?.value?parameter.nftType.value:"";
+          parameter.transactionType=parameter.transactionType?.value?parameter.transactionType.value:"";
+          
 
          let route = '?'
 
@@ -74,9 +96,13 @@ const Filter = ({ showItems }) => {
       console.log("🚀 ~ file: filter.js:78 ~ Filter ~ parameter:", values)
 
 
-   const handleSelect = (e) => {
+   const handleSelectNftType = (e) => {
       setFieldValue("nftType", e)
   }
+
+  const handleSelectTransactionType = (e) => {
+   setFieldValue("transactionType", e)
+}
 
    return (<div className={"bg-[#EDF2F7] rounded-[1.1rem] mt-[0.4rem]  overflow-hidden transition-all duration-700 " + (!showItems ? "max-h-0" : "max-h-[60rem]")}>
       <form onSubmit={handleSubmit} >
@@ -88,7 +114,7 @@ const Filter = ({ showItems }) => {
                <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
                   <input type="text"
                      className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-                     placeholder="Enter NFT Name"
+                     placeholder="Enter Nft Name"
                      name="nftName"
                      value={values.nftName}
                      onChange={handleChange}
@@ -110,7 +136,7 @@ const Filter = ({ showItems }) => {
                                                     placeholder={"Select type of nft"}
                                                     name="nftType"
                                                     value={values.nftType}
-                                                    onChange={handleSelect}
+                                                    onChange={handleSelectNftType}
                                                     options={options}
                                                     styles={style}
                                                     id="long-value-select"
@@ -122,19 +148,34 @@ const Filter = ({ showItems }) => {
 
             <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:ml-[1.8rem] mt-[1.5rem] w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem]">
                <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
+               <Select className=" p-[0.2rem] text-[1.6rem] md:text-[1.7rem] font-['Inconsolata']  tracking-wider outline-none"
+                                                    placeholder={"Select type of Transaction"}
+                                                    name="transactionType"
+                                                    value={values.transactionType}
+                                                    onChange={handleSelectTransactionType}
+                                                    options={optionsTransaction}
+                                                    styles={style}
+                                                    id="long-value-select"
+                                                    instanceId="long-value-select"
+                                                />
+               </div>
+            </div>
+
+            <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:ml-[1.8rem] mt-[1.5rem] w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem]">
+               <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
                   <input type="text"
                      className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-                     placeholder="Enter owner email address"
-                     name="ownerEmail"
-                     value={values.ownerEmail}
+                     placeholder="Enter buyer email address"
+                     name="buyerEmail"
+                     value={values.buyerEmail}
                      onChange={handleChange}
                      onBlur={handleBlur}
                      autoComplete="off"
                   />
                </div>
-               {errors.ownerEmail && touched.ownerEmail ? (
+               {errors.buyerEmail && touched.buyerEmail ? (
                   <p className="text-red-500 text-[1.4rem] errors block">
-                     {errors.ownerEmail}
+                     {errors.buyerEmail}
                   </p>
                ) : null}
             </div>
@@ -145,17 +186,17 @@ const Filter = ({ showItems }) => {
                <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
                   <input type="text"
                      className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-                     placeholder="Enter creator email address"
-                     name="creatorEmail"
-                     value={values.creatorEmail}
+                     placeholder="Enter seller email address"
+                     name="sellerEmail"
+                     value={values.sellerEmail}
                      onChange={handleChange}
                      onBlur={handleBlur}
                      autoComplete="off"
                   />
                </div>
-               {errors.creatorEmail && touched.creatorEmail ? (
+               {errors.sellerEmail && touched.sellerEmail ? (
                   <p className="text-red-500 text-[1.4rem] errors block">
-                     {errors.creatorEmail}
+                     {errors.sellerEmail}
                   </p>
                ) : null}
             </div>
@@ -166,17 +207,17 @@ const Filter = ({ showItems }) => {
                <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
                   <input type="text"
                      className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-                     placeholder="Enter owner wallet address"
-                     name="ownerWalletAddress"
-                     value={values.ownerWalletAddress}
+                     placeholder="Enter buyer wallet address"
+                     name="buyerWalletAddress"
+                     value={values.buyerWalletAddress}
                      onChange={handleChange}
                      onBlur={handleBlur}
                      autoComplete="off"
                   />
                </div>
-               {errors.ownerWalletAddress && touched.ownerWalletAddress ? (
+               {errors.buyerWalletAddress && touched.buyerWalletAddress ? (
                   <p className="text-red-500 text-[1.4rem] errors block">
-                     {errors.ownerWalletAddress}
+                     {errors.buyerWalletAddress}
                   </p>
                ) : null}
             </div>
@@ -187,62 +228,27 @@ const Filter = ({ showItems }) => {
                <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
                   <input type="text"
                      className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-                     placeholder="Enter creator wallet address"
-                     name="creatorWalletAddress"
-                     value={values.creatorWalletAddress}
+                     placeholder="Enter seller wallet address"
+                     name="sellerWalletAddress"
+                     value={values.sellerWalletAddress}
                      onChange={handleChange}
                      onBlur={handleBlur}
                      autoComplete="off"
                   />
                </div>
-               {errors.creatorWalletAddress && touched.creatorWalletAddress ? (
+               {errors.sellerWalletAddress && touched.sellerWalletAddress ? (
                   <p className="text-red-500 text-[1.4rem] errors block">
-                     {errors.creatorWalletAddress}
+                     {errors.sellerWalletAddress}
                   </p>
                ) : null}
             </div>
 
 
 
-            <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:ml-[1.8rem] mt-[1.5rem] w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem]">
-               <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
-                  <input type="text"
-                     className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-                     placeholder="Enter lowest price in BNB"
-                     name="minimumPrice"
-                     value={values.minimumPrice}
-                     onChange={handleChange}
-                     onBlur={handleBlur}
-                     autoComplete="off"
-                  />
-               </div>
-               {errors.minimumPrice && touched.minimumPrice ? (
-                  <p className="text-red-500 text-[1.4rem] errors block">
-                     {errors.minimumPrice}
-                  </p>
-               ) : null}
-            </div>
 
 
 
-            <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:ml-[1.8rem] mt-[1.5rem] w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem]">
-               <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
-                  <input type="text"
-                     className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-                     placeholder="Enter highest price in BNB"
-                     name="maximumPrice"
-                     value={values.maximumPrice}
-                     onChange={handleChange}
-                     onBlur={handleBlur}
-                     autoComplete="off"
-                  />
-               </div>
-               {errors.maximumPrice && touched.maximumPrice ? (
-                  <p className="text-red-500 text-[1.4rem] errors block">
-                     {errors.maximumPrice}
-                  </p>
-               ) : null}
-            </div>
+
 
          </div>
          <div className="flex justify-center space-x-4 mb-[1.2rem]">

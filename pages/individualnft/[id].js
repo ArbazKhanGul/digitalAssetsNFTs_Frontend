@@ -7,7 +7,7 @@ import { fetcherOwnerNft } from "../../utils/fetcher";
 import ReactPlayer from "react-player";
 import axios from "axios";
 import {
-  Navbar, Footer,IndividualNFT as Individualnft, Sell, Head, Transactions, Approval, CancelSelling, Buy, Share, Meta, useState, useEffect, useRouter, ethers, Image, ToastContainer, useSWR, PuffLoader
+  Navbar, Footer, IndividualNFT as Individualnft, Sell, Head, Transactions, Approval, CancelSelling, Buy, Share, Meta, useState, useEffect, useRouter, ethers, Image, ToastContainer, useSWR, PuffLoader
   , CopyRight
 } from "../../components"
 
@@ -21,7 +21,7 @@ import {
 
 
 const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
-console.log("🚀 ~ file: [id].js:24 ~ IndividualNFT ~ nftSellingData:", nftSellingData)
+  console.log("🚀 ~ file: [id].js:24 ~ IndividualNFT ~ nftSellingData:", nftSellingData)
 
 
   const [loading, user, address] = useValidate(userinfo, "main");
@@ -34,6 +34,7 @@ console.log("🚀 ~ file: [id].js:24 ~ IndividualNFT ~ nftSellingData:", nftSell
   let router = useRouter();
   const { data, error, mutate, isValidating } = useSWR(`/nftdata/${nftSellingData?.owner_email}?nftName=${nftData?.name}&nftId=${nftSellingData?._id}&original=${nftSellingData?.original}`, fetcherOwnerNft);
 
+  console.log("🚀 ~ file: [id].js:37 ~ IndividualNFT ~ data:", data)
   const [dollar, setDollar] = useState(0);
 
 
@@ -72,7 +73,7 @@ console.log("🚀 ~ file: [id].js:24 ~ IndividualNFT ~ nftSellingData:", nftSell
     if (nftData?.type == "text") {
       fetchData();
     }
-    }, [])
+  }, [])
 
 
   useEffect(() => {
@@ -370,18 +371,97 @@ console.log("🚀 ~ file: [id].js:24 ~ IndividualNFT ~ nftSellingData:", nftSell
               </div>
             </div>
 
-            {nftSellingData?.original ? <CopyRight ownerAddress={nftSellingData?.owner_address} ownercopyrightStatus={nftSellingData?.copyrightStatus} ownercopyrightPrice={nftSellingData?.copyrightPrice} nftName={nftData?.name} nftid={nftSellingData?.tokenURI} copyrightStatus={data?.copyright_status} user={user} address={address} isLoading={isValidating} dataError={error} mutate={mutate} ownerId={data?.ownerId} /> : null
-            }
+            {/* {nftSellingData?.original ? <CopyRight ownerAddress={nftSellingData?.owner_address} ownercopyrightStatus={nftSellingData?.copyrightStatus} ownercopyrightPrice={nftSellingData?.copyrightPrice} nftName={nftData?.name} nftid={nftSellingData?.tokenURI} copyrightStatus={data?.copyright_status} user={user} address={address} isLoading={isValidating} dataError={error} mutate={mutate} ownerId={data?.ownerId} /> : null
+            } */}
 
 
             <Transactions data={data?.transactions} error={error} isLoading={isValidating} />
 
-            <div className="mt-[3rem]">
+            </div>
+
+            {/* //Copies of current nft */}
+
+
+         {nftSellingData?.original==false?<>
+            <div className="mt-[3rem] px-[1.7rem] sm:px-[3.5rem] md:px-[6rem]">
               <h2 className="color w-fit h-fit -mt-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold  md:text-[3.2rem] tracking-wide ">
-                More Nfts Of Owner:
+                Copies OF NFT:
               </h2>
             </div>
+          
+          <div className="md:mx-[2rem]">
+
+
+            {
+              isValidating ?
+                (<div className="flex justify-center  mt-[4px]">
+
+                  <PuffLoader
+                    color={"#30DCBA"}
+                    cssOverride={{ marginBottom: "20px" }}
+                    size={110}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
+                </div>)
+                : null
+            }
+
+            <div className={`mg ${data?.copiesCount != 0 ? "flex flex-wrap jt" : "!ml-[2rem] sm:!ml-[4rem]"}`}>
+
+              {error ? (<div className="text-[red] text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['Inconsolata'] mt-[0.5rem]">
+                Error in getting NFTs Please try later</div>) : ""
+              }
+
+              {
+                (!error && data && !isValidating) ?
+
+                  data?.copies?.map((data, index) => {
+                    return <Individualnft key={index} original={data?.original} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI}></Individualnft>
+                  }) : ""
+              }
+
+
+              {data?.copiesCount == 0 && !error && !isValidating  ? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
+                OOPS!  No copy created yet...</div>) : ""
+              }
+            </div>
+            {!isValidating && !error && data?.copiesCount > 4?
+              <div className="mg flex justify-end -my-[2.5rem]  font-['Inconsolata']">
+
+                <button className="bg-blue-500 mr-[1.5rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold  px-12  py-[1rem] sm:px-14 rounded-full font-['Inconsolata'] tracking-wider"
+                  onClick={() => { router.push(`/nfts?nftName=${nftData?.name}&nftType=copy`) }}
+                >
+                  View All...
+                </button>
+
+              </div> : null
+            } 
+          </div> 
+          </> : 
+          null}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div className="mt-[3rem] px-[1.7rem] sm:px-[3.5rem] md:px-[6rem]">
+            <h2 className="color w-fit h-fit -mt-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold  md:text-[3.2rem] tracking-wide ">
+              More Nfts Of Owner:
+            </h2>
           </div>
+
           <div className="md:mx-[2rem]">
 
 
@@ -415,7 +495,7 @@ console.log("🚀 ~ file: [id].js:24 ~ IndividualNFT ~ nftSellingData:", nftSell
               }
 
 
-              {data?.nft?.length == 0 && !error ? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
+              {data?.nft?.length == 0 && !isValidating  && !error ? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
                 OOPS!   Nothing to show...</div>) : ""
               }
             </div>

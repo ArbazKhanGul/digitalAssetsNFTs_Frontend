@@ -6,8 +6,7 @@ import api from "./axiosconfiguration";
 import { nftTokenCreate } from "./nftCreate";
 
 const ipfsUpload = async (id,tokenId, setLoader, setPath) => {
-console.log("🚀 ~ file: copyIPFSsameContent.js:9 ~ ipfsUpload ~ tokenId:", tokenId)
-console.log("🚀 ~ file: copyIPFSsameContent.js:8 ~ ipfsUpload ~ id:", id)
+
 
 
     try {
@@ -66,12 +65,16 @@ console.log("🚀 ~ file: copyIPFSsameContent.js:8 ~ ipfsUpload ~ id:", id)
             tokenId,
             originalTokenURI:id
         });
-    console.log("🚀 ~ file: copyIPFSsameContent.js:67 ~ ipfsUpload ~ back_res:", back_res)
-        // let op = ethers.utils.formatUnits(back_res.data.price, "ether");
+
+        let resultData=back_res?.data;
+        
+        console.log("🚀 ~ file: copyIPFSsameContent.js:70 ~ ipfsUpload ~ resultData:", resultData)
 
         setLoader("Waiting for transaction confirmation and mined transaction...");
-   await nftTokenCreate(back_res?.data?.price, metadataURL.path, setLoader, setPath, true , tokenId,  back_res?.data?.nonce, back_res?.data?.signature);
-    }
+   
+    await nftTokenCreate(resultData?.price, metadataURL.path, setLoader, setPath, true , tokenId,  resultData?.nonce, resultData?.signature,resultData?.copyrightPrice,resultData?.copyrightOwner);
+    
+}
 
 
 

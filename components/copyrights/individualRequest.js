@@ -9,16 +9,16 @@ function IndividualRequest({num,data}) {
   let date=new Date();
 
     return (
-    <div className="w-[100%]  bg-[#e9ecf0] flex flex-col">
+    <div className="w-[100%]  bg-[#e9ecf0] flex flex-col overflow-hidden text-ellipsis">
 
 
-<div className="px-[2rem] text-[#95a5a6] text-right font-['Inconsolata'] text-[1.8rem] sm:text-[1.8rem] -mb-[1.6rem] mt-[0.4rem]">
+<div className="px-[2rem] text-[#95a5a6] text-right font-['Inconsolata'] text-[1.8rem] sm:text-[1.8rem] -mb-[1.6rem] mt-[0.4rem] whitespace-nowrap overflow-hidden text-ellipsis">
 <span className="text-[#34495e] font-semibold text-[1.9rem] capitalize mr-[1.5rem]">{data?.status}</span>            {date.toLocaleString()}
           </div>
 
-      <div className=" px-[2rem] border-b-[0.1rem] border-[#c9c1c1] flex space-x-[6rem]">    
+      <div className=" px-[2rem] border-b-[0.1rem] border-[#c9c1c1] flex flex-col sm:flex-row space-x-[3rem] lg:space-x-[6rem]">    
       
-      <div className="flex items-center space-x-[1rem] w-[60%] ">
+      <div className="flex items-center space-x-[3rem] sm:space-x-[1rem] w-[60%] mt-[0.8rem] sm:mt-0">
 
                                     <h3 className="whitespace-nowrap text-[#574e4e] font-medium text-[1.9rem] sm:text-[2.1rem] font-['Inconsolata'] tracking-wider">
                                   <span>{num + 1}. </span>       Requester:
@@ -36,7 +36,7 @@ function IndividualRequest({num,data}) {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="text-ellipsis overflow-x-hidden px-[1.4rem]">
+                                        <div className="text-ellipsis overflow-x-hidden px-[0.5rem] sm:px-[1.4rem]">
                                             <h3 className="text-[#069EBF] decoration-[#069EBF] whitespace-nowrap decoration-1 underline underline-offset-1 text-[1.9rem] sm:text-[2.1rem] font-['Inconsolata'] font-medium">
 
                                             {cliTruncate(data?.requestorName?data?.requestorName:"", 8, {position: 'end'})}
@@ -47,7 +47,7 @@ function IndividualRequest({num,data}) {
                                     </div>
 
 
-                                    <div className="flex items-center w-[40%] space-x-[1rem] ">
+                                    <div className="flex items-center w-[40%] space-x-[8rem] sm:space-x-[1rem] ">
                                     <h3 className="text-[#545151] font-semibold text-[1.9rem] sm:text-[2.1rem] font-['Inconsolata'] tracking-wider">
                                         Offer:
                                     </h3>

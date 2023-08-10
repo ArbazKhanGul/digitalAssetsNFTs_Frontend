@@ -51,7 +51,7 @@ const Transaction=({error,data,isLoading}) => {
                                     }) : ""
                             }
 
-{data?.length==0 && !error? (
+{data?.length==0 && !error && !isLoading? (
 <div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
                             OOPS!   Nothing to show...</div>) : ""
                             }

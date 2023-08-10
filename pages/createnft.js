@@ -139,11 +139,7 @@ const Item = ({ userinfo }) => {
   return (
     <>
 
-      {!loading ? (
-        <div className="text-[1.6rem] font-['Inconsolata']">
-          <ToastContainer pauseOnHover autoClose={5000} />
-        </div>
-      ) : (
+      {loading  && (
         <>
           <Navbar></Navbar>
           <form onSubmit={handleSubmit} className='w-[100%]'>
@@ -346,7 +342,7 @@ const Item = ({ userinfo }) => {
 
 
 
-                  <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 ">
+                  <div className="flex flex-col w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 ">
                     <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-[2.4rem] tracking-wider">Enter Text for NFT:</h2>
                     <h2 className="font-['Inconsolata'] text-[red] text-[1.8rem] tracking-wider">Instructions:</h2>
                     <h2 className=" text-[1.3rem] font-['Inconsolata'] text-[#0D1344E5'] flex mt-[0.3rem]">

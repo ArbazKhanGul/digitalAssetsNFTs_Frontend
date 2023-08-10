@@ -74,9 +74,9 @@ function CopyRight({ nftName,ownerAddress, ownercopyrightStatus,ownercopyrightPr
 
 
 
-            {!isLoading && !loader && !dataError && ownerAddress!=user?.address && !copyrightStatus && copyrightPermission=="allowed" && user?.address == address ?
+            {!isLoading && !loader && !dataError && ownerAddress!=user?.address && !copyrightStatus && copyrightPermission=="allowed" && user && user?.address == address  ?
                 <button
-                    className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem] font-['Inconsolata'] tracking-wider"
+                    className="bg-blue-500 mr-[2rem] w-[100%] xs:w-fit  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-4 xs:py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem] font-['Inconsolata'] tracking-wider"
                     type="button"
                     disabled={loader}
                     onClick={() => {
@@ -87,9 +87,9 @@ function CopyRight({ nftName,ownerAddress, ownercopyrightStatus,ownercopyrightPr
                 </button> : null
             }
 
-           {!isLoading && !loader && !dataError  && copyrightStatus?.status  && user?.address == address?
+           {!isLoading && !loader && !dataError  && copyrightStatus?.status && user  && user?.address == address?
                 <button
-                    className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem] font-['Inconsolata'] tracking-wider"
+                    className="bg-blue-500 mr-[2rem] w-[100%] xs:w-fit  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-4 xs:py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem] font-['Inconsolata'] tracking-wider"
                     type="button"
                     disabled={loader}
                     onClick={() => {
@@ -101,9 +101,9 @@ function CopyRight({ nftName,ownerAddress, ownercopyrightStatus,ownercopyrightPr
             }
 
 
-            {!isLoading && !loader && !dataError && ownerAddress==user?.address &&  copyrightPermission=="allowed" && user?.address == address ?
+            {!isLoading && !loader && !dataError && ownerAddress==user?.address &&  copyrightPermission=="allowed" && user && user?.address == address ?
                 <button
-                    className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem] font-['Inconsolata'] tracking-wider"
+                    className="bg-blue-500 mr-[2rem] w-[100%] xs:w-fit py-4 xs:py-3 px-[3rem] hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold  mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem] font-['Inconsolata'] tracking-wider"
                     type="button"
                     disabled={loader}
                     onClick={() => {
@@ -115,9 +115,9 @@ function CopyRight({ nftName,ownerAddress, ownercopyrightStatus,ownercopyrightPr
             }
 
 
-            {!isLoading && !loader && !dataError && ownerAddress==user?.address && copyrightPermission=="notallowed" && user?.address == address ?
+            {!isLoading && !loader && !dataError && ownerAddress==user?.address && copyrightPermission=="notallowed" && user && user?.address == address ?
                 <button
-                    className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem] font-['Inconsolata'] tracking-wider"
+                    className="bg-blue-500 mr-[2rem] w-[100%] xs:w-fit hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-4 xs:py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem] font-['Inconsolata'] tracking-wider"
                     type="button"
                     disabled={loader}
                     onClick={() => {
@@ -131,7 +131,7 @@ function CopyRight({ nftName,ownerAddress, ownercopyrightStatus,ownercopyrightPr
 
             {!isLoading && !loader && !dataError &&  ownerAddress==user?.address && user?.address == address ?
                 <button
-                    className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem] font-['Inconsolata'] tracking-wider"
+                    className="bg-blue-500 mr-[2rem] w-[100%] xs:w-fit  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-4 xs:py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem] font-['Inconsolata'] tracking-wider"
                     type="button"
                     // disabled={loader}
                     onClick={() => {
@@ -144,9 +144,9 @@ function CopyRight({ nftName,ownerAddress, ownercopyrightStatus,ownercopyrightPr
             }
 
 
-            {!isLoading && !loader && !dataError && user?.address == address && ownerAddress==user?.address?
+            {!isLoading && !loader && !dataError && user?.address == address && user && ownerAddress==user?.address?
                 <button
-                    className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem] font-['Inconsolata'] tracking-wider"
+                    className="bg-blue-500 mr-[2rem] w-[100%] xs:w-fit  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-4 xs:py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem] font-['Inconsolata'] tracking-wider"
                     type="button"
                     // disabled={loader}
                     onClick={() => {

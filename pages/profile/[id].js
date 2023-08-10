@@ -20,7 +20,7 @@ const Profile = ({ userinfo, profileData }) => {
   const [loading, user, address] = useValidate(userinfo, "main");
 
 
-  const { data, error, isLoading } = useSWR(`/profilenft/${profileData?.email}?skip=${pageIndex}&type=${nftType}&nftName=${nftName}`, fetcherNft);
+  const { data, error, isValidating } = useSWR(`/profilenft/${profileData?.email}?skip=${pageIndex}&type=${nftType}&nftName=${nftName}`, fetcherNft);
 
 
 
@@ -100,6 +100,16 @@ const Profile = ({ userinfo, profileData }) => {
                   <div className="bord_grad w-fit text-[2.1rem]">
                     <span className="block px-[2.5rem] py-[0.4rem]  cursor-pointer buttonnft font-['Inconsolata']">
                       Update Profile
+                    </span>
+                  </div>
+                </div> : null
+              }
+
+            {address == profileData?.address && user?.address == address && profileData?.role=="admin"?
+                <div className="" onClick={() => { router.push("/adminpanel/dashboard") }}>
+                  <div className="bord_grad w-fit text-[2.1rem]">
+                    <span className="block px-[2.5rem] py-[0.4rem]  cursor-pointer buttonnft font-['Inconsolata']">
+                      Admin Panel
                     </span>
                   </div>
                 </div> : null
@@ -211,8 +221,8 @@ const Profile = ({ userinfo, profileData }) => {
               </span>
 
               {
-                isLoading ?
-                  (<div className="flex justify-center  mt-[4px]">
+                isValidating ?
+                  (<div className="flex justify mt-[5rem]-center  mt-[4px]">
 
                     <PuffLoader
                       color={"#30DCBA"}
