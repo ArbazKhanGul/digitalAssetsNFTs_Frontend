@@ -7,13 +7,14 @@ const Meta=({nftData,contentData}) => {
         <>
         <meta property="og:type" content="website" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        {/* <meta property="og:url"  content={`https://dgitalassets.vercel.app/individualnft/${nftData?.tokenURI}`} /> */}
         <meta property="fb:app_id" content="966242223397117" />
         <meta property="og:title" content={nftData?.nftName} />
         <meta property="og:site_name" content="Digital Assets Nfts" />
 
 
       {contentData.type=="image" && <>
+      
+              <meta property="og:url"  content={`https://dgitalassets.vercel.app/individualnft/${nftData?.tokenURI}`} />
         <meta property="description"  content={`${contentData?.description}`}/>
         <meta property="og:description"  content={`${contentData?.description}`} /> 
         <meta property="image" content={`${process.env.ipfsURL}${contentData?.content}`} />
