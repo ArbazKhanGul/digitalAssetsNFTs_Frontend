@@ -56,18 +56,37 @@ const Meta=({nftData,contentData}) => {
           property="twitter:url"
           content={`https://dgitalassets.vercel.app/individualnft/${nftData?.tokenURI}`}
         />
+        <meta property="twitter:title" 
+        content={nftData?.nftName} />
+
+
+{contentData.type=="text" && <>
         <meta
           property="twitter:description"
           content={nftData?.title}
           key="og-desc"
         />
-        <meta property="twitter:title" 
-        content={nftData?.nftName} />
         <meta
           property="twitter:image"
           itemProp="image"
           content={`https://dgitalassets.vercel.app/background.jpg`}
         />
+        </>}
+
+
+
+     {contentData.type=="image" && <>
+        <meta
+          property="twitter:description"
+          content={contentData?.description}
+          key="og-desc"
+        />
+        <meta
+          property="twitter:image"
+          itemProp="image"
+          content={`${process.env.ipfsURL}${contentData?.content}`}
+        />
+        </>}
         {/* <meta name="twitter:card" content="summary_large_image"/> */}
         </>
     )
