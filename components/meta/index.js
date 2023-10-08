@@ -66,7 +66,7 @@ const Meta=({nftData,contentData}) => {
         <meta
           property="twitter:image"
           itemProp="image"
-          content={`https://dgitalassets.vercel.app/bacground.jpg`}
+          content={`https://dgitalassets.vercel.app/background.jpg`}
         />
         {/* <meta name="twitter:card" content="summary_large_image"/> */}
         </>
