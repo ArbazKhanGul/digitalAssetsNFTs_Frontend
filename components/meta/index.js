@@ -23,14 +23,15 @@ const Meta=({nftData,contentData}) => {
        }
 
 
-       {contentData.type=="video" && 
+       {contentData.type=="video" &&
        <>
 <meta property="og:url" content="http://www.youtube.com/watch?v=CFLGRidfF04"/>
 <meta property="og:title" content="Vanilla Ice Ninja Rap - Go Ninja, Go Ninja Go!"/>
 <meta property="og:description" content="Ninja Rap music video by Vanilla Ice from Teenage Mutant Ninja Turtles 2 movie back in '91. Classic."/>
 <meta property="og:type" content="video"/>
 <meta property="og:image" content={`https://dgitalassets.vercel.app/background.jpg`}/>
-<meta property="og:video" content={`${process.env.ipfsURL}${contentData?.content}`} />
+<meta property="og:video:secure_url" content={`${process.env.ipfsURL}${contentData?.content}`} />
+<meta property="og:video:url" content={`${process.env.ipfsURL}${contentData?.content}`} />
 <meta property="og:video:type" content="video/*" />
         </>
        }
