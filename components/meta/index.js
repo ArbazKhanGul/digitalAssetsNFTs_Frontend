@@ -13,17 +13,24 @@ const Meta=({nftData,contentData}) => {
         <meta property="og:site_name" content="Digital Assets Nfts" />
 
 
-{contentData.type=="image" && <>
+      {contentData.type=="image" && <>
         <meta property="description"  content={`${contentData?.description}`}/>
         <meta property="og:description"  content={`${contentData?.description}`} /> 
         <meta property="image" content={`${process.env.ipfsURL}${contentData?.content}`} />
         <meta property="og:image"  content={`${process.env.ipfsURL}${contentData?.content}`} />
         {/* <meta property="og:image:type" content="image/png" /> */}
         </>
-}
+       }
 
 
-
+       {contentData.type=="video" && <>
+        <meta property="description"  content={`${contentData?.description}`}/>
+        <meta property="og:description"  content={`${contentData?.description}`} /> 
+        <meta property="og:video" content={`${process.env.ipfsURL}${contentData?.content}`} />
+        <meta property="og:video:secure_url" content={`${process.env.ipfsURL}${contentData?.content}`} />
+        {/* <meta property="og:image:type" content="image/png" /> */}
+        </>
+       }
 
 
 
