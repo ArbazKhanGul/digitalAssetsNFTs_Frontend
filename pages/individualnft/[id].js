@@ -15,6 +15,8 @@ import {
 
 
 const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
+console.log("🚀 ~ file: [id].js:18 ~ IndividualNFT ~ nftData:", nftData)
+console.log("🚀 ~ file: [id].js:18 ~ IndividualNFT ~ nftSellingData:", nftSellingData)
 
 
   const [loading, user, address] = useValidate(userinfo, "main");
@@ -88,7 +90,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
     <>
       <Head>
         <title>Golden Words NFts</title>
-        <Meta nftData={nftSellingData} />
+        <Meta nftData={nftSellingData} contentData={nftData}/>
       </Head>
 
       {/* <link itemProp="thumbnailUrl" href="https://textnft.vercel.app/new.png" /> */}
