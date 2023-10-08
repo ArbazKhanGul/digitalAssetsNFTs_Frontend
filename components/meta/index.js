@@ -34,7 +34,7 @@ const Meta=({nftData,contentData}) => {
 <meta property="og:video:url" content={`${process.env.ipfsURL}${contentData?.content}`} />
 <meta property="og:video:secure_url" content={`${process.env.ipfsURL}${contentData?.content}`} />
 <meta property="og:video:type" content="video/*" />
-<meta property="og:image" content={`https://dgitalassets.vercel.app/background.jpg`}/>
+<meta property="og:image" content={`https://dgitalassets.vercel.app/backwork.jpg`}/>
 
         </>
        }
