@@ -306,7 +306,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
       <div className="text-[#121212] w-fit whitespace-nowrap"> Creator Detail:</div>
 
         </div>
-      
+
          </div>
                 <div className="flex spacing space-x-[9rem] sm:space-x-[18rem] lg:space-x-[9rem] xl:space-x-[15rem] w-[89.5vw] sm:w-auto">
                   <div className="flex flex-col">
