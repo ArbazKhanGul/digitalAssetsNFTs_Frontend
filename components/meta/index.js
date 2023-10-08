@@ -53,7 +53,7 @@ const Meta=({nftData,contentData}) => {
 
 {/* twitter */}
 
-
+{/* 
         <meta
           property="twitter:url"
           content={`https:/textnft.vercel.app/individualnft/${nftData?.tokenURI}`}
@@ -71,7 +71,7 @@ const Meta=({nftData,contentData}) => {
           content="https://textnft.vercel.app/newer.png"
         />
         {/* <meta name="twitter:card" content="summary_large_image"/> */}
-        </>
+        </> 
     )
 }
 
