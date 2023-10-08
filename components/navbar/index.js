@@ -84,8 +84,8 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="navbar flex items-center pt-[1rem] !pb-[1rem] pl-[0.8rem] pr-[2rem]  sm:pl-[2rem] sm:pr-[3rem] md:pl-[3rem] md:pr-[4.5rem] md:!pt-[1.2rem] md:!pb-[1.2rem]">
-        <div className=" w-[26rem] h-[4.2rem] sm:w-[30rem] sm:h-[5rem]  md:w-[40rem] md:h-[4rem]  relative">
+      <div className="navbar flex items-center pt-[1.5rem] !pb-[1.2rem] pl-[1rem] pr-[2rem]  sm:pl-[2rem] sm:pr-[3rem] md:pl-[3rem] md:pr-[4.5rem] md:!pt-[1.2rem] md:!pb-[1.2rem]">
+        <div className=" w-[24rem] h-[3.2rem] sm:w-[30rem] sm:h-[4rem]  md:w-[40rem] md:h-[4rem]  relative">
           <Image src="/po.png" layout="fill" />
         </div>
 
@@ -144,7 +144,7 @@ const Navbar = () => {
                 <li className="inline-block links ">
                   <button
                     onClick={() => connectWalletLogin(user, dispatch, address, router, setShowLogin)}
-                    className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider"
+                    className="bg-[#1b31c4] hover:bg-blue-800  text-[#f7f2f2] font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider"
                     disabled={showLogin}
                   >
 
@@ -169,7 +169,7 @@ const Navbar = () => {
                   <Link href="/registration">
                     <a>
 
-                      <button className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider">
+                      <button className="bg-[#1b31c4] hover:bg-blue-800  text-[#f7f2f2] font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider">
                         Register
                       </button>
                     </a>
@@ -190,6 +190,17 @@ const Navbar = () => {
                   </Link>
                 </li>
 
+                <li className="inline-block links">
+                  <Link href="/buycrypto">
+                    <a
+                      className={
+                        router.pathname == "/buycrypto" ? "text-blue-600" : ""
+                      }
+                    >
+                      Buy BNB
+                    </a>
+                  </Link>
+                </li>
                 <li className="inline-block links " onClick={() => {
                   Logout(dispatch, router)
                 }} >
@@ -389,9 +400,9 @@ const Navbar = () => {
           )}
         </ul>
       </div>
-      <div className="text-[1.6rem] font-['Inconsolata']">
+      {/* <div className="text-[1.6rem] font-['Inconsolata']">
         <ToastContainer pauseOnHover autoClose={5000} />
-      </div>
+      </div> */}
     </>
   );
 };

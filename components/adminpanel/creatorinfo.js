@@ -59,10 +59,9 @@ function Detail({ type }) {
       const nftContract = new ethers.Contract(process.env.Address, NftAbi, signer);
 
       let result=await nftContract.ownerOf(values.tokenId);
-      
+
       setLoader(false);
       setOwnerAddress(result);
-      console.log("🚀 ~ file: info.js:21 ~ tokenOwner ~ result:", result)
 
       } catch (error) {
       setLoader(false);
@@ -91,14 +90,9 @@ function Detail({ type }) {
     <form onSubmit={handleSubmit} className="w-[90%]  xs:w-[80%] sm:w-[46.5%] md:w-[43%] xl:w-[40%] mt-[4rem] infoBack h-[25rem] flex flex-col justify-center items-center space-y-[1.5rem]">
 
       <div className="w-fit ">
-        <span className="text-start block font-medium font-['Inconsolata'] text-[#333641c7] text-[2.3rem] tracking-wider">
-          {type == "creator" && "Check Token Creator"}
+        <span className="text-start block  font-['Inconsolata'] font-bold text-[#1E2245] text-[2.3rem] tracking-wider">
+          Check Token Creator
 
-          {type == "owner" && "Check Token Onwer"}
-
-          {type == "copy" && "Check Copy Of"}
-
-          {type == "profile" && "Get User Profile"}
         </span>
       </div>
       <div className="flex flex-col w-[90%]">
@@ -121,23 +115,23 @@ function Detail({ type }) {
         ) : null}
       </div>
 
-      <button type="submit" className="bg-blue-500  hover:bg-blue-700  text-[#f1eeee] font-normal text-[1.7rem] sm:font-semibold py-3 px-10  sm:py-3 sm:px-16 rounded-full font-['Inconsolata'] tracking-wider"
+      <button type="submit" className="bg-[#1E40AF]  hover:bg-[#4042aa]  text-[#ffffffff] font-normal text-[1.7rem] sm:font-semibold py-3 px-10  sm:py-3 sm:px-16 rounded-full font-['Inconsolata'] tracking-wider"
       disabled={loader}
       >
         {loader ?"Searching...":"Search"}
       </button>
 
       <div className='flex justify-center space-x-4'>
-        <span className="text-start block font-medium font-['Inconsolata'] text-[#333641c7] text-[2rem] tracking-wider">
+        <span className="text-start block font-['Inconsolata'] font-bold text-[#1E2245] text-[2rem] tracking-wider">
           Creator:
         </span>
-        <span className="text-start relative justify-center items-center flex  space-x-[1rem] font-medium font-['Inconsolata'] text-[#333641c7] mt-[0.2rem] h-fit text-[1.9rem]">
+        <span className="text-start relative justify-center items-center flex  space-x-[1rem] font-medium font-['Inconsolata'] text-[#252424] mt-[0.2rem] h-fit text-[1.9rem]">
 
         {ownerAddress.substr(0, 8) + "..." + ownerAddress.substr(37, 5)} <AiOutlineCopy onClick={handleCopy} className={`text-[1.7rem] ml-[0.5rem] cursor-pointer ${isTooltipVisible ? "text-[#44bd32]":"text-[#444242]"}`} />
 
           {
 isTooltipVisible &&
-(<div className="absolute bottom-[2.5rem] -right-[3.4rem] mt-2 bg-[#44bd32] text-white px-4 py-2  rounded-lg">
+(<div className="absolute bottom-[2.5rem] -right-[3.4rem] mt-2 bg-[#44bd32] text-white px-4 py-2  rounded-md text-[1.5rem]">
           Copied
         </div>)
       }

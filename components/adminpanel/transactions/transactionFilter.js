@@ -1,8 +1,10 @@
 import Select from 'react-select';
-import { filterTransactionSchema } from "../../schema/index"
+import { filterTransactionSchema } from "../../../schema/index"
 import { useFormik } from "formik";
 import {useRouter} from  "next/router";
 import {useState,useEffect} from "react"
+
+
 const style = {
    control: (provided, state) => ({
        ...provided,
@@ -22,34 +24,24 @@ let optionsTransaction=[
    { "label": "all", "value": "all" },
 ]
 
-const Filter = ({ showItems ,router}) => {
 
-   // let router=useRouter()
+
+
+const Filter = ({ showItems}) => {
+   let router=useRouter();
+console.log("🚀 ~ file: transactionFilter.js:34 ~ Filter ~ router:", router)
+
+
    const [isInitialized, setIsInitialized] = useState(false);
-
-
-   useEffect(() => {
-      if (router.query && !isInitialized) {
-         console.log("running")
-         setIsInitialized(true);
-         setFieldValue("nftName", router.query.nftName || "");
-         setFieldValue("buyerEmail", router.query.buyerEmail || "");
-         setFieldValue("sellerEmail", router.query.sellerEmail || "");
-         setFieldValue("buyerWalletAddress", router.query.buyerWalletAddress || "");
-         setFieldValue("sellerWalletAddress", router.query.sellerWalletAddress || "");
-         setFieldValue("nftType", router.query.nftType ? options.find(option => option.value === router.query.nftType) : "");
-         setFieldValue("transactionType", router.query.transactionType ? optionsTransaction.find(option => option.value === router.query.transactionType) : "");
-      }
-   }, [router.query, isInitialized]);
-
 
 
    let initialValues = {
       nftName: "",
-      buyerEmail: "",
-      sellerEmail: "",
-      buyerWalletAddress: "",
-      sellerWalletAddress: "",
+      buyerName: "",
+      ownerName: "",
+      tokenId: "",
+      minimumPrice: "",
+      maximumPrice:"",
       nftType: "",
       transactionType: ""
    };
@@ -72,7 +64,7 @@ const Filter = ({ showItems ,router}) => {
          let parameter={...values};
           parameter.nftType=parameter.nftType?.value?parameter.nftType.value:"";
           parameter.transactionType=parameter.transactionType?.value?parameter.transactionType.value:"";
-          
+
 
          let route = '?'
 
@@ -80,10 +72,10 @@ const Filter = ({ showItems ,router}) => {
             if (parameter[key] !== '') {
 
                if (route.charAt(route.length - 1) === '?') {
-                  route = route + key + '=' + parameter[key].trim().toLowerCase()
+                  route = route + key + '=' + parameter[key].toString().trim().toLowerCase()
                }
                else {
-                  route = route + '&' + key + '=' + parameter[key].trim().toLowerCase()
+                  route = route + '&' + key + '=' + parameter[key].toString().trim().toLowerCase()
                }
             }
          }
@@ -104,9 +96,29 @@ const Filter = ({ showItems ,router}) => {
    setFieldValue("transactionType", e)
 }
 
+
+
+useEffect(() => {
+   if (Object.keys(router.query).length !== 0 && !isInitialized) {
+      console.log("running " ,router.query)
+      setIsInitialized(true);
+      setFieldValue("nftName", router.query.nftName || "");
+      setFieldValue("buyerName", router.query.buyerName || "");
+      setFieldValue("ownerName", router.query.ownerName || "");
+      setFieldValue("tokenId", router.query.tokenId || "");
+      setFieldValue("minimumPrice", router.query.minimumPrice || "");
+      setFieldValue("maximumPrice", router.query.maximumPrice || "");
+      setFieldValue("nftType", router.query.nftType ? options.find(option => option.value === router.query.nftType) : "");
+      setFieldValue("transactionType", router.query.transactionType ? optionsTransaction.find(option => option.value === router.query.transactionType) : "");
+   }
+}, [router.query, isInitialized,setFieldValue]);
+
+
+
+
    return (<div className={"bg-[#EDF2F7] rounded-[1.1rem] mt-[0.4rem]  overflow-hidden transition-all duration-700 " + (!showItems ? "max-h-0" : "max-h-[60rem]")}>
       <form onSubmit={handleSubmit} >
-         <div className="transition-all duration-500 text-[#FD2121DB] text-center text-[1.3rem] md:text-[1.5rem] pt-[1rem] px-[1rem] font-['Inconsolata']">If you don’t want to use any filter from below simply leave it empty</div>
+         <div className="transition-all duration-500 font-bold text-[#f31111db] text-center text-[1.3rem] md:text-[1.5rem] pt-[1rem] px-[1rem] font-['Inconsolata']">If you don’t want to use any filter from below simply leave it empty</div>
          <div className="flex flex-wrap md:space-x-[1.5rem] md:justify-center lg:justify-center lg:mr-[0.6rem] xl:mr-[0rem] xl:justify-center lg:space-x-[1rem] xl:space-x-[1.8rem] px-[1.5rem] md:px-[1rem] pb-[1.5rem]">
 
 
@@ -165,17 +177,17 @@ const Filter = ({ showItems ,router}) => {
                <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
                   <input type="text"
                      className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-                     placeholder="Enter buyer email address"
-                     name="buyerEmail"
-                     value={values.buyerEmail}
+                     placeholder="Enter buyer name"
+                     name="buyerName"
+                     value={values.buyerName}
                      onChange={handleChange}
                      onBlur={handleBlur}
                      autoComplete="off"
                   />
                </div>
-               {errors.buyerEmail && touched.buyerEmail ? (
+               {errors.buyerName && touched.buyerName ? (
                   <p className="text-red-500 text-[1.4rem] errors block">
-                     {errors.buyerEmail}
+                     {errors.buyerName}
                   </p>
                ) : null}
             </div>
@@ -186,17 +198,17 @@ const Filter = ({ showItems ,router}) => {
                <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
                   <input type="text"
                      className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-                     placeholder="Enter seller email address"
-                     name="sellerEmail"
-                     value={values.sellerEmail}
+                     placeholder="Enter owner Name"
+                     name="ownerName"
+                     value={values.ownerName}
                      onChange={handleChange}
                      onBlur={handleBlur}
                      autoComplete="off"
                   />
                </div>
-               {errors.sellerEmail && touched.sellerEmail ? (
+               {errors.ownerName && touched.ownerName ? (
                   <p className="text-red-500 text-[1.4rem] errors block">
-                     {errors.sellerEmail}
+                     {errors.ownerName}
                   </p>
                ) : null}
             </div>
@@ -205,19 +217,21 @@ const Filter = ({ showItems ,router}) => {
 
             <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:ml-[1.8rem] mt-[1.5rem] w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem]">
                <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
-                  <input type="text"
+                  <input type="number"
+                     min={"0"}
+                     step="1"
                      className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-                     placeholder="Enter buyer wallet address"
-                     name="buyerWalletAddress"
-                     value={values.buyerWalletAddress}
+                     placeholder="Enter token id"
+                     name="tokenId"
+                     value={values.tokenId}
                      onChange={handleChange}
                      onBlur={handleBlur}
                      autoComplete="off"
                   />
                </div>
-               {errors.buyerWalletAddress && touched.buyerWalletAddress ? (
+               {errors.tokenId && touched.tokenId ? (
                   <p className="text-red-500 text-[1.4rem] errors block">
-                     {errors.buyerWalletAddress}
+                     {errors.tokenId}
                   </p>
                ) : null}
             </div>
@@ -226,24 +240,45 @@ const Filter = ({ showItems ,router}) => {
 
             <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:ml-[1.8rem] mt-[1.5rem] w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem]">
                <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
-                  <input type="text"
+                  <input type="number"
+                      min={"0"}
                      className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-                     placeholder="Enter seller wallet address"
-                     name="sellerWalletAddress"
-                     value={values.sellerWalletAddress}
+                     placeholder="Enter minimum price"
+                     name="minimumPrice"
+                     value={values.minimumPrice}
                      onChange={handleChange}
                      onBlur={handleBlur}
                      autoComplete="off"
                   />
                </div>
-               {errors.sellerWalletAddress && touched.sellerWalletAddress ? (
+               {errors.minimumPrice && touched.minimumPrice ? (
                   <p className="text-red-500 text-[1.4rem] errors block">
-                     {errors.sellerWalletAddress}
+                     {errors.minimumPrice}
                   </p>
                ) : null}
             </div>
 
 
+
+            <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:ml-[1.8rem] mt-[1.5rem] w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem]">
+               <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
+                  <input type="number"
+                      min={"0"}
+                     className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
+                     placeholder="Enter maximum price"
+                     name="maximumPrice"
+                     value={values.maximumPrice}
+                     onChange={handleChange}
+                     onBlur={handleBlur}
+                     autoComplete="off"
+                  />
+               </div>
+               {errors.maximumPrice && touched.maximumPrice ? (
+                  <p className="text-red-500 text-[1.4rem] errors block">
+                     {errors.maximumPrice}
+                  </p>
+               ) : null}
+            </div>
 
 
 
@@ -252,15 +287,16 @@ const Filter = ({ showItems ,router}) => {
 
          </div>
          <div className="flex justify-center space-x-4 mb-[1.2rem]">
-            <button type="submit" className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[18px] font-['Inconsolata'] sm:font-semibold  px-12  py-[0.7rem] sm:px-14 rounded-full">
+            <button type="submit" className="bg-[#1E40AF]  hover:bg-[#4042aa]  text-white font-normal text-[18px] font-['Inconsolata'] sm:font-semibold  px-12  py-[0.7rem] sm:px-14 rounded-full">
                Search
             </button>
   
             <button type="button" onClick={()=>{
+               setFieldValue("transactionType","");
                setFieldValue("nftType","");
-               router.push("/nfts")
+               router.push("/adminpanel/transactions")
                }
-               } className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[18px] font-['Inconsolata'] sm:font-semibold  px-12  py-[0.7rem] sm:px-14 rounded-full">
+               } className="bg-[#1E40AF]  hover:bg-[#4042aa]  text-white font-normal text-[18px] font-['Inconsolata'] sm:font-semibold  px-12  py-[0.7rem] sm:px-14 rounded-full">
                Clear All
             </button>
          </div>

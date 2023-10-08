@@ -273,6 +273,7 @@ const profileUpdate = ({userinfo}) => {
                 name="profile"
                 ref={profileRef}
                 accept="image/*"
+
                 onChange={(e) => {
 
                   let size=e.target?.files[0]?.size / 1024 ** 2;
@@ -301,6 +302,7 @@ const profileUpdate = ({userinfo}) => {
                     e.target?.files[0] ? e.target?.files[0] : ""
                   );
                 }}
+                
                 hidden
               />
 

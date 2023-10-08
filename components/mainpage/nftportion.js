@@ -3,17 +3,29 @@ import {memo} from "react";
 import ClipLoader from "react-spinners/PuffLoader";
 import { useRouter } from "next/router";
 import { ethers } from 'ethers'
-
+import Image from "next/image";
 
 
 const NFTPortion =({error,data,isLoading})=>{
     let router=useRouter();
  
     return (<div>
-        <div className="nft w-fit text-[2.7rem] ml-[2rem] sm:text-[3rem] md:text-[3.7rem] font-['Raleway'] font-semibold  mt-[1.2rem] sm:ml-[3.5rem] md:ml-[4rem]">
-    Trending NFTs: 
-    </div>
-    <span className="colgrad text-[1.7rem] font-semibold  mt-[1.2rem] mx-[2.5rem] sm:mx-[4rem] md:mx-[4rem] block font-['Inconsolata']">(Click on any NFT to see his full detail and buying option)</span>
+      <div className="text-[3rem]  flex  ml-[2rem] justify-center   font-['Inconsolata'] font-bold sm:text-[3rem] md:text-[3.6rem]  m-[1.2rem] ">
+      <div className=" w-fit bord-bottom mx-[5rem] flex justify-center mt-[2rem]"> 
+
+      <div className="text-[#121212] w-fit "> Top NFTs</div>
+
+          <div className=" inline-block w-[3.5rem] h-[4rem] sm:w-[3.2rem] md:w-[4rem] mt-[0.6rem] ml-[0.5rem] sm:h-[3.2rem] md:h-[4rem] rounded-full relative">
+            <Image
+              className="rounded-full"
+              src={`/topnft.png`}
+              layout="fill"
+            //   objectFit="cover"
+            /></div>
+        </div>
+      
+         </div>
+    {/* <span className="text-[#0d133b] text-[1.7rem]  font-semibold  mt-[1.2rem] mx-[6rem] mb-[1rem]  block font-['Inconsolata']">(Click on any NFT to see his full detail and buying option)</span> */}
 
 <div className={`mx-[3rem]  sm:mx-[4rem] ${data ?"flex flex-wrap mg jt":""}`}>
 
@@ -52,7 +64,7 @@ const NFTPortion =({error,data,isLoading})=>{
 
 <div className="mg flex justify-end my-[1.5rem] font-['Inconsolata']">
 {/* <Button ></Button> */}
-<button className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold  px-12  py-[1rem] sm:px-14 rounded-full font-['Inconsolata'] tracking-wider"
+<button className="bg-[#032da1]  hover:bg-blue-900  text-white font-normal text-[1.8rem] sm:font-semibold  px-12  py-[1rem] sm:px-14 rounded-full font-['Inconsolata'] tracking-wider"
       onClick={() =>{router.push("/nfts/1")} }
      >
   More...

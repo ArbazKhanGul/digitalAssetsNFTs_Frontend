@@ -4,14 +4,12 @@ import { create } from 'ipfs-http-client'
 import axios from "./axiosconfiguration";
 import { nftTokenCreate } from "./nftCreate";
 
-const ipfsUpload = async (data, user, setLoader, setPath) => {
-
-    console.log("NFt text length or origoinal text", data?.nftText);
+const ipfsUpload = async (data, user, setLoader, setPath,fee,hash) => {
 
     try {
         const projectId = process.env.PROJECT_KEY_INFLURA;
         const projectSecret = process.env.INFLURA_KEY;
-        let size;
+
 
         const auth =
             'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
@@ -30,6 +28,7 @@ const ipfsUpload = async (data, user, setLoader, setPath) => {
 
         //if content type is text
         let creationDate=new Date();
+        let lang="";
 
         if (data.nftContentType == "text") {
              let title;
@@ -47,8 +46,7 @@ const ipfsUpload = async (data, user, setLoader, setPath) => {
                     setLoader(`Uploading nft content  ${percent}%`);
                 },
             })
-            let lang = data?.nftLanguage;
-            size = data?.nftText.length;
+            lang = data?.nftLanguage;
 
             result_content = JSON.stringify({
                 name: data.nftName, description: data.nftDescription, language: lang, content: contentURL.path, creationDate: creationDate, creatorEmail: user.email, creatorAddress: user.address, title: title, type: "text"
@@ -65,7 +63,7 @@ const ipfsUpload = async (data, user, setLoader, setPath) => {
                     setLoader(`Uploading nft content  ${percent}%`);
                 },
             })
-            size = (data.nftVideo?.size / 1024 ** 2).toFixed(2);
+           
             result_content = JSON.stringify({
                 name: data.nftName, description: data.nftDescription, content: contentURL.path, creationDate: creationDate, creatorEmail: user.email, creatorAddress: user.address, type: "video"
             });
@@ -79,7 +77,7 @@ const ipfsUpload = async (data, user, setLoader, setPath) => {
                     setLoader(`Uploading nft content  ${percent}%`);
                 },
             })
-            size = (data.nftAudio?.size / 1024 ** 2).toFixed(2);
+          
             result_content = JSON.stringify({
                 name: data.nftName, description: data.nftDescription, content: contentURL.path, creationDate: creationDate, creatorEmail: user.email, creatorAddress: user.address, type: "audio"
             });
@@ -93,9 +91,8 @@ const ipfsUpload = async (data, user, setLoader, setPath) => {
                     setLoader(`Uploading nft content  ${percent}%`);
                 },
             })
-            size = (data.nftImage?.size / 1024 ** 2).toFixed(2);
             result_content = JSON.stringify({
-                name: data.nftName, description: data.nftDescription, content: contentURL.path, creationDate: creationDate, creatorEmail: user.email, creatorAddress: user.address, type: "image"
+                name: data.nftName, description: data.nftDescription, content: contentURL.path, creationDate: creationDate, creatorEmail: user.email, creatorAddress: user.address, type: "image",original:true
             });
         }
 
@@ -110,13 +107,14 @@ const ipfsUpload = async (data, user, setLoader, setPath) => {
             nftName: data?.nftName, contentURL: contentURL.path,
             metadataURL: metadataURL.path,
             contentType: data.nftContentType,
-            size,
-            creationDate
+            creationDate,
+            language:lang,
+            hash
         });
-        let op = ethers.utils.formatUnits(back_res.data.price, "ether");
+
 
         setLoader("Waiting for transaction confirmation and mined transaction...");
-        await nftTokenCreate(back_res?.data?.price, metadataURL.path, setLoader, setPath);
+        await nftTokenCreate(fee, metadataURL.path, setLoader, setPath);
     }
 
     catch (err) {
@@ -124,7 +122,6 @@ const ipfsUpload = async (data, user, setLoader, setPath) => {
         toast.error("Error occurred in uploading nft data  please try later", {
             position: "top-center",
         });
-        console.log("🚀 ~ file: ipfsUpload.js:37 ~ ipfsUpload ~ err:", err)
     }
 }
 export default ipfsUpload;

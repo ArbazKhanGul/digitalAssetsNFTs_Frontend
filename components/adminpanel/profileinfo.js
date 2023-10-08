@@ -1,30 +1,23 @@
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { useState } from "react";
-import { TokenIDinput } from "../../schema/index"
-import { AiOutlineCopy } from "react-icons/ai"
+import { WalletAddressInput } from "../../schema/index"
 import copy from 'clipboard-copy';
-import { ethers } from "ethers";
-
+import Image from "next/image";
+import Link from "next/link";
+import { shortText } from "limit-text-js";
+import axios from "../../utils/axiosconfiguration"
 
 function Detail({ type }) {
 
 
-  const [ownerAddress, setOwnerAddress] = useState("0x0000000000000000000000000000000000000000");
-  const [isTooltipVisible, setTooltipVisible] = useState(false);
+  const [user, setUser] = useState("");
   const [loader,setLoader]=useState(false);
 
-  const handleCopy = () => {
-    copy(ownerAddress);
-    setTooltipVisible(true);
 
-    setTimeout(() => {
-      setTooltipVisible(false);
-    }, 1500);
-  };
 
   let initialValues = {
-    tokenId: "",
+    walletAddress: "",
   };
 
   const {
@@ -38,38 +31,31 @@ function Detail({ type }) {
   } = useFormik({
 
     initialValues,
-    validationSchema: TokenIDinput,
+    validationSchema: WalletAddressInput,
 
     onSubmit: async (values, action) => {
 
 
-      console.log("🚀 ~ file: createnft.js ~ line 39 ~ onSubmit: ~ values", values)
-
-
-      try {
-        const NftAbi = [
-          // Get the creator of token
-          "function ownerOf(uint256 tokenId) public view virtual returns (address)"
-      ];
+        try {
 
       setLoader(true)
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner()
-
-      const nftContract = new ethers.Contract(process.env.Address, NftAbi, signer);
-
-      let result=await nftContract.ownerOf(values.tokenId);
-      
+      const result = await axios.get(`/getprofile?address=${values.walletAddress}`);
+  
       setLoader(false);
-      setOwnerAddress(result);
-      console.log("🚀 ~ file: info.js:21 ~ tokenOwner ~ result:", result)
+      setUser(result?.data?.profile);
 
       } catch (error) {
       setLoader(false);
-      setOwnerAddress("0x0000000000000000000000000000000000000000")
-        if (error.message.startsWith("call revert exception"))
+      setUser("")
+        if (error?.response?.data?.message?.startsWith("Profile Not Found"))
         {
-            toast.error("Wrong token Id", {
+            toast.error("Profile not found", {
+                position: "top-center",
+              });
+        }
+        else if (error?.response?.data?.message?.startsWith("bad address checksum"))
+        {
+            toast.error("Invalid wallet Address", {
                 position: "top-center",
               });
         }
@@ -84,64 +70,66 @@ function Detail({ type }) {
 
   return (
 
-
-
-
-
     <form onSubmit={handleSubmit} className="w-[90%]  xs:w-[80%] sm:w-[46.5%] md:w-[43%] xl:w-[40%] mt-[4rem] infoBack h-[25rem] flex flex-col justify-center items-center space-y-[1.5rem]">
 
       <div className="w-fit ">
-        <span className="text-start block font-medium font-['Inconsolata'] text-[#333641c7] text-[2.3rem] tracking-wider">
-          {type == "creator" && "Check Token Creator"}
-
-          {type == "owner" && "Check Token Onwer"}
-
-          {type == "copy" && "Check Copy Of"}
-
-          {type == "profile" && "Get User Profile"}
+        <span className="text-start block  font-['Inconsolata'] font-bold text-[#1E2245] text-[2.3rem] tracking-wider">
+         
+          Get User Profile
         </span>
       </div>
       <div className="flex flex-col w-[90%]">
         <div className="input_bord_grad mb-[0.2rem] w-[100%]">
-          <input type="number"
+          <input type="text"
             step="1"
             className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-            placeholder="Enter Token ID..."
-            name="tokenId"
-            value={values.tokenId}
+            placeholder="Enter wallet address..."
+            name="walletAddress"
+            value={values.walletAddress}
             onChange={handleChange}
             onBlur={handleBlur}
             autoComplete="off"
           />
         </div>
-        {errors.tokenId && touched.tokenId ? (
+        {errors.walletAddress && touched.walletAddress ? (
           <p className="text-red-500 z-10 text-[1.4rem]  errors block">
-            {errors.tokenId}
+            {errors.walletAddress}
           </p>
         ) : null}
       </div>
 
-      <button type="submit" className="bg-blue-500  hover:bg-blue-700  text-[#f1eeee] font-normal text-[1.7rem] sm:font-semibold py-3 px-10  sm:py-3 sm:px-16 rounded-full font-['Inconsolata'] tracking-wider"
+      <button type="submit" className="bg-[#1E40AF]  hover:bg-[#4042aa]  text-[#ffffffff] font-normal text-[1.7rem] sm:font-semibold py-3 px-10  sm:py-3 sm:px-16 rounded-full font-['Inconsolata'] tracking-wider"
       disabled={loader}
       >
         {loader ?"Searching...":"Search"}
       </button>
 
-      <div className='flex justify-center space-x-4'>
-        <span className="text-start block font-medium font-['Inconsolata'] text-[#333641c7] text-[2rem] tracking-wider">
-          Creator:
+      <div className='flex justify-center items-center space-x-4'>
+        <span className="text-start block  font-['Inconsolata'] font-bold text-[#1E2245] text-[2rem] tracking-wider">
+          Profile :
         </span>
-        <span className="text-start relative justify-center items-center flex  space-x-[1rem] font-medium font-['Inconsolata'] text-[#333641c7] mt-[0.2rem] h-fit text-[1.9rem]">
+        <span className="text-start relative justify-center items-center flex  space-x-[1rem] font-medium font-['Inconsolata'] text-[#252424] mt-[0.2rem] h-fit text-[1.9rem]">
 
-        {ownerAddress.substr(0, 8) + "..." + ownerAddress.substr(37, 5)} <AiOutlineCopy onClick={handleCopy} className={`text-[1.7rem] ml-[0.5rem] cursor-pointer ${isTooltipVisible ? "text-[#44bd32]":"text-[#444242]"}`} />
+      {user ? <li className="inline-block links">
+                  <Link href={`/profile/${user._id}`}>
+                    <a
+                    >
+                      <div className="flex items-center space-x-[0.7rem]">
+                        <div className=" w-[4.2rem] h-[4.2rem] rounded-full relative">
+                          <Image
+                            src={`${process.env.SERVER_URL}/images/${user?.profile}`}
+                            layout="fill"
+                            className="rounded-full"
+                          />
 
-          {
-isTooltipVisible &&
-(<div className="absolute bottom-[2.5rem] -right-[3.4rem] mt-2 bg-[#44bd32] text-white px-4 py-2  rounded-lg">
-          Copied
-        </div>)
-      }
 
+                        </div>
+                        <h2 className="text-[#1E2245] font-semibold"> {shortText(user.authorName, 10, "...")}</h2>
+                      </div>
+                    </a>
+                  </Link>
+                </li> : <span>...</span>
+}
 
         </span>
       </div>

@@ -69,7 +69,7 @@ const Profile = ({ userinfo, profileData }) => {
           </div>
 
           <div className="mx-[2.3rem] sm:mx-[3.5rem] md:mx-[5rem]">
-            <h2 className="text-[2.8rem] font-['DynaPuff'] overflow-hidden text-ellipsis">
+            <h2 className="text-[2.8rem] font-semibold overflow-hidden text-ellipsis">
               {profileData?.authorName}
             </h2>
             <p className="text-[1.7rem] font-['Inconsolata'] w-[100%] md:w-[80%] lg:w-[70%]">
@@ -77,106 +77,102 @@ const Profile = ({ userinfo, profileData }) => {
 
             </p>
             <div className="flex items-center  space-x-[5.3rem]  sm:space-x-[7.6rem] mt-[1.5rem]">
-              <h4 className="text-[2.2rem] font-['Inconsolata'] font-bold">
+              <h4 className="text-[2.2rem] font-['Inconsolata'] text-[#141835] font-bold">
                 Email
               </h4>
-              <p className="text-[1.8rem] font-['Inconsolata'] text-[#7D7C7CCF] font-medium overflow-hidden text-ellipsis">
+              <p className="text-[1.8rem] font-['Inconsolata'] text-[#2a2f5e] font-medium overflow-hidden text-ellipsis">
 
                 {profileData?.email}
               </p>
             </div>
 
             <div className="flex items-center space-x-[3rem] sm:space-x-[5.3rem] my-[1.5rem]">
-              <h4 className="text-[2.2rem] font-['Inconsolata'] font-bold">
+              <h4 className="text-[2.2rem] font-['Inconsolata'] font-bold text-[#141835]">
                 Address
               </h4>
-              <p className="text-[1.8rem] font-['Inconsolata'] text-[#7D7C7CCF] font-medium overflow-hidden text-ellipsis">
+              <p className="text-[1.8rem] font-['Inconsolata'] font-medium text-[#22264d]  overflow-hidden text-ellipsis">
                 {profileData?.address}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-[1.5rem]">
               {address == profileData?.address && user?.address == address ?
-                <div className="" onClick={() => { router.push("/profileUpdate") }}>
-                  <div className="bord_grad w-fit text-[2.1rem]">
-                    <span className="block px-[2.5rem] py-[0.4rem]  cursor-pointer buttonnft font-['Inconsolata']">
-                      Update Profile
-                    </span>
-                  </div>
-                </div> : null
-              }
+                         <button onClick={() => { router.push("/profileUpdate") }} className="bg-[#1b31c4] hover:bg-[#182ba8]  text-[#ffffff] font-normal text-[1.8rem] sm:font-semibold py-2 px-20  sm:py-2 sm:px-11 rounded-full font-['Inconsolata'] tracking-wider">
+                                      Update Profile
+                                    </button>
+                
+                 : null 
+               } 
 
             {address == profileData?.address && user?.address == address && profileData?.role=="admin"?
                 <div className="" onClick={() => { router.push("/adminpanel/dashboard") }}>
-                  <div className="bord_grad w-fit text-[2.1rem]">
-                    <span className="block px-[2.5rem] py-[0.4rem]  cursor-pointer buttonnft font-['Inconsolata']">
-                      Admin Panel
-                    </span>
-                  </div>
+                  <button onClick={() => { router.push("/profileUpdate") }} className="bg-[#1b31c4] hover:bg-[#182ba8]  text-[#ffffff] font-normal text-[1.8rem] sm:font-semibold py-[0.7rem] px-16 rounded-full font-['Inconsolata'] tracking-wider">
+                                      Admin Panel
+                                    </button>
                 </div> : null
               }
 
-              <Share path={`${process.env.URL}/profile/${profileData?._id}`} page="profile" />
+              {/* <Share path={`${process.env.URL}/profile/${profileData?._id}`} page="profile" /> */}
 
             </div>
 
             <div className="flex flex-wrap justify-center lg:justify-start -ml-[2rem] -mr-[2rem]  mb-[2rem] ">
 
-              <div className="shadow inline-block p-[3rem] profileitems  ml-[2rem] mr-[2rem] mt-[2rem]">
-                <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
+              <div className="win shadow inline-block p-[3rem] profileitems ml-[2rem] mr-[2rem] mt-[2rem]">
+                <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[white] font-medium">
                   Revenue
                 </h2>
-                <p className="text-[2rem] font-['Inconsolata'] font-bold text-center overflow-x-auto whitespace-nowrap scrollbar-none ">
+                <p className="text-[2rem] text-[white] font-['Inconsolata'] font-bold text-center overflow-x-auto whitespace-nowrap scrollbar-none ">
                   {ethers.utils.formatUnits(profileData?.volume.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB
                 </p>
-                <h4 className="text-[1.7rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
+                <h4 className="text-[1.7rem] font-['Inconsolata'] text-center text-[white] font-medium">
                   Total
                 </h4>
               </div>
 
-              <div className="shadow inline-block p-[3rem] profileitems ml-[2rem] mr-[2rem] mt-[2rem]">
-                <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium ">
+              <div className="shadow inline-block p-[3rem] profileitems ml-[2rem] mr-[2rem] mt-[2rem] win">
+                <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[white] font-medium ">
                   NFTs Created
                 </h2>
-                <p className="text-[2rem] text-center font-['Inconsolata'] font-bold overflow-x-auto whitespace-nowrap scrollbar-none ">
+                <p className="text-[2rem] text-center text-[white] font-['Inconsolata'] font-bold overflow-x-auto whitespace-nowrap scrollbar-none ">
                   {profileData?.itemsCreated}
                 </p>
-                <h4 className="text-[1.7rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
+                <h4 className="text-[1.7rem] font-['Inconsolata'] text-center text-[white] font-medium">
                   Total
                 </h4>
               </div>
 
-              <div className="shadow inline-block p-[3rem] profileitems ml-[2rem] mr-[2rem] mt-[2rem]">
-                <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
+              <div className="shadow win inline-block p-[3rem] profileitems ml-[2rem] mr-[2rem] mt-[2rem]">
+                <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[white] font-medium">
                   NFTs Buy
                 </h2>
-                <p className="text-[2rem] font-['Inconsolata'] font-bold text-center overflow-x-auto whitespace-nowrap scrollbar-none ">
+                <p className="text-[2rem] font-['Inconsolata'] text-[white] font-bold text-center overflow-x-auto whitespace-nowrap scrollbar-none ">
 
                   {profileData?.itemsBuy}
                 </p>
-                <h4 className="text-[1.7rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
+                <h4 className="text-[1.7rem] font-['Inconsolata'] text-center text-[white] font-medium">
                   Total
                 </h4>
               </div>
 
-              <div className="shadow inline-block p-[3rem] profileitems ml-[2rem] mr-[2rem] mt-[2rem]">
-                <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium ">
+              <div className="shadow win inline-block p-[3rem] profileitems ml-[2rem] mr-[2rem] mt-[2rem]">
+                <h2 className="text-[2.1rem] font-['Inconsolata'] text-center text-[white] font-medium ">
                   NFTs Sell
                 </h2>
-                <p className="text-[2rem] font-['Inconsolata'] font-bold text-center overflow-x-auto whitespace-nowrap scrollbar-none">
+                <p className="text-[2rem] font-['Inconsolata'] font-bold text-[white] text-center overflow-x-auto whitespace-nowrap scrollbar-none">
                   {profileData?.itemsSell}
                 </p>
-                <h4 className="text-[1.7rem] font-['Inconsolata'] text-center text-[#7D7C7CCF] font-medium">
+                <h4 className="text-[1.7rem] font-['Inconsolata'] text-center text-[white] font-medium">
                   Total
                 </h4>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row justify-between items-center mt-[0.5rem] flex-wrap">
-              <div className="nft text-[2.5rem] sm:text-[3rem] md:text-[3.7rem] w-fit font-['DynaPuff'] mt-[0.5rem]">
+              <div className=" text-[#fa5151] font-bold text-[2.5rem] sm:text-[3rem] md:text-[3.7rem] w-fit  mt-[0.5rem] font-['Inconsolata']">
                 {nftType == "both" ? "Owned + Created" : nftType} NFTs
               </div>
               <div
-                className="cursor-pointer text-[1.6rem] sm:text-[1.9rem] md:text-[2rem] mt-[0.5rem] font-semibold text-[#353846C7] flex items-center font-['Inconsolata']"
+                className="cursor-pointer text-[1.6rem] sm:text-[1.9rem] md:text-[2rem] mt-[0.5rem] font-semibold text-[#252f5fc7] flex items-center font-['Inconsolata']"
                 onClick={() => {
                   show((prevState) => {
                     return prevState ? false : true;
@@ -204,7 +200,7 @@ const Profile = ({ userinfo, profileData }) => {
                 if (nftName !== searchName) {
                   setnftName(searchName);
                 }
-              }} className="mt-[1rem] sm:mt-[0rem] bg-blue-500 w-fit inline-block hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-3 sm:px-14 rounded-full font-['Inconsolata'] tracking-wider">
+              }} className="mt-[1rem] win sm:mt-[0rem] bg-[#1b31c4] hover:bg-[#182ba8]  w-fit inline-block  text-white font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-3 sm:px-14 rounded-full font-['Inconsolata'] tracking-wider">
                 <a>Search</a>
               </button>
             </div>
@@ -212,7 +208,7 @@ const Profile = ({ userinfo, profileData }) => {
 
           <div>
             <div className="pl-[1.2rem] mb-[2rem]">
-              <span className="colgrad text-[1.6rem] font-semibold text-center sm:text-left mt-[1.2rem] mx-[2.8rem] md:mx-[4.3rem] block font-['Inconsolata'] ">
+              <span className="text-[black] text-[1.6rem] font-semibold text-center sm:text-left mt-[1.2rem] mx-[2.8rem] md:mx-[4.3rem] block font-['Inconsolata'] ">
                 (Click on any NFT to see his full detail and buying option)
               </span>
 

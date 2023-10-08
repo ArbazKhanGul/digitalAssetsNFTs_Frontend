@@ -22,11 +22,11 @@ export default async function getServerSideProps(context) {
             if(result?.data?.status=="success")
             {
 
-
                 return {
                     props: {
                         userinfo: result?.data?.user,
                         nftData: result?.data?.nftData,
+                        copyrightPrice:result?.data?.copyrightPrice
                     }
                 }
 

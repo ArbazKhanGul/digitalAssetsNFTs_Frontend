@@ -3,33 +3,34 @@ import Navbar from "../../components/navbar";
 import { useState, useEffect, useRef } from "react";
 import Footer from "../../components/footer";
 import "react-toastify/dist/ReactToastify.css";
-import getServerSideProps from "../../utils/serverSideAdmin"
+import getServerSideProps from "../../utils/admin/serverSideDashboardAdmin"
 import Sidebar from "../../components/adminpanel/sidenav";
-import {CreatorInformation,OwnerInformation,CopyInformation,ProfileInformation} from "../../components/";
+import { CreatorInformation, OwnerInformation, CopyInformation, ProfileInformation } from "../../components/";
 import useValidate from '../../utils/useValidate';
 import { ethers } from "ethers";
 import { nftBalanceTransfer, marketBalanceTransfer } from "../../utils/balanceTransfer";
 import ClipLoader from "react-spinners/ClipLoader";
+import CreationFeeUpdate from "../../components/adminpanel/creationFeeModal";
 
-const adminDashboard = ({ userinfo }) => {
+const adminDashboard = ({ userinfo, creationFee }) => {
 
 
     const [loading, user, address] = useValidate(userinfo);
-    //   const [dataLoading,setDataLoading]=useState(false);
+
 
     const [totalSupply, setTotalSupply] = useState(false);
+    const [nftCreationFee, setNftCreationFee] = useState(creationFee);
 
-    const [nftContractBalance, setNftContractBalance] = useState(false);
-    console.log("🚀 ~ file: dashboard.js:23 ~ adminDashboard ~ nftContractBalance:", nftContractBalance)
-    const [marketContractBalance, setMarketContractBalance] = useState(false);
+    const [nftContractBalance, setNftContractBalance] = useState(0);
+    const [marketContractBalance, setMarketContractBalance] = useState(0);
 
     const [nftBalanceLoader, setNftBalanceLoader] = useState(false);
     const [marketBalanceLoader, setMarketBalanceLoader] = useState(false);
 
-  
+
     useEffect(() => {
 
-        const Data = async () => {
+        const fetchData = async () => {
 
             try {
                 const NftAbi = [
@@ -67,9 +68,16 @@ const adminDashboard = ({ userinfo }) => {
                 console.log("🚀 ~ file: dashboard.js:44 ~ Data ~ error:", error)
             }
         }
-        Data();
 
+        fetchData();
+
+        // Set up an interval to call fetchData every 1 minute (60,000 milliseconds)
+        const intervalId = setInterval(fetchData, 60000);
+
+        // Clean up the interval when the component unmounts
+        return () => clearInterval(intervalId)
     }, [])
+
     return (
         <>
             {loading &&
@@ -82,9 +90,9 @@ const adminDashboard = ({ userinfo }) => {
                         <div className="backside xl:w-[84%] min-h-[90vh]">
                             <div className="flex flex-wrap space-y-[2rem] md:space-y-0 mt-[3rem] justify-evenly font-['Inconsolata'] ">
 
-                                <div className="w-[90%] xs:w-[80%] md:w-[30%] xl:w-[26%] backCreationDetail h-[17rem] space-y-[0.5rem] !text-white text-[2.2rem]  flex flex-col justify-center items-center">
+                                <div className="w-[90%] xs:w-[80%] md:w-[30%] xl:w-[21%] boxback rounded-[2rem] h-[15rem] space-y-[0.5rem] !text-white text-[2.2rem]  flex flex-col justify-center items-center">
                                     <div>
-                                        Total NFTs Created
+                                        Total NFTs
                                     </div>
                                     <div>
                                         {
@@ -92,39 +100,9 @@ const adminDashboard = ({ userinfo }) => {
                                         }
                                     </div>
                                 </div>
-                                <div className="w-[90%] xs:w-[80%] md:w-[30%] xl:w-[26%] backCreationDetail h-[17rem] space-y-[0.5rem] !text-white text-[2.2rem]  flex flex-col justify-center items-center">
+                                <div className="w-[90%] xs:w-[80%] md:w-[30%] xl:w-[21%] boxback rounded-[2rem] h-[15rem] space-y-[0.5rem] !text-white text-[2.2rem]  flex flex-col justify-center items-center">
                                     <div>
-                                        NFTs Creation Balance
-                                    </div>
-
-                                    {nftBalanceLoader ? <div className="flex justify-center  mt-[4px]">
-
-                                        <ClipLoader
-                                            color={"#30DCBA"}
-                                            loading={nftBalanceLoader}
-                                            cssOverride={{ marginBottom: "0px" }}
-                                            size={75}
-                                            aria-label="Loading Spinner"
-                                            data-testid="loader"
-                                        />
-                                    </div> : <>
-                                    <div>
-                                        {
-                                            nftContractBalance && nftContractBalance > 0? `${parseFloat(ethers.utils.formatUnits(nftContractBalance.toLocaleString('fullwide', { useGrouping: false }), 18)).toFixed(8)} BNB ` : nftContractBalance==0 ? 0 : "..."
-                                        }
-                                    </div>
-                                    <button className={` text-[#f1eeee] font-normal text-[1.7rem] sm:font-semibold py-3 px-10  sm:py-2 sm:px-10 cur rounded-full font-['Inconsolata'] tracking-wider ${nftContractBalance && nftContractBalance > 0 ? 'bg-blue-500  hover:bg-blue-700 cursor-pointer' : 'bg-blue-500'}`}
-                                        disabled={nftContractBalance && nftContractBalance > 0 ? false : true}
-                                        onClick={() => { nftBalanceTransfer(setNftContractBalance, setNftBalanceLoader) }}
-                                    >
-
-                                        Transfer Fund
-                                    </button>
-                               </>}
-                                </div>
-                                <div className="w-[90%] xs:w-[80%] md:w-[30%] xl:w-[26%] backCreationDetail h-[17rem] space-y-[0.5rem] !text-white text-[2.2rem]  flex flex-col justify-center items-center">
-                                    <div>
-                                        Marketplace Balance
+                                        Marketplace
                                     </div>
 
                                     {marketBalanceLoader ? <div className="flex justify-center  mt-[4px]">
@@ -138,27 +116,75 @@ const adminDashboard = ({ userinfo }) => {
                                             data-testid="loader"
                                         />
                                     </div> : <>
-                                        <div>
+                                        <div className="text-[2rem]">
                                             {
-                                                marketContractBalance && marketContractBalance > 0? `${parseFloat(ethers.utils.formatUnits(marketContractBalance.toLocaleString('fullwide', { useGrouping: false }), 18)).toFixed(8)} BNB ` : nftContractBalance==0 ? 0 : "..."
+                                                marketContractBalance && marketContractBalance > 0 ? `${parseFloat(ethers.utils.formatUnits(marketContractBalance.toLocaleString('fullwide', { useGrouping: false }), 18)).toFixed(8)} BNB ` : nftContractBalance == 0 ? `0 BNB` : "..."
                                             }
                                         </div>
-                                        <button className={`text-[#f1eeee] font-normal text-[1.7rem] sm:font-semibold py-3 px-10  sm:py-2 sm:px-10 rounded-full font-['Inconsolata'] tracking-wider ${marketContractBalance && marketContractBalance > 0 ? 'bg-blue-400  hover:bg-blue-700 cursor-pointer' : 'bg-blue-500'}`}
+                                        <button className={` text-[#ffffffff] font-normal text-[1.5rem] sm:font-semibold py-2 px-[2.5rem] cur rounded-[1.8rem] font-['Inconsolata'] tracking-wider bg-[#1E40AF]  hover:bg-[#4042aa]}`}
                                             disabled={marketContractBalance && marketContractBalance > 0 ? false : true}
-                                            onClick={()=>{marketBalanceTransfer(setMarketContractBalance,setMarketBalanceLoader)}}
+                                            onClick={() => { marketBalanceTransfer(setMarketContractBalance, setMarketBalanceLoader) }}
 
                                         >
-                                            Transfer Fund
+                                            Transfer
                                         </button></>}
+                                </div>
+
+                                <div className="w-[90%] xs:w-[80%] md:w-[30%] xl:w-[21%] boxback rounded-[2rem] h-[15rem] space-y-[0.5rem] !text-white text-[2.2rem]  flex flex-col justify-center items-center">
+                                    <div>
+                                        NFT Balance
+                                    </div>
+
+                                    {nftBalanceLoader ? <div className="flex justify-center  mt-[4px]">
+
+                                        <ClipLoader
+                                            color={"#30DCBA"}
+                                            loading={nftBalanceLoader}
+                                            cssOverride={{ marginBottom: "0px" }}
+                                            size={75}
+                                            aria-label="Loading Spinner"
+                                            data-testid="loader"
+                                        />
+                                    </div> : <>
+                                        <div className="text-[2rem]">
+                                            {
+                                                nftContractBalance && nftContractBalance > 0 ? `${parseFloat(ethers.utils.formatUnits(nftContractBalance.toLocaleString('fullwide', { useGrouping: false }), 18)).toFixed(8)} BNB ` : nftContractBalance == 0 ? `0 BNB` : "..."
+                                            }
+                                        </div>
+                                        <button className={` text-[#ffffffff] font-normal text-[1.5rem] sm:font-semibold py-2 px-[2.5rem] cur rounded-[1.8rem] font-['Inconsolata'] tracking-wider bg-[#1E40AF]  hover:bg-[#4042aa]}`}
+                                            disabled={nftContractBalance && nftContractBalance > 0 ? false : true}
+                                            onClick={() => { nftBalanceTransfer(setNftContractBalance, setNftBalanceLoader) }}
+                                        >
+
+                                            Transfer
+                                        </button>
+                                    </>}
+                                </div>
+
+
+                                <div className="w-[90%] xs:w-[80%] md:w-[30%] xl:w-[21%] boxback rounded-[2rem] h-[15rem] space-y-[0.5rem] !text-white text-[2.2rem]  flex flex-col justify-center items-center">
+                                    <div>
+                                        Creation Fee
+                                    </div>
+
+                                    <>
+                                        <div className="text-[2rem]">
+                                            {
+                                                nftCreationFee && `${nftCreationFee} BNB `
+                                            }
+                                        </div>
+                                        <CreationFeeUpdate setFee={setNftCreationFee} />
+
+                                    </>
                                 </div>
                             </div>
 
 
                             <div className="flex justify-around flex-wrap w-[100%] mb-[2rem]">
-                                <CreatorInformation type="creator"/> 
-                                <OwnerInformation type="owner"/>
-                                <CopyInformation type="copy"/> 
-                                <ProfileInformation type="profile"/> 
+                                <CreatorInformation/>
+                                <OwnerInformation />
+                                <CopyInformation />
+                                <ProfileInformation />
                             </div>
                         </div>
 

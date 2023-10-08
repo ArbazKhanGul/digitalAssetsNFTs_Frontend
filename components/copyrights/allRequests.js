@@ -27,12 +27,12 @@ function AllRequests({ setShowModal, nftName }) {
 
     return (
         <>
-            <div className="px-[13px] justify-center items-center flex overflow-x-hidden fixed inset-0 h-fit   z-50 outline-none focus:outline-none  top-[3rem]  ">
-                <div className="relative h-[90%]  my-6 w-[90%] sm:w-[85%] md:w-[68%] lg:w-[50%] xl:w-[45%] ">
+            <div className="px-[13px] justify-center items-center flex overflow-x-hidden fixed inset-0 h-fit text-black   z-50 outline-none focus:outline-none  top-[3rem]  ">
+                <div className="relative h-[90%]  my-6 w-[90%] sm:w-[85%] md:w-[68%] lg:w-[50%] ">
 
-                    <div className="border-0  shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none rounded-[2rem]">
-                        <div className="py-[2rem] border-b-[0.1rem] border-[#c9c1c1] flex items-center justify-between  px-[2rem] border-solid ">
-                            <h3 className="w-[30%] text-3xl font-semibold whitespace-nowrap">
+                    <div className="border-0  shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none rounded-[1rem]">
+                        <div className="py-[2rem] bg-[#1E2346] text-white border-b-[0.1rem] border-[#c9c1c1] flex items-center justify-between  px-[2rem] border-solid rounded-t-[1rem]">
+                            <h3 className="w-[30%] text-[2.3rem] tracking-wider font-semibold whitespace-nowrap">
 
                                 Requests
 
@@ -43,8 +43,9 @@ function AllRequests({ setShowModal, nftName }) {
                 <div className="reginp w-[70%]">
                   <input
                     type="text"
+
                     placeholder="Enter Requester Name..."
-                    className="reginput"
+                    className="reginput !text-white"
                     name="requester"
                     value={requester}
                     onChange={(e)=>{setRequester(e.target.value)}}
@@ -69,15 +70,19 @@ function AllRequests({ setShowModal, nftName }) {
 
 <div className="border-b-[0.1rem]  border-[#c9c1c1]  py-[1rem]">
 <div className="flex sm:space-x-[1rem] mt-[1rem]  items-center mb-[0.5rem] flex-wrap ml-[1.5rem]">
-        <h2 onClick={()=>setState("pending")} className={`font-['DynaPuff'] text-[1.7rem] font-medium cursor-pointer  sm:ml-0 py-[0.7rem] px-[2rem] w-fit ${state=="pending"?"bg-[#E7F3FF] text-[#3e8ef0] rounded-[2rem]":""}`}>Pending</h2>
-        <h2 onClick={()=>setState("accept")} className={`font-['DynaPuff'] text-[1.7rem] font-medium cursor-pointer py-[0.7rem] px-[2rem] w-fit ${state=="accept"?"bg-[#E7F3FF] text-[#3e8ef0]  rounded-[2rem]":""}`}>Accept</h2>
-        <h2 onClick={()=>setState("completed")} className={`font-['DynaPuff'] text-[1.7rem] font-medium cursor-pointer py-[0.7rem] px-[2rem] w-fit ${state=="completed"?"bg-[#E7F3FF] text-[#3e8ef0] rounded-[2rem]":""}`}>Completed</h2>
-        <h2 onClick={()=>setState("all")} className={`font-['DynaPuff'] text-[1.7rem] font-medium cursor-pointer py-[0.7rem] px-[2rem] w-fit ${state=="all"?"bg-[#E7F3FF] text-[#3e8ef0]  rounded-[2rem]":""}`}>All</h2>
+        <h2 onClick={()=>setState("pending")} className={` text-[1.9rem] font-medium cursor-pointer  sm:ml-0 py-[0.5rem] px-[2.2rem] w-fit ${state=="pending"?"bg-[#1E40AF] text-[white] rounded-[2rem]":""}`}>Pending</h2>
+        <h2 onClick={()=>setState("reapproval")} className={`text-[1.9rem] font-medium cursor-pointer  sm:ml-0 py-[0.5rem] px-[2.2rem] w-fit ${state=="reapproval"?"bg-[#1E40AF] text-[white] rounded-[2rem]":""}`}>Reapproval</h2>
+        <h2 onClick={()=>setState("accept")} className={` text-[1.9rem] font-medium cursor-pointer py-[0.5rem] px-[2.2rem] w-fit ${state=="accept"?"bg-[#1E40AF] text-[white]  rounded-[2rem]":""}`}>Accepted</h2>
+        <h2 onClick={()=>setState("completed")} className={` text-[1.9rem] font-medium cursor-pointer py-[0.5rem] px-[2.2rem] w-fit ${state=="completed"?"bg-[#1E40AF] text-[white] rounded-[2rem]":""}`}>Completed</h2>
+        <h2 onClick={()=>setState("all")} className={` text-[1.9rem] font-medium cursor-pointer py-[0.5rem] px-[2.2rem] w-fit ${state=="all"?"bg-[#1E40AF] text-[white]  rounded-[2rem]":""}`}>All</h2>
   </div>
 </div>
                         <div className="h-[40rem] overflow-x-auto" id="scrollableCopyright" >
 
-
+                 {state=="reapproval" && <h2 className="text-[#f33333] text-[1.5rem] text-justify mx-[2.5rem]">Note: For reapproval, include requests where the owner initially accepted the user's copyright 
+                    request. However, if the owner changes before the user fulfills the request, the new owner must reapprove it for the user
+                     to proceed with the copyright request
+                    </h2>}
                             <InfiniteScroll
                                 next={() => {
                                     console.log("NExt scrolling")

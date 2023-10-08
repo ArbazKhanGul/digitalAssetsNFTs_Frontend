@@ -2,6 +2,7 @@ import {MdFilterList} from "react-icons/md"
 import getDataRoute from "../../utils/getDataRoute";
 import useValidate from "../../utils/useValidate";
 import {fetcherNft} from "../../utils/fetcher"
+import Image from "next/image";
 import {
   Navbar, Pagination, Footer,NftFilter as Filter, useState,useRouter,  getServerSideProps, ToastContainer,IndividualNFT,useSWR,PuffLoader
 } from "../../components"
@@ -31,20 +32,34 @@ const [loading, user, address] = useValidate(userinfo, "main");
     
     <Navbar></Navbar>
     <div className="px-[2rem] sm:px-[4rem] md:px-[4.9rem]">
-    <div className="flex flex-col sm:flex-row justify-between items-center mt-[0.5rem] flex-wrap">
-        <div className="nft text-[2.7rem] sm:text-[3rem] md:text-[3.7rem] w-fit font-['DynaPuff'] mt-[0.5rem]">All NFTs</div>
-        <div className="cursor-pointer text-[1.6rem] sm:text-[1.9rem] md:text-[2rem] mt-[0.5rem] font-semibold text-[#353846C7] flex items-center font-['Inconsolata']" onClick={()=>{show((prevState)=>{
+
+<div className="flex justify-between w-[100%] items-center mb-[1rem]">
+    <div className=" w-fit text-[3rem] font-bold  bord-bottom  flex justify-center mt-[2rem]"> 
+
+<div className="text-[#121212] w-fit "> All NFTs</div>
+
+    <div className=" inline-block w-[3.5rem] h-[4rem] sm:w-[3.2rem] md:w-[4rem] mt-[0.6rem] ml-[0.5rem] sm:h-[3.2rem] md:h-[4rem] rounded-full relative">
+      <Image
+        className="rounded-full"
+        src={`/topnft.png`}
+        layout="fill"
+      //   objectFit="cover"
+      /></div>
+  </div>
+
+        <div className="cursor-pointer text-[1.6rem] sm:text-[1.9rem] md:text-[2rem] mt-[0.5rem] font-semibold text-[#000000c7] flex items-center font-['Inconsolata']" onClick={()=>{show((prevState)=>{
     return prevState?false:true;
   })}}>Search NFTs By filters <MdFilterList className="text-[2.5rem] pl-[0.3rem]"></MdFilterList>
         </div>
-    </div>
+        </div>
+    
     <Filter showItems={showItems}></Filter>
 
     </div>
 
     <div className="pl-[1.2rem]">
 
-    <span className="colgrad text-[1.6rem] font-semibold text-center sm:text-left mt-[1.2rem] mx-[2.8rem] md:mx-[4.3rem] block font-['Inconsolata'] ">(Click on any NFT to see his full detail and buying option)</span>
+    {/* <span className="colgrad text-[1.6rem] font-semibold text-center sm:text-left mt-[1.2rem] mx-[2.8rem] md:mx-[4.3rem] block font-['Inconsolata'] ">(Click on any NFT to see his full detail and buying option)</span> */}
 
 <div className="flex flex-wrap jt mx-[4rem] mg minheight">
 
@@ -74,6 +89,7 @@ const [loading, user, address] = useValidate(userinfo, "main");
                   {error ? (<div className="text-[red] font-bold text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['Inconsolata'] mt-[0.5rem]">
                                 Error in getting NFTs Please try later!</div>) : ""
                             }
+
 
                             {
                                 (!error && data && !isValidating) ?

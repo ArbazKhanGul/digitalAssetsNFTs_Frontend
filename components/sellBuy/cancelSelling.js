@@ -13,7 +13,7 @@ function CancelSelling({itemId}) {
     return (
     <>
 <button
-                     className="bg-blue-500 xs:mr-[2rem] w-[100%] xs:w-fit py-4 xs:py-3 rounded-[1.3rem] xs:rounded-full  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold  px-[4rem]  font-['Inconsolata'] tracking-wider"
+                     className="bg-[#1b31c4] hover:bg-[#182ba8] xs:mr-[2rem] w-[100%] xs:w-fit py-4 xs:py-3 rounded-[1.3rem] xs:rounded-full    text-white font-normal text-[1.8rem] sm:font-semibold  px-[4rem]  font-['Inconsolata'] tracking-wider"
                      type="button"
                      onClick={() => {setShowModal(true)}}
                      disabled={loader}
@@ -68,14 +68,14 @@ function CancelSelling({itemId}) {
 
                    {showModal ? (
         <>
-          <div className="px-[2rem]  justify-center items-center flex overflow-x-hidden h-fit absolute inset-0 z-50 outline-none focus:outline-none top-[4rem]">
+          <div className="px-[2rem]  justify-center items-center flex overflow-x-hidden h-fit fixed inset-0 z-50 outline-none focus:outline-none top-[4rem]">
             <div className="relative  my-6 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%]">
              
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                <div className="flex items-start justify-between py-5 px-[2rem] border-b border-solid border-slate-200 rounded-t">
+              <div className="border-0 rounded-[1rem] shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                <div className="flex  bg-[#1E2346] rounded-t-[1rem] items-start justify-between py-5 px-[2rem] border-b border-solid border-slate-200 ">
                 
-                <div className="flex justify-between">
-                  <h3 className="text-3xl font-semibold">
+                <div className="flex  justify-between">
+                  <h3 className="text-[2rem] text-[white] font-semibold">
              
                    Cancel Selling 
 
@@ -115,7 +115,7 @@ function CancelSelling({itemId}) {
                 </div>
                 <div className="flex items-center justify-end py-6 border-t border-solid border-slate-200 rounded-b">
            <button
-                    className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] rounded-full font-['Inconsolata'] tracking-wider"
+                    className="bg-[#1b31c4] hover:bg-[#182ba8] mr-[2rem]   text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] rounded-full font-['Inconsolata'] tracking-wider"
                     type="button"
                   onClick={() => cancelSelling(itemId,setShowModal,setLoader)}
                   >

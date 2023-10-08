@@ -21,7 +21,6 @@ let options=[
 const Filter = ({ showItems }) => {
 
    const router = useRouter();
-   console.log("🚀 ~ file: filter.js:19 ~ Filter ~ router:", router)
 
    let initialValues = {
       nftName: router.query?.nftName?router.query?.nftName:"",
@@ -80,7 +79,7 @@ const Filter = ({ showItems }) => {
 
    return (<div className={"bg-[#EDF2F7] rounded-[1.1rem] mt-[0.4rem]  overflow-hidden transition-all duration-700 " + (!showItems ? "max-h-0" : "max-h-[60rem]")}>
       <form onSubmit={handleSubmit} >
-         <div className="transition-all duration-500 text-[#FD2121DB] text-center text-[1.3rem] md:text-[1.5rem] pt-[1rem] px-[1rem] font-['Inconsolata']">If you don’t want to use any filter from below simply leave it empty</div>
+         <div className="transition-all duration-500 font-bold text-[#fd0a0adb] text-center text-[1.3rem] md:text-[1.5rem] pt-[1rem] px-[1rem] font-['Inconsolata']">If you don’t want to use any filter from below simply leave it empty</div>
          <div className="flex flex-wrap md:space-x-[1.5rem] md:justify-center lg:justify-center lg:mr-[0.6rem] xl:mr-[0rem] xl:justify-center lg:space-x-[1rem] xl:space-x-[1.8rem] px-[1.5rem] md:px-[1rem] pb-[1.5rem]">
 
 
@@ -246,7 +245,7 @@ const Filter = ({ showItems }) => {
 
          </div>
          <div className="flex justify-center space-x-4 mb-[1.2rem]">
-            <button type="submit" className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[18px] font-['Inconsolata'] sm:font-semibold  px-12  py-[0.7rem] sm:px-14 rounded-full">
+            <button type="submit" className="bg-[#1b31c4] hover:bg-blue-800  text-white font-normal text-[18px] font-['Inconsolata'] sm:font-semibold  px-12  py-[0.7rem] sm:px-14 rounded-full">
                Search
             </button>
   
@@ -254,7 +253,7 @@ const Filter = ({ showItems }) => {
                setFieldValue("nftType","");
                router.push("/nfts")
                }
-               } className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[18px] font-['Inconsolata'] sm:font-semibold  px-12  py-[0.7rem] sm:px-14 rounded-full">
+               } className="bg-[#1b31c4] hover:bg-blue-800  text-white font-normal text-[18px] font-['Inconsolata'] sm:font-semibold  px-12  py-[0.7rem] sm:px-14 rounded-full">
                Clear All
             </button>
          </div>

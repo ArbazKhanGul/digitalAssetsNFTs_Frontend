@@ -14,18 +14,10 @@ import {
 
 
 
-
-
-
-
-
-
 const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
-  console.log("🚀 ~ file: [id].js:24 ~ IndividualNFT ~ nftSellingData:", nftSellingData)
 
 
   const [loading, user, address] = useValidate(userinfo, "main");
-
   const [playing, setPlaying] = useState(false)
 
 
@@ -34,7 +26,6 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
   let router = useRouter();
   const { data, error, mutate, isValidating } = useSWR(`/nftdata/${nftSellingData?.owner_email}?nftName=${nftData?.name}&nftId=${nftSellingData?._id}&original=${nftSellingData?.original}`, fetcherOwnerNft);
 
-  console.log("🚀 ~ file: [id].js:37 ~ IndividualNFT ~ data:", data)
   const [dollar, setDollar] = useState(0);
 
 
@@ -45,27 +36,18 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
   }, [user])
 
 
-  const BNBPrice = async () => {
-    try {
 
-      const client = Binance()
-      let ticker = await client.prices({ symbol: 'BNBUSDT' });
-      setDollar(ticker?.BNBUSDT);
-    }
-    catch (error) {
-      console.log(error)
-    }
-  }
 
   const [textData, setTextData] = useState("");
   const [textLoading, setTextLoading] = useState(true);
 
+  
   useEffect(() => {
     async function fetchData() {
       try {
-
         const response = await axios.get(`${process.env.ipfsURL}${nftData?.content}`);
         setTextData(response.data);
+        console.log("🚀 ~ file: [id].js:50 ~ fetchData ~ response.data:", response.data)
         setTextLoading(false)
       } catch (err) {
       }
@@ -76,11 +58,26 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
   }, [])
 
 
+  const BNBPrice = async () => {
+    try {
+        const client = Binance()
+        let ticker = await client.prices({ symbol: 'BNBUSDT' });
+        setDollar(parseFloat(ticker?.BNBUSDT));
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
+
   useEffect(() => {
     if (nftSellingData?.status == "selling" || data?.nft?.length != 0) {
       BNBPrice();
     }
   }, [nftSellingData, data])
+
+
+
+
 
 
   let date = new Date(nftData?.creationDate);
@@ -91,17 +88,17 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
     <>
       <Head>
         <title>Golden Words NFts</title>
-
         <Meta nftData={nftSellingData} />
       </Head>
-      <link itemProp="thumbnailUrl" href="https://textnft.vercel.app/new.png" />
-      <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject">
-        <link itemProp="url" href="https://textnft.vercel.app/demo.png" />
-      </span>
+
+      {/* <link itemProp="thumbnailUrl" href="https://textnft.vercel.app/new.png" /> */}
+      {/* <span itemProp="thumbnail" itemScope itemType="http://schema.org/ImageObject"> */}
+        {/* <link itemProp="url" href="https://textnft.vercel.app/demo.png" /> */}
+      {/* </span> */}
 
 
       {!loading ? (
-        <div className="text-[1.6rem] font-['Inconsolata']">
+        <div className="text-[1.6rem] ">
           <ToastContainer pauseOnHover autoClose={5000} />
         </div>
       ) : (
@@ -111,11 +108,11 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
           <div className="px-[1.7rem] sm:px-[3.5rem] md:px-[6rem] ">
             <div className="pt-[0.8rem] sm:pt-[1.5rem] md:pt-[3rem] lg:pt-[3rem] grid lg:grid-cols-2 lg:gap-x-[2rem]">
 
-              <h2 className="color row-start-2 row-end-3  w-fit h-fit block lg:hidden mt-[1rem] mb-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold  md:text-[3.2rem] tracking-wide ">
+              <h2 className="text-black row-start-2 row-end-3  w-fit h-fit block lg:hidden mt-[1rem] mb-[1rem] text-[2.7rem] sm:text-[3.1rem]   font-semibold  md:text-[3.2rem] tracking-wide ">
                 NFT Text:
               </h2>
 
-              <div className="w-[98.5%] overflow-hidden sm:w-[100%] nft_bord row-start-3 max-h-[43rem] relative lg:max-h-[60rem]  row-end-4 lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3">
+              <div className="w-[98.5%] overflow-hidden sm:w-[100%] border-[0.2rem] border-[#1E2245] rounded-[0.5rem] row-start-3 max-h-[43rem] relative lg:max-h-[60rem]  row-end-4 lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3">
 
 
                 {nftData?.type == "text" ?
@@ -131,7 +128,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
                           aria-label="Loading Spinner"
                           data-testid="loader"
                         />
-                      </div>) : <h2 className="!text-[2.3rem] text-['#2d3436'] break-words overflow-y-hidden font-['Inconsolata'] font-normal w-[100%]  text-center max-h-[100%] ">
+                      </div>) : <h2 className="!text-[2.3rem] text-['#2d3436'] break-words overflow-y-hidden  font-normal w-[100%]  text-center max-h-[100%] ">
                         {parse(`<pre class="whitespace-pre-wrap">${textData}</pre>`)}
 
                       </h2>
@@ -194,40 +191,45 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
               </div>
               <div className="w-[53.5%] mt-[2rem] lg:mt-0 row-start-1 row-end-2 lg:col-start-2 lg:col-end-3">
-                <h2 className="whitespace-nowrap color w-fit h-fit -mt-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold  md:text-[3.2rem] tracking-wide ">
-                  NFT Detail
-                </h2>
+              <div className="  flex    font-['Inconsolata'] font-bold text-[2.5rem] sm:text-[2.9rem] ">
+      <div className=" w-fit bord-bottom  flex justify-center mb-[1rem]"> 
+
+      <div className="text-[#121212] w-fit whitespace-nowrap"> NFT Detail:</div>
+
+        </div>
+      
+         </div>
 
                 <div className="flex spdeatil space-x-[6rem] sm:space-x-[13rem] lg:space-x-[4rem] xl:space-x-[10rem] w-[89.5vw] sm:w-auto">
                   <div className="flex flex-col space-y-2">
                     {nftSellingData?.original ?
-                      <h2 className="text-[#545151] text-[1.9rem]  font-['Inconsolata'] font-medium block heightDetail">
+                      <h2 className="text-[#221f1f] font-bold text-[1.9rem]    block heightDetail">
                         Name
                       </h2> : null
                     }
 
                     {!nftSellingData?.original ?
-                      <h2 className="text-[#545151] text-[1.9rem]  font-['Inconsolata'] font-medium block heightDetail">
+                      <h2 className="text-[#221f1f] font-bold text-[1.9rem]   block heightDetail">
                         Copy of
                       </h2> : null
                     }
 
                     {nftSellingData?.status == "selling" ?
                       <>
-                        <h2 className="text-[#545151] text-[1.9rem] sm:text-[2rem] font-['Inconsolata'] font-medium">
+                        <h2 className="text-[#221f1f] font-bold text-[1.9rem] sm:text-[2rem] ">
                           Price
                         </h2>
-                        <h2 className="text-transparent text-[#545151] text-[1.9rem] sm:text-[1.6rem] font-['Inconsolata'] font-medium">
+                        <h2 className="text-transparent text-[#545151] text-[1.9rem] sm:text-[1.6rem]  font-medium">
                           j
                         </h2>
                       </> : null}
 
-                    <h3 className="text-[#545151] text-[1.9rem]  font-['Inconsolata'] font-medium  whitespace-nowrap block heightDetail">
+                    <h3 className="text-[#221f1f] font-bold text-[1.9rem]     whitespace-nowrap block heightDetail">
                       Creation Date
                     </h3>
 
                     {nftData?.type == "text" ?
-                      <h3 className="text-[#545151] text-[1.9rem]  font-['Inconsolata'] font-medium  whitespace-nowrap block heightDetail">
+                      <h3 className="text-[#221f1f] font-bold text-[1.9rem]    whitespace-nowrap block heightDetail">
                         NFT Language
                       </h3> : null}
 
@@ -236,86 +238,91 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
                   <div className="flex flex-col space-y-[0.75rem] grow overflow-x-scroll sm:grow-0 sm:overflow-visible">
 
                     {nftSellingData?.original ?
-                      <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] pt-[0.3rem] sm:pt-[0rem] font-medium block heightDetail whitespace-nowrap  overflow-y-hidden hd scrollbar-none">
+                      <p className="text-[#e80748] w-fit font-semibold  text-[1.8rem] pt-[0.3rem] sm:pt-[0rem]  block heightDetail whitespace-nowrap  overflow-y-hidden hd scrollbar-none">
                         {nftData?.name}
                       </p> : null
                     }
 
                     {!nftSellingData?.original ?
-                      <p onClick={() => { router.push(`/individualnft/${nftSellingData?.originalTokenURI}`) }} className="w-fit text-[#069EBF] cursor-pointer decoration-[#069EBF] decoration-1 underline underline-offset-1  sm:text-[2.1rem]   font-['Inconsolata'] text-[1.6rem] pt-[0.3rem] sm:pt-[0rem] font-medium block heightDetail whitespace-nowrap  overflow-y-hidden hd scrollbar-none">
+                      <p onClick={() => { router.push(`/individualnft/${nftSellingData?.originalTokenURI}`) }} className="w-fit font-bold text-[#e80748] cursor-pointer decoration-[#e80748] decoration-1 underline underline-offset-1  sm:text-[2rem]    text-[1.6rem] pt-[0.3rem] sm:pt-[0rem]  block heightDetail whitespace-nowrap  overflow-y-hidden hd scrollbar-none">
                         {nftData?.name}
                       </p> : null}
-                    {/* // <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] pt-[0.3rem] sm:pt-[0rem] font-medium block heightDetail whitespace-nowrap  overflow-y-hidden hd scrollbar-none"> */}
-                    {/* </p>:null */}
-
 
 
                     {nftSellingData?.status == "selling" ?
-                      <> <p className="text-[#686767cf] font-['Inconsolata']  text-[1.6rem] font-medium whitespace-nowrap overflow-x-scroll scrollbar-none pt-[0.2rem]">
+                      <> <p className="text-[#03b6be] font-semibold text-[1.6rem] whitespace-nowrap overflow-x-scroll scrollbar-none pt-[0.2rem]">
                         {ethers.utils.formatUnits(nftSellingData?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB
 
                       </p>
-                        <div className="text-[#686767cf] whitespace-nowrap font-['Inconsolata'] text-[1.6rem] sm:text-[1.6rem] font-medium overflow-x-scroll scrollbar-none">
+                        <div className="text-[black] font-semibold whitespace-nowrap-nowrap  text-[1.6rem] sm:text-[1.6rem]  overflow-x-scroll scrollbar-none">
                           {(ethers.utils.formatUnits(nftSellingData?.price.toLocaleString('fullwide', { useGrouping: false }), 18) * dollar).toFixed(2)} USD
                         </div>
                       </> : null}
 
 
-                    <p className="text-[#00000] font-semibold font-['Inconsolata'] text-[1.6rem]  sm:text-[1.6rem] whitespace-nowrap h-[2.4rem] overflow-x-scroll scrollbar-none block heightDetail">
+                    <p className="text-[#03b6be] font-semibold  text-[1.6rem]  sm:text-[1.7rem] whitespace-nowrap h-[2.4rem] overflow-x-scroll scrollbar-none block heightDetail">
                       {date.toLocaleString()}
                     </p>
 
                     {nftData?.type == "text" ?
-                      <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] font-medium block heightDetail overflow-x-scroll scrollbar-none">
+                      <p className="text-[#03b6be]  font-semibold text-[1.7rem] block heightDetail overflow-x-scroll scrollbar-none">
                         {Language[nftData?.language]}
                       </p> : null}
 
                   </div>
                 </div>
+                <div className="  flex    font-['Inconsolata'] font-bold text-[2.5rem] sm:text-[2.9rem] ">
+      <div className=" w-fit bord-bottom  flex justify-center my-[1rem]"> 
 
-                <h2 className="color w-fit mt-[1rem] lg:mt-[0.3rem] whitespace-nowrap text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold tracking-wide">
-                  Owner Detail
-                </h2>
+      <div className="text-[#121212] w-fit whitespace-nowrap"> Owner Detail:</div>
 
+        </div>
+      
+         </div>
                 <div className="flex spacing space-x-[9rem] sm:space-x-[18rem] lg:space-x-[9rem] xl:space-x-[15rem] w-[89.5vw] sm:w-auto">
                   <div className="flex flex-col">
-                    <h3 className="text-[#545151] text-[1.9rem] sm:text-[2.2rem] font-['Inconsolata'] font-medium">
+                    <h3 className="text-[#221f1f] font-semibold text-[1.9rem] sm:text-[2rem]  ">
                       Email
                     </h3>
-                    <h3 className="text-[#545151] text-[1.9rem] sm:text-[2.2rem] font-['Inconsolata'] font-medium">
+                    <h3 className="text-[#221f1f] font-semibold text-[1.9rem] sm:text-[2rem]  ">
                       Address
                     </h3>
                   </div>
 
-                  <div className="flex flex-col space-y-[0.4rem] sm:space-y-[1.2rem] grow overflow-hidden sm:grow-0 sm:overflow-visible">
-                    <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] font-medium pt-[0.4rem] overflow-x-scroll scrollbar-none ">
+                  <div className="flex flex-col space-y-[0.4rem] sm:space-y-[0.7rem] grow overflow-hidden sm:grow-0 sm:overflow-visible">
+                    <p className="text-[#03b6be] font-semibold text-[1.6rem]  pt-[0.4rem] overflow-x-scroll scrollbar-none ">
                       {nftSellingData?.owner_email}
                     </p>
-                    <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] font-medium overflow-x-scroll scrollbar-none ">
+                    <p className="text-[#03b6be] font-semibold text-[1.6rem]  overflow-x-scroll scrollbar-none ">
                       {nftSellingData?.owner_address}
                     </p>
                   </div>
                 </div>
 
-                <h2 className="color w-fit h-fit mt-[1rem] whitespace-nowrap lg:mt-[0.3rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold tracking-wide ">
-                  Creator Detail
-                </h2>
 
+      <div className="  flex    font-['Inconsolata'] font-bold text-[2.5rem] sm:text-[2.9rem] ">
+      <div className=" w-fit bord-bottom  flex justify-center my-[1rem]"> 
+
+      <div className="text-[#121212] w-fit whitespace-nowrap"> Creator Detail:</div>
+
+        </div>
+      
+         </div>
                 <div className="flex spacing space-x-[9rem] sm:space-x-[18rem] lg:space-x-[9rem] xl:space-x-[15rem] w-[89.5vw] sm:w-auto">
                   <div className="flex flex-col">
-                    <h3 className="text-[#545151] text-[1.9rem] sm:text-[2.2rem] font-['Inconsolata'] font-medium">
+                    <h3 className="text-[#221f1f] font-bold text-[1.9rem] sm:text-[2rem]  ">
                       Email
                     </h3>
-                    <h3 className="text-[#545151] text-[1.9rem] sm:text-[2.2rem] font-['Inconsolata'] font-medium">
+                    <h3 className="text-[#221f1f] font-bold text-[1.9rem] sm:text-[2rem] ">
                       Address
                     </h3>
                   </div>
 
-                  <div className="flex flex-col space-y-[0.4rem] sm:space-y-[1.2rem] grow overflow-hidden sm:grow-0 sm:overflow-visible">
-                    <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] font-medium pt-[0.4rem] overflow-x-scroll scrollbar-none">
+                  <div className="flex flex-col space-y-[0.2rem] sm:space-y-[0.6rem] grow overflow-hidden sm:grow-0 sm:overflow-visible">
+                    <p className="text-[#03b6be] font-semibold text-[1.6rem]  pt-[0.4rem] overflow-x-scroll scrollbar-none">
                       {nftData?.creatorEmail}
                     </p>
-                    <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] font-medium overflow-x-scroll scrollbar-none">
+                    <p className="text-[#03b6be] font-semibold  text-[1.6rem]  overflow-x-scroll scrollbar-none">
                       {nftData?.creatorAddress}
                     </p>
                   </div>
@@ -347,7 +354,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
                 {
                   user?.address != address ?
                     <div className="flex ">
-                      <p className="text-red-600 popular font-['Inconsolata'] text-[1.6rem] font-medium">
+                      <p className="text-red-700 popular  text-[1.6rem] font-medium">
                         Login to see buying option
                       </p>
                     </div> : null
@@ -361,33 +368,42 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
             <div>
 
 
-              <div className="mt-[2rem]">
-                <h2 className="whitespace-nowrap text-[#34495e] w-fit h-fit -mt-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-medium  md:text-[3.2rem] tracking-wide ">
-                  Description:
-                </h2>
-                <p className="text-[#686767cf] font-['Inconsolata'] text-[1.6rem] font-medium pt-[0.1rem] w-[100%]  text-justify overflow-y-auto h-fit pr-[1rem] text-ellipsis">
+              <div >
+              <div className="text-[3rem]  flex    font-['Inconsolata'] font-bold sm:text-[3rem] md:text-[3.3rem] ">
+      <div className=" w-fit bord-bottom  flex justify-center mt-[2rem]"> 
+
+      <div className="text-[#121212] w-fit "> Description:</div>
+
+        </div>
+      
+         </div>
+                <p className="text-[#363434cf] mt-[0.8rem]  text-[1.8rem] font-medium pt-[0.1rem] w-[100%]  text-justify overflow-y-auto h-fit pr-[1rem] text-ellipsis">
                   {nftData?.description}
                 </p>
               </div>
             </div>
 
-            {/* {nftSellingData?.original ? <CopyRight ownerAddress={nftSellingData?.owner_address} ownercopyrightStatus={nftSellingData?.copyrightStatus} ownercopyrightPrice={nftSellingData?.copyrightPrice} nftName={nftData?.name} nftid={nftSellingData?.tokenURI} copyrightStatus={data?.copyright_status} user={user} address={address} isLoading={isValidating} dataError={error} mutate={mutate} ownerId={data?.ownerId} /> : null
-            } */}
+            {nftSellingData?.original ? <CopyRight ownerAddress={nftSellingData?.owner_address} ownercopyrightStatus={nftSellingData?.copyrightStatus} ownercopyrightPrice={nftSellingData?.copyrightPrice} nftName={nftData?.name} nftid={nftSellingData?.tokenURI} copyrightStatus={data?.copyright_status} user={user} address={address} isLoading={isValidating} dataError={error} mutate={mutate} ownerId={data?.ownerId} /> : null
+            }
 
 
-            <Transactions data={data?.transactions} error={error} isLoading={isValidating} />
+            {/* <Transactions data={data?.transactions} error={error} isLoading={isValidating} /> */}
 
             </div>
+
+
+
 
             {/* //Copies of current nft */}
-
-
          {nftSellingData?.original==false?<>
-            <div className="mt-[3rem] px-[1.7rem] sm:px-[3.5rem] md:px-[6rem]">
-              <h2 className="color w-fit h-fit -mt-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold  md:text-[3.2rem] tracking-wide ">
-                Copies OF NFT:
-              </h2>
-            </div>
+          <div className="text-[3rem]  flex    font-['Inconsolata'] font-bold sm:text-[3rem] md:text-[3.3rem]  m-[1.2rem] ">
+      <div className=" w-fit bord-bottom mx-[5rem] flex justify-center"> 
+
+      <div className="text-[#121212] w-fit "> Copies Nfts:</div>
+
+        </div>
+      
+         </div>
           
           <div className="md:mx-[2rem]">
 
@@ -409,7 +425,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
             <div className={`mg ${data?.copiesCount != 0 ? "flex flex-wrap jt" : "!ml-[2rem] sm:!ml-[4rem]"}`}>
 
-              {error ? (<div className="text-[red] text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['Inconsolata'] mt-[0.5rem]">
+              {error ? (<div className="text-[red] text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit  mt-[0.5rem]">
                 Error in getting NFTs Please try later</div>) : ""
               }
 
@@ -422,14 +438,14 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
               }
 
 
-              {data?.copiesCount == 0 && !error && !isValidating  ? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
+              {data?.copiesCount == 0 && !error && !isValidating  ? (<div className="text-[#b9bbbd]  text-[1.7rem] sm:text-[2rem] md:text-[3rem] w-fit  mt-[0.5rem]">
                 OOPS!  No copy created yet...</div>) : ""
               }
             </div>
             {!isValidating && !error && data?.copiesCount > 4?
-              <div className="mg flex justify-end -my-[2.5rem]  font-['Inconsolata']">
+              <div className="mg flex justify-end -my-[2.5rem]  ">
 
-                <button className="bg-blue-500 mr-[1.5rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold  px-12  py-[1rem] sm:px-14 rounded-full font-['Inconsolata'] tracking-wider"
+                <button className="bg-blue-500 mr-[1.5rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold  px-12  py-[1rem] sm:px-14 rounded-full  tracking-wider"
                   onClick={() => { router.push(`/nfts?nftName=${nftData?.name}&nftType=copy`) }}
                 >
                   View All...
@@ -455,12 +471,14 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
 
 
+      <div className="text-[3rem]  flex    font-['Inconsolata'] font-bold sm:text-[3rem] md:text-[3.3rem]  m-[1.2rem] ">
+      <div className=" w-fit bord-bottom mx-[5rem] flex justify-center "> 
 
-          <div className="mt-[3rem] px-[1.7rem] sm:px-[3.5rem] md:px-[6rem]">
-            <h2 className="color w-fit h-fit -mt-[1rem] text-[2.7rem] sm:text-[3.1rem]  font-['Inconsolata'] font-semibold  md:text-[3.2rem] tracking-wide ">
-              More Nfts Of Owner:
-            </h2>
-          </div>
+      <div className="text-[#121212] w-fit "> Owner Nfts:</div>
+
+        </div>
+      
+         </div>
 
           <div className="md:mx-[2rem]">
 
@@ -482,7 +500,7 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
 
             <div className={`mg ${data?.nft?.length != 0 ? "flex flex-wrap jt" : "!ml-[2rem] sm:!ml-[4rem]"}`}>
 
-              {error ? (<div className="text-[red] text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit font-['Inconsolata'] mt-[0.5rem]">
+              {error ? (<div className="text-[#4b3030] text-[1.7rem] sm:text-[2rem] md:text-[2.3rem] w-fit  mt-[0.5rem]">
                 Error in getting NFTs Please try later</div>) : ""
               }
 
@@ -495,16 +513,16 @@ const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
               }
 
 
-              {data?.nft?.length == 0 && !isValidating  && !error ? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
+              {data?.nft?.length == 0 && !isValidating  && !error ? (<div className="text-[#b9bbbd]  text-[1.7rem] sm:text-[2rem] md:text-[3rem] w-fit  mt-[0.5rem]">
                 OOPS!   Nothing to show...</div>) : ""
               }
             </div>
 
 
             {!isValidating && !error ?
-              <div className="mg flex justify-end my-[1.5rem]  font-['Inconsolata']">
+              <div className="mg flex justify-end my-[1.5rem]  ">
 
-                <button className="bg-blue-500 mr-[1.5rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold  px-12  py-[1rem] sm:px-14 rounded-full font-['Inconsolata'] tracking-wider"
+                <button className="bg-[#1b31c4] hover:bg-[#182ba8] mr-[1.5rem]    text-white font-normal text-[1.8rem] sm:font-semibold  px-12  py-[1rem] sm:px-14 rounded-full  tracking-wider"
                   onClick={() => { router.push(`/profile/${data?.ownerId}`) }}
                 >
                   View Profile

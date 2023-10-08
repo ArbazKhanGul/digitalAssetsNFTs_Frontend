@@ -98,18 +98,25 @@ const Registeration = () => {
   return (
     <>
       <Navbar></Navbar>
-      <div className="flex reg flex-col lg:flex-row  px-[4%] xl:px-[6%] py-[5%] xl:py-[3%] heig items-center">
-        <div className="formwid">
+      <div className="flex  flex-col lg:flex-row  px-[4%] xl:px-[6%] py-[5%] xl:py-[3%] heig items-center">
+        <div className="formwid ">
           <form onSubmit={handleSubmit}>
-            <div className="flex flex-col justify-center items-center py-[2rem] sm:py-[3rem] space-y-[2rem] lg:space-y-[2.3rem] bg-white bordd">
-              <h2 className="text-[2.4rem] sm:text-[2.9rem]  md:text-[3.2rem] block font-['DynaPuff']">
+            <div className=" win flex flex-col justify-center items-center py-[2rem] sm:py-[3rem] space-y-[2rem] lg:space-y-[2.3rem] bg-white bordd">
+              <h2 className="text-[2.4rem] sm:text-[2.9rem]  md:text-[3.2rem] block text-[#f7f5f5] font-bold">
                 Registration
               </h2>
 
 
               <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem]">
                 <div className="reginp w-[100%]">
-                  <BsPerson className="text-[2.5rem]"></BsPerson>
+                  {/* <BsPerson className="text-[2.5rem]"></BsPerson> */}
+                  <div className="inline-block color-[#f5f6fa] w-[3rem] h-[3rem]  ml-[0.5rem]  rounded-full relative">
+      <Image
+        className=""
+        src={`/name.png`}
+        layout="fill"
+      />
+    </div>
                   <input
                     type="text"
                     placeholder="Author Name..."
@@ -130,7 +137,14 @@ const Registeration = () => {
 
               <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem]">
                 <div className="reginp w-[100%]">
-                  <HiOutlineMail className="text-[2.5rem] "></HiOutlineMail>
+                  {/* <HiOutlineMail className="text-[2.5rem] "></HiOutlineMail> */}
+                  <div className="inline-block color-[#f5f6fa] w-[3rem] h-[3rem]  ml-[0.5rem]  relative">
+      <Image
+        className=""
+        src={`/eimage.png`}
+        layout="fill"
+      />
+    </div>
                   <input
                     type="text"
                     placeholder="Email Address..."
@@ -151,7 +165,14 @@ const Registeration = () => {
 
               <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem] ">
                 <div className="reginpfile w-[100%] mb-[0.3rem] ">
-                  <CgProfile className="text-[2.5rem]"></CgProfile>
+                  {/* <CgProfile className="text-[2.5rem]"></CgProfile> */}
+                  <div className="inline-block color-[#f5f6fa] w-[3rem] h-[3rem]  ml-[0.5rem]  rounded-full relative">
+      <Image
+        className="rounded-full"
+        src={`/profileimage.png`}
+        layout="fill"
+      />
+    </div>
                   <span className="text-start block w-[84%] ml-[1rem] text-[1.7rem]">
                     Choose profile photo
                   </span>
@@ -211,7 +232,15 @@ const Registeration = () => {
 
               <div className="w-[100%] flex justify-center flex-col items-center space-y-[0.5rem] ">
                 <div className="reginpfile w-[100%] mb-[0.3rem] ">
-                  <CgProfile className="text-[2.5rem]"></CgProfile>
+                  {/* <CgProfile className="text-[2.5rem]"></CgProfile> */}
+
+                  <div className="inline-block color-[#f5f6fa] w-[3rem] h-[3rem]  ml-[0.5rem]  rounded-full relative">
+      <Image
+        className="rounded-full"
+        src={`/coverpic.png`}
+        layout="fill"
+      />
+    </div> 
                   <span className="text-start block w-[84%] ml-[1rem] text-[1.7rem]">
                     Choose cover photo
                   </span>
@@ -298,7 +327,7 @@ outline-none"
                   autoComplete="off"
                   placeholder="Description..."
                   id=""
-                  className="rounded-2xl resize-none outline-none h-[13rem]  border-[1px] w-[85%] sm:w-[83%]  border-gray-400 block placeholder:text-[#746e6e] p-[0.8rem] text-black text-[1.7rem] sm:text-[1.8rem] bg-transparent font-['Inconsolata']"
+                  className="rounded-2xl resize-none outline-none h-[13rem]  border-[1px] w-[85%] sm:w-[83%]  border-gray-400 block placeholder:text-[#f7f5f5] p-[0.8rem] text-white text-[1.7rem] sm:text-[1.8rem] bg-transparent font-['Inconsolata']"
                 ></textarea>
                 {errors.description && touched.description ? (
                   <p className="text-red-500 text-[1.4rem] errors block">
@@ -309,7 +338,7 @@ outline-none"
               <div className="mb-[1rem] text-[2rem] sm:w-[80%]  flex  space-x-[0rem] sm:space-x-[1rem] space-y-[2rem] sm:space-y-[0rem] flex-col sm:flex-row">
                 <button
                   type="button"
-                  className="font-['Inconsolata'] tracking-wider bg-blue-500 hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-medium py-3 px-8  sm:py-3 sm:px-[1.7rem] rounded-full"
+                  className="font-['Inconsolata'] tracking-wider bg-blue-700 hover:bg-blue-900  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-medium py-3 px-8  sm:py-3 sm:px-[1.7rem] rounded-full"
                   onClick={() => connectWallet(dispatch, address)}
                 >
                   Connect Metamask
@@ -317,7 +346,7 @@ outline-none"
                 {!checker ? (
                   <button
                     type="submit"
-                    className="font-['Inconsolata'] tracking-wider bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-medium py-3  px-8  sm:py-3 sm:px-[5rem] rounded-full"
+                    className="font-['Inconsolata'] tracking-wider bg-blue-700  hover:bg-blue-900  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-medium py-3  px-8  sm:py-3 sm:px-[5rem] rounded-full"
                   >
                     Register
                   </button>

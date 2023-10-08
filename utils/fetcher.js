@@ -66,14 +66,17 @@ export const fetcherCount = async (url, options) => {
 }
 
 
+
+
+
 export const fetcherTransactions = async (url, options) => {
 
   let response= await axios.get(url)
-  let nft=response?.data?.nft;
-  let ownerId=response?.data?.ownerId;
   let transactions=response?.data?.transactions;
-  let copyright_status=response?.data?.copyright_status
-  let copies=response?.data?.copies
-  let copiesCount=response?.data?.copiesCount
-  return {nft,ownerId,transactions,copyright_status,copies,copiesCount};
+  let count=response?.data?.count;
+
+
+let  data={transactions,count}
+
+  return data;
 }

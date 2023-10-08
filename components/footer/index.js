@@ -7,7 +7,7 @@ const Footer=()=>{
     const d = new Date();
     let year = d.getFullYear();
 console.log("Render Again")    
-    return (<div className="navbar text-[1.4rem] footertext  text-[white] flex justify-between px-[4rem] py-[2rem] items-center footerdirection font-['Inconsolata']">
+    return (<div className="bg-[#0d133b] text-[1.4rem] footertext  text-[white] flex justify-between px-[4rem] py-[2rem] items-center footerdirection font-['Inconsolata']">
 
         <div>
             <h2 className=" mb-[1rem]">Golden Words NFTs</h2>

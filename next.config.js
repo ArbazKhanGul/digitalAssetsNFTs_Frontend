@@ -14,7 +14,8 @@ const nextConfig = {
     // SERVER_URL:'https://7109-119-160-64-133.ngrok.io',
     chainId:31337,
     PROJECT_KEY_INFLURA:"2J1VjR9BuVpSDC33nS6hpLONikL",
-    INFLURA_KEY:"6967a1bdc3d1ca8c2d10c472705917dc"
+    INFLURA_KEY:"6967a1bdc3d1ca8c2d10c472705917dc",
+    STRIPE_PUBLISABLE_KEY:"pk_test_51IYU4pCchAI3m7fzkTfJbNEuR7PYsVv1gos4ELzuhNoKhEg1sx7gXDP91gtPjvNHSUPhW2tn9TDJNDXeS8vRxngP00RoO52d8D"
   },
   images: {
     domains: ['localhost','7109-119-160-64-133.ngrok.io','goldenwords.infura-ipfs.io'],

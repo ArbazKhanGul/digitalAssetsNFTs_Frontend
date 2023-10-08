@@ -1,7 +1,7 @@
 const getDataRoute=(router,pageName)=>{
 
     const result = router.query
-    console.log("🚀 ~ file: getDataRoute.js:4 ~ getDataRoute ~ result", result)
+
     let paramid = result.hasOwnProperty('id') ? result.id[0] : 1;
     paramid = parseInt(paramid) ? parseInt(paramid) : 1;
     paramid = paramid >= 1 ? paramid : 1

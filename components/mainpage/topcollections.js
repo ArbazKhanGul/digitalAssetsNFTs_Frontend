@@ -3,6 +3,7 @@ import {memo} from "react";
 import IndividualCollections from "./IndividualCollection"
 import useSWR from 'swr'
 import { fetcherCollection } from "../../utils/fetcher";
+import Image from "next/image";
 
 const TopCollections=({error,data,isLoading})=>{
 
@@ -13,24 +14,48 @@ const TopCollections=({error,data,isLoading})=>{
 
 
     return (
-        <div>
-    <div className="color w-fit text-[2.7rem] ml-[2rem] font-['Raleway'] font-bold sm:text-[3rem] md:text-[3.7rem]  m-[1.2rem] sm:ml-[3.5rem] md:ml-[5rem]">
-    Top Profiles :
+        <div className="mx-[5rem] mb-[5rem]">
+    <div className="text-[3rem] pb-[wrem] flex justify-center  ml-[2rem] font-['Inconsolata'] font-bold sm:text-[3rem] md:text-[3.4rem] mb-[3.5rem] m-[1.2rem] ">
+    <div className=" w-fit bord-bottom mx-[5rem] flex  mt-[2rem]"> 
+
+
+<div className="text-[#121212] w-fit "> Top Profiles</div>
+
+
+    <div className=" inline-block w-[3.5rem] h-[4rem] sm:w-[3.2rem] md:w-[4rem] mt-[0.6rem] ml-[0.5rem] sm:h-[3.2rem] md:h-[4rem] rounded-full relative">
+      <Image
+        className="rounded-full"
+        src={`/profilepic.png`}
+        layout="fill"
+      //   objectFit="cover"
+      /></div>
+  </div>
+
     </div>
 
     
-    <div className="space-y-[2rem] flex-col justify-center">
+    <div className="flex-col justify-center">
 
     {  (!error && data) ?
-        <div className="  hidden sm:flex sm:justify-around items-start sm:items-center overflow-hidden">
+        <div className=" back_grad_row rounded-tr-[1rem] rounded-tl-[1rem]  font-medium hidden sm:flex sm:justify-around items-start sm:items-center overflow-hidden py-[0.8rem] ">
         
 
-            <div className="ml-[4rem] text-[2.3rem] sm:text-[2rem]  md:text-[2.5rem] w-[26%] pl-[2rem] box-border colgrad">Profile</div>
-            <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.5rem] text-center  colgrad flex flex-col w-[22%]"><span>Total Revenue</span>
+            <div className="ml-[4rem] text-[2.3rem]  sm:text-[2rem]  md:text-[2.3rem] w-[20%] pl-[2rem] box-border colgradhead">Profile</div>
+           
+            <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.3rem] text-center  colgradhead flex flex-col w-[22%]"><span>Total Revenue</span>
             <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]"></span>
              </div>
-             <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.5rem] text-center colgrad flex flex-col w-[22%]"><span>Total Items</span>
-            <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]">(Sell + Buy)</span>
+
+             <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.3rem] text-center colgradhead flex flex-col w-[22%]"><span>NFTs create</span>
+            {/* <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]">(Created)</span> */}
+             </div>
+
+             <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.3rem] text-center colgradhead flex flex-col w-[22%]"><span>NFTs Sell</span>
+            {/* <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]">(Sell)</span> */}
+             </div>
+
+             <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.3rem] text-center colgradhead flex flex-col w-[22%]"><span>NFTs Buy</span>
+            {/* <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]">(Buy)</span> */}
              </div>
         </div>:""}
         {

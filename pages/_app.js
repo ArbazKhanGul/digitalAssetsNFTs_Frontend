@@ -8,6 +8,12 @@ import NProgress from "nprogress"
 import "../styles/nprogress.css"; 
 import "react-toastify/dist/ReactToastify.css";
 import {ToastContainer } from "react-toastify";
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+
+const stripePromise = loadStripe(process.env.STRIPE_PUBLISABLE_KEY);
+
 
 function MyApp({ Component, pageProps }) {
 
@@ -31,8 +37,11 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <Provider store={store}>
-      <> <Component {...pageProps} />
-  <div className="text-[1.6rem] font-['Inconsolata']">
+      <> 
+      <Elements stripe={stripePromise}>
+        <Component {...pageProps} />
+      </Elements>
+         <div className="text-[1.6rem] font-['Inconsolata']">
           <ToastContainer pauseOnHover autoClose={5000} />
         </div>
         </>

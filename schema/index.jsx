@@ -49,11 +49,13 @@ export const filterNftSchema=Yup.object({
 
 
 export const filterTransactionSchema=Yup.object({
-  nftName:Yup.string().trim().min(2,"Minimum character should be 2").max(25,"Maximum character should be 20"),
-  sellerEmail:Yup.string().trim().email("Please enter valid email address"),
-  buyerEmail:Yup.string().trim().email("Please enter valid email address"),
-  sellerWalletAddress:Yup.string().trim().min(42,"Wallet address should be 42 character long").max(42,"Wallet address should be 42 character long"),
-  buyerWalletAddress:Yup.string().trim().min(42,"Wallet address should be 42 character long").max(42,"Wallet address should be 42 character long"),
+  nftName:Yup.string().trim().min(2,"Minimum character should be 2").max(25,"Maximum character should be 25"),
+  nftType:Yup.object(),
+  transactionType:Yup.object(),
+  OwnerName:Yup.string().trim(),
+  Buyer:Yup.string().trim(),
+  minimumPrice: Yup.number().min(0,"you must specify price greater than or equal to 0").typeError('you mustr specify price greater than or equal to 0'),
+  maximumPrice: Yup.number().min(0,"you must specify price greater than or equal to 0").typeError('you must specify price greater than or equal to 0'),
   tokenId: Yup.number().moreThan(0,"you must specify id greater than 0").typeError('you must specify id greater than 0'),
 })
 
@@ -128,7 +130,7 @@ export const NFTCreationSchema=Yup.object().shape({
             return type.startsWith(allowedTypes);
           }).test(
               "fileSize",
-              "File size must be less than 10MB",
+              "File size must be less than 15MB",
               (value) => {
                   if (!value) {
                       return false;
@@ -137,7 +139,10 @@ export const NFTCreationSchema=Yup.object().shape({
               }
             ),
         otherwise: Yup.mixed(),
-        })
+        }),
+
+      
+      
 })
 
 
@@ -240,10 +245,8 @@ export const NFTCopySchema=Yup.object().shape({
 
 
 
-export const NFTSellSchema=Yup.object({
-    nftCurrency:Yup.string().trim().required("Please choose currency"),
-    nftPrice: Yup.number().moreThan(0,"you must specify a positive number").typeError('you must specify a positive number').required("Please enter NFT price"),
-})
+
+
 
 export const NFTCopyRightSchema=Yup.object({
     nftCurrency:Yup.string().trim().required("Please choose Currency"),
@@ -251,10 +254,19 @@ export const NFTCopyRightSchema=Yup.object({
 })
 
 
-export const NFTCopyRightAllowSchema=Yup.object({
-  nftCurrency:Yup.string().trim(),
-  CopyRightPrice: Yup.number().moreThan(0,"you must specify a positive number").typeError('you must specify a positive number'),
-})
+export const NFTPriceSchema = Yup.object({
+  price: Yup.number()
+    .required('You must specify a price')
+    .min(0, 'Price must be at least 0 BNB')
+    .test('maxDecimalPlaces', 'Maximum of four decimal places allowed', (value) => {
+      if (value) {
+        const decimalPlaces = (value.toString().split('.')[1] || '').length;
+        return decimalPlaces <= 4;
+      }
+      return true;
+    })
+    .typeError('You must specify a valid number'),
+});
 
 
 
@@ -262,6 +274,52 @@ export const TokenIDinput= Yup.object({
   tokenId: Yup.number()
     .integer('Please enter an integer')
     .positive('Please enter a positive number')
+    .moreThan(0, 'Token ID must be greater than zero')
+    .required('Token ID is required'),
+});
+
+export const WalletAddressInput= Yup.object({
+  walletAddress: Yup.string()
+  .min(42,"Invalid Wallet Address")
+  .max(42,"Invalid Wallet Address")
+    .required('Wallet Address is required'),
+});
+
+export const Amount= Yup.object({
+  amount: Yup.number().positive('Please enter a positive number')
     .moreThan(0, 'Number must be greater than zero')
     .required('Number is required'),
+});
+
+export const BuyCryptoSchema = Yup.object({
+  currency: Yup.string().trim().required('Please select currency'),
+  amount: Yup.number()
+    .required('Please enter amount')
+    .typeError('You must specify a positive number')
+    .when('currency', (currency, schema) => {
+      if (currency === 'bnb') {
+        return schema.moreThan(0.001, 'Amount must be greater than 0.001');
+      } else if (currency === 'dollar') {
+        return schema.min(1, 'Amount must be greater than or equal to 1');
+      }
+      return schema;
+    }),
+});
+
+
+
+
+export const FeeUpdateSchema = Yup.object({
+  currency: Yup.string().trim().required('Please select currency'),
+  amount: Yup.number()
+    .required('Please enter amount')
+    .typeError('You must specify a positive number')
+    .when('currency', (currency, schema) => {
+      if (currency === 'bnb') {
+        return schema.min(0, 'Amount must be greater than 0');
+      } else if (currency === 'dollar') {
+        return schema.min(0, 'Amount must be greater than or equal to 0');
+      }
+      return schema;
+    }),
 });

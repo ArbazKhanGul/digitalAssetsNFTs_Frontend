@@ -1,6 +1,7 @@
 import ClipLoader from "react-spinners/PuffLoader";
 import {memo} from "react";
 import IndividualTranaction from "./individualtransaction"
+import Image from "next/image";
 
 const Transaction=({error,data,isLoading}) => {
     console.log("🚀 ~ file: index.js:8 ~ Transaction ~ data:", data)
@@ -8,9 +9,15 @@ const Transaction=({error,data,isLoading}) => {
 
     return (
         <div className="mt-[1rem]">
-    <div className="color w-fit text-[2.6rem] font-semibold font-['Inconsolata'] sm:text-[3rem] md:text-[3.2rem] ]">
-    Latest Transactions About This NFT:
-    </div>
+     <div className="text-[3rem]  flex font-['Inconsolata'] font-bold sm:text-[3rem] md:text-[3.3rem]  my-[1.2rem] ">
+      <div className=" w-fit bord-bottom  flex justify-center"> 
+
+      <div className="text-[#121212] w-fit "> Latest Transactions:</div>
+
+         
+        </div>
+      
+         </div>
 
     <div className="space-y-[2.5rem] flex-col justify-center">
        
@@ -52,7 +59,7 @@ const Transaction=({error,data,isLoading}) => {
                             }
 
 {data?.length==0 && !error && !isLoading? (
-<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3rem] w-fit font-['Inconsolata'] mt-[1.5rem]">
+<div className="text-[#b9bbbd]  text-[1.7rem] sm:text-[2rem] md:text-[3rem] w-fit font-['Inconsolata'] mt-[0.5rem]">
                             OOPS!   Nothing to show...</div>) : ""
                             }
 

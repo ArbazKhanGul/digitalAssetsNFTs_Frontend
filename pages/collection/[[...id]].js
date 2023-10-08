@@ -7,7 +7,7 @@ import {
     useEffect, Navbar, Pagination, Footer, useState,
     useRouter, getServerSideProps, PuffLoader,ToastContainer, Card, ethers,useSWR,CollectionFilter as Filter
 } from "../../components"
-
+import Image from "next/image";
 
 const Collection = ({ userinfo }) => {
 
@@ -57,16 +57,26 @@ const Collection = ({ userinfo }) => {
                 <Navbar></Navbar>
 
 
-                <div className="px-[2rem] mb-[2rem] sm:px-[4rem] md:px-[4.9rem] mt-[1.5rem]">
-                    <div className="flex flex-col sm:flex-row justify-between items-center mt-[0.5rem] flex-wrap">
-                        <div className="nft text-[2.7rem] sm:text-[3rem] md:text-[3.3rem] w-fit font-['DynaPuff'] mt-[0.5rem]">All Profiles</div>
-                        <div className="cursor-pointer text-[1.6rem] sm:text-[1.9rem] md:text-[2rem] mt-[0.5rem] font-semibold text-[#353846C7] flex items-center font-['Inconsolata']" onClick={() => {
-                            show((prevState) => {
-                                return prevState ? false : true;
-                            })
-                        }}>Search Profile By filters <MdFilterList className="text-[2.5rem] pl-[0.3rem]"></MdFilterList>
-                        </div>
-                    </div>
+                <div className="px-[2rem]  sm:px-[4rem] md:px-[4.9rem] ">
+                <div className="flex justify-between w-[100%] items-center mb-[1rem]">
+    <div className=" w-fit text-[3rem] font-bold  bord-bottom  flex justify-center mt-[2rem]"> 
+
+<div className="text-[#121212] w-fit "> All Profiles</div>
+
+    <div className=" inline-block w-[3.5rem] h-[4rem] sm:w-[3.2rem] md:w-[4rem] mt-[0.6rem] ml-[0.5rem] sm:h-[3.2rem] md:h-[4rem] rounded-full relative">
+      <Image
+        className="rounded-full"
+        src={`/profilepic.png`}
+        layout="fill"
+      //   objectFit="cover"
+      /></div>
+  </div>
+
+        <div className="cursor-pointer text-[1.6rem] sm:text-[1.9rem] md:text-[2rem] mt-[0.5rem] font-semibold text-[#000000c7] flex items-center font-['Inconsolata']" onClick={()=>{show((prevState)=>{
+    return prevState?false:true;
+  })}}>Search profile By filters <MdFilterList className="text-[2.5rem] pl-[0.3rem]"></MdFilterList>
+        </div>
+        </div>
                     <Filter showItems={showItems}></Filter>
 
 

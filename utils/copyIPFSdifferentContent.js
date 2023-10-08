@@ -5,7 +5,7 @@ import api from "./axiosconfiguration";
 import { nftTokenCreate } from "./nftCreate";
 import axios from "axios";
 
-const ipfsUpload = async (data, id, tokenId, setLoader, setPath) => {
+const ipfsUpload = async (data, id, tokenId, setLoader, setPath,user,price) => {
 
     console.log("NFt text length or origoinal text", data?.nftText);
 
@@ -118,6 +118,9 @@ const ipfsUpload = async (data, id, tokenId, setLoader, setPath) => {
         originalipfsdata.content = contentURL.path;
         originalipfsdata.description=data.nftDescription;
         originalipfsdata.nonce=nonce.data.nonce;
+        originalipfsdata.creatorEmail=user.email;
+        originalipfsdata.address=user.address;
+
 
 
         let result_content = JSON.stringify(originalipfsdata);
@@ -125,7 +128,7 @@ const ipfsUpload = async (data, id, tokenId, setLoader, setPath) => {
 
         let metadataURL = await client.add(result_content,)
 
-        const back_res = await api.post("/copycreationdifferent", {
+        const back_res = await api.post("/copycreation", {
             nftName: originalipfsdata?.name, 
             contentURL: contentURL.path,
             metadataURL: metadataURL.path,
@@ -134,17 +137,14 @@ const ipfsUpload = async (data, id, tokenId, setLoader, setPath) => {
             creatorAddress:originalipfsdata?.creatorAddress,
             tokenId,
             originalTokenURI:id,
-            size,
             creationDate
         });
-
-        console.log("🚀 ~ file: copyIPFSdifferentContent.js:138 ~ ipfsUpload ~ back_res?.data?.price:", back_res?.data?.price)
 
         // let op = ethers.utils.formatUnits(back_res.data.price, "ether");
         let resultData=back_res?.data;
         setLoader("Waiting for transaction confirmation and mined transaction...");
 
-        await nftTokenCreate(resultData?.price, metadataURL.path, setLoader, setPath, true , tokenId,  resultData?.nonce, resultData?.signature,resultData?.copyrightPrice,resultData?.copyrightOwner);
+        await nftTokenCreate(price, metadataURL.path, setLoader, setPath, true , tokenId,  resultData?.nonce, resultData?.signature,resultData?.copyrightPrice);
     }
 
     catch (err) {

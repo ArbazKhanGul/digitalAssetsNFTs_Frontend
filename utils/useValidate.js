@@ -18,7 +18,7 @@ const useValidate=(userinfo,page="")=>{
   useEffect(() => {
     dispatch(addUser(userinfo))
     },[])
-  
+
 
   //validate token
   useEffect(() => {

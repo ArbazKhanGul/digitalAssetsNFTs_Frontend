@@ -1,5 +1,12 @@
 import Image from "next/image";
 import { motion } from "framer-motion"
+import {MdOutlineCreate} from "react-icons/md"
+import {BsShare} from "react-icons/bs";
+import {MdOutlineSell} from "react-icons/md"
+import {AiOutlineQrcode} from "react-icons/ai"
+import {FaRegCopyright} from "react-icons/fa"
+import WorkComp from "./workBox";
+
 import {memo} from "react";
 const Work=()=>{
   const contVar={
@@ -32,35 +39,51 @@ const Work=()=>{
       }
       }
 return (<>
-<div className=" h-fit  overflow-x-hidden xl:h-fit work mt-[2.5rem] flex flex-col lg:flex-row py-[2.5rem] lg:py-[7rem] px-[2.5rem] lg:px-[5rem] items-center justify-between">
-
-<motion.div variants={contVar} initial="hidden" whileInView="visible" className="w-[100%] lg:w-[50%]"><h2 className="workhead  text-[2.8rem] sm:text-[3rem] xl:text-[3.8rem] font-bold  font-['Inconsolata'] leading-[3.5rem]">How Digital Assets Nfts Work:</h2>
-<p className="text-[#f5f1f1] text-[1.9rem] xl:text-[1.8rem] text-justify pt-[2.3rem] font-['Inconsolata']">
-Digital NFTs is a latest method of creating NFTs, in which one can create NFTs of digital assets (video/audio/image/text). Moreover, no one can create a copy of any other person's Golden Words
- NFTs because we use such alogrithms so that if any one want to create NFT by copying some other person NFT text then this platform does
- not allow them to create NFT of this text that is already use by some other person. And there is also verified email is associated with every collection
- and one email can be used for one collection only
- {/*a strong authentication system and with every 
- NFT collection, a verified email is associated with each NFt which can verify each an 
- every person, so that no one can create NFT on behalf of some other person and use some other person name. */}
- . Last but the not the least,
-  all the data about these NFTs is stored on Blockchain and you can check this by simply visiting 
- all contracts and we hope you will like this new way of creating NFTs and appreciate our work. And you can 
- sell your NFT simply by adding it on marketplce and if you create NFT and you sell it then on every 
- selling of this NFT you can 8% from profit and this profit is transferrd automatically to your account. 
-</p>
-</motion.div>
-<motion.div variants={right} initial="hidden" whileInView="visible" className="w-[100%] lg:w-[46%] xl:w-[42.5%] 2xl:w-[43.5%] sm:hidden lg:block relative">
-<div className=" w-[100%] resheight mt-[2.5rem] sm:mt-[4rem] object-cover rounded-2xl  lg:w-[47rem] lg:h-[31rem]  xl:w-[50rem] xl:h-[30rem] 2xl:w-[53rem] 2xxl:h-[32rem]    relative">
-  <Image 
-  className="rounded-2xl"
-  src="/workimage.jpg"
-  layout="fill"
-  objectFit="cover"
-  />
+<div className="mainwork back_grad_work py-[1rem] md:pb-[5rem] md:pt-[2rem] overflow-x-hidden px-[4rem]" >
+  <div className="mainwork-content">
+{/* <div className=" h-fit  overflow-x-hidden xl:h-fit work mt-[2.5rem] flex flex-col lg:flex-row py-[2.5rem] lg:py-[7rem] px-[2.5rem] lg:px-[5rem] items-center justify-between"> */}
+<div className="text-[3rem]  flex justify-center ml-[3rem] font-['Inconsolata'] font-bold sm:text-[3rem] md:text-[3.6rem] ">
+  <div className="w-fit flex bord-bottomf"> 
+    <div className="text-[white] w-fit "> Main Features</div>
+    <div className=""></div>
+    <div className="inline-block color-[#f5f6fa] w-[3.5rem] h-[4rem] sm:w-[3.2rem] md:w-[4rem] mt-[0.6rem] ml-[0.5rem] sm:h-[3.2rem] md:h-[4rem] rounded-full relative">
+      <Image
+        className="rounded-full"
+        src={`/features1.png`}
+        layout="fill"
+      />
+    </div>  
+  </div>
 </div>
+<div className="flex justify-around flex-wrap ">
+  
+  
+  
 
-</motion.div>
+
+
+
+
+<WorkComp title="Create NFT" text="You can easily create nft of your digital assets like image,video ,text and audio" icon={"create.png"}/>
+<WorkComp title="Buy/Sell" text="You can easily buy or sell any nft and can again sell nft at higher price after buying it" icon={"buy.png"}/>
+<WorkComp title="Share" text="You can easily share nft on social media platform like facebook twitter and whatsapp" icon={"share.png"}/>
+<WorkComp title="Offer" text="You can give offer to nft owner if they don't want to sell nft" icon={"offer.png"}/>
+
+<WorkComp title="Create Copy" text="You can create copy of orginal nft but this copy always refer to original nft" icon={"copy.png"}/>
+
+<WorkComp title="Qr code" text="You can generate qr code of any nft or profile and can used this code for advertisement" icon={"qr.png"}/>
+<WorkComp title="Buy BNB" text="You can easily buy bnb from our platform using credit card and use these bnb for buying nfts" icon={"bnb.png"}/>
+
+<WorkComp title="Lucky Draw" text="There is also a lucky draw for the registered user in which they can win prizes" icon={"lucky.png"}/>
+
+
+
+    
+
+
+ </div>
+    </div>
+
 </div>
 </>)
 

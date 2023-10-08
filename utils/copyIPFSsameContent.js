@@ -5,14 +5,13 @@ import axios from "axios";
 import api from "./axiosconfiguration";
 import { nftTokenCreate } from "./nftCreate";
 
-const ipfsUpload = async (id,tokenId, setLoader, setPath) => {
-
+const ipfsUpload = async (id,tokenId, setLoader, setPath,user,price) => {
 
 
     try {
         const projectId = process.env.PROJECT_KEY_INFLURA;
         const projectSecret = process.env.INFLURA_KEY;
-        // let size;
+
 
         const auth =
             'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
@@ -42,18 +41,19 @@ const ipfsUpload = async (id,tokenId, setLoader, setPath) => {
         }
 
         const nonce=await api.get(`/copynonce/${id}`);
+
         let creationDate=new Date();
         ipfsdata.creationDate=creationDate;
+        ipfsdata.creatorEmail=user.email;
+        ipfsdata.address=user.address;
         ipfsdata.original=false;
         ipfsdata.nonce=nonce.data.nonce;
 
 
       let  result_content = JSON.stringify(ipfsdata);
-        console.log("🚀 ~ file: copyIPFSsameContent.js:51 ~ ipfsUpload ~ result_content:", result_content)
 
-   
     let metadataURL = await client.add(result_content)
-        
+ 
     const back_res = await api.post("/copycreation", {
             nftName: ipfsdata?.name,
             contentURL: ipfsdata?.content,
@@ -67,18 +67,15 @@ const ipfsUpload = async (id,tokenId, setLoader, setPath) => {
         });
 
         let resultData=back_res?.data;
-        
-        console.log("🚀 ~ file: copyIPFSsameContent.js:70 ~ ipfsUpload ~ resultData:", resultData)
+
 
         setLoader("Waiting for transaction confirmation and mined transaction...");
-   
-    await nftTokenCreate(resultData?.price, metadataURL.path, setLoader, setPath, true , tokenId,  resultData?.nonce, resultData?.signature,resultData?.copyrightPrice,resultData?.copyrightOwner);
-    
+
+
+
+    await nftTokenCreate(price, metadataURL.path, setLoader, setPath, true , tokenId,  resultData?.nonce, resultData?.signature,resultData?.copyrightPrice);
+
 }
-
-
-
-
 
     catch (err) {
         // setLoader(false);

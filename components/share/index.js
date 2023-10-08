@@ -27,18 +27,13 @@ function index({path,page}) {
   
     return (
       <>
-  
-  {page=="profile"?   <div className="bord_grad w-fit text-[2.1rem]"       onClick={() => setShowModal(true)}>
-                               <span className="block px-[7rem] py-[0.4rem]  cursor-pointer buttonnft font-['Inconsolata']">
-                                 Share
-                               </span>
-                             </div>:      <button
-      className="bg-blue-500 xs:mr-[2rem] w-[100%] xs:w-fit hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-4 xs:py-3 px-[4rem] rounded-[1.3rem] xs:rounded-full font-['Inconsolata'] tracking-wider"
+      <button
+      className="xs:mr-[2rem] w-[100%] xs:w-fit bg-[#1b31c4] hover:bg-[#182ba8] text-white font-normal text-[1.8rem] sm:font-semibold py-4 xs:py-3 px-[5rem] rounded-[1.3rem] xs:rounded-full font-['Inconsolata'] tracking-wider"
       type="button"
       onClick={() => setShowModal(true)}
     >
       Share
-    </button>}
+    </button>
 
 
                     {showModal ? (

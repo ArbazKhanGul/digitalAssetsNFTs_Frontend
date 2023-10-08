@@ -14,7 +14,7 @@ function Approval({ tokenId }) {
   return (
     <>
       <button
-        className="bg-blue-500 xs:mr-[2rem] w-[100%] xs:w-fit py-4 xs:py-3 rounded-[1.3rem] xs:rounded-full hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold  px-[4rem]  font-['Inconsolata'] tracking-wider"
+        className="bg-[#1b31c4] hover:bg-[#182ba8] xs:mr-[2rem] w-[100%] xs:w-fit py-4 xs:py-3 rounded-[1.3rem] xs:rounded-full   text-white font-normal text-[1.8rem] sm:font-semibold  px-[4rem]  font-['Inconsolata'] tracking-wider"
         type="button"
         onClick={() => { setShowModal(true) }}
         disabled={loader}
@@ -72,9 +72,9 @@ function Approval({ tokenId }) {
           <div className="px-[13px] justify-center items-center flex overflow-x-hidden h-fit absolute inset-0 z-50 outline-none focus:outline-none top-[4rem]">
             <div className="relative  my-6 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] xl:w-[40%]">
 
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                <div className="flex items-start justify-between py-5 px-[2rem] border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">
+              <div className="border-0 rounded-[1rem] shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                <div className="bg-[#1E2346] rounded-t-[1rem] flex items-start justify-between py-5 px-[2rem] border-b border-solid border-slate-200 ">
+                  <h3 className="text-[2rem] text-[white] font-semibold">
 
                     Buy NFT
 
@@ -100,7 +100,7 @@ function Approval({ tokenId }) {
 
                   <div>
                     <div className="mx-[1.5rem] lg:ml-[1rem] xl:mx-[1.8rem] mt-[0.5rem] ">
-                      <h2 className="font-['Inconsolata'] text-[#0D1344E5']  text-[1.8rem] font-medium ml-[0.3rem] mb-[0.4rem] tracking-wider">
+                      <h2 className="font-['Inconsolata'] text-[#0D1344E5'] text-justify  text-[1.8rem] font-medium ml-[0.3rem] mb-[0.4rem] tracking-wider">
                         For selling this nft first you have to approved that marketplace can transfer the ownership of this nft from your account address to marketplace contract address
                         but if you cancel the selling in future at any time then ownership transfer back to you
                       </h2>
@@ -114,7 +114,7 @@ function Approval({ tokenId }) {
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
-                    className="bg-blue-500 mr-[2rem]  hover:bg-blue-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] rounded-full font-['Inconsolata'] tracking-wider"
+                    className=" bg-[#1b31c4] hover:bg-[#182ba8]  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] rounded-full font-['Inconsolata'] tracking-wider"
                     type="button"
                     onClick={() => approval(tokenId, setShowModal, setLoader)}
                   >
