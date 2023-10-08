@@ -13,7 +13,7 @@ const Meta=({nftData,contentData}) => {
 
 
       {contentData.type=="image" && <>
-      
+
               <meta property="og:url"  content={`https://dgitalassets.vercel.app/individualnft/${nftData?.tokenURI}`} />
         <meta property="description"  content={`${contentData?.description}`}/>
         <meta property="og:description"  content={`${contentData?.description}`} /> 
@@ -32,7 +32,7 @@ const Meta=({nftData,contentData}) => {
         {/* <meta property="og:video:url" content={`${process.env.ipfsURL}${contentData?.content}`} /> */}
         <meta property="og:video:secure_url" content={`${process.env.ipfsURL}${contentData?.content}`} />
         <meta property="og:video:type" content={`video/mp4`} />
-        <meta property="og:image" content="https://dgitalassets.vercel.app/backwork.jpg" />
+        <meta property="og:image" content="https://dgitalassets.vercel.app/background.jpg" />
         </>
        }
 
