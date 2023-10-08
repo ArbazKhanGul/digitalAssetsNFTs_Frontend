@@ -16,8 +16,8 @@ const Meta=({nftData}) => {
         <meta property="og:title" content={nftData?.nftName} />
         <meta property="og:site_name" content="Digital Assets Nfts" />
         {/* <meta property="og:site_name" content="my_website_name" /> */}
-        <meta property="image" content="https://dgitalassets.vercel.app/individualnft/newer.png" />
-        <meta property="og:image"  content="https://dgitalassets.vercel.app/individualnft/newer.png" />
+        <meta property="image" content="https://dgitalassets.vercel.app/newer.png" />
+        <meta property="og:image"  content="https://dgitalassets.vercel.app/newer.png" />
         <meta property="og:image:type" content="image/png" />
         {/* <meta property="og:image:secure_url" content="https://textnft.vercel.app/new.png" /> */}
         {/* <meta property="og:image:width" content="270" /> */}
