@@ -7,7 +7,7 @@ const Meta=({nftData,contentData}) => {
         <>
         <meta property="og:type" content="website" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta property="og:url"  content={`https://dgitalassets.vercel.app/individualnft/${nftData?.tokenURI}`} />
+        {/* <meta property="og:url"  content={`https://dgitalassets.vercel.app/individualnft/${nftData?.tokenURI}`} /> */}
         <meta property="fb:app_id" content="966242223397117" />
         <meta property="og:title" content={nftData?.nftName} />
         <meta property="og:site_name" content="Digital Assets Nfts" />
@@ -24,10 +24,11 @@ const Meta=({nftData,contentData}) => {
 
 
        {contentData.type=="video" && <>
+       <meta property="og:url"  content={`${process.env.ipfsURL}${contentData?.content}`}  />
         <meta property="description"  content={`${contentData?.description}`}/>
         <meta property="og:description"  content={`${contentData?.description}`} /> 
         <meta property="og:video" content={`${process.env.ipfsURL}${contentData?.content}`} />
-        <meta property="og:video:url" content={`${process.env.ipfsURL}${contentData?.content}`} />
+        {/* <meta property="og:video:url" content={`${process.env.ipfsURL}${contentData?.content}`} /> */}
         <meta property="og:video:secure_url" content={`${process.env.ipfsURL}${contentData?.content}`} />
         <meta property="og:video:type" content={`video/mp4`} />
         <meta property="og:image" content="https://dgitalassets.vercel.app/backwork.jpg" />
