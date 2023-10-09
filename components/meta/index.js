@@ -2,9 +2,10 @@
 
 const Meta=({nftData,contentData}) => {
   console.log("🚀 ~ file: index.js:4 ~ Meta ~ nftData", nftData)
- 
+
     return(
         <>
+        <meta property="og:url"  content={`https://dgitalassets.vercel.app/individualnft/${nftData?.tokenURI}`} />
         <meta property="og:type" content="website" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta property="fb:app_id" content="966242223397117" />
@@ -12,9 +13,17 @@ const Meta=({nftData,contentData}) => {
         <meta property="og:site_name" content="Digital Assets Nfts" />
 
 
-      {contentData.type=="image" && <>
+       {contentData.type=="text" && <>
+        <meta property="description"  content={`${nftData?.title}`}/>
+        <meta property="og:description"  content={`${nftData?.title}`} /> 
+        <meta property="image" content={`https://dgitalassets.vercel.app/social_share.png`} />
+        <meta property="og:image"  content={`https://dgitalassets.vercel.app/social_share.png`} />
 
-              <meta property="og:url"  content={`https://dgitalassets.vercel.app/individualnft/${nftData?.tokenURI}`} />
+        </>
+       }
+
+
+       { contentData.type=="image" && <>
         <meta property="description"  content={`${contentData?.description}`}/>
         <meta property="og:description"  content={`${contentData?.description}`} /> 
         <meta property="image" content={`${process.env.ipfsURL}${contentData?.content}`} />
@@ -24,16 +33,12 @@ const Meta=({nftData,contentData}) => {
        }
 
 
-       {contentData.type=="video" && <>
-       <meta property="og:url"  content={`${process.env.ipfsURL}${contentData?.content}`}  />
-        <meta property="description"  content={`${contentData?.description}`}/>
+       {contentData.type=="video" || contentData.type=="audio" ? <>
+       <meta property="description"  content={`${contentData?.decription}`}/>
         <meta property="og:description"  content={`${contentData?.description}`} /> 
-        <meta property="og:video" content={`${process.env.ipfsURL}${contentData?.content}`} />
-        {/* <meta property="og:video:url" content={`${process.env.ipfsURL}${contentData?.content}`} /> */}
-        <meta property="og:video:secure_url" content={`${process.env.ipfsURL}${contentData?.content}`} />
-        <meta property="og:video:type" content={`video/mp4`} />
-        <meta property="og:image" content="https://dgitalassets.vercel.app/background.jpg" />
-        </>
+        <meta property="image" content={`https://dgitalassets.vercel.app/social_share.png`} />
+        <meta property="og:image"  content={`https://dgitalassets.vercel.app/social_share.png`} />
+        </>:null
        }
 
 
@@ -60,7 +65,7 @@ const Meta=({nftData,contentData}) => {
         content={nftData?.nftName} />
 
 
-{contentData.type=="text" && <>
+      {contentData.type=="text" && <>
         <meta
           property="twitter:description"
           content={nftData?.title}
@@ -71,11 +76,11 @@ const Meta=({nftData,contentData}) => {
           itemProp="image"
           content={`https://dgitalassets.vercel.app/background.jpg`}
         />
-        </>}
+      </>}
 
 
 
-     {contentData.type=="image" && <>
+      {contentData.type=="image" && <>
         <meta
           property="twitter:description"
           content={contentData?.description}
