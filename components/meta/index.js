@@ -36,8 +36,8 @@ const Meta=({nftData,contentData}) => {
        {contentData.type=="video" || contentData.type=="audio" ? <>
        <meta property="description"  content={`${contentData?.decription}`}/>
         <meta property="og:description"  content={`${contentData?.description}`} /> 
-        <meta property="image" content={`https://dgitalassets.vercel.app/social_share.png`} />
-        <meta property="og:image"  content={`https://dgitalassets.vercel.app/social_share.png`} />
+        <meta property="image" content={`https://dgitalassets.vercel.app/social_s.png`} />
+        <meta property="og:image"  content={`https://dgitalassets.vercel.app/social_s.png`} />
         </>:null
        }
 
