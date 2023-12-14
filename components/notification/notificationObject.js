@@ -6,7 +6,7 @@ const typeTemplates = {
     creator_profit: (notificationData) => {
         let router = useRouter();
         return (
-        <>Your created nft <span onClick={() => router.push(`/individualnft/${notificationData?.nftId}`)} className='text-[1.8rem] sm:text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.nftName}</span> owner has been changed and now the new owner is <span onClick={() => router.push(`/profile/${notificationData?.ownerId}`)} className='text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.transfer_to}</span> and after selling 10 percent from profit i.e <span className="font-bold text-black">{ethers.utils.formatUnits(notificationData?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB  </span> is successfully transferred to your wallet</>)
+        <>Your created nft <span onClick={() => router.push(`/individualnft/${notificationData?.nftId}`)} className='text-[1.8rem] sm:text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.nftName}</span> owner has been changed and now the new owner is <span onClick={() => router.push(`/profile/${notificationData?.ownerId}`)} className='text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.transfer_to}</span> and after selling your percentage from profit i.e <span className="font-bold text-black">{ethers.utils.formatUnits(notificationData?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB  </span> is successfully transferred to your wallet</>)
     },
 
     seller_profit: (notificationData) => {
@@ -16,9 +16,15 @@ const typeTemplates = {
         )
     },
 
+    copy_original_creator_profit: (notificationData) => {
+        let router = useRouter();
+        return (
+            <>Your created nft copy <span onClick={() => router.push(`/individualnft/${notificationData?.nftId}`)} className='text-[1.8rem] sm:text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.nftName}</span> owner has been changed and now the new owner is <span onClick={() => router.push(`/profile/${notificationData?.ownerId}`)} className='text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.transfer_to}</span> and after selling your percentage from profit i.e <span className="font-bold text-black">{ethers.utils.formatUnits(notificationData?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB  </span> is successfully transferred to your wallet</>)
+       },
+
     first_sell: (notificationData) => {let router=useRouter();
         return(
-            <>Your created nft <span   onClick={()=>router.push(`/individualnft/${notificationData?.nftId}`)} className='text-[1.8rem] sm:text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.nftName}</span> that you upload for selling has been sell and 10 percent platform charges is deducted from selling price  and remaining amount (90 percent of selling price) i.e<span className="font-bold text-black">{ethers.utils.formatUnits(notificationData?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB  </span> is successfully transferred to your wallet and  now the new owner of your created nft is <span onClick={()=>router.push(`/profile/${notificationData?.ownerId}`)} className='text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.transfer_to}</span>  </>
+            <>Your created nft <span   onClick={()=>router.push(`/individualnft/${notificationData?.nftId}`)} className='text-[1.8rem] sm:text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.nftName}</span> that you upload for selling has been sell and 10 percent platform charges is deducted from selling price and if you created copy of some other nft then 5 percent orignal creator fee is also deducted and remaining amount  i.e <span className="font-bold text-black">{ethers.utils.formatUnits(notificationData?.price.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB  </span> is successfully transferred to your wallet and  now the new owner of your created nft is <span onClick={()=>router.push(`/profile/${notificationData?.ownerId}`)} className='text-[2rem] text-blue-600 cursor-pointer underline decoration-1 font-bold'> {notificationData?.transfer_to}</span>  </>
     )},
 
     request_copyright: (notificationData) => {let router=useRouter();

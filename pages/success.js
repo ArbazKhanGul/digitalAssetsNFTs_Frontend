@@ -15,7 +15,7 @@ const Success = ({userinfo}) => {
         <div className="flex-1 flex min-h-[85vh] justify-center  py-[5rem] sm:p-[4rem] ">
             <div className="bg-white w-[47%] pb-[1rem] rounded-[1.3rem] h-fit  shad">
                 <div className="text-[2.8rem] bg-[#1E2346] rounded-t-[1rem] pt-[1rem] pb-[0.7rem] px-[2rem] border-b-[0.17rem] border-[#D9D9D9]  font-bold font-['Inconsolata']">
-                    <span className="w-fit text-[#469fd6] font-bold">
+                    <span className="w-fit text-[white] font-bold">
                       Buy BNB
                     </span>
 

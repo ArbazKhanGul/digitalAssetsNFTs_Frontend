@@ -15,7 +15,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
     console.log("🚀 ~ file: [id].js:14 ~ CopyRightNFT ~ data:", data)
 
 
-    const [loading, user, address] = useValidate(userinfo, "main");
+    const [loading, user, address] = useValidate(userinfo);
     const [comment, setComment] = useState("");
     const [dataComment, setDataComment] = useState(data?.comments);
     const [error, setError] = useState("");
@@ -99,7 +99,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
                     <div className=" flex-1 flex justify-center items-center py-[4rem] sm:py-[6rem] sm:p-[6rem] rounded-lg">
                         <div className="bg-white shad  w-[95%] sm:w-[85%] md:w-[75%] lg:w-[57%] rounded-[2rem] ">
 
-                        <div className="text-[3rem]  flex   font-['Inconsolata'] font-bold sm:text-[3rem] md:text-[3.2rem] mb-[1rem] ">
+                        <div className="text-[3rem]  flex    font-semibold sm:text-[2.5rem]  mb-[1rem] ">
       <div className=" w-fit  mx-[3rem] flex justify-center mt-[1rem]"> 
 
       <div className="text-[#121212] w-fit ">Copyright Request:</div>
@@ -115,8 +115,8 @@ const CopyRightNFT = ({ userinfo, data }) => {
 
 
                                 {userinfo._id != data?.ownerId ? <div className="flex items-center space-x-[4rem] sm:space-x-[7rem]">
-                                    <h3 className="text-[#545151] font-semibold text-[1.9rem] sm:text-[2rem]  tracking-wider">
-                                        Owner Profile:
+                                    <h3 className="text-[#545151] font-semibold text-[1.8rem] sm:text-[2rem]  tracking-wider">
+                                        Owner Profile
                                     </h3>
                                     <div onClick={() => { router.push(`/profile/${data?.ownerId}`) }} className={`flex  items-center space-x-[0.4rem] hover:text-[blue] py-[0.9rem] border-[#d4dee2] cursor-pointer`}>
                                         <div className=" w-[4.6rem] h-[4.6rem] sm:px-[1.3rem]">
@@ -130,7 +130,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
                                             </div>
                                         </div>
                                         <div className="grow text-ellipsis overflow-x-hidden px-[0.7rem]">
-                                            <h3 className="text-[#069EBF] decoration-[#069EBF] px-[0.7rem] decoration-1 underline underline-offset-1 text-[1.9rem] sm:text-[2.1rem]  font-medium">
+                                            <h3 className="text-[#069EBF] decoration-[#069EBF] px-[0.7rem] decoration-1 underline underline-offset-1 text-[1.8rem] sm:text-[2rem]  font-medium">
                                                 {data?.ownerName}
                                             </h3>
                                         </div>
@@ -144,7 +144,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
 
                                 {userinfo._id == data?.ownerId ?
                                     <div className="flex items-center space-x-[8rem] sm:space-x-[11rem]">
-                                        <h3 className="text-[#545151] font-semibold text-[1.9rem] sm:text-[2.1rem]  tracking-wider">
+                                        <h3 className="text-[#545151] font-semibold text-[1.8rem] sm:text-[2rem]  tracking-wider">
                                             Requester:
                                         </h3>
                                         <div onClick={() => { router.push(`/profile/${data?.ownerId}`) }} className={`flex  items-center space-x-[0.4rem] hover:text-[blue] border-[#d4dee2] cursor-pointer`}>
@@ -159,7 +159,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
                                                 </div>
                                             </div>
                                             <div className="grow text-ellipsis overflow-x-hidden px-[1rem]">
-                                                <h3 className="text-[#069EBF] decoration-[#069EBF] decoration-1 underline underline-offset-1 text-[1.9rem] sm:text-[2.1rem]  font-medium">
+                                                <h3 className="text-[#069EBF] decoration-[#069EBF] decoration-1 underline underline-offset-1 text-[1.8rem] sm:text-[1.95rem]  font-medium">
                                                     {data?.requestorName}
                                                 </h3>
                                             </div>
@@ -167,10 +167,10 @@ const CopyRightNFT = ({ userinfo, data }) => {
                                     </div> : null}
 
                                 <div className="flex items-center space-x-[4rem] sm:space-x-[8rem] ">
-                                    <h3 className="text-[#545151] font-semibold text-[1.9rem] sm:text-[2.1rem]  tracking-wider">
+                                    <h3 className="text-[#545151] font-semibold text-[1.8rem] sm:text-[2rem]  tracking-wider">
                                         Offered Money:
                                     </h3>
-                                    <h3 className="text-[#545151] text-[1.9rem] sm:text-[2.1rem]  font-medium">
+                                    <h3 className="text-[#545151] text-[1.8rem] sm:text-[1.9rem]  font-medium">
                                         {ethers.utils.formatUnits(data?.offeredMoney.toLocaleString('fullwide', { useGrouping: false }), 18)} BNB
                                     </h3>
                                 </div>
@@ -178,20 +178,20 @@ const CopyRightNFT = ({ userinfo, data }) => {
 
 
                                 <div className="flex space-x-[4rem] sm:space-x-[8rem] ">
-                                    <h3 className="text-[#545151] font-semibold text-[1.9rem] sm:text-[2.1rem]  tracking-wider">
+                                    <h3 className="text-[#545151] font-semibold text-[1.8rem] sm:text-[2rem]  tracking-wider">
                                         Requested NFT:
                                     </h3>
-                                    <h3 onClick={() => { router.push(`/individualnft/${data?.nftId}`) }} className="w-fit text-[#069EBF] cursor-pointer decoration-[#069EBF] decoration-1 underline underline-offset-1 text-[1.9rem] sm:text-[2.1rem]  font-medium">
+                                    <h3 onClick={() => { router.push(`/individualnft/${data?.nftId}`) }} className="w-fit text-[#069EBF] cursor-pointer decoration-[#069EBF] decoration-1 underline underline-offset-1 text-[1.8rem] sm:text-[2rem]  font-medium">
                                         {data?.nftName}
                                     </h3>
                                 </div>
 
 
                                 <div className="flex space-x-[3rem] sm:space-x-[7rem] ">
-                                    <h3 className="text-[#545151] whitespace-nowrap font-semibold text-[1.9rem] sm:text-[2.1rem]  tracking-wider">
+                                    <h3 className="text-[#545151] whitespace-nowrap font-semibold text-[1.8rem] sm:text-[2rem]  tracking-wider">
                                         Request Status:
                                     </h3>
-                                    <h3 className="text-[#545151] text-[1.9rem] sm:text-[2.1rem]  font-medium">
+                                    <h3 className="text-[#545151] text-[1.8rem] sm:text-[2rem]  font-medium">
                                         {status}
 
                                         {user._id == data?.requesterId && status=="reapproval" ? <span className="text-red-500 font-bold px-[0.5rem] text-[1.4rem] ">
@@ -203,7 +203,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
 
                                 {userinfo._id == data?.ownerId && (status == "accept" || status == "reject" || status == "completed") ?
                                     <div className="flex items-center space-x-[9rem]">
-                                        <h3 className="text-[#545151] font-semibold text-[1.9rem] sm:text-[2rem]  tracking-wider">
+                                        <h3 className="text-[#545151] font-semibold text-[1.7rem] sm:text-[1.8rem]  tracking-wider">
 
                                             {status == "accept" || status == "completed" ? "Accepted By:" : "Rejected By:"}
 
@@ -220,7 +220,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
                                                 </div>
                                             </div>
                                             <div className="grow text-ellipsis overflow-x-hidden px-[1.4rem]">
-                                                <h3 className="text-[#069EBF] decoration-[#069EBF] decoration-1 underline underline-offset-1 text-[1.9rem] sm:text-[2.1rem]  font-medium">
+                                                <h3 className="text-[#069EBF] decoration-[#069EBF] decoration-1 underline underline-offset-1 text-[1.8rem] sm:text-[2rem]  font-medium">
                                                     {data?.actionUserName ?? data?.ownerName}
                                                 </h3>
                                             </div>
@@ -229,7 +229,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
 
 
                                 <div className="flex flex-col">
-                                    <h3 className="text-[#545151] font-semibold text-[1.9rem] sm:text-[2.1rem]  tracking-wider">
+                                    <h3 className="text-[#545151] font-semibold text-[1.8rem] sm:text-[2rem]  tracking-wider">
                                         Comments:
                                     </h3>
 
@@ -273,7 +273,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
 
                                     {user._id != data?.ownerId && status == "accept" ?
                                         <button
-                                            className=" mr-[2rem]  bg-[#1b31c4] hover:bg-[#182ba8] text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem]  tracking-wider"
+                                            className=" mr-[2rem]  bg-[#1b31c4] hover:bg-[#182ba8] text-white font-normal text-[1.7rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem]  tracking-wider"
                                             type="button"
                                             onClick={() => {
                                                 router.push(`/copynft/${data.nftId}`)
@@ -284,7 +284,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
 
                                     {user._id != data?.ownerId && status != "completed" ?
                                         <button
-                                            className=" mr-[2rem]  bg-[#1b31c4] hover:bg-[#182ba8] text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] rounded-[1.3rem]  tracking-wider"
+                                            className=" mr-[2rem]  bg-[#1b31c4] hover:bg-[#182ba8] text-white font-normal text-[1.7rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] rounded-[1.3rem]  tracking-wider"
                                             type="button"
                                             disabled={loader}
                                             onClick={() => {
@@ -305,7 +305,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
 
                                     {user._id == data?.ownerId && ( status == "pending" || status=='reapproval')   ?
                                         <><button
-                                            className="bg-[#1b31c4] hover:bg-[#182ba8] mr-[2rem]    text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem]  tracking-wider"
+                                            className="bg-[#1b31c4] hover:bg-[#182ba8] mr-[2rem]    text-white font-normal text-[1.7rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem]  tracking-wider"
                                             type="button"
                                             disabled={loader}
                                             onClick={() => {
@@ -318,7 +318,7 @@ const CopyRightNFT = ({ userinfo, data }) => {
                                         >
                                             {loader && statusUpdate == "accept" ? "Accepting..." : "Accept"}
                                         </button> <button
-                                            className=" mr-[2rem]  bg-[#1b31c4] hover:bg-[#182ba8]  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem]  tracking-wider"
+                                            className=" mr-[2rem]  bg-[#1b31c4] hover:bg-[#182ba8]  text-white font-normal text-[1.7rem] sm:font-semibold py-3 px-[3rem] mb-[0.7rem] mt-[0.4rem] rounded-[1.3rem]  tracking-wider"
                                             type="button"
                                             disabled={loader}
                                             onClick={() => {

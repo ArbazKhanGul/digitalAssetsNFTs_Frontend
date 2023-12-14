@@ -49,15 +49,15 @@ const right={
 
 <motion.div className="text-white w-full md:w-1/2" variants={contVar} initial="hidden" whileInView="visible">
 
-    <h2 className="text-[2.8rem] sm:text-[3.2rem] md:text-[3.7rem] mt-[4rem] md:mt-[0rem] text-center text-[rgb(217,217,217)] mb-10 font-['Inconsolata'] font-medium ">Discover And sell your Digital Assets</h2>
-    <p className="text-[#DAD7D7] text-[1.7rem] sm:text-[1.8rem] md:text-[1.8rem] font-['Inconsolata'] font-medium text-center mb-10 tracking-widest">DigialAssets is world first NFT platform in which you can create NFTs of any of your digital asset</p>
+    <h2 className="text-[2.8rem] sm:text-[3.2rem] md:text-[3.7rem] mt-[4rem] md:mt-[0rem] text-center text-[rgb(217,217,217)] mb-10 font-['Inter'] font-semibold ">Discover And sell your Digital Assets</h2>
+    <p className="text-[#DAD7D7] text-[1.7rem] sm:text-[1.8rem] md:text-[1.8rem] font-['Inter']  font-medium text-center mb-10 tracking-wider line">DigialAssets is world first NFT platform in which you can create NFTs of any of your digital asset</p>
     <div className="mb-[1rem] text-[2rem] text-center">
     
 
-    {address?(<button className="bg-[#1b31c4] hover:bg-blue-800 text-[#ebe7e7] font-normal text-[1.8rem] sm:font-semibold py-3 px-12  sm:py-3 sm:px-14 rounded-full font-['Inconsolata'] tracking-wider  max-w-[100%] overflow-hidden">
+    {address?(<button className="bg-[#1b31c4] hover:bg-blue-800 text-[#ebe7e7] font-normal text-[1.6rem] sm:font-semibold py-[0.9rem] px-[3.3rem] rounded-full  tracking-wider  max-w-[100%] overflow-hidden">
     {address.substr(0, 8) + "..." + address.substr(37, 5)}
 </button>):(<>
-     <button className="bg-[#1b31c4] hover:bg-blue-800  text-[#ebe7e7] font-normal text-[1.8rem] sm:font-semibold py-2 px-12  sm:py-2 sm:px-14 rounded-full font-['Inconsolata'] tracking-wider"
+     <button className="bg-[#1b31c4] hover:bg-blue-800  text-[#ebe7e7] font-normal text-[1.7rem] sm:font-semibold py-[0.7rem] px-[4rem] rounded-full  tracking-wider"
       onClick={() => connectWalletLogin(user,dispatch, address,router,setShowLoginButton)}
       disabled={showLoginButton}
      >
@@ -66,7 +66,7 @@ const right={
 
   
     <Link href="/registration">
-    <a><button className="bg-[#1b31c4] hover:bg-blue-800 buttons  text-[#ebe7e7] font-normal text-[1.8rem] sm:font-semibold py-2 px-8  sm:py-2 sm:px-10 rounded-full font-['Inconsolata'] tracking-wider">Register</button> 
+    <a><button className="bg-[#1b31c4] hover:bg-blue-800 buttons  text-[#ebe7e7] font-normal text-[1.7rem] sm:font-semibold py-[0.7rem] px-[3.2rem] rounded-full  tracking-wider">Register</button> 
     </a>
                 </Link>
 

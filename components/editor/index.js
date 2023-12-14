@@ -84,7 +84,7 @@ const Editor = ({ setFieldValue,textData}) => {
       </div>
 
       <div className="w-[100%]">
-        <button className=" w-[100%] bg-[#1b31c4] hover:bg-blue-800  text-white font-normal text-[1.8rem] sm:font-semibold px-12 my-[1rem]  py-[0.8rem] sm:px-14 rounded-[0.5rem] font-['Inconsolata'] tracking-wider"
+        <button className=" w-[100%] bg-[#1b31c4] hover:bg-blue-800  text-white font-normal text-[1.7rem] sm:font-semibold px-12 my-[1rem]  py-[0.8rem] sm:px-14 rounded-[0.5rem]  tracking-wider"
           type="button" onClick={() => {
             fileRef.current.click();
           }}
@@ -111,7 +111,7 @@ const Editor = ({ setFieldValue,textData}) => {
 
 
       <div className="w-[100%] h-[30rem]   mgeditior block ">
-        <div ref={quillRef} className="h-[30rem] mb-[1rem] !font-['Inconsolata] text-[2rem]" />
+        <div ref={quillRef} className="h-[30rem] mb-[1rem] !font-['Inconsolata] !text-[2.1rem]" />
         <h4 className="text-right font-['Inconsolata] text-[1.6rem] font-semibold mt-[0.3rem]">Count = {count}</h4>
       </div>
 

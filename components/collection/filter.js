@@ -13,8 +13,6 @@ const Filter = ({ showItems }) => {
     walletAddress: "",
     minimumVolume: "",
     maximumVolume: "",
-    minimumFloor: "",
-    maximumFloor: "",
   };
 
 
@@ -25,6 +23,7 @@ const Filter = ({ showItems }) => {
     handleSubmit,
     handleChange,
     handleBlur,
+    resetForm
   } = useFormik({
     initialValues,
     validationSchema: filterCollectionSchema,
@@ -65,7 +64,8 @@ return (
   <div className={"bg-[#EDF2F7] rounded-[1.1rem] mt-[0.4rem]  overflow-hidden transition-all duration-700 " + (!showItems ? "max-h-0" : "max-h-[60rem]")}>
 
     <form onSubmit={handleSubmit}>
-      <div className="transition-all duration-500 text-[#FD2121DB] text-center text-[1.3rem] md:text-[1.5rem] pt-[1rem] px-[1rem] font-['Inconsolata']">If you don’t want to use any filter from below simply leave it empty</div>
+    <div className="transition-all duration-500 font-semibold text-[#fd0a0adb] text-center text-[1.3rem] md:text-[1.5rem] pt-[1rem] px-[1rem] ">If you don’t want to use any filter from below simply leave it empty</div>
+   
 
 
       <div className="flex flex-wrap md:space-x-[1.5rem] md:justify-center lg:justify-center lg:mr-[0.6rem] xl:mr-[0rem] xl:justify-center lg:space-x-[1rem] xl:space-x-[1.8rem] px-[1.5rem] md:px-[1rem] pb-[1.5rem] ">
@@ -140,7 +140,7 @@ return (
           <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
             <input type="text"
               className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-              placeholder="Enter minimum volume price in USD"
+              placeholder="Enter minimum volume price in BNB"
               name="minimumVolume"
               value={values.minimumVolume}
               onChange={handleChange}
@@ -161,7 +161,7 @@ return (
           <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
             <input type="text"
               className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-              placeholder="Enter maximum volume price in USD"
+              placeholder="Enter maximum volume price in BNB"
               name="maximumVolume"
               value={values.maximumVolume}
               onChange={handleChange}
@@ -177,69 +177,26 @@ return (
         </div>
 
 
-        <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:ml-[1.8rem] mt-[1.5rem] w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem]">
-          <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
-            <input type="text"
-              className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-              placeholder="Enter minimum floor price in USD"
-              name="minimumFloor"
-              value={values.minimumFloor}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              autoComplete="off"
-            />
-          </div>
-          {errors.minimumFloor && touched.minimumFloor ? (
-            <p className="text-red-500 text-[1.4rem] errors block">
-              {errors.minimumFloor}
-            </p>
-          ) : null}
-        </div>
 
 
-        <div className="md:ml-[1.5rem] lg:ml-[1rem] xl:ml-[1.8rem] mt-[1.5rem] w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem]">
-          <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mb-[0.2rem]">
-            <input type="text"
-              className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']"
-              placeholder="Enter maximum floor price in USD"
-              name="maximumFloor"
-              value={values.maximumFloor}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              autoComplete="off"
-            />
-          </div>
-          {errors.maximumFloor && touched.maximumFloor ? (
-            <p className="text-red-500 text-[1.4rem] errors block">
-              {errors.maximumFloor}
-            </p>
-          ) : null}
-        </div>
 
-        {/* <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mt-[1.5rem]">
-            <input type="text" className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']" placeholder="Enter author wallet address"/>
-         </div> */}
 
-        {/* <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mt-[1.5rem]">
-            <input type="number" min="0" className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']" />
-         </div> */}
-        {/* 
-         <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mt-[1.5rem]">
-            <input type="number" min="0" className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']" placeholder="Enter maximum volume price in USD"/>
+
+      </div>
+
+      <div className="flex justify-center xs:space-x-4 mb-[1.2rem] flex-col xs:flex-row space-y-[1rem] xs:space-y-[0rem]">
+            <button type="submit" className="bg-[#1b31c4] hover:bg-blue-800  text-white font-normal text-[1.7rem] sm:font-semibold  px-12  py-[0.8rem] sm:px-14 mx-[1.5rem] sm:mx-[0] rounded-[1rem] xs:rounded-full">
+               Search
+            </button>
+  
+            <button type="button" onClick={()=>{
+               resetForm();
+               router.push("/collection")
+               }
+               } className="bg-[#1b31c4] hover:bg-blue-800  text-white font-normal text-[1.7rem]  sm:font-semibold  px-12  py-[0.8rem] sm:px-14 mx-[1.5rem] sm:mx-[0] rounded-[1rem] xs:rounded-full">
+               Clear All
+            </button>
          </div>
-         <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mt-[1.5rem]">
-            <input type="number" min="0" className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']" placeholder="Enter minimum volume price in USD"/>
-         </div> */}
-        {/* <div className="input_bord_grad w-[100%] md:w-[35rem] lg:w-[34rem] xl:w-[34rem] mt-[1.5rem]">
-            <input type="number" min="0" className="outline-none text-[1.6rem] md:text-[1.7rem] border-none w-[100%] rounded-[1.2rem] p-[0.8rem] font-['Inconsolata']" placeholder="Enter maximum volume price in USD"/>
-         </div> */}
-      </div>
-
-      <div className="flex justify-center mb-[1.2rem]">
-        <button type="submit" className="bg-blue-500  hover:bg-blue-700  text-white font-normal text-[18px] font-['Inconsolata'] sm:font-semibold  px-12  py-[0.7rem] sm:px-14 rounded-full">
-          Search
-        </button>
-      </div>
     </form>
   </div>)
 }

@@ -31,8 +31,6 @@ export const filterCollectionSchema=Yup.object({
     walletAddress:Yup.string().trim().min(42,"Wallet address should be 42 character long").max(42,"Wallet address should be 42 character long"),
     minimumVolume: Yup.number().moreThan(-0.0000000000001,"you must specify a positive number").typeError('you must specify a positive number'),
     maximumVolume: Yup.number().moreThan(-0.0000000000001,"you must specify a positive number").typeError('you must specify a positive number'),
-    minimumFloor: Yup.number().moreThan(-0.00000000000001,"you must specify a positive number").typeError('you must specify a positive number'),
-    maximumFloor: Yup.number().moreThan(-0.00000000000001,"you must specify a positive number").typeError('you must specify a positive number'),
 })
 
 

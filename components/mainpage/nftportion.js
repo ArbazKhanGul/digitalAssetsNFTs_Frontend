@@ -15,7 +15,7 @@ const NFTPortion =({error,data,isLoading})=>{
 
       <div className="text-[#121212] w-fit "> Top NFTs</div>
 
-          <div className=" inline-block w-[3.5rem] h-[4rem] sm:w-[3.2rem] md:w-[4rem] mt-[0.6rem] ml-[0.5rem] sm:h-[3.2rem] md:h-[4rem] rounded-full relative">
+          <div className=" inline-block w-[3.5rem] h-[3.5rem]  md:w-[4rem] mt-[0.6rem] ml-[0.5rem]  md:h-[4rem] rounded-full relative">
             <Image
               className="rounded-full"
               src={`/topnft.png`}
@@ -62,9 +62,9 @@ const NFTPortion =({error,data,isLoading})=>{
 
 </div>
 
-<div className="mg flex justify-end my-[1.5rem] font-['Inconsolata']">
+<div className="mg flex justify-end my-[1.5rem] ">
 {/* <Button ></Button> */}
-<button className="bg-[#032da1]  hover:bg-blue-900  text-white font-normal text-[1.8rem] sm:font-semibold  px-12  py-[1rem] sm:px-14 rounded-full font-['Inconsolata'] tracking-wider"
+<button className="bg-[#032da1]  hover:bg-blue-900  text-white  text-[1.7rem] font-medium  px-12  py-[1rem] sm:px-14 rounded-full tracking-wider"
       onClick={() =>{router.push("/nfts/1")} }
      >
   More...

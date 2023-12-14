@@ -13,7 +13,7 @@ function Buy({ itemId, price }) {
   return (
     <>
       <button
-        className="bg-[#1b31c4] hover:bg-[#182ba8] xs:mr-[2rem] w-[100%] xs:w-fit py-4 xs:py-3 rounded-[1.3rem] xs:rounded-full    text-white font-normal text-[1.8rem] sm:font-semibold  px-[4rem]  font-['Inconsolata'] tracking-wider"
+       className="bg-[#1b31c4] hover:bg-[#182ba8] xs:mr-[2rem] w-[100%] xs:w-fit py-4 xs:py-[0.8rem] px-[4rem] sm:px-[4.5rem] rounded-[1.3rem] xs:rounded-full   text-white font-normal text-[1.6rem] sm:text-[1.7rem] sm:font-semibold tracking-wider"
         type="button"
         onClick={() => { setShowModal(true) }}
         disabled={loader}
@@ -24,10 +24,10 @@ function Buy({ itemId, price }) {
 
       {loader == "transaction waiting" ?
         <div className="flex justify-center items-center  !mt-[8px]">
-          <h2 className='text-[2rem]'>Waiting For Transaction Verification </h2>
+          <h2 className='text-[1.8rem] font-semibold'>Waiting For Transaction Verification </h2>
           <div className="w-fit h-fit">
             <PulseLoader
-              color={"#30DCBA"}
+              color={"#1b31c4"}
               loading={loader}
               cssOverride={{ marginTop: "5px", marginLeft: "5px" }}
               size={8}
@@ -42,7 +42,7 @@ function Buy({ itemId, price }) {
 
       {loader == "transaction confirmation" ? (
         <div className="flex justify-center items-center  !mt-[8px]">
-          <h2 className='text-[2rem] mr-[1.2rem]'>Confirming Mined Transaction ....  </h2>
+          <h2 className='text-[1.8rem] font-semibold mr-[1.2rem]'>Confirming Mined Transaction ....  </h2>
           <div className="w-fit h-fit">
             <CountdownCircleTimer
               isPlaying={loader == "transaction confirmation"}
@@ -57,7 +57,7 @@ function Buy({ itemId, price }) {
                 router.replace(router.asPath)
               }}
             >
-              {({ remainingTime }) => <h2 className="font-['Inconsolata'] text-[2rem] ">{remainingTime}</h2>}
+              {({ remainingTime }) => <h2 className=" text-[1.7rem] ">{remainingTime}</h2>}
             </CountdownCircleTimer></div></div>) : ""
       }
 
@@ -101,7 +101,7 @@ function Buy({ itemId, price }) {
 
                   <div>
                     <div className="mx-[1.5rem] lg:ml-[1rem] xl:mx-[1.8rem] mt-[0.5rem] ">
-                      <h2 className="font-['Inconsolata'] text-[#0D1344E5']  text-[1.8rem] font-medium ml-[0.3rem] mb-[0.4rem] tracking-wider">
+                      <h2 className=" text-[#0D1344E5']  text-[1.8rem] font-medium ml-[0.3rem] mb-[0.4rem] tracking-wider">
                         Are you sure to buy this nft at price of {ethers.utils.formatUnits(price.toString(), 18).toString()} BNB
                       </h2>
                     </div>
@@ -114,7 +114,7 @@ function Buy({ itemId, price }) {
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                   <button
-                    className="bg-[#1b31c4] hover:bg-[#182ba8] mr-[2rem]   text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] rounded-full font-['Inconsolata'] tracking-wider"
+                    className="bg-[#1b31c4] hover:bg-[#182ba8] mr-[2rem]   text-white font-normal text-[1.7rem] sm:font-semibold py-3 px-[3rem] rounded-full  tracking-wider"
                     type="button"
                     onClick={() => buyNft(itemId, price, setShowModal, setLoader)}
                   >
@@ -122,7 +122,7 @@ function Buy({ itemId, price }) {
                   </button>
 
                   {/* <button
-                    className="bg-red-500 mr-[2rem]  hover:bg-red-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] rounded-full font-['Inconsolata'] tracking-wider"
+                    className="bg-red-500 mr-[2rem]  hover:bg-red-700  text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] rounded-full  tracking-wider"
                     type="button"
                     onClick={() => {
                       setShowModal(false)

@@ -30,7 +30,7 @@ function cancelCopyrightModal({ setShowModal,nftid,setLoader,setCopyrightStatus,
                     <div className={"relative pb-6 flex-auto"}>
                             <div>
                                 <div className="mx-[1.5rem] lg:ml-[1rem] xl:mx-[1.8rem] my-[1rem]">
-                                    <h2 className="font-['Inconsolata'] text-[#0D1344E5']  text-[1.8rem] font-medium ml-[0.3rem] mb-[0.4rem] tracking-wider">
+                                    <h2 className=" text-[#0D1344E5']  text-[1.75rem] font-medium ml-[0.3rem] mb-[0.4rem] tracking-wider">
                                   Are you sure to stop the people from sending copyrights requests for this NFT  </h2>
                                 </div>
 
@@ -40,7 +40,7 @@ function cancelCopyrightModal({ setShowModal,nftid,setLoader,setCopyrightStatus,
                     </div>
                     <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                             <button
-                                className="bg-[#1b31c4] hover:bg-[#182ba8] mr-[2rem] text-white font-normal text-[1.8rem] sm:font-semibold py-3 px-[3rem] rounded-full font-['Inconsolata'] tracking-wider"
+                                className="bg-[#1b31c4] hover:bg-[#182ba8] mr-[2rem] text-white font-normal text-[1.7rem] sm:font-semibold py-3 px-[3rem] rounded-full  tracking-wider"
                                 type="button"
                                 onClick={() => cancelCopyRight(nftid,setLoader,setShowModal,setCopyrightStatus,setCopyrightPrice)}
                             >

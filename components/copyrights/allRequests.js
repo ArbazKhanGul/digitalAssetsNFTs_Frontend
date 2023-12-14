@@ -32,7 +32,7 @@ function AllRequests({ setShowModal, nftName }) {
 
                     <div className="border-0  shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none rounded-[1rem]">
                         <div className="py-[2rem] bg-[#1E2346] text-white border-b-[0.1rem] border-[#c9c1c1] flex items-center justify-between  px-[2rem] border-solid rounded-t-[1rem]">
-                            <h3 className="w-[30%] text-[2.3rem] tracking-wider font-semibold whitespace-nowrap">
+                            <h3 className="w-[30%] text-[2.1rem] tracking-wider font-medium whitespace-nowrap">
 
                                 Requests
 
@@ -70,11 +70,11 @@ function AllRequests({ setShowModal, nftName }) {
 
 <div className="border-b-[0.1rem]  border-[#c9c1c1]  py-[1rem]">
 <div className="flex sm:space-x-[1rem] mt-[1rem]  items-center mb-[0.5rem] flex-wrap ml-[1.5rem]">
-        <h2 onClick={()=>setState("pending")} className={` text-[1.9rem] font-medium cursor-pointer  sm:ml-0 py-[0.5rem] px-[2.2rem] w-fit ${state=="pending"?"bg-[#1E40AF] text-[white] rounded-[2rem]":""}`}>Pending</h2>
-        <h2 onClick={()=>setState("reapproval")} className={`text-[1.9rem] font-medium cursor-pointer  sm:ml-0 py-[0.5rem] px-[2.2rem] w-fit ${state=="reapproval"?"bg-[#1E40AF] text-[white] rounded-[2rem]":""}`}>Reapproval</h2>
-        <h2 onClick={()=>setState("accept")} className={` text-[1.9rem] font-medium cursor-pointer py-[0.5rem] px-[2.2rem] w-fit ${state=="accept"?"bg-[#1E40AF] text-[white]  rounded-[2rem]":""}`}>Accepted</h2>
-        <h2 onClick={()=>setState("completed")} className={` text-[1.9rem] font-medium cursor-pointer py-[0.5rem] px-[2.2rem] w-fit ${state=="completed"?"bg-[#1E40AF] text-[white] rounded-[2rem]":""}`}>Completed</h2>
-        <h2 onClick={()=>setState("all")} className={` text-[1.9rem] font-medium cursor-pointer py-[0.5rem] px-[2.2rem] w-fit ${state=="all"?"bg-[#1E40AF] text-[white]  rounded-[2rem]":""}`}>All</h2>
+        <h2 onClick={()=>setState("pending")} className={` text-[1.74rem] font-medium cursor-pointer  sm:ml-0 py-[0.8rem] px-[2.5rem] w-fit ${state=="pending"?"bg-[#1E40AF] text-[white] rounded-[2rem]":""}`}>Pending</h2>
+        <h2 onClick={()=>setState("reapproval")} className={`text-[1.74rem] font-medium cursor-pointer  sm:ml-0 py-[0.8rem] px-[2.5rem] w-fit ${state=="reapproval"?"bg-[#1E40AF] text-[white] rounded-[2rem]":""}`}>Reapproval</h2>
+        <h2 onClick={()=>setState("accept")} className={` text-[1.74rem] font-medium cursor-pointer py-[0.8rem] px-[2.5rem] w-fit ${state=="accept"?"bg-[#1E40AF] text-[white]  rounded-[2rem]":""}`}>Accepted</h2>
+        <h2 onClick={()=>setState("completed")} className={` text-[1.74rem] font-medium cursor-pointer py-[0.8rem] px-[2.5rem] w-fit ${state=="completed"?"bg-[#1E40AF] text-[white] rounded-[2rem]":""}`}>Completed</h2>
+        <h2 onClick={()=>setState("all")} className={` text-[1.74rem] font-medium cursor-pointer py-[0.8rem] px-[2.5rem] w-fit ${state=="all"?"bg-[#1E40AF] text-[white]  rounded-[2rem]":""}`}>All</h2>
   </div>
 </div>
                         <div className="h-[40rem] overflow-x-auto" id="scrollableCopyright" >
@@ -101,7 +101,7 @@ function AllRequests({ setShowModal, nftName }) {
 
                                 scrollableTarget="scrollableCopyright"
 
-                                endMessage={<p className="text-[2.2rem] text-center py-[0.5rem] font-[Inconsolata] font-medium text-[#5f6668]">
+                                endMessage={<p className="text-[2rem] text-center py-[1rem]  font-medium text-[#5f6668]">
                                     {error ? "Something went wrong" : data?.length ? "Reached to the end" : "Nothing to show"}</p>}
                                 dataLength={data?.length ?? 0}
                             >

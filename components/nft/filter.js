@@ -77,9 +77,9 @@ const Filter = ({ showItems }) => {
       setFieldValue("nftType", e)
   }
 
-   return (<div className={"bg-[#EDF2F7] rounded-[1.1rem] mt-[0.4rem]  overflow-hidden transition-all duration-700 " + (!showItems ? "max-h-0" : "max-h-[60rem]")}>
+   return (<div className={"bg-[#EDF2F7] rounded-[1.1rem] mt-[0.4rem]  overflow-hidden transition-all duration-700 " + (!showItems ? "max-h-0" : "max-h-[75rem]")}>
       <form onSubmit={handleSubmit} >
-         <div className="transition-all duration-500 font-bold text-[#fd0a0adb] text-center text-[1.3rem] md:text-[1.5rem] pt-[1rem] px-[1rem] font-['Inconsolata']">If you don’t want to use any filter from below simply leave it empty</div>
+         <div className="transition-all duration-500 font-semibold text-[#fd0a0adb] text-center text-[1.3rem] md:text-[1.5rem] pt-[1rem] px-[1rem] ">If you don’t want to use any filter from below simply leave it empty</div>
          <div className="flex flex-wrap md:space-x-[1.5rem] md:justify-center lg:justify-center lg:mr-[0.6rem] xl:mr-[0rem] xl:justify-center lg:space-x-[1rem] xl:space-x-[1.8rem] px-[1.5rem] md:px-[1rem] pb-[1.5rem]">
 
 
@@ -244,16 +244,17 @@ const Filter = ({ showItems }) => {
             </div>
 
          </div>
-         <div className="flex justify-center space-x-4 mb-[1.2rem]">
-            <button type="submit" className="bg-[#1b31c4] hover:bg-blue-800  text-white font-normal text-[18px] font-['Inconsolata'] sm:font-semibold  px-12  py-[0.7rem] sm:px-14 rounded-full">
+         <div className="flex justify-center xs:space-x-4 mb-[1.2rem] flex-col xs:flex-row space-y-[1rem] xs:space-y-[0rem]">
+            <button type="submit" className="bg-[#1b31c4] hover:bg-blue-800  text-white font-normal text-[1.7rem] sm:font-semibold  px-12  py-[0.8rem] sm:px-14 mx-[1.5rem] sm:mx-[0] rounded-[1rem] xs:rounded-full">
                Search
             </button>
   
             <button type="button" onClick={()=>{
                setFieldValue("nftType","");
+               resetForm();
                router.push("/nfts")
                }
-               } className="bg-[#1b31c4] hover:bg-blue-800  text-white font-normal text-[18px] font-['Inconsolata'] sm:font-semibold  px-12  py-[0.7rem] sm:px-14 rounded-full">
+               } className="bg-[#1b31c4] hover:bg-blue-800  text-white font-normal text-[1.7rem]  sm:font-semibold  px-12  py-[0.8rem] sm:px-14 mx-[1.5rem] sm:mx-[0] rounded-[1rem] xs:rounded-full">
                Clear All
             </button>
          </div>

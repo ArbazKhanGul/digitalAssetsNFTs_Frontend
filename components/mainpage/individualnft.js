@@ -71,7 +71,6 @@ const contVar={
     if (type == "text") {
       fetchData();
     }
-
   }, [])
 
 
@@ -84,7 +83,7 @@ const contVar={
 
 
       {type == "text" ?
-        <div className=" h-[20.5rem] break-words  flex items-center text-[2.4rem] text-center px-[1.8rem] mt-[0.7rem] font-semibold  font-['Inconsolata']">
+        <div className=" h-[20.5rem] break-words  flex items-center text-[2.4rem] text-center px-[1.8rem] mt-[0.7rem] font-semibold  ">
 
           {Loading ? (<div className="flex justify-center items-center w-[100%]  mt-[4px]">
 
@@ -95,7 +94,7 @@ const contVar={
               aria-label="Loading Spinner"
               data-testid="loader"
             />
-          </div>) : <h2 className="text-[black] !text-[2.3rem] font-bold  break-words overflow-y-hidden font-['Inconsolata']  w-[100%]  text-center max-h-[100%] ">
+          </div>) : <h2 className="text-[black] !text-[2.3rem] font-bold  break-words overflow-y-hidden   w-[100%] font-['Inconsolata']  text-center max-h-[100%] ">
             {textData}
           </h2>
           }
@@ -107,7 +106,7 @@ const contVar={
 
       {type == "image" ?
         <div className="rounded-tr-[3rem] rounded-tl-[3rem] pt-[0%] relative listitem h-[20.5rem] break-words flex justify-center items-center scrollbar-thin scroll ">
-          
+
           {Loading ? (<div className="flex justify-center items-center w-[100%]  mt-[4px]">
 <PuffLoader
   color={"#30DCBA"}
@@ -174,35 +173,28 @@ const contVar={
 
 
       <div className="px-[2rem] pb-[1.5rem] pt-[0.8rem] flex flex-col bg-[#233283] nft_round">
-        
         <div className="w-full flex justify-center">
         {original?<div className="colgradnft text-[2rem] text-center font-semibold tracking-widest overflow-hidden text-ellipsis whitespace-nowrap">
           {nftname}
         </div>:<div className="colgradnft relative text-[2rem]  text-center px-[2rem] font-semibold tracking-widest overflow-hidden text-ellipsis whitespace-nowrap">
           {nftname} <span className="absolute -top-[0rem] right-[1rem] overflow-visible z-10 text-red-600">
             <MdCopyright className="w-[1.3rem] h-[1.3rem] text-[white]"/>
-            
           </span>
         </div>}
         </div>
-  
+
         <div className="flex justify-between space-x-[1.5rem]">
           <div className="flex flex-col">
-            <span className="colgradnft text-[1.7rem] font-['Inconsolata'] font-semibold">Creator </span>
-            <span className="colgradnft text-[1.7rem] font-['Inconsolata'] font-semibold">Owner </span>
-            {/* <span className="colgrad text-[1.7rem] whitespace-nowrap font-['Inconsolata'] font-semibold">Create </span> */}
-            <span className="colgradnft text-[1.7rem] font-['Inconsolata'] font-semibold mt-[0.3rem]">Price </span>
-          </div>
+            <span className="colgradnft text-[1.7rem]  font-medium">Creator </span>
+            <span className="colgradnft text-[1.7rem]  font-medium">Owner </span>
+            <span className="colgradnft text-[1.7rem]  font-medium mt-[0.3rem]">Price </span>
+        </div>
 
-          <div className="flex flex-col space-y-[0.3rem] overflow-hidden">
-            <span className="text-[#e7e5e5] text-[1.6rem] w-[100%] font-['Inconsolata'] font-medium overflow-hidden text-ellipsis">{creator}</span>
-            <span className="text-[#e7e5e5] text-[1.6rem] w-[100%] font-['Inconsolata'] font-medium overflow-hidden text-ellipsis">{owner}</span>
-            {/* <span className="text-[#7D7C7CCF] text-[1.6rem] w-[100%] font-['Inconsolata'] font-medium overflow-hidden text-ellipsis whitespace-nowrap">{date.toLocaleString()}</span> */}
-            <span className="text-[#e7e5e5] text-[1.6rem] w-[100%] font-['Inconsolata'] font-medium overflow-hidden text-ellipsis whitespace-nowrap">{price > 0 ? ethers.utils.formatUnits(price.toLocaleString('fullwide', { useGrouping: false }), 18) : "..."} BNB</span>
-            {/* <span className="text-[#7D7C7CCF] text-[1.6rem] font-['Inconsolata'] font-medium">
-              &asymp; ${price > 0 ? priceDollar : "..."}
-            </span> */}
-          </div>
+        <div className="flex flex-col space-y-[0.3rem] overflow-hidden">
+            <span className="text-[#e7e5e5] text-[1.6rem] w-[100%]   overflow-hidden text-ellipsis">{creator}</span>
+            <span className="text-[#e7e5e5] text-[1.6rem] w-[100%]   overflow-hidden text-ellipsis">{owner}</span>
+            <span className="text-[#e7e5e5] text-[1.6rem] w-[100%]   overflow-hidden text-ellipsis whitespace-nowrap">{price > 0 ? ethers.utils.formatUnits(price.toLocaleString('fullwide', { useGrouping: false }), 18) : "..."} BNB</span>
+        </div>
 
         </div>
 

@@ -14,15 +14,15 @@ const TopCollections=({error,data,isLoading})=>{
 
 
     return (
-        <div className="mx-[5rem] mb-[5rem]">
-    <div className="text-[3rem] pb-[wrem] flex justify-center  ml-[2rem] font-['Inconsolata'] font-bold sm:text-[3rem] md:text-[3.4rem] mb-[3.5rem] m-[1.2rem] ">
+        <div className="mx-[2rem] md:mx-[3rem] lg:mx-[5rem] mb-[5rem]">
+    <div className="text-[2.5rem] pb-[wrem] flex justify-center items-center  font-['Inconsolata'] font-bold sm:text-[3rem] md:text-[3.4rem] mb-[3.5rem] m-[1.2rem] ">
     <div className=" w-fit bord-bottom mx-[5rem] flex  mt-[2rem]"> 
 
 
-<div className="text-[#121212] w-fit "> Top Profiles</div>
+<div className="text-[#121212] w-fit whitespace-nowrap"> Top Profiles</div>
 
 
-    <div className=" inline-block w-[3.5rem] h-[4rem] sm:w-[3.2rem] md:w-[4rem] mt-[0.6rem] ml-[0.5rem] sm:h-[3.2rem] md:h-[4rem] rounded-full relative">
+    <div className=" inline-block w-[3.2rem] h-[3.3rem] sm:w-[3.2rem] md:w-[4rem] mt-[0.6rem] ml-[0.5rem] sm:h-[3.2rem] md:h-[4rem] rounded-full relative">
       <Image
         className="rounded-full"
         src={`/profilepic.png`}
@@ -33,29 +33,33 @@ const TopCollections=({error,data,isLoading})=>{
 
     </div>
 
-    
-    <div className="flex-col justify-center">
+    <div className="w-[100%]  overflow-x-auto rounded-tl-[1rem] font-['Inter'] ">    <div className="flex-col justify-center min-w-[700px] overflow-x-auto">
 
     {  (!error && data) ?
-        <div className=" back_grad_row rounded-tr-[1rem] rounded-tl-[1rem]  font-medium hidden sm:flex sm:justify-around items-start sm:items-center overflow-hidden py-[0.8rem] ">
+        <div className=" back_grad_row rounded-tr-[1rem] rounded-tl-[1rem]  font-medium flex sm:justify-around items-start sm:items-center overflow-hidden py-[1.2rem] sm:py-[0.8rem] ">
         
 
-            <div className="ml-[4rem] text-[2.3rem]  sm:text-[2rem]  md:text-[2.3rem] w-[20%] pl-[2rem] box-border colgradhead">Profile</div>
+            <div className="ml-[4rem]   md:text-[2.3rem] w-[21%] sm:w-[23%] md:w-[25%] lg:w-[19%]  pl-[2rem] box-border colgradhead">Profile</div>
            
-            <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.3rem] text-center  colgradhead flex flex-col w-[22%]"><span>Total Revenue</span>
-            <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]"></span>
+            <div className="whitespace-nowrap   text-center  colgradhead flex flex-col w-[18%] lg:w-[20%] "><span>Revenue</span>
              </div>
 
-             <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.3rem] text-center colgradhead flex flex-col w-[22%]"><span>NFTs create</span>
-            {/* <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]">(Created)</span> */}
+             <div className="hidden md:flex whitespace-nowrap   text-center colgradhead  flex-col w-[18%] lg:w-[20%] "><span>NFTs create</span>
              </div>
 
-             <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.3rem] text-center colgradhead flex flex-col w-[22%]"><span>NFTs Sell</span>
-            {/* <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]">(Sell)</span> */}
+             <div className="hidden md:flex whitespace-nowrap   text-center colgradhead  flex-col w-[18%] lg:w-[20%] "><span>NFTs Sell</span>
              </div>
 
-             <div className=" text-[2.3rem] sm:text-[2rem]  md:text-[2.3rem] text-center colgradhead flex flex-col w-[22%]"><span>NFTs Buy</span>
-            {/* <span className="text-[1.7rem] sm:text-[1.4rem]  md:text-[1.7rem] text-center text-[#5F5454CF] -mt-[5px]">(Buy)</span> */}
+             <div className="hidden md:flex whitespace-nowrap    text-center colgradhead mr-[3rem]  flex-col w-[18%] lg:w-[20%] "><span>NFTs Buy</span>
+             </div>
+
+             <div className="md:hidden whitespace-nowrap    text-center colgradhead flex flex-col w-[18%] lg:w-[20%] "><span>create</span>
+             </div>
+
+             <div className="md:hidden whitespace-nowrap    text-center colgradhead flex flex-col w-[18%] lg:w-[20%] "><span> Sell</span>
+             </div>
+
+             <div className="md:hidden whitespace-nowrap    text-center colgradhead mr-[3rem] flex flex-col w-[18%] lg:w-[20%] "><span> Buy</span>
              </div>
         </div>:""}
         {
@@ -84,15 +88,15 @@ const TopCollections=({error,data,isLoading})=>{
                                 (!error && data) ?
 
                                     data?.map((data, index) => {
-                                        return <IndividualCollections key={index} num={index+1} authorname={data?.authorName} volume={data?.volume} items={data?.itemsSell + data?.itemsBuy} image={data?.profile} id={data?._id}></IndividualCollections> 
-
-                                    }) : ""
+                                        return <IndividualCollections key={index} num={index+1} authorname={data?.authorName} volume={data?.volume} itemsSell={data?.itemsSell} itemsBuy={data?.itemsBuy} itemsCreated={data?.itemsCreated} image={data?.profile} id={data?._id}></IndividualCollections> 
+                               }) : ""
                             }
 
 {data?.length==0 && !error? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3.3rem] w-fit font-['Inconsolata'] mt-[1.5rem] ml-[2rem] sm:ml-[3.5rem] md:ml-[5rem]">
                             OOPS!   Nothing to show...</div>) : ""
                             }
 
+    </div>
     </div>
 
     </div>

@@ -58,7 +58,7 @@ const Collection = ({ userinfo }) => {
 
 
                 <div className="px-[2rem]  sm:px-[4rem] md:px-[4.9rem] ">
-                <div className="flex justify-between w-[100%] items-center mb-[1rem]">
+                <div className="flex justify-between w-[100%] items-center flex-wrap flex-col xs:flex-row mb-[1rem]">
     <div className=" w-fit text-[3rem] font-bold  bord-bottom  flex justify-center mt-[2rem]"> 
 
 <div className="text-[#121212] w-fit "> All Profiles</div>
@@ -72,9 +72,9 @@ const Collection = ({ userinfo }) => {
       /></div>
   </div>
 
-        <div className="cursor-pointer text-[1.6rem] sm:text-[1.9rem] md:text-[2rem] mt-[0.5rem] font-semibold text-[#000000c7] flex items-center font-['Inconsolata']" onClick={()=>{show((prevState)=>{
+  <div className="cursor-pointer text-[1.8rem] mt-[2rem] font-semibold text-[#000000c7] flex items-center " onClick={()=>{show((prevState)=>{
     return prevState?false:true;
-  })}}>Search profile By filters <MdFilterList className="text-[2.5rem] pl-[0.3rem]"></MdFilterList>
+  })}}>Search Profiles By filters <MdFilterList className="text-[2.3rem] pl-[0.3rem]"></MdFilterList>
         </div>
         </div>
                     <Filter showItems={showItems}></Filter>

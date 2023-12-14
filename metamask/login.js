@@ -4,6 +4,8 @@ import { addUser } from "../slice/user";
 import axios from "../utils/axiosconfiguration";
 import {ethers} from "ethers";
 
+
+
 function openMetamask(){
   const a = document.createElement("a");
   a.href = "https://metamask.app.link/dapp/textnft.vercel.app";
@@ -13,7 +15,7 @@ function openMetamask(){
   a.remove();  
 }
 
-export const connectWalletLogin = async (user,dispatch, address,router,setShowLogin) => {
+export const connectWalletLogin = async (user,dispatch, address,router,setShowLogin,setChainMessage) => {
   console.log("🚀 ~ file: login.js ~ line 17 ~ connectWalletLogin ~ address", address)
   try {
     
@@ -47,9 +49,9 @@ export const connectWalletLogin = async (user,dispatch, address,router,setShowLo
   }
 
     if (window.ethereum.chainId != process.env.chainId) {
-      toast.error("Please connect to binance smart chain", {
-        position: "top-center",
-      });
+
+      setChainMessage(true);
+
       return;
     }
 

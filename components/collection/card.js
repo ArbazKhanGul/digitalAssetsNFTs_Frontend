@@ -40,31 +40,31 @@ const Card = ({data,priceDollar}) => {
 
             <div className=" pb-[2rem]">
 
-                <div className="text-[#545151] flex mt-[0.5rem] lg:mt-[1rem] justify-center w-[100%] font-['DynaPuff'] text-[2.2rem] font-medium">
+                <div className="text-[#545151] flex mt-[0.5rem] lg:mt-[1rem] justify-center w-[100%] font-semibold text-[2.1rem] ">
                 {shortText(authorName.charAt(0).toUpperCase() + authorName.slice(1), 20, "...")}
                 </div>
 
                 <div className="flex justify-center lg:mt-[0.3rem]">
                     {/* <span className="text-[#6d6363cf] text-[2rem] font-medium"><pre>By </pre></span> */}
-                    <span className="text-[#706d6d] font-['Inconsolata'] text-[1.9rem] font-medium overflow-hidden text-ellipsis whitespace-nowrap px-[1rem]"> {email}</span>
+                    <span className="text-[#706d6d]  text-[1.7rem] font-medium overflow-hidden text-ellipsis whitespace-nowrap px-[1rem]"> {email}</span>
                 </div>
                 {/* <div className="flex justify-between px-[1rem] pt-[1rem] lg:pt-[1.5rem] box-border ">
 
                     <span>Email </span>
                     <span>{email}</span>
                 </div> */}
-                <div className="flex w-[100%] px-[2rem] lg:px-[2.3rem] justify-between pt-[1rem] lg:pt-[1.5rem] box-border ">
+                <div className="flex w-[100%] px-[2rem] lg:px-[2.3rem] items-center justify-between pt-[1rem] lg:pt-[1.5rem] box-border ">
                    <div className="flex flex-col w-[10rem]"> 
-                    <span className="text-[#383838] text-[2rem] cardText font-bold font-['Inconsolata']">Revenue </span>
+                    <span className="text-[#383838] !text-[1.6rem] cardText font-bold ">Revenue </span>
                     {/* <span className="text-[#524848cf]  cardText font-bold font-['Inconsolata'] -mt-[0.4rem]">(Sell + Buy) </span> */}
                     {/* <span className="text-[#524848cf] cardText font-medium font-['Inconsolata'] whitespace-nowrap">Floor Price </span> */}
                    </div>
 
                    <div className="flex flex-col overflow-x-auto flex-1 scrollbar-none ml-[1rem]">
 
-                   <span className="text-[#221f1fcf] block cardText font-bold font-['Inconsolata'] text-right whitespace-nowrap mr-[4]  overflow-hidden text-ellipsis">
+                   <span className="text-[#221f1fcf] block cardText font-bold !text-[1.4rem] text-right whitespace-nowrap mr-[4]  overflow-hidden text-ellipsis">
 
-                   {ethers.utils.formatUnits(volume.toLocaleString('fullwide', {useGrouping:false}), 18)} BNB 
+                   {parseFloat(ethers.utils.formatUnits(volume.toLocaleString('fullwide', {useGrouping:false}), 18)).toFixed(2)} BNB 
                          </span>
                          {/* <span className="w-[100%] text-[#221f1fcf] cardText block font-bold font-['Inconsolata'] whitespace-nowrap mr-[4] -mt-[0.4rem]  overflow-hidden text-ellipsis text-right"> &asymp; $ {priceDollar}
                          </span>  */}

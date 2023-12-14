@@ -21,6 +21,7 @@ const style = {
   }),
 }
 
+
 const generateFileHash = async (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -109,7 +110,7 @@ const Item = ({ userinfo}) => {
 
         if(contentType=='text'){
           size = values.nftText.length;
-          hashCal = createHash("sha256").update(values.nftText).digest("hex");
+          hashCal = crypto.createHash("sha256").update(values.nftText).digest("hex");
         }
         else if(contentType=="video"){
           size = (values.nftVideo?.size / 1024 ** 2).toFixed(2);
@@ -126,7 +127,7 @@ const Item = ({ userinfo}) => {
         console.log("🚀 ~ file: createnft.js:117 ~ onSubmit: ~ hashCal:", hashCal)
 
         const response = await axios.post("/nftverify", { nftName: values.nftName,size,contentType,hash:hashCal});
-      
+        
         console.log("🚀 ~ file: createnft.js:125 ~ onSubmit: ~ response:", response)
 
 
@@ -196,7 +197,7 @@ const Item = ({ userinfo}) => {
             <div className="flex flex-col justify-center items-center space-y-[1.3rem] mb-[2rem]">
 
               <div className="w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12 mt-[2.5rem]">
-                
+
               <div className="text-[3rem]  flex  justify-center font-['Inconsolata'] font-bold sm:text-[3rem] md:text-[3.4rem] mb-[1rem] ">
       <div className=" w-fit bord-bottom  flex justify-center "> 
 
@@ -209,7 +210,7 @@ const Item = ({ userinfo}) => {
             //   objectFit="cover"
             /></div>
         </div>
-      
+
          </div>
               </div>
 

@@ -5,8 +5,9 @@ import PuffLoader from "react-spinners/PuffLoader";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {useRouter} from '../'
 import { useState } from 'react';
+import {AiOutlineClose} from "react-icons/ai"
 
-const Notification = ({page}) => {
+const Notification = ({page,notificationControl}) => {
 
   const [state,setState]=useState(true);
 
@@ -23,7 +24,11 @@ if(page !="main"){
     <>
           <div className="px-[1.5rem] flex items-center justify-between border-b-[1px] border-[#d4dee2] pb-[0.5rem] pt-[1.2rem]">
       <h2 className="text-[2.3rem] font-bold">Notifications</h2>
-      {/* {page!="main"?<h2 className="text-[2rem] font-medium text-[#3e8ef0] pr-[1rem] cursor-pointer" onClick={()=>{router.push("/notification")}}>See All</h2>:""} */}
+      <div onClick={()=>{notificationControl(false)}}>
+      
+      <AiOutlineClose className='text-[red] text-[2.2rem] cursor-pointer'/>
+      
+      </div> 
       </div>
       <div className="flex space-x-[1rem] mt-[1rem]  items-center ml-[1.5rem] mb-[0.5rem]">
         <h2 onClick={()=>setState(true)} className={`font-['DynaPuff'] text-[1.7rem] font-medium cursor-pointer py-[0.7rem] px-[2rem] w-fit ${state?"bg-[#E7F3FF] text-[#3e8ef0] rounded-[2rem]":""}`}>All</h2>

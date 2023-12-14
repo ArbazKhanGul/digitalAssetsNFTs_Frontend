@@ -28,7 +28,7 @@ function index({path,page}) {
     return (
       <>
       <button
-      className="xs:mr-[2rem] w-[100%] xs:w-fit bg-[#1b31c4] hover:bg-[#182ba8] text-white font-normal text-[1.8rem] sm:font-semibold py-4 xs:py-3 px-[5rem] rounded-[1.3rem] xs:rounded-full font-['Inconsolata'] tracking-wider"
+      className="xs:mr-[2rem] w-[100%] xs:w-fit bg-[#1b31c4] hover:bg-[#182ba8] text-white font-normal text-[1.6rem] sm:text-[1.7rem] sm:font-semibold py-4 xs:py-[0.8rem] px-[4rem] sm:px-[4.5rem] rounded-[1.3rem] xs:rounded-full  tracking-wider"
       type="button"
       onClick={() => setShowModal(true)}
     >
@@ -41,9 +41,9 @@ function index({path,page}) {
                   <div className="px-[13px] justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                     <div className="relative w-auto my-6 mx-auto max-w-3xl">
                       {/*content*/}
-                      <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                      <div className="border-0 rounded-[1rem] shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                         {/*header*/}
-                        <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                        <div className="bg-[#1E2246] text-[white] rounded-t-[1rem] flex items-start justify-between p-[1.5rem] border-b border-solid border-slate-200 ">
                           <h3 className="text-3xl font-semibold">
                             {clickCheck}
                             
@@ -70,13 +70,13 @@ function index({path,page}) {
                                   quote={"Vist link to buy this Nfts"}
                                   >
                                   <BsFacebook className="text-[blue] share bg-[white] rounded-full "></BsFacebook>
-                                  <p className="text-[#A1A1A1] text-[1.1rem]">Facebook</p>
+                                  <p className="text-[#4b4646] text-[1.3rem] font-medium pt-[0.4rem]">Facebook</p>
                                   
                                   </FacebookShareButton>
                                 </div>
                                 {/* <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
                                   <BsInstagram className="insta  text-[white] share !p-[0.4rem] !rounded-[22px]"></BsInstagram>
-                                  <p className="text-[#A1A1A1] text-[1.1rem]">Instagram</p>
+                                  <p className="text-[#4b4646] text-[1.3rem] font-medium pt-[0.4rem]">Instagram</p>
                                 </div> */}
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
                                  
@@ -85,7 +85,7 @@ function index({path,page}) {
                                   hashtags={["GoldenWordsNFTs"]}
                                  >
                                   <BsTwitter className="text-[white] bg-[#00ACEE] p-[8.9px] rounded-[25px] share"></BsTwitter>
-                                  <p className="text-[#A1A1A1] text-[1.1rem]">Twitter</p>
+                                  <p className="text-[#4b4646] text-[1.3rem] font-medium pt-[0.4rem]">Twitter</p>
                                   </TwitterShareButton>
                                 </div>
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
@@ -98,20 +98,20 @@ function index({path,page}) {
                                 url={`${path}` }
                                 >
                                   <BsWhatsapp className="share bg-[#25D366] text-[white] rounded-[25px] p-[1rem]"></BsWhatsapp>
-                                  <p className="text-[#A1A1A1] text-[1.1rem]">Whatsapp</p>
+                                  <p className="text-[#4b4646] text-[1.3rem] font-medium pt-[0.4rem]">Whatsapp</p>
                                   </WhatsappShareButton>
                                 </div>
 
 
                                 {/* <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]' onClick={() =>setclickCheck("Embed Video")}>
                                   <ImEmbed className="share bg-[#f1f1f1] text-[#888787] rounded-[25px] p-[0.7rem]"></ImEmbed>
-                                  <p className="text-[#A1A1A1] text-[1.1rem]">Embed</p>
+                                  <p className="text-[#4b4646] text-[1.3rem] font-medium pt-[0.4rem]">Embed</p>
                                 </div> */}
 
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem] ' onClick={() =>setclickCheck("Qr code")}>
                             
                                   <MdQrCode className="share bg-[#f1f1f1] text-[black] rounded-[25px] p-[1rem]"></MdQrCode>
-                                  <p className="text-[#A1A1A1] text-[1.1rem]">Qr Code</p>
+                                  <p className="text-[#4b4646] text-[1.3rem] font-medium pt-[0.1rem]">Qr Code</p>
                                 </div>
                               </div>):""}
 
