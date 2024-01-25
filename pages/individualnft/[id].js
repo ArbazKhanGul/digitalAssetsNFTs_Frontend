@@ -15,8 +15,7 @@ import {
 
 
 const IndividualNFT = ({ userinfo, nftData, nftSellingData }) => {
-console.log("🚀 ~ file: [id].js:18 ~ IndividualNFT ~ nftSellingData:", nftSellingData.tokenId
-)
+
 
   const [loading, user, address] = useValidate(userinfo, "main");
   const [playing, setPlaying] = useState(false)
@@ -338,7 +337,7 @@ console.log("🚀 ~ file: [id].js:18 ~ IndividualNFT ~ nftSellingData:", nftSell
               <div className="mt-[1rem] h-fit lg:mt-[1rem] flex items-center flex-wrap lg:col-start-2 lg:col-end-3 space-y-2 sm:space-y-0">
 
 
-                <Share path={`${process.env.URL}/individualnft/${nftSellingData?.tokenURI}`} />
+                <Share path={`${nftSellingData?.tokenURI}`} />
 
                 {address == nftSellingData?.owner_address && user?.address == address && nftSellingData.status == "verified" && nftSellingData?.approved ?
                   <Sell nftHash={nftData?.hash} tokenId={nftSellingData?.tokenId} /> : null
@@ -507,7 +506,7 @@ console.log("🚀 ~ file: [id].js:18 ~ IndividualNFT ~ nftSellingData:", nftSell
                 (!error && data) ?
 
                   data?.nft?.map((data, index) => {
-                    return <Individualnft key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI}></Individualnft>
+                    return <Individualnft key={index} original={data?.original} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI}></Individualnft>
                   }) : ""
               }
 

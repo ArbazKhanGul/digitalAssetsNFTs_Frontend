@@ -111,7 +111,7 @@ const Profile = ({ userinfo, profileData }) => {
                 </div> : null
               }
 
-              {/* <Share path={`${process.env.URL}/profile/${profileData?._id}`} page="profile" /> */}
+              <Share path={`http://localhost:3000/profile/${profileData?._id}`} page="profile" />
 
             </div>
 
@@ -242,7 +242,7 @@ const Profile = ({ userinfo, profileData }) => {
                 {
                   (!error && data) ?
                     data?.nft?.map((data, index) => {
-                      return <IndividualNFT data={data} key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI} ></IndividualNFT>
+                      return <IndividualNFT data={data} original={data?.original} key={index} index={index} nftname={data?.nftName} owner={data?.owner_email} creator={data?.creator_email} price={data?.price} creationdate={data?.createdAt} type={data?.contentType} contentURI={data?.contentURI} tokenURI={data?.tokenURI} id={data?.tokenURI} ></IndividualNFT>
                     }) : ""
                 }
 

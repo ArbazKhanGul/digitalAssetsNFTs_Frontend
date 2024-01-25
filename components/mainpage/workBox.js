@@ -32,7 +32,7 @@ function workComp({title,text,icon,dir}){
           }
           }
     return <>
-    <motion.div  className="bg-[white]  text-[#f5f6fae1] shad w-[100%] xs:w-[90%] sm:w-[45%] md:w-[31%] lg:w-[23%] rounded-[0.5rem] mt-[2.5rem] md:mt-[5rem]" variants={dir=="left"?contVar:right} initial="hidden" whileInView="visible">
+    <div  className="bg-[white]  text-[#f5f6fae1] shad w-[100%] xs:w-[90%] sm:w-[45%] md:w-[31%] lg:w-[23%] rounded-[0.5rem] mt-[2.5rem] md:mt-[5rem]" variants={dir=="left"?contVar:right} initial="hidden" whileInView="visible">
 <div className="flex font-medium items-center  col space-x-[1rem] border-b-[0.1rem] border-[#d1d5d6] px-[2.2rem] py-[1.5rem]">
 
  <div  className="relative">
@@ -52,7 +52,7 @@ function workComp({title,text,icon,dir}){
     <div className="w-fit mx-[2.2rem] mb-[2rem] text-[#2f3640]  text-[1.4rem] md:text-[1.5rem] text-justify">{text}</div>
 
 
-    </motion.div>
+    </div>
     </>
 }
 

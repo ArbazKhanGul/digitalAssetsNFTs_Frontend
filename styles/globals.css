@@ -159,7 +159,7 @@ linear-gradient(0deg, rgba(13, 19, 68, 0.9), rgba(13, 19, 68, 0.9));
 .reginpemail 
 {
  
-  @apply w-[100%] text-[1.7rem] flex items-center border-b-[1px] border-solid border-gray-300 pb-[0.5rem] text-[#f7f5f5]
+  @apply w-[100%] text-[1.7rem] flex items-center border-b-[1px] border-solid border-gray-300 pb-[0.5rem] text-[black]
 }
 
 .reginpfile 

@@ -65,16 +65,16 @@ return (<>
 
 
 <WorkComp title="Create NFT" text="You can easily create nft of your digital assets like image,video ,text and audio" icon={"create.png"} dir={"left"}/>
-<WorkComp title="Buy/Sell" text="You can easily buy or sell any nft and can again sell nft at higher price after buying it" icon={"buy.png"} dir={"left"}/>
+<WorkComp title="Buy" text="You can easily buy  any nft and can again sell nft at higher price after buying it" icon={"buy.png"} dir={"left"}/>
 <WorkComp title="Share" text="You can easily share nft on social media platform like facebook twitter and whatsapp" icon={"share.png"} dir={"left"}/>
-<WorkComp title="Offer" text="You can give offer to nft owner if they don't want to sell nft" icon={"offer.png"} dir={"left"}/>
+<WorkComp title="Sell" text="You can easily sell any nft that you and at any price you want" icon={"offer.png"} dir={"left"}/>
 
 <WorkComp title="Create Copy" text="You can create copy of orginal nft but this copy always refer to original nft" icon={"copy.png"} dir={"right"}/>
 
 <WorkComp title="Qr code" text="You can generate qr code of any nft or profile and can used this code for advertisement" icon={"qr.png"} dir={"right"}/>
 <WorkComp title="Buy BNB" text="You can easily buy bnb from our platform using credit card and use these bnb for buying nfts" icon={"bnb.png"} dir={"right"}/>
 
-<WorkComp title="Lucky Draw" text="There is also a lucky draw for the registered user in which they can win prizes" icon={"lucky.png"} dir={"right"}/>
+<WorkComp title="100% Secure" text="This platform is 100% secure no person can use other person content" icon={"lucky.png"} dir={"right"}/>
 
 
 

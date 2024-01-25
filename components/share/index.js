@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import {FacebookShareButton, TwitterShareButton, WhatsappShareButton} from "react-share"
 
 function index({path,page}) {
+  console.log("🚀 ~ file: index.js:10 ~ index ~ path:", path)
   
     const [showModal, setShowModal] = useState(false);
   const [clickCheck,setclickCheck] = useState("Share");
@@ -19,7 +20,7 @@ function index({path,page}) {
       .replace("image/png", "image/octet-stream");
     let downloadLink = document.createElement("a");
     downloadLink.href = pngUrl;
-    downloadLink.download = "sports.png";
+    downloadLink.download = "digitalassetsnfts.png";
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
@@ -65,7 +66,7 @@ function index({path,page}) {
                               <div className="flex  w-auto px-[2rem] sm:px-0 sm:w-[350px] flex-wrap  items-center justify-center">
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem]  mr-[2rem] mt-[1rem]'>
                                   <FacebookShareButton
-                                  url={`${path}` }
+                                  url={`https://digitalassetsnfts.vercel.app` }
                                   hashtag="#GoldenWordsNFTs"
                                   quote={"Vist link to buy this Nfts"}
                                   >
@@ -81,7 +82,7 @@ function index({path,page}) {
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
                                  
                                  <TwitterShareButton
-                                  url={`${path}` }
+                                  url={`http://localhost:3000/individualnft/${path}` }
                                   hashtags={["GoldenWordsNFTs"]}
                                  >
                                   <BsTwitter className="text-[white] bg-[#00ACEE] p-[8.9px] rounded-[25px] share"></BsTwitter>

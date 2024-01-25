@@ -119,7 +119,7 @@ const SendEmail=()=>{
                 <HiOutlineMail className="text-[2.5rem] "></HiOutlineMail>
                 <input type="text" 
                 placeholder="arbaz123@gmail.com" 
-                className="reginput"
+                className="reginput !text-[black]"
                 name="email"
                 value={values.email}
                 onChange={handleChange}

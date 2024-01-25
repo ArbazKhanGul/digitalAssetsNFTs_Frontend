@@ -161,7 +161,7 @@ const BuyCrypto = ({userinfo,data}) => {
 
                 {loader == "buy" ? <>
 
-                    <div className="text-[#1E40AF] font-bold font-['Inconsolata'] text-[2rem]  px-[1.8rem] pb-[0.5rem] pt-[1.5rem]">Current Price:</div>
+                    <div className="text-[black] font-bold font-['Inconsolata'] text-[2rem]  px-[1.8rem] pb-[0.5rem] pt-[1.5rem]">Current Price:</div>
 
                     <div className="text-[1.8rem] text-[#3E3B3B] font-semibold font-['Inconsolata'] flex space-x-[1.5rem] px-[2rem]">
                         <span>1 BNB</span>
@@ -172,7 +172,7 @@ const BuyCrypto = ({userinfo,data}) => {
 
 
                     <div className="text-[1.8rem] text-[#3E3B3B] font-semibold items-center font-['Inconsolata'] flex space-x-[0.6rem] ">
-                        <div className="text-[#1E40AF] font-bold font-['Inconsolata'] whitespace-nowrap text-[2rem]  pl-[1.8rem] pr-[0.7rem] py-[0.5rem]">Maximum Transfer Allow:</div>
+                        <div className="text-[black] font-bold font-['Inconsolata'] whitespace-nowrap text-[2rem]  pl-[1.8rem] pr-[0.7rem] py-[0.5rem]">Maximum Transfer Allow:</div>
                         <span className="whitespace-nowrap">{data.maximumTransfer} BNB &asymp;  ${dollar*data.maximumTransfer}
                         </span>
 
@@ -182,7 +182,7 @@ const BuyCrypto = ({userinfo,data}) => {
                     <form className='w-[100%] mb-[2.3rem]' onSubmit={handleSubmit}>
 
                         <div className="w-[100%] px-[2rem]">
-                            <div className="text-[#1E40AF] font-bold font-['Inconsolata'] text-[2rem]  pt-[1rem]">Select Currency:</div>
+                            <div className="text-[black] font-bold font-['Inconsolata'] text-[2rem]  pt-[1rem]">Select Currency:</div>
 
                             <div className="mt-[0.4rem] w-[100%] relative ">
                                 <div className="input_bord_grad mb-[0.2rem]!w-[100%]">
@@ -218,7 +218,7 @@ const BuyCrypto = ({userinfo,data}) => {
 
 
                         <div className="w-[100%] px-[2rem] pb-[1.3rem]">
-                            <div className="text-[#1E40AF] font-bold font-['Inconsolata'] text-[2rem] pt-[1rem]">Enter Amount:</div>
+                            <div className="text-[black] font-bold font-['Inconsolata'] text-[2rem] pt-[1rem]">Enter Amount:</div>
 
                             <div className="mt-[0.5rem] w-[100%] relative ">
                                 <div className="input_bord_grad mb-[0.2rem]!w-[100%]">
