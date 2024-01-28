@@ -1,7 +1,6 @@
 
 
 const Meta=({nftData,contentData}) => {
-  console.log("🚀 ~ file: index.js:4 ~ Meta ~ nftData title", nftData.title)
 
     return(
         <>
@@ -95,7 +94,5 @@ const Meta=({nftData,contentData}) => {
         </>
     )
 }
-  console.log("🚀 ~ Meta ~ nftData.title:", nftData.title)
-  console.log("🚀 ~ Meta ~ nftData.title:", nftData.title)
 
 export default Meta;
