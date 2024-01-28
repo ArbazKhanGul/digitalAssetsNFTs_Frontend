@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { BsFacebook,BsTwitter, BsWhatsapp } from "react-icons/bs";
+import { BsFacebook,BsTwitter, BsWhatsapp,BsLinkedin} from "react-icons/bs";
 import { ImEmbed } from "react-icons/im";
 import QRCode from 'qrcode.react';
 import { MdQrCode } from "react-icons/md";
 import { useRouter } from 'next/router'
-import {FacebookShareButton, TwitterShareButton, WhatsappShareButton} from "react-share"
+import {FacebookShareButton, TwitterShareButton, WhatsappShareButton,LinkedinShareButton} from "react-share"
 
 function index({path,page}) {
   console.log("🚀 ~ file: index.js:10 ~ index ~ path:", `https://digitalassetsnfts.vercel.app/individualnft/${path}`)
@@ -90,17 +90,26 @@ function index({path,page}) {
                                   </TwitterShareButton>
                                 </div>
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
-                                
-                                
-                                
+                                 
                                 <WhatsappShareButton
-                                // title="Golden Words NFTs"
+                                title="Digital Assets NFTs"
                                 hashtag="DigitalAssetsNFTs"
                                 url={`https://digitalassetsnfts.vercel.app/individualnft/${path}`}
                                 >
                                   <BsWhatsapp className="share bg-[#25D366] text-[white] rounded-[25px] p-[1rem]"></BsWhatsapp>
                                   <p className="text-[#4b4646] text-[1.3rem] font-medium pt-[0.4rem]">Whatsapp</p>
                                   </WhatsappShareButton>
+                                </div>
+
+                                <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
+                                 
+                                <LinkedinShareButton
+                                title="Digital Assets NFTs"
+                                source={`https://digitalassetsnfts.vercel.app/individualnft/${path}`}
+                                >
+                                  <BsLinkedin className="share bg-[blue] text-[white] rounded-[25px] p-[1rem]"/>
+                                  <p className="text-[#4b4646] text-[1.3rem] font-medium pt-[0.4rem]">Linkedin</p>
+                                  </LinkedinShareButton>
                                 </div>
 
 
