@@ -66,7 +66,7 @@ function index({path,page}) {
                               <div className="flex  w-auto px-[2rem] sm:px-0 sm:w-[350px] flex-wrap  items-center justify-center">
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem]  mr-[2rem] mt-[1rem]'>
                                   <FacebookShareButton
-                                  url={`https://digitalassetsnfts.vercel.app/${path}` }
+                                  url={`https://digitalassetsnfts.vercel.app/individualnft/${path}` }
                                   hashtag="#DigitalAssetsNFTs"
                                   quote={"Vist link to buy this Nfts"}
                                   >
