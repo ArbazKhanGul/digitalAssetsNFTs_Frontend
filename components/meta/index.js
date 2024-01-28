@@ -13,8 +13,8 @@ const Meta=({nftData,contentData}) => {
 
 
        {contentData.type=="text" && <>
-        <meta property="description"  content={`${nftData?.title}`}/>
-        <meta property="og:description"  content={`${nftData?.title}`} /> 
+        <meta property="description"  content={`${contentData?.title}`}/>
+        <meta property="og:description"  content={`${contentData?.title}`} /> 
         <meta property="image" content={`https://dgitalassets.vercel.app/social_s.png`} />
         <meta property="og:image"  content={`https://dgitalassets.vercel.app/social_s.png`} />
         </>
@@ -54,7 +54,7 @@ const Meta=({nftData,contentData}) => {
       {contentData.type=="text" && <>
         <meta
           property="twitter:description"
-          content={nftData?.title}
+          content={contentData?.title}
           key="og-desc"
         />
         <meta
