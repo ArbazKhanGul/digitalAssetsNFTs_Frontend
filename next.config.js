@@ -11,7 +11,7 @@ const nextConfig = {
     // SERVER:'http://localhost:5000/images',
     // SERVER:'https://3a89-119-160-64-216.ngrok.io/images',
     // SERVER_URL: 'http://localhost:5000',
-    SERVER_URL:'https://4f17-154-198-94-232.ngrok-free.app ',
+    SERVER_URL:'https://92fc-154-198-94-232.ngrok-free.app',
     chainId:31337,
     PROJECT_KEY_INFLURA:"2J1VjR9BuVpSDC33nS6hpLONikL",
     INFLURA_KEY:"6967a1bdc3d1ca8c2d10c472705917dc",
