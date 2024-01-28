@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { BsFacebook,BsTwitter, BsWhatsapp,BsLinkedin} from "react-icons/bs";
+import { BsFacebook,BsTwitter, BsWhatsapp} from "react-icons/bs";
 import { ImEmbed } from "react-icons/im";
 import QRCode from 'qrcode.react';
 import { MdQrCode } from "react-icons/md";
+import { FaLinkedin } from "react-icons/fa";
 import { useRouter } from 'next/router'
 import {FacebookShareButton, TwitterShareButton, WhatsappShareButton,LinkedinShareButton} from "react-share"
 
@@ -75,10 +76,6 @@ function index({path,page}) {
                                   
                                   </FacebookShareButton>
                                 </div>
-                                {/* <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
-                                  <BsInstagram className="insta  text-[white] share !p-[0.4rem] !rounded-[22px]"></BsInstagram>
-                                  <p className="text-[#4b4646] text-[1.3rem] font-medium pt-[0.4rem]">Instagram</p>
-                                </div> */}
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
                                  
                                  <TwitterShareButton
@@ -105,18 +102,15 @@ function index({path,page}) {
                                  
                                 <LinkedinShareButton
                                 title="Digital Assets NFTs"
-                                source={`https://digitalassetsnfts.vercel.app/individualnft/${path}`}
+                                url={`https://digitalassetsnfts.vercel.app/individualnft/${path}`}
+                                source="arbaz kjan"
+                                summary="welocme"
                                 >
-                                  <BsLinkedin className="share bg-[blue] text-[white] rounded-[25px] p-[1rem]"/>
+                                  <FaLinkedin className="share bg-[blue] text-[white] rounded-[5px] text-[1.4rem] p-[0.2rem]"/>
                                   <p className="text-[#4b4646] text-[1.3rem] font-medium pt-[0.4rem]">Linkedin</p>
                                   </LinkedinShareButton>
                                 </div>
 
-
-                                {/* <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]' onClick={() =>setclickCheck("Embed Video")}>
-                                  <ImEmbed className="share bg-[#f1f1f1] text-[#888787] rounded-[25px] p-[0.7rem]"></ImEmbed>
-                                  <p className="text-[#4b4646] text-[1.3rem] font-medium pt-[0.4rem]">Embed</p>
-                                </div> */}
 
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem] ' onClick={() =>setclickCheck("Qr code")}>
                             
@@ -126,9 +120,6 @@ function index({path,page}) {
                               </div>):""}
 
 
-                              {/* <div className="flex space-x-[2rem] mt-[2rem]">
-                                
-                              </div> */}
 
                               {clickCheck=="Qr code"?(
     <div className="flex w-[28.5rem] sm:w-[35rem] justify-center flex-col items-center">

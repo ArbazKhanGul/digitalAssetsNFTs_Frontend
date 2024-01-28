@@ -40,18 +40,6 @@ const Meta=({nftData,contentData}) => {
        }
 
 
-
-
-
-
-
-        {/* <meta property="og:image:secure_url" content="https://textnft.vercel.app/new.png" /> */}
-        {/* <meta property="og:image:width" content="270" /> */}
-        {/* <meta property="og:image:height" content="270" /> */}
-        {/* <meta property="image:width" content="467" /> */}
-        {/* <meta property="image:height" content="88" /> */}
-
-
 {/* twitter */}
 
 
@@ -72,13 +60,13 @@ const Meta=({nftData,contentData}) => {
         <meta
           property="twitter:image"
           itemProp="image"
-          content={`https://dgitalassets.vercel.app/background.jpg`}
+          content={`https://dgitalassets.vercel.app/social_s.png`}
         />
       </>}
 
 
 
-      {contentData.type=="image" && <>
+       {contentData.type=="image" && <>
         <meta
           property="twitter:description"
           content={contentData?.description}
@@ -90,7 +78,22 @@ const Meta=({nftData,contentData}) => {
           content={`${process.env.ipfsURL}${contentData?.content}`}
         />
         </>}
-        {/* <meta name="twitter:card" content="summary_large_image"/> */}
+
+
+        {contentData.type=="text" && <>
+        <meta
+          property="twitter:description"
+          content={nftData?.decription
+          }
+          key="og-desc"
+        />
+        <meta
+          property="twitter:image"
+          itemProp="image"
+          content={`https://dgitalassets.vercel.app/social_s.png`}
+        />
+      </>}
+
         </>
     )
 }
