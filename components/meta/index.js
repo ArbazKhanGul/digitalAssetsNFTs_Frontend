@@ -1,7 +1,7 @@
 
 
 const Meta=({nftData,contentData}) => {
-  console.log("🚀 ~ file: index.js:4 ~ Meta ~ nftData", nftData)
+  console.log("🚀 ~ file: index.js:4 ~ Meta ~ nftData title", nftData.title)
 
     return(
         <>
@@ -18,7 +18,6 @@ const Meta=({nftData,contentData}) => {
         <meta property="og:description"  content={`${nftData?.title}`} /> 
         <meta property="image" content={`https://dgitalassets.vercel.app/social_s.png`} />
         <meta property="og:image"  content={`https://dgitalassets.vercel.app/social_s.png`} />
-
         </>
        }
 
@@ -96,5 +95,7 @@ const Meta=({nftData,contentData}) => {
         </>
     )
 }
+  console.log("🚀 ~ Meta ~ nftData.title:", nftData.title)
+  console.log("🚀 ~ Meta ~ nftData.title:", nftData.title)
 
 export default Meta;

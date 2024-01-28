@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import {FacebookShareButton, TwitterShareButton, WhatsappShareButton} from "react-share"
 
 function index({path,page}) {
-  console.log("🚀 ~ file: index.js:10 ~ index ~ path:", path)
+  console.log("🚀 ~ file: index.js:10 ~ index ~ path:", `https://digitalassetsnfts.vercel.app/individualnft/${path}`)
   
     const [showModal, setShowModal] = useState(false);
   const [clickCheck,setclickCheck] = useState("Share");
@@ -66,7 +66,7 @@ function index({path,page}) {
                               <div className="flex  w-auto px-[2rem] sm:px-0 sm:w-[350px] flex-wrap  items-center justify-center">
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem]  mr-[2rem] mt-[1rem]'>
                                   <FacebookShareButton
-                                  url={`https://digitalassetsnfts.vercel.app/individualnft/${path}` }
+                                  url={`https://digitalassetsnfts.vercel.app/individualnft/${path}`}
                                   hashtag="#DigitalAssetsNFTs"
                                   quote={"Vist link to buy this Nfts"}
                                   >
@@ -82,8 +82,8 @@ function index({path,page}) {
                                 <div className='flex justify-center flex-col items-center space-y-[0.4rem] mr-[2rem] mt-[1rem]'>
                                  
                                  <TwitterShareButton
-                                  url={`http://localhost:3000/individualnft/${path}` }
-                                  hashtags={["GoldenWordsNFTs"]}
+                                  url={`https://digitalassetsnfts.vercel.app/individualnft/${path}`}
+                                  hashtags={["DigitalAssetsNFTs"]}
                                  >
                                   <BsTwitter className="text-[white] bg-[#00ACEE] p-[8.9px] rounded-[25px] share"></BsTwitter>
                                   <p className="text-[#4b4646] text-[1.3rem] font-medium pt-[0.4rem]">Twitter</p>
@@ -95,8 +95,8 @@ function index({path,page}) {
                                 
                                 <WhatsappShareButton
                                 // title="Golden Words NFTs"
-                                hashtag="#GoldenWordsNFTs"
-                                url={`${path}` }
+                                hashtag="DigitalAssetsNFTs"
+                                url={`https://digitalassetsnfts.vercel.app/individualnft/${path}`}
                                 >
                                   <BsWhatsapp className="share bg-[#25D366] text-[white] rounded-[25px] p-[1rem]"></BsWhatsapp>
                                   <p className="text-[#4b4646] text-[1.3rem] font-medium pt-[0.4rem]">Whatsapp</p>
@@ -125,7 +125,7 @@ function index({path,page}) {
     <div className="flex w-[28.5rem] sm:w-[35rem] justify-center flex-col items-center">
   <QRCode
     id={path}
-    value={path}
+    value={`https://digitalassetsnfts.vercel.app/individualnft/${path}`}
     size={200}
     level={"H"}
     includeMargin={true}
