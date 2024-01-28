@@ -52,6 +52,7 @@ const Meta=({nftData,contentData}) => {
 
 
       {contentData.type=="text" && <>
+      
         <meta
           property="twitter:description"
           content={contentData?.title}
@@ -66,7 +67,8 @@ const Meta=({nftData,contentData}) => {
 
 
 
-       {contentData.type=="image" && <>
+       {contentData.type == "image" && <>
+       <meta name="twitter:card" content="summary_large_image"/>
         <meta
           property="twitter:description"
           content={contentData?.description}
