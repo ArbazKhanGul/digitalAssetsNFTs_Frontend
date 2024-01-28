@@ -77,7 +77,7 @@ const Meta=({nftData,contentData}) => {
         <meta
           property="twitter:image"
           itemProp="image"
-          content={`https://goldenwords.infura-ipfs.io/ipfs/${contentData?.content}`}
+          content={`https://goldenwords.infura-ipfs.io/ipfs/QmdmPEA4TSyh5ZeQESJRY9UbfSwadineWYaN53E9W557Mm`}
         />
         </>}
 
