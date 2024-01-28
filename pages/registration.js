@@ -338,10 +338,10 @@ outline-none"
               <div className="mb-[1rem] text-[2rem] sm:w-[80%]  flex  space-x-[0rem] sm:space-x-[1rem] space-y-[2rem] sm:space-y-[0rem] flex-col sm:flex-row">
                 <button
                   type="button"
-                  className="font-['Inconsolata'] tracking-wider bg-blue-700 hover:bg-blue-900  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-medium py-3 px-8  sm:py-3 sm:px-[1.7rem] rounded-full"
+                  className="font-['Inconsolata'] tracking-wider bg-blue-700 hover:bg-blue-900  text-white font-normal text-[1.6rem] whitespace-nowrap sm:text-[1.7rem] sm:font-medium py-3 px-8  sm:py-3 sm:px-[1.7rem] rounded-full"
                   onClick={() => connectWallet(dispatch, address)}
                 >
-                  Connect Metamask
+                 connect Metamask
                 </button>
                 {!checker ? (
                   <button
@@ -353,7 +353,7 @@ outline-none"
                 ) : (
                   <button
                     type="submit"
-                    className="font-['Inconsolata'] tracking-wider bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.7rem] sm:text-[1.7rem] sm:font-medium py-3  px-8  sm:py-3 sm:px-[5rem] rounded-full"
+                    className="font-['Inconsolata'] tracking-wider bg-blue-500  hover:bg-blue-700  text-white font-normal text-[1.5rem] sm:text-[1.7rem] sm:font-medium py-3  px-4  sm:py-3 sm:px-[3rem] rounded-full"
                   >
                     Submitting...
                   </button>
