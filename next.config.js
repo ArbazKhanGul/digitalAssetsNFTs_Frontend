@@ -3,9 +3,9 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   env: {
-    CONTACT: "contact@gmailgoldennft.com",
-    Address:"0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
-    marketAddress:'0x5FbDB2315678afecb367f032d93F642f64180aa3',
+    CONTACT: "contact@gmaildigitalassetsnft.com",
+    Address:"0xeC7B1855C5f36FF5B29bD9bda6eaC026B8c42063",
+    marketAddress:'0x402B7807fE161145671F82d0052F129011c41544',
     ipfsURL:"https://goldenwords.infura-ipfs.io/ipfs/",
     URL: 'https://textnft.vercel.app',
     // SERVER:'http://localhost:5000/images',
