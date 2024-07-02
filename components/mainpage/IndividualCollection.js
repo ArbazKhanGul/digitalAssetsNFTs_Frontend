@@ -47,7 +47,7 @@ const IndividualCollections = ({ num,authorname,volume,itemsSell,itemsBuy,itemsC
           <div className=" inline-block w-[3.5rem] h-[3.5rem] sm:w-[3.2rem] md:w-[3.5rem] sm:h-[3.2rem] md:h-[3.5rem] rounded-full relative">
             <Image
               className="rounded-full"
-              src={`${process.env.SERVER_URL}/images/${image}`}
+              src={`${image}`}
               layout="fill"
             //   objectFit="cover"
             /></div>

@@ -42,7 +42,7 @@ const Profile = ({ userinfo, profileData }) => {
             <div>
               <div className=" w-[100%] h-[26rem]  relative">
                 <Image
-                  src={`${process.env.SERVER_URL}/images/${profileData?.cover}`}
+                  src={`${profileData?.cover}`}
                   layout="fill"
                   objectFit="cover"
                 />
@@ -54,7 +54,7 @@ const Profile = ({ userinfo, profileData }) => {
               <div className="  md:ml-[5rem] -mt-[7.5rem]  border-white z-50 relative border-[0.4rem] inline-block rounded-xl">
                 <div className="w-[15rem] h-[15rem]  relative">
                   <Image
-                    src={`${process.env.SERVER_URL}/images/${profileData?.profile}`}
+                    src={`${profileData?.profile}`}
                     layout="fill"
                     objectFit="cover"
                     className="rounded-xl"

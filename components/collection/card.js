@@ -12,7 +12,7 @@ const Card = ({data,priceDollar}) => {
                 <div>
                     <div className=" w-[100.7%] -ml-[0.5%]  -mt-[0.3%] h-[17rem]  relative">
                         <Image
-                             src={`${process.env.SERVER_URL}/images/${cover}`}
+                             src={`${cover}`}
                             layout="fill"
                             objectFit="cover"
                             className="rounded-tl-[3.7rem] rounded-tr-[3.7rem]"
@@ -25,7 +25,7 @@ const Card = ({data,priceDollar}) => {
                         <div className="border-white bg-white relative border-[0.4rem] rounded-full">
                         <div className="w-[8.4rem] h-[8.4rem]  relative ">
                             <Image
-                                src={`${process.env.SERVER_URL}/images/${profile}`}
+                                src={`${profile}`}
                                 layout="fill"
                                 objectFit="cover"
                                 className="rounded-full"

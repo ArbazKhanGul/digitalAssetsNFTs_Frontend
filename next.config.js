@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   env: {
-    CONTACT: "contact@gmaildigitalassetsnft.com",
+    CONTACT: "contact@digitalassetsnft.com",
     Address:"0xeC7B1855C5f36FF5B29bD9bda6eaC026B8c42063",
     marketAddress:'0x402B7807fE161145671F82d0052F129011c41544',
     ipfsURL:"https://goldenwords.infura-ipfs.io/ipfs/",

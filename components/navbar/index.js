@@ -334,7 +334,7 @@ const Navbar = () => {
                       <div className="flex items-center space-x-[0.4rem]">
                         <div className=" w-[4.2rem] h-[4.2rem] rounded-full relative">
                           <Image
-                            src={`${process.env.SERVER_URL}/images/${user?.profile}`}
+                            src={`${user?.profile}`}
                             layout="fill"
                             className="rounded-full"
                           />
@@ -502,7 +502,7 @@ const Navbar = () => {
                     <div className="flex items-center space-x-[0.8rem]">
                       <div className=" w-[4.2rem] h-[4.2rem] rounded-full relative">
                         <Image
-                          src={`${process.env.SERVER_URL}/images/${user.profile}`}
+                          src={`${user.profile}`}
                           layout="fill"
                           className="rounded-full"
                         />

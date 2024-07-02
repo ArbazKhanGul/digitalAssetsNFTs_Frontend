@@ -55,8 +55,8 @@ const profileUpdate = ({userinfo}) => {
       setFieldValue("description", user?.description);
       setFieldValue("profile", "");
       setFieldValue("cover", "");
-      setProfileInfo(`${process.env.SERVER_URL}/images/${user?.profile}`);
-      setcoverInfo(`${process.env.SERVER_URL}/images/${user?.cover}`);
+      setProfileInfo(`${user?.profile}`);
+      setcoverInfo(`${user?.cover}`);
     }
   }, [user]);
 
@@ -280,7 +280,7 @@ const profileUpdate = ({userinfo}) => {
                   console.log("🚀 ~ file: profileUpdate.js:307 ~ profileUpdate ~ size", size)
                   if(size>4){
                     e.target.value = null;
-                    setProfileInfo(`${process.env.SERVER_URL}/images/${user?.profile}`)
+                    setProfileInfo(`${user?.profile}`)
                     setFieldValue(
                       "profile",
                        ""
@@ -319,7 +319,7 @@ const profileUpdate = ({userinfo}) => {
                   
                   if(size>4){
                     e.target.value = null;
-                    setcoverInfo(`${process.env.SERVER_URL}/images/${user?.cover}`)
+                    setcoverInfo(`${user?.cover}`)
                     setFieldValue(
                       "cover",
                        ""
