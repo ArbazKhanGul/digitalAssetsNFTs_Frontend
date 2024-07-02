@@ -18,7 +18,7 @@ const nextConfig = {
     STRIPE_PUBLISABLE_KEY:"pk_test_51PXdgKKFApSIcqdTxG0BmH2pWGfj2kLIpC7svGQTTmeleqCfoYOnWoVjAqeWPfwMC0FjzF6cwETGYeYBIiCUosQR00EEVuqFat"
   },
   images: {
-    domains: ['localhost','digitalassetsnfts-backend.onrender.com','goldenwords.infura-ipfs.io'],
+    domains: ['localhost','digitalassetsnfts-backend.onrender.com','goldenwords.infura-ipfs.io',"res.cloudinary.com"],
 },
 }
 
