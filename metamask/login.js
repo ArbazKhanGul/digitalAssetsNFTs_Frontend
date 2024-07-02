@@ -116,7 +116,7 @@ export const connectWalletLogin = async (user,dispatch, address,router,setShowLo
        const data=result?.data;
      if (data?.message == "success") {
 
-
+      localStorage.setItem("token", data.token);
       dispatch(addUser(data?.user));
       setShowLogin(false);
       console.log("🚀 ~ file: login.js ~ line 57 ~ connectWalletLogin ~ response?.data?.user", response?.data?.user)
