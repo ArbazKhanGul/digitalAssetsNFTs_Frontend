@@ -1,29 +1,38 @@
-import api from "./axiosconfiguration"
+import api from "./axiosconfiguration";
 
 export default async function getServerSideProps(context) {
-    const { req} = context
+  const { req } = context;
 
-    let session = req.headers?.cookie ? req.headers?.cookie : ""
+  // Extract the token from cookies
+  const cookies = req.headers?.cookie || "";
+  let token = "";
+  if (cookies) {
+    const cookiesArray = cookies.split(';');
+    const tokenCookie = cookiesArray.find(cookie => cookie.trim().startsWith('token='));
+    if (tokenCookie) {
+      token = tokenCookie.split('=')[1];
+    }
+  }
 
+  try {
+    var result;
 
-    try {
-        var result;
-
-       if(session){
-        result = await api.get("/verify", {
-            headers: {
-                'Access-Control-Allow-Credentials': true,
-                Cookie: session
-            }
-        },);
+    if (token) {
+      // Make a request to verify the session
+      result = await api.get("/verify", {
+        headers: {
+          'Access-Control-Allow-Credentials': true,
+          'Authorization': `Bearer ${token}`
         }
+      });
     }
-    catch (error) {
-    }
+  } catch (error) {
+    console.error("Error verifying session:", error);
+  }
 
-    return {
-        props: {
-            userinfo: result?.data?.user ? result?.data?.user:""
-        }
+  return {
+    props: {
+      userinfo: result?.data?.user ? result?.data?.user : ""
     }
+  }
 }

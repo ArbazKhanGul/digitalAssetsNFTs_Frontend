@@ -3,6 +3,7 @@ import { addAddress } from "../slice/metamask";
 import { addUser } from "../slice/user";
 import axios from "../utils/axiosconfiguration";
 import {ethers} from "ethers";
+import Cookies from "js-cookie";
 
 
 
@@ -117,6 +118,8 @@ export const connectWalletLogin = async (user,dispatch, address,router,setShowLo
      if (data?.message == "success") {
 
       localStorage.setItem("token", data.token);
+      Cookies.set("token", data.token, { expires: 7, path: '/' });
+      
       dispatch(addUser(data?.user));
       setShowLogin(false);
       console.log("🚀 ~ file: login.js ~ line 57 ~ connectWalletLogin ~ response?.data?.user", response?.data?.user)

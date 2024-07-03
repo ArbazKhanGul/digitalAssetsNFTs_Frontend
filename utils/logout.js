@@ -4,8 +4,9 @@ import api from "./axiosconfiguration"
 const logout=async (dispatch,router) => {
     try{
         
-        await api.get("/logout");
+        // await api.get("/logout");
         console.log("success request")
+        localStorage.removeItem('token');
         dispatch(addUser(undefined))
         router.push("/");
     }
