@@ -100,7 +100,7 @@ const [loading, user, address] = useValidate(userinfo, "main");
                             }
 
 
-                 {data?.nft?.length==0 && !error ? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3.3rem] w-fit  mt-[1.5rem]">
+                 {data?.nft?.length==0 && !error ? (<div className="text-[#cbcdcf]  text-[1.7rem] sm:text-[2rem] md:text-[3.3rem] w-[100%] flex justify-center  mt-[1.5rem]">
                             OOPS!   Nothing to show...</div>) : ""
                             }
 

@@ -63,7 +63,7 @@ const TopCollections=({error,data,isLoading})=>{
              </div>
         </div>:""}
         {
-            isLoading ? ( <div className="flex justify-center  mt-[4px]">
+            isLoading ? ( <div className="flex justify-center w-[100%] mt-[4px]">
 
             <ClipLoader
               color={"#30DCBA"}

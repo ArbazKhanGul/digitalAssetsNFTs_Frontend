@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
 import { toast } from "react-toastify";
+import axios from "../utils/axiosconfigurationServerSide";
 
 const sell =async (tokenIdArg,priceArg,router,setLoader,setShowModal,setChecker) => {
 
@@ -11,6 +12,8 @@ const sell =async (tokenIdArg,priceArg,router,setLoader,setShowModal,setChecker)
         const Abi = [
             // Create the market item
             "function createMarketItem(uint256 tokenId,uint256 price) public ",
+              // Event
+              "event MarketItemCreated(uint indexed itemId, uint256 indexed tokenId, address seller, address creator, address owner, uint256 price, string status)"
         ];
 
         const marketContract = new ethers.Contract(process.env.marketAddress,Abi,signer);
@@ -23,32 +26,31 @@ const sell =async (tokenIdArg,priceArg,router,setLoader,setShowModal,setChecker)
           setLoader("transaction waiting");
 
 
-        const res = await marketContract.createMarketItem(tokenIdArg,priceArg);
+          const res = await marketContract.createMarketItem(tokenIdArg, priceArg);
 
-
-        let tx = await res.wait() // it return when transaction is mined
-
-        console.log("🚀 ~ file: sell.js:24 ~ sell ~ tx", tx)
-
-        setLoader("transaction confirmation");
-
-        //  let abi = [  "event MarketItemCreated (uint indexed itemId,uint256 indexed tokenId,address seller,address creator,address owner,uint256 price,string status)"];
- 
-        //  let iface = new ethers.utils.Interface(abi);
-        //  let log = iface.parseLog(tx?.logs[1]);
-        //  const {itemId,tokenId ,seller,creator,owner,price,status} = log?.args;
-
-        //  router.replace(router.asPath)
-
-        //  console.log("🚀 ~ file: sell.js:27 ~ sell ~ sold", status)
-        //  console.log("🚀 ~ file: sell.js:27 ~ sell ~ price", price.toString())
-        //  console.log("🚀 ~ file: sell.js:27 ~ sell ~ owner", owner)
-        //  console.log("🚀 ~ file: sell.js:27 ~ sell ~ creator", creator)
-        //  console.log("🚀 ~ file: sell.js:27 ~ sell ~ seller", seller)
-        //  console.log("🚀 ~ file: sell.js:27 ~ sell ~ tokenId", tokenId.toString())
-        //  console.log("🚀 ~ file: sell.js:27 ~ sell ~ itemId", itemId.toString())
-
-
+          let tx = await res.wait(); // Wait for the transaction to be mined
+  
+          console.log("🚀 ~ file: sell.js:24 ~ sell ~ tx", tx);
+  
+          setLoader("transaction confirmation");
+  
+          // Parse the event log
+          let abi = ["event MarketItemCreated(uint indexed itemId, uint256 indexed tokenId, address seller, address creator, address owner, uint256 price, string status)"];
+          let iface = new ethers.utils.Interface(abi);
+          let log = iface.parseLog(tx?.logs[1]); // Adjust the log index as needed
+          const { itemId, tokenId, seller, creator, owner, price, status } = log?.args;
+  
+          // Send event data to the backend
+          await axios.post('/updateMarketItemCreatedEvent', {
+              itemId: itemId.toString(),
+              tokenId: tokenId.toString(),
+              seller,
+              creator,
+              owner,
+              price: price.toString(),
+              status
+          });
+  
         }
         catch (err) {
             setLoader(false);

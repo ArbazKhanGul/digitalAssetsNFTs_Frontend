@@ -43,57 +43,80 @@ const localNetwork = {
   // blockExplorerUrls: [],  // Add a block explorer URL if available
 };
 
-const addBinanceSmartChain = async (setChainMessage) => {
-  try {
-    // Request MetaMask to add Binance Smart Chain
-    await window.ethereum.request({
-      method: 'wallet_addEthereumChain',
-      params: [localNetwork],
-    });
-    setChainMessage(false);
-  } catch (error) {
-    if(error.message=="User rejected the request."){
-      toast.error('User reject switch chain request', {
-        position: 'top-center',
-      });  
-      return;
-    }
-    toast.error('There is some issue in changing network please check your metamask', {
-      position: 'top-center',
-    });
-  }
-};
-
+// const addBinanceSmartChain = async (setChainMessage) => {
+//   try {
+//     // Request MetaMask to add Binance Smart Chain
+//     await window.ethereum.request({
+//       method: 'wallet_addEthereumChain',
+//       params: [localNetwork],
+//     });
+//     setChainMessage(false);
+//   } catch (error) {
+//     if(error.message=="User rejected the request."){
+//       toast.error('User reject switch chain request', {
+//         position: 'top-center',
+//       });  
+//       return;
+//     }
+//     toast.error('There is some issue in changing network please check your metamask', {
+//       position: 'top-center',
+//     });
+//   }
+// };
 
 const connectToBinanceSmartChain = async (setChainMessage) => {
   try {
-    // Requesting MetaMask to switch to Binance Smart Chain
+    // Requesting MetaMask to switch to Binance Smart Chain Testnet
     await window.ethereum.request({
       method: 'wallet_switchEthereumChain',
-      params: [{ chainId: '0x7A69' }], 
-      // params: [{ chainId: '0x38' }],  // Binance Smart Chain's chainId is 56 in hexadecimal (0x38)
+      params: [{ chainId: '0x61' }], // Binance Smart Chain Testnet's chainId is 97 in hexadecimal (0x61)
     });
     setChainMessage(false);
   } catch (error) {
-  console.log("🚀 ~ file: index.js:78 ~ connectToBinanceSmartChain ~ error:", error)
+    console.log("🚀 ~ file: index.js:78 ~ connectToBinanceSmartChainTestnet ~ error:", error);
 
-    if(error.message=="User rejected the request."){
-      toast.error('User reject switch chain request', {
+    if (error.message === "User rejected the request.") {
+      toast.error('User rejected the switch chain request', {
         position: 'top-center',
-      });  
+      });
       return;
-    }
-    else if(error.message.startsWith(`Unrecognized chain ID`)){
-      addBinanceSmartChain(setChainMessage);
+    } else if (error.message.includes('Unrecognized chain ID')) {
+      addBinanceSmartChainTestnet(setChainMessage);
       return;
     }
 
-    toast.error('Could not switch to Binance Smart Chain', {
+    toast.error('Could not switch to Binance Smart Chain Testnet', {
       position: 'top-center',
     });
   }
 };
 
+const addBinanceSmartChainTestnet = async (setChainMessage) => {
+  try {
+    await window.ethereum.request({
+      method: 'wallet_addEthereumChain',
+      params: [
+        {
+          chainId: '0x61',
+          chainName: 'Binance Smart Chain Testnet',
+          nativeCurrency: {
+            name: 'Binance Coin',
+            symbol: 'BNB',
+            decimals: 18,
+          },
+          rpcUrls: ['https://data-seed-prebsc-1-s1.binance.org:8545'],
+          blockExplorerUrls: ['https://testnet.bscscan.com'],
+        },
+      ],
+    });
+    setChainMessage(false);
+  } catch (error) {
+    console.error("🚀 ~ file: index.js:105 ~ addBinanceSmartChainTestnet ~ error:", error);
+    toast.error('Could not add Binance Smart Chain Testnet', {
+      position: 'top-center',
+    });
+  }
+};
 
 const Navbar = () => {
 
@@ -106,7 +129,6 @@ const Navbar = () => {
   const [chainMessage, setChainMessage] = useState(false);
 
   const [showLogin, setShowLogin] = useState(false);
-  console.log("🚀 ~ file: index.js:28 ~ Navbar ~ showLogin", showLogin)
   const [notificationControl, setNotificationControl] = useState(false);
   const dispatch = useDispatch();
 
@@ -144,7 +166,7 @@ const Navbar = () => {
       } else {
         dispatch(addAddress(undefined));
       
-        toast.error("Please connect to binance smart chain", {
+        toast.error("Please connect to  binance smart chain testnet", {
           position: "top-center",
         });
       }
@@ -168,7 +190,7 @@ const Navbar = () => {
 <div className={`overflow-hidden transition-all ease-in-out duration-800 ${!chainMessage || window.ethereum.chainId == process.env.chainId ? 'h-0': 'h-[5.5rem]'}`}>
   <div className={ `w-full z-[100] bg-red-500 text-sm py-[2.2rem] text-white shadow-lg pl-[1rem] pr-[2rem]  sm:pl-[2rem] sm:pr-[3rem] md:pl-[3rem] md:pr-[4.5rem]`} role="alert">
     <div className="flex  text-[2.2rem]">
-      Please connect to or binance smart chain or
+      Please connect to or binance smart chain testnet or
       <button class="text-[#3838af] text-[2rem] underline pl-[0.7rem] decoration-skip-ink-none break-underline" onClick={()=>{connectToBinanceSmartChain(setChainMessage)}}>
        Automatically connect
       </button>

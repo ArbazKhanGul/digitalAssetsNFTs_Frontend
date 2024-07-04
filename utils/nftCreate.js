@@ -1,5 +1,6 @@
 import { ethers } from "ethers";
 import { toast } from "react-toastify";
+import axios from "../utils/axiosconfigurationServerSide";
 
 export async function nftTokenCreate(price,ipfspath, setLoader,setPath,copyrightStatus=false,tokenIdCopyrights=0,nonce=0,signature='0x',copyrightPrice=0) {
 
@@ -8,6 +9,7 @@ export async function nftTokenCreate(price,ipfspath, setLoader,setPath,copyright
         const num1 = ethers.BigNumber.from(price);
         const num2 = ethers.BigNumber.from(copyrightPrice)
         const totalfee=num1.add(num2);
+        console.log("🚀 ~ nftTokenCreate ~ totalfee:", totalfee)
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner()
@@ -38,14 +40,24 @@ export async function nftTokenCreate(price,ipfspath, setLoader,setPath,copyright
     const res = await nftContract.createToken(tokenipfs,copyrightStatus,tokenIdCopyrights,nonce,copyrightPrice,signature,options);
     let tx = await res.wait() // it return when transaction is mined
 
-     let abi = [ "  event Creation(address indexed owner_address,uint indexed tokenId,string tokenURI,bool copyright,uint copyrightprice,address copyrightOwner);" ];
+     let abi = [ "event Creation(address indexed owner_address,uint indexed tokenId,string tokenURI,bool copyright,uint copyrightprice,address copyrightOwner);" ];
      let iface = new ethers.utils.Interface(abi);
      let log = iface.parseLog(tx?.logs[2]);
      const {owner_address,tokenId ,tokenURI,copyright,copyrightprice,copyrightOwner} = log?.args;
 
      if(tokenURI==tokenipfs){
+
         setPath(ipfspath);
         setLoader("Token transaction verification...")
+        await axios.post('/updateCreatedEvent', {
+            owner_address,
+            tokenId:tokenId.toString(),
+            tokenURI,
+            copyright,
+            copyrightprice:copyrightPrice.toString(),
+            copyrightOwner
+        });
+
      }
      else{
         throw new Error("Something went wrong in sending transaction")
@@ -53,6 +65,7 @@ export async function nftTokenCreate(price,ipfspath, setLoader,setPath,copyright
 
     }
     catch (err) {
+        console.log("🚀 ~ nftTokenCreate ~ err:", err)
         setLoader(false)
         
             if (err.message.startsWith("user rejected"))
@@ -61,10 +74,16 @@ export async function nftTokenCreate(price,ipfspath, setLoader,setPath,copyright
                     position: "top-center",
                   });
             }
-            else{
-        toast.error(err.message, {
+            else if(err?.data?.message){
+        toast.error(err?.data?.message, {
             position: "top-center",
           });
+        }
+
+        else {
+            toast.error(err.message, {
+                position: "top-center",
+              });
         }
     }
 }

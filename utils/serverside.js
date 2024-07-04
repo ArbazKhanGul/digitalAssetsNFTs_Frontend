@@ -1,4 +1,4 @@
-import api from "./axiosconfiguration";
+import api from "./axiosconfigurationServerSide";
 
 export default async function getServerSideProps(context) {
   const { req } = context;

@@ -53,7 +53,7 @@
 
 // }
 
-import api from "./axiosconfiguration";
+import api from "./axiosconfigurationServerSide";
 import axios from "axios";
 
 export default async function getServerSideProps(context) {
