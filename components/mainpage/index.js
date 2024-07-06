@@ -57,7 +57,7 @@ const right={
     {address?(<button className="bg-[#1b31c4] hover:bg-blue-800 text-[#ebe7e7] font-normal text-[1.6rem] sm:font-semibold py-[0.9rem] px-[3.3rem] rounded-full  tracking-wider  max-w-[100%] overflow-hidden">
     {address.substr(0, 8) + "..." + address.substr(37, 5)}
 </button>):(<>
-     <button className="bg-[#1b31c4] hover:bg-blue-800  text-[#ebe7e7] font-normal text-[1.7rem] sm:font-semibold py-[0.7rem] px-[4rem] rounded-full  tracking-wider"
+     <button className="bg-[#1b31c4] hover:bg-blue-800 mt-[1rem]  ml-[1rem] text-[#ebe7e7] font-normal text-[1.7rem] sm:font-semibold py-[0.7rem] px-[4rem] rounded-full  tracking-wider"
       onClick={() => connectWalletLogin(user,dispatch, address,router,setShowLoginButton)}
       disabled={showLoginButton}
      >
@@ -66,7 +66,7 @@ const right={
 
   
     <Link href="/registration">
-    <a><button className="bg-[#1b31c4] hover:bg-blue-800 buttons  text-[#ebe7e7] font-normal text-[1.7rem] sm:font-semibold py-[0.7rem] px-[3.2rem] rounded-full  tracking-wider">Register</button> 
+    <a><button className="bg-[#1b31c4]  hover:bg-blue-800 mt-[1rem] ml-[1rem]  text-[#ebe7e7] font-normal text-[1.7rem] sm:font-semibold py-[0.7rem] px-[3.2rem] rounded-full  tracking-wider">Register</button> 
     </a>
                 </Link>
 

@@ -380,7 +380,7 @@ const Navbar = () => {
       <div
         className={
           "onclicklist transition-all duration-500 overflow-hidden lg:hidden linear " +
-          (!showItems ? "h-0 " : (!user || user.address != address ? "h-[212px]" : "h-[355px]"))
+          (!showItems ? "h-0 " : (!user || user.address != address ? "h-[240px]" : "h-[355px]"))
         }
       >
         <ul className={"divide-y-[1px] divide-[#454f5a]"}>
